@@ -5,6 +5,11 @@
 body {
 	background: #f1fbff;
 }
+a.active,
+a:hover {
+  background: #FFCA2C;
+  transition: .5s;
+}
 .section-padding {
 	padding: 100px 0;
 }
