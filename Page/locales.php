@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    
+
     <!-- <button class="e-filter-item" data-filter="Indumentaria" aria-pressed="false">Indumentaria</button>
     <button class="e-filter-item" data-filter="comida" aria-pressed="false">Comida</button>
     <button class="e-filter-item" data-filter="pefumeria" aria-pressed="false">Pefumer&iacute;a</button>
@@ -35,7 +35,6 @@
         $vSql = "SELECT * FROM locales" . " limit " . $inicio . "," . $Cant_por_Pag;
         $vResultado = mysqli_query($link, $vSql);
         $total_registros = mysqli_num_rows($vResultado);
-
     ?>
     
     <table border=1>

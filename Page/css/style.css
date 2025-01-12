@@ -107,6 +107,9 @@ a:hover {
 }
 
 /* LOGIN */
+.about{
+	background-color: #191919;
+}
 .loginBox{
 	width: 100%;
 	background: #191919;
@@ -167,10 +170,17 @@ a:hover {
   .loginBox a:hover{
 	color: black;
   }
-  .loginBox a:visited{
-	color: lightcoral;
+  .loginBox a:visited {
+	color: yellow;
   }
 
+  /* MAPA DEL SITIO */
+.about-text{
+	color: white;
+}
+.about-text a:hover{
+	color: black;
+}
 
 /* FOOTER */
 /* soon */
