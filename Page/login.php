@@ -1,12 +1,11 @@
 <?php
-    if($_SERVER["REQUEST_METHOD"] == "POST)"){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
         
         // saco la data del formulario
         $email = $_POST["email"];
         $password = $_POST["password"];
 
         // Conexion con la DB
-
         $host = "localhost";
         $dbemail = "root";
         $dbpassword = "";
@@ -31,14 +30,10 @@
 
         }else{          
             // Login fallido
-                echo "Usuario o contraseña incorrectos";
+                // echo "Usuario o contraseña incorrectos";
                 header("Location: fail.html");
                 exit();
             }
-
         $conn->close();
-
-
     }
-
 ?>
