@@ -12,37 +12,10 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container">
-          <a class="navbar-brand" href="#"><span class="text-warning">NO</span>VA</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">INICIO</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="locales.php">LOCALES</a>
-              </li> 
-              <li class="nav-item">
-                <a class="nav-link" href="#cualquieragordo">PROMOCIONES</a>
-              </li> 
-              <li class="nav-item">
-                <a class="nav-link" href="index.html#about">MAPA DEL SITIO</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="login.html">INICIAR SESIÓN</a>
-              </li>        
-            </ul>
-          </div>
-        </div>
-      </nav>
-         
-         
+<body>         
+    <?php 
+      include "./inc/navbar_UsuarioN.php";  
+    ?>     
          
   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-indicators">
