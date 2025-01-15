@@ -20,9 +20,15 @@
             <a class="nav-link" href="home.php#about">MAPA DEL SITIO</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="login.html">INICIAR SESIÓN</a>
+            <a class="nav-link" href="home.php#about">Novedades</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="home.php#about">Descuentos</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="login.php">Usuario</a>
             </li>        
         </ul>
         </div>
     </div>
-    </nav>
+</nav>

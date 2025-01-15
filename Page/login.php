@@ -1,4 +1,35 @@
 <?php
+include "./inc/navbarUNR.php";
+?>
+<section id="about" class="about">
+          <div class="container-fluid">
+              <div class="row ">
+                  <div class="col-12">
+                    <form class="loginBox" action="login.php" method="POST">
+                        <br>
+                        <br>  
+                        <br>
+                    <h1>INICIO DE SESIÓN</h1>
+                      <br>
+                      <h3>Correo electrónico:</h3>
+                      <input type="email" name="email" placeholder="" class="form-control">
+                      <h3>Contraseña:</h3>
+                      <input type="password" name="password" placeholder="" class="form-control">
+                      <input type="submit" class="btn btn-primary" value="Ingresar">
+                      <a href="#">¿Has olvidado la contraseña?</a>
+                      <br>
+                      <a href="#">Crear Cuenta</a>
+                    </form>
+                  </div>
+              </div>
+          </div>
+</section>
+
+<?php
+
+    include "./inc/head.php";
+    include "./inc/script.php";
+
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         
         // saco la data del formulario
