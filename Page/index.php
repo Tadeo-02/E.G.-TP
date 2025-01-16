@@ -1,4 +1,5 @@
 
+
 <?php require "./inc/sessionStart.php";  ?>
 
 <!DOCTYPE html>
@@ -20,10 +21,10 @@
       }
       // Condicional que evalua el valor de la variable tipo GET 'vista' y realiza la acción correspondiente
       // si existe el archivo y es distinto al login y es distinto a 404 cargamos todo lo normal
-      if(is_file("./vistas/".$_GET['vista'].".php" && $_GET['vista']!="login" && $_GET['vista']!="404")){ //is_file comprueba si un archivo existe en el directorio indicado
-
+      if(is_file("./vistas/".$_GET['vista'].".php") && $_GET['vista'] != "login" && $_GET['vista'] != "404"){ //is_file comprueba si un archivo existe en el directorio indicado
+        
         // <!-- NAVBAR -->
-        include "./inc/navbarUNR.php";  
+        include "./inc/navbarUNR.php";
 
         include "./vistas/".$_GET['vista'].".php";
 
@@ -32,31 +33,30 @@
         
         // <!-- MAPA DEL LOCAL -->     
         include "./inc/mapaDeLocalUNR.php";
-        
+
         // <!-- CONTACTO -->
-          include "./inc/form.php";  
+        include "./inc/form.php";  
 
         // <!-- FOOTER -->   
-          include "./inc/footer.php";  
+        include "./inc/footer.php";
+
           
         // <!-- JS -->
         include "./inc/script.php";
           
-      }else {
+      } else {
           if($_GET['vista'] =="login"){
+            include "./login.php";
             include "./vistas/login.php";
           }else{
             include "./vistas/404.php";
           }
       }
 
-
-
-
-
-
-
-      ?>   
+      ?>
+      
+      <a href="php/main.php">Alta</a>
+      
   </body>
 </html>
 
