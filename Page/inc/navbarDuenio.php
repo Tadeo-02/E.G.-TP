@@ -11,6 +11,7 @@
             <a class="nav-link" href="index.php">INICIO</a>
             </li>
             <li class="nav-item">
+                <!-- CAMBIAR FUNCION A MIS LOCALES -->
             <a class="nav-link" href="locales.php">LOCALES</a>
             </li> 
             <li class="nav-item">
