@@ -13,22 +13,6 @@
               </div>';
         exit();
     }
-
-    // Verificar si los datos son iguales
-
-    // if(verificarDatos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}", $nombre) || verificarDatos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}", $apellido)){
-    //     echo '<div class="alert alert-danger" role="alert">
-    //             Los nombres y apellidos solo pueden contener letras y espacios
-    //           </div>';
-    //     exit();
-    // }
-
-    // if(verificarDatos("[a-zA-Z0-9]{4,20}", $usuario)){
-    //     echo '<div class="alert alert-danger" role="alert">
-    //             El usuario solo puede contener letras y números
-    //           </div>';
-    //     exit();
-    // }
     
     if(verificarDatos("[a-zA-Z0-9$@.-]{7,100}", $clave_1) || verificarDatos("[a-zA-Z0-9$@.-]{7,100}", $clave_2)){
         echo '<div class="alert alert-danger" role="alert">
@@ -70,13 +54,14 @@
             Las claves que ha ingresado no coinciden
             </div>';
         exit();
-    } else {
-        $clave = password_hash($clave_1, PASSWORD_BCRYPT,["cost"=>10]);
-    }
+    } 
+    // else {
+    //     $clave = password_hash($clave_1, PASSWORD_BCRYPT,["cost"=>10]);
+    // }
 
     // Guardando datos
     $guardar_usuario=conexion();
-    $guardar_usuario=$guardar_usuario->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario) VALUES('$clave', '$email', 'Inicial', 'Cliente')");
+    $guardar_usuario=$guardar_usuario->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario) VALUES('$clave_1', '$email', 'Inicial', 'Cliente')");
 
 
 

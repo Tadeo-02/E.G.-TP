@@ -7,8 +7,8 @@ body {
 }
 
 /* HOVER */
-a.active,
-a:hover {
+.nav-link.active,
+.nav-link:hover {
   background: #FFCA2C;
   transition: .5s;
 }
@@ -111,7 +111,7 @@ a:hover {
 .about{
 	background-color: #191919;
 }
-.loginBox{
+.FormularioAjax{
 	width: 100%;
 	background: #191919;
 	text-align: center;
@@ -121,15 +121,15 @@ a:hover {
 	justify-content: center; /* Centra los elementos verticalmente */
 	
   }
-  .loginBox h1{
+  .FormularioAjax h1{
 	color: white;
 	text-transform: uppercase;
 	font-weight: 500;
   }
-  .loginBox label{
+  .FormularioAjax label{
 	color: white;
   }
-  .loginBox input[type = "email"],.loginBox input[type = "password"]{
+  .FormularioAjax input[type = "email"],.FormularioAjax input[type = "password"]{
 	border:0;
 	background: none;
 	display: block;
@@ -143,11 +143,11 @@ a:hover {
 	border-radius: 24px;
 	transition: 0.25s;
   }
-  .loginBox input[type = "email"]:focus,.loginBox input[type = "password"]:focus{
+  .FormularioAjax input[type = "email"]:focus,.FormularioAjax input[type = "password"]:focus{
 	width: 280px;
 	border-color: #2ecc71;
   }
-  .loginBox input[type = "submit"]{
+  .FormularioAjax input[type = "submit"]{
 	border:0;
 	background: none;
 	display: block;
@@ -161,17 +161,17 @@ a:hover {
 	transition: 0.25s;
 	cursor: pointer;
   }
-  .loginBox input[type = "submit"]:hover{
+  .FormularioAjax input[type = "submit"]:hover{
 	background: #2ecc71;
   }
-  .loginBox a{
+  .FormularioAjax a{
 	color: yellow;
 	font-size: 20px;
   }
-  .loginBox a:hover{
+  .FormularioAjax a:hover{
 	color: black;
   }
-  .loginBox a:visited {
+  .FormularioAjax a:visited {
 	color: yellow;
   }
 

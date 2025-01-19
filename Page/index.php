@@ -16,7 +16,7 @@
 
       // Si la variable tipo GET 'vista' no está definida o está vacía, le damos el valor "login", que sel mismo nombre que el archivo .php pero sin la extension
       if(!isset($_GET['vista']) || $_GET['vista'] == ""){
-        $_GET['vista'] = "login";
+        $_GET['vista'] = "home";
       }
       // Condicional que evalua el valor de la variable tipo GET 'vista' y realiza la acción correspondiente
       // si existe el archivo y es distinto al login y es distinto a 404 cargamos todo lo normal

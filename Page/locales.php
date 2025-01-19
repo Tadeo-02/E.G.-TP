@@ -79,7 +79,7 @@
     ?>
     <p>&nbsp;</p>
     <p>&nbsp;</p>
-    <p align="center"><a href="index.html">Volver al men&uacute;</a></p>
+    <p align="center"><a href="index.php">Volver al men&uacute;</a></p>
     
 </body>
 
