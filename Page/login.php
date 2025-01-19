@@ -18,7 +18,7 @@ include "./inc/navbarUNR.php";
                       <input type="submit" class="btn btn-primary" value="Ingresar">
                       <a href="#">¿Has olvidado la contraseña?</a>
                       <br>
-                      <a href="#">Crear Cuenta</a>
+                      <a href="/TP ENTORNOS/Page/vistas/signUp.php">Crear Cuenta</a>
                     </form>
                   </div>
               </div>

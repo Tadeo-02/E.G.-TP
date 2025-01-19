@@ -126,7 +126,7 @@ a:hover {
 	text-transform: uppercase;
 	font-weight: 500;
   }
-  .loginBox h3{
+  .loginBox label{
 	color: white;
   }
   .loginBox input[type = "email"],.loginBox input[type = "password"]{
