@@ -55,13 +55,13 @@
             </div>';
         exit();
     } 
-    // else {
-    //     $clave = password_hash($clave_1, PASSWORD_BCRYPT,["cost"=>10]);
-    // }
+    else {
+        $clave = password_hash($clave_1, PASSWORD_BCRYPT,["cost"=>10]); //! REVISAR
+    }
 
     // Guardando datos
     $guardar_usuario=conexion();
-    $guardar_usuario=$guardar_usuario->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario) VALUES('$clave_1', '$email', 'Inicial', 'Cliente')");
+    $guardar_usuario=$guardar_usuario->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario) VALUES('$clave', '$email', 'Inicial', 'Cliente')");
 
 
 

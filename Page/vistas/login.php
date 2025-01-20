@@ -11,7 +11,7 @@
           <div class="container-fluid">
               <div class="row ">
                   <div class="col-12">
-                    <form action="/TP ENTORNOS/Page/php/loginUser.php" method="POST" class="FormularioAjax" autocomplete="off" >
+                    <form action="" method="POST" class="FormularioAjax" autocomplete="on" >
                         <br>
                         <br>  
                         <br>
@@ -31,6 +31,15 @@
                             <br>
                             <a href="/TP ENTORNOS/Page/vistas/signUp.php">Crear Cuenta</a>
                         </p>
+                        <!-- Identifica si enviamos el formulario -->
+                        <?php
+                            if(isset($_POST['nombreUsuario']) && isset($_POST['claveUsuario'])){ //? isset identifica si la variable viene definida
+                                // si esto sucede traemos el main con la conexion a la db (y mas funciones)
+                                require_once "../php/main.php";
+                                require_once "../php/loginUser.php";
+                            }
+                        ?>
+
                     </form>
                   </div>
               </div>
