@@ -44,10 +44,10 @@
           
       } else {
           if($_GET['vista'] == 'login'){
-            include "/TP ENTORNOS/Page/vistas/login.php";
+            include "vistas/login.php";
           }else{
             
-            include "/TP ENTORNOS/Page/vistas/404.php";
+            include "vistas/404.php";
             }
           }
 

@@ -58,13 +58,13 @@
 
             if(headers_sent()){ //comprobamos si existen encabezados para hacer una redireccion con js o php???
                 echo "<script> window.location.href='index.php?vista=home'; </script>"; //esto ni idea si anda
-			}else{
-				header("Location:/TP ENTORNOS/Page/index.php?vista=home");
-			}
+            }else{
+				header("Location: index.php?vista=home");
+			};
         
         } else {
             echo '<div class="alert alert-danger" role="alert">
-                El usuario o contraseña son incorrectos 1 //! PASA POR ACÁ, NO POR EL TRUE
+                El usuario o contraseña son incorrectos
                 </div>';
             // header("Location: /TP ENTORNOS/Page/locales.php"); esto lo puso la extensión
             exit();
@@ -72,7 +72,7 @@
 
     }else{
         echo '<div class="alert alert-danger" role="alert">
-            El usuario o contraseña son incorrectos 2
+            El usuario o contraseña son incorrectos
             </div>';
         // header("Location: /TP ENTORNOS/Page/locales.php"); esto lo puso la extensión
         exit();

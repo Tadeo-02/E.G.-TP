@@ -8,10 +8,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-                <a class="nav-link" href="/TP ENTORNOS/PAGE/index.php">INICIO</a>
+                <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=home">INICIO</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/TP ENTORNOS/PAGE/locales.php">LOCALES</a>
+                <a class="nav-link" href="/TP ENTORNOS/Page/locales.php">LOCALES</a>
             </li>  
             <li class="nav-item">
                 <a class="nav-link" href="#cualquieragordo">PROMOCIONES</a>
