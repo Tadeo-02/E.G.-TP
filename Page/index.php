@@ -43,13 +43,15 @@
         include "./inc/script.php";
           
       } else {
-          if($_GET['vista'] =="login"){
-            include "./login.php";
-            include "./vistas/login.php";
+          if($_GET['vista'] == 'login'){
+            include "/TP ENTORNOS/Page/vistas/login.php";
           }else{
-            include "./vistas/404.php";
+            
+            include "/TP ENTORNOS/Page/vistas/404.php";
+            }
           }
-      }
+
+      
 
       ?>
       

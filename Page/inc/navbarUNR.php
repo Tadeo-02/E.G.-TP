@@ -20,11 +20,14 @@
                 <a class="nav-link" href="/TP ENTORNOS/Page/index.php#about">MAPA DEL SITIO</a>
             </li>
             <li class="nav-item">
-               <a class="nav-link" href="/TP ENTORNOS/Page/vistas/login.php">INICIAR SESIÓN</a>
+               <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=login">INICIAR SESIÓN</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=logout">SALIR</a>
             </li>
 
 <!--! Conexion DB -->
-<?php
+ <!-- ?php 
 // Menú UNR
 // if(no hay usuario){
 //     echo '<li class="nav-item">
@@ -111,7 +114,8 @@
 //          <li class="nav-item">
 //              <a class="nav-link" href="login.php">Usuario</a>
 //          </li>';
-// } ?>
+// } 
+         ?> -->
 
         </ul>
         </div>

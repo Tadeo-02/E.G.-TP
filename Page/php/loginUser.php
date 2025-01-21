@@ -59,7 +59,7 @@
             if(headers_sent()){ //comprobamos si existen encabezados para hacer una redireccion con js o php???
                 echo "<script> window.location.href='index.php?vista=home'; </script>"; //esto ni idea si anda
 			}else{
-				header("Location: index.php?vista=home");
+				header("Location:/TP ENTORNOS/Page/index.php?vista=home");
 			}
         
         } else {
