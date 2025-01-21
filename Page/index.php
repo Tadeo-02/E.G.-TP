@@ -22,6 +22,12 @@
       // si existe el archivo y es distinto al login y es distinto a 404 cargamos todo lo normal
       if(is_file("./vistas/".$_GET['vista'].".php") && $_GET['vista'] != "login" && $_GET['vista'] != "404"){ //is_file comprueba si un archivo existe en el directorio indicado
         
+        /*== Cerrar sesion ==*/
+      //   if((!isset($_SESSION['codUsuario']) || $_SESSION['codUsuario']=="") || (!isset($_SESSION['nombreUsuario']) || $_SESSION['nombreUsuario']=="")){
+      //     include "./vistas/logout.php";
+      //     exit();
+      // }
+        
         // <!-- NAVBAR -->
         include "./inc/navbarUNR.php";
 
