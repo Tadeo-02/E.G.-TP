@@ -1,5 +1,5 @@
 <?php
-	include "./inc/navbarUNR.php";
+	include "./inc/navbar.php";
 	include "./inc/script.php";
 ?>	
 <head>
