@@ -10,20 +10,18 @@
             <thead>
                 <tr class="has-text-centered">
                     <th>#</th>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Usuario</th>
-                    <th>Email</th>
+                    <th>Nombre de Local</th>
+                    <th>Rubro Local</th>
+                    <th>Ubicación Local</th>
                     <th colspan="2">Opciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="has-text-centered" >
 					<td>1</td>
-                    <td>usuario_nombre</td>
-                    <td>usuario_apellido</td>
-                    <td>usuario_usuario</td>
-                    <td>usuario_email</td>
+                    <td>nombreLocal</td>
+                    <td>rubroLocal</td>
+                    <td>ubicacionLocal</td>
                     <td>
                         <a href="#" class="button is-success is-rounded is-small">Actualizar</a>
                     </td>
@@ -80,32 +78,32 @@
 
 
 
-<!-- <div class="container pb-6 pt-6">  
+ <div class="container pb-6 pt-6">  
 
-    php
-        // require_once "./php/main.php";
+   <?php
+        require_once(__DIR__ . '/../php/main.php');
 
-        // # Eliminar usuario #
+        # Eliminar usuario #
         // if(isset($_GET['user_id_del'])){
         //     require_once "./php/usuario_eliminar.php";
         // }
 
-        // if(!isset($_GET['page'])){
-        //     $pagina=1;
-        // }else{
-        //     $pagina=(int) $_GET['page'];
-        //     if($pagina<=1){
-        //         $pagina=1;
-        //     }
-        // }
+        if(!isset($_GET['page'])){
+            $pagina=1;
+        }else{
+            $pagina=(int) $_GET['page'];
+            if($pagina<=1){
+                $pagina=1;
+            }
+        }
 
-        // $pagina=limpiar_cadena($pagina);
-        // $url="index.php?vista=localsList&page=";
-        // $registros=15;
-        // $busqueda="";
+        $pagina=limpiar_cadena($pagina);
+        $url="index.php?vista=localsList&page=";
+        $registros=2;
+        $busqueda="";
 
-        // # Paginador usuario #
-        // require_once "./php/listaLocales.php";
+        # Paginador usuario #
+        require_once (__DIR__. '/../php/listaLocales.php');
     
-    php
-</div> -->
+    ?>
+</div> 

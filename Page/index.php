@@ -23,10 +23,10 @@
       if(is_file("./vistas/".$_GET['vista'].".php") && $_GET['vista'] != "login" && $_GET['vista'] != "404"){ //is_file comprueba si un archivo existe en el directorio indicado
         
         /*== Cerrar sesion ==*/
-         if((!isset($_SESSION['codUsuario']) || $_SESSION['codUsuario']=="") || (!isset($_SESSION['nombreUsuario']) || $_SESSION['nombreUsuario']=="")){
-           include "./vistas/logout.php";
-           exit();
-       }
+      //    if((!isset($_SESSION['codUsuario']) || $_SESSION['codUsuario']=="") || (!isset($_SESSION['nombreUsuario']) || $_SESSION['nombreUsuario']=="")){
+      //      include "./vistas/logout.php";
+      //      exit();
+      //  }
         
         // <!-- NAVBAR -->
         include "./inc/navbar.php";

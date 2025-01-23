@@ -4,25 +4,24 @@
 
 	if(isset($busqueda) && $busqueda!=""){
 
-		$consulta_datos="SELECT * FROM locales WHERE ((codLocal!='".$_SESSION['id']."') AND (usuario_nombre LIKE '%$busqueda%' OR usuario_apellido LIKE '%$busqueda%' OR usuario_usuario LIKE '%$busqueda%' OR usuario_email LIKE '%$busqueda%')) ORDER BY usuario_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT * FROM locales WHERE (rubroLocal LIKE '%$busqueda%') ORDER BY nombreLocal ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(codLocal) FROM usuario WHERE ((codLocal!='".$_SESSION['id']."') AND (usuario_nombre LIKE '%$busqueda%' OR usuario_apellido LIKE '%$busqueda%' OR usuario_usuario LIKE '%$busqueda%' OR usuario_email LIKE '%$busqueda%'))";
+		$consulta_total="SELECT COUNT(codLocal) FROM locales WHERE (rubroLocal LIKE '%$busqueda%' )";
 
 	}else{
 
-		$consulta_datos="SELECT * FROM usuario WHERE codLocal!='".$_SESSION['id']."' ORDER BY usuario_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT * FROM locales ORDER BY nombreLocal ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(codLocal) FROM usuario WHERE codLocal!='".$_SESSION['id']."'";
-		
+		$consulta_total="SELECT COUNT(codLocal) FROM locales";
 	}
 
 	$conexion=conexion();
 
 	$datos = $conexion->query($consulta_datos);
-	$datos = $datos->fetchAll();
+	$datos = $datos->fetch_all();
 
 	$total = $conexion->query($consulta_total);
-	$total = (int) $total->fetchColumn();
+	$total = (int) $total->fetch_column();
 
 	$Npaginas =ceil($total/$registros);
 
@@ -32,10 +31,10 @@
             <thead>
                 <tr class="has-text-centered">
                 	<th>#</th>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Usuario</th>
-                    <th>Email</th>
+                    <th>Nombre de Local</th>
+                    <th>Ubicacion del Local</th>
+                    <th>Rubro del Local</th>
+                    <th>Imagen del local ??? </th>
                     <th colspan="2">Opciones</th>
                 </tr>
             </thead>
@@ -49,15 +48,14 @@
 			$tabla.='
 				<tr class="has-text-centered" >
 					<td>'.$contador.'</td>
-                    <td>'.$rows['usuario_nombre'].'</td>
-                    <td>'.$rows['usuario_apellido'].'</td>
-                    <td>'.$rows['usuario_usuario'].'</td>
-                    <td>'.$rows['usuario_email'].'</td>
+                    <td>'.$rows['nombreLocal'].'</td>
+                    <td>'.$rows['ubicacionLocal'].'</td>
+                    <td>'.$rows['rubroLocal	'].'</td>
                     <td>
-                        <a href="index.php?vista=user_update&user_id_up='.$rows['usuario_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
+                        <a href="index.php?vista=user_update&user_id_up='.$rows['codLocal'].'" class="button is-success is-rounded is-small">Actualizar</a>
                     </td>
                     <td>
-                        <a href="'.$url.$pagina.'&user_id_del='.$rows['usuario_id'].'" class="button is-danger is-rounded is-small">Eliminar</a>
+                        <a href="'.$url.$pagina.'&user_id_del='.$rows['codLocal'].'" class="button is-danger is-rounded is-small">Eliminar</a>
                     </td>
                 </tr>
             ';
