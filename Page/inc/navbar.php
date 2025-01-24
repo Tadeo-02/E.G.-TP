@@ -45,7 +45,7 @@
                     <a class="nav-link" href="login.php">Solicitud de cuenta de Dueño</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php#about">MAPA DEL SITIO</a>
+                    <a class="nav-link" href="/TP ENTORNOS/Page/index.php#about">MAPA DEL SITIO</a>
                 </li>
                <li class="nav-item">
                     <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=logout">SALIR</a>
@@ -62,7 +62,7 @@
         } else {
             if($_SESSION['tipoUsuario']=="Cliente") {
                 echo '<li class="nav-item">
-                        <a class="nav-link" href="locales.php">LOCALES</a>
+                        <a class="nav-link" href="/TP ENTORNOS/Page/vistas/localsList.php?page=">LOCALES</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="home.php#about">Novedades</a>
@@ -71,7 +71,7 @@
                         <a class="nav-link" href="home.php#about">Descuentos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="home.php#about">MAPA DEL SITIO</a>
+                        <a class="nav-link" href="/TP ENTORNOS/Page/index.php#about">MAPA DEL SITIO</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=logout">SALIR</a>
@@ -105,7 +105,7 @@
                             <a class="nav-link" href="login.php">Usos de Descuento</a>
                         </li>     
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php#about">MAPA DEL SITIO</a>
+                            <a class="nav-link" href="/TP ENTORNOS/Page/index.php#about">MAPA DEL SITIO</a>
                         </li>
                         <li class="nav-item">
                             

@@ -71,6 +71,8 @@
  <div class="container pb-6 pt-6">  
 
    <?php
+   	    include "../inc/navbar.php";
+        include "../inc/script.php";
         require_once(__DIR__ . '/../php/main.php');
 
         # Eliminar locales #
@@ -95,5 +97,7 @@
         # Paginador locales #
         require_once (__DIR__. '/../php/listaLocales.php');
     
+        include "../inc/form.php";
+        include "../inc/footer.php";
     ?>
 </div> 

@@ -10,7 +10,7 @@
           <div class="carousel-caption">
             <h5>EL SHOPPING QUE BUSCAS</h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
-                <p><a href="/TP ENTORNOS/PAGE/locales.php" class="btn btn-warning mt-3">Haz click aquí para ver los locales del shopping</a></p>
+                <p><a href="/TP ENTORNOS/Page/vistas/localsList.php?page=" class="btn btn-warning mt-3">Haz click aquí para ver los locales del shopping</a></p>
           </div>
         </div>
         <div class="carousel-item">
@@ -18,7 +18,7 @@
           <div class="carousel-caption">
              <h5>VARIEDAD DE LOCALES A TU DISPOSICIÓN</h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
-                <p><a href="/TP ENTORNOS/PAGE/locales.php" class="btn btn-warning mt-3">Haz click aquí para ver los locales del shopping</a></p>
+                <p><a href="/TP ENTORNOS/Page/vistas/localsList.php?page=" class="btn btn-warning mt-3">Haz click aquí para ver los locales del shopping</a></p>
           </div>
         </div>
         <div class="carousel-item">
@@ -26,7 +26,7 @@
           <div class="carousel-caption">
             <h5>CINE, PATIO DE COMIDAS Y MÁS</h5>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
-                            <p><a href="/TP ENTORNOS/PAGE/locales.php" class="btn btn-warning mt-3">Haz click aquí para ver los locales del shopping</a></p>
+                            <p><a href="/TP ENTORNOS/Page/vistas/localsList.php?page=" class="btn btn-warning mt-3">Haz click aquí para ver los locales del shopping</a></p>
           </div>
         </div>
       </div>

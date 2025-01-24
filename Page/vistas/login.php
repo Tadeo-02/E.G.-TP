@@ -45,3 +45,8 @@
               </div>
           </div>
 </section>
+
+<?php
+    include "./inc/form.php";
+    include "./inc/footer.php";
+?>
