@@ -13,7 +13,7 @@
 <?php
     if((!isset($_SESSION['codUsuario']) || $_SESSION['codUsuario']=="") || (!isset($_SESSION['nombreUsuario']) || $_SESSION['nombreUsuario']=="")){
         echo '<li class="nav-item">
-                <a class="nav-link" href="/TP ENTORNOS/Page/vistas/localsList.php">LOCALES</a>
+                <a class="nav-link" href="/TP ENTORNOS/Page/vistas/localsList.php?page=">LOCALES</a>
             </li>  
             <li class="nav-item">
                 <a class="nav-link" href="#cualquieragordo">PROMOCIONES</a>

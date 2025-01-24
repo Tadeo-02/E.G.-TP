@@ -3,7 +3,7 @@
     <h2 class="subtitle">Lista de locales</h2>
 </div>
 
-<div class="container pb-6 pt-6">
+<!-- <div class="container pb-6 pt-6">
 
     <div class="table-container">
         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
@@ -48,7 +48,7 @@
         </table>
     </div>
 
-    <p class="has-text-right">Mostrando usuarios <strong>1</strong> al <strong>9</strong> de un <strong>total de 9</strong></p>
+    <p class="has-text-right">Mostrando locales <strong>1</strong> al <strong>9</strong> de un <strong>total de 9</strong></p>
 
     <nav class="pagination is-centered is-rounded" role="navigation" aria-label="pagination">
         <a class="pagination-previous" href="#">Anterior</a>
@@ -66,24 +66,14 @@
     </nav>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
+ -->
 
  <div class="container pb-6 pt-6">  
 
    <?php
         require_once(__DIR__ . '/../php/main.php');
 
-        # Eliminar usuario #
+        # Eliminar locales #
         // if(isset($_GET['user_id_del'])){
         //     require_once "./php/usuario_eliminar.php";
         // }
@@ -98,11 +88,11 @@
         }
 
         $pagina=limpiar_cadena($pagina);
-        $url="index.php?vista=localsList&page=";
-        $registros=2;
+        $url="/TP ENTORNOS/Page/vistas/localsList.php?page=";
+        $registros=1;
         $busqueda="";
 
-        # Paginador usuario #
+        # Paginador locales #
         require_once (__DIR__. '/../php/listaLocales.php');
     
     ?>

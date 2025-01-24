@@ -29,9 +29,9 @@
         $vResultado = mysqli_query($link, $vSql);
         $total_registros = mysqli_num_rows($vResultado);
         $total_paginas = ceil($total_registros / $Cant_por_Pag);
-        echo "Numero de registros encontrados: " . $total_registros . "<br>";
-        echo "Se muestran paginas de " . $Cant_por_Pag . " registros cada una<br>";
-        echo "Mostrando la pagina " . $pagina . " de " . $total_paginas . "<p>";
+        // echo "Numero de registros encontrados: " . $total_registros . "<br>";
+        // echo "Se muestran paginas de " . $Cant_por_Pag . " registros cada una<br>";
+        // echo "Mostrando la pagina " . $pagina . " de " . $total_paginas . "<p>";
         $vSql = "SELECT * FROM locales" . " limit " . $inicio . "," . $Cant_por_Pag;
         $vResultado = mysqli_query($link, $vSql);
         $total_registros = mysqli_num_rows($vResultado);
@@ -39,6 +39,7 @@
     
     <table border=1>
         <tr>
+            <td><b></b></td>
             <td><b>Nombre</b></td>
             <td><b>Ubicaión</b></td>
             <td><b>Rubro</b></td>
@@ -49,7 +50,7 @@
             <tr>
                 <td><?php echo ($fila['codLocal']); ?></td>
                 <td><?php echo ($fila['nombreLocal']); ?></td>
-                <td><?php echo ($fila['ubicaionLocal']); ?></td>
+                <td><?php echo ($fila['ubicacionLocal']); ?></td>
                 <td><?php echo ($fila['rubroLocal']); ?></td>
             </tr>
             <tr>
