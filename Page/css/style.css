@@ -257,3 +257,80 @@ body {
 		margin-bottom: 30px;
 	}
 }
+
+table {
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    min-width: 100%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo para las celdas */
+table th, 
+table td {
+    padding: 12px 15px;
+    vertical-align: middle;
+}
+
+/* Encabezado de la tabla */
+table thead th {
+    background-color: #343a40;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Fila alterna para las filas del cuerpo */
+table tbody tr:nth-child(odd) {
+    background-color: #f8f9fa;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+/* Hover para filas del cuerpo */
+table tbody tr:hover {
+    background-color: #dee2e6;
+    cursor: pointer;
+}
+
+/* Estilo para imágenes */
+table td img {
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para los botones */
+button {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+button.btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: white;
+}
+
+button.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+button.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+}
+
+button.btn-danger:hover {
+    background-color: #a71d2a;
+}
