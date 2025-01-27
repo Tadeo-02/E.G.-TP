@@ -3,7 +3,7 @@
 	font-family: 'Montserrat', sans-serif;
 }
 body {
-	background: #f1fbff;
+	background: magenta;
 }
 
 
@@ -434,7 +434,7 @@ button.btn-danger:hover {
 
 
 .locales{
-    max-width: 560px;
+    width: 800px;
     display: flex; 
     justify-content: space-around; 
     align-items: center; 
@@ -445,7 +445,7 @@ button.btn-danger:hover {
 }
 
 .imgContainer img {
-    max-width: 100px;
+    max-width: 180px;
 }
 
 .textContainer {

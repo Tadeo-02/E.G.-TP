@@ -1,14 +1,13 @@
 <div class="container is-fluid mb-6">
     <h1 class="title">Productos</h1>
-    <h2 class="subtitle">Lista de productos por categoría</h2>
 </div>
 
 <div class="container pb-6 pt-6">
     <?php
         require_once(__DIR__ . '/../php/main.php');
     ?>
-    <div class="columns">
-        <div class="col-md-4">
+    <div class="container">
+        <div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">
             <h2 class="text-center">Rubros</h2>
             <?php
                 // Establecer conexión
@@ -46,7 +45,7 @@
             ?>
         </div>
 
-        <div class="column">
+        <div class="container">
             <?php
                 $rubroLocal = (isset($_GET['rubroLocal'])) ? $_GET['rubroLocal'] : "";
 

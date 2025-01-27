@@ -27,42 +27,29 @@
 	$total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
 	$Npaginas = ceil($total_registros / $registros);
 
-	// $total = $conexion->query($consulta_total);
-	// $total = (int) $total->fetch_column();
-
-	// $Npaginas =ceil($total/$registros);
-
-	// $tabla.='
-	// <div class="container-fluid">
-    // <table class="table table-bordered table-striped table-hover text-center">
-    //     <thead class="table-dark">
-    //             <tr class="has-text-centered">
-    //             	<th>#</th>
-    //                 <th>Nombre de Local</th>
-    //                 <th>Ubicacion del Local</th>
-    //                 <th>Rubro del Local</th>
-    //                 <th>Imagen del local</th>
-    //             </tr>
-    //         </thead>
-    //         <tbody>';
+	
 
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		// $pag_inicio=$inicio+1;
 		foreach($datos as $rows){ 						//<td>'.$contador.'</td>
 			$tabla.='
-				<div class="locales>
+				<div class="locales">
 						<div class="imgContainer">
              				<img src="https://i.pinimg.com/736x/44/6e/0e/446e0e3dda539cc4cee175695364bba9.jpg" alt="huevardo">
          				</div>
 						<div class="textContainer">
-							<h2> Código del Local: ' . htmlspecialchars($rows['codLocal']) . '</h2>
-							<h2> Nombre de Local: <br>' . htmlspecialchars($rows['nombreLocal']) . '</h2>
-							<h2> Ubicacion del Local: ' . htmlspecialchars($rows['ubicacionLocal']) . '</h2>
-							<h2> Rubro del Local: ' . htmlspecialchars($rows['rubroLocal']) . '</h2>
+
+								<h1>	'. htmlspecialchars($rows['nombreLocal']) . '</h1>
+							<h3> Ubicacion del Local: </h3>
+								<p> '. htmlspecialchars($rows['ubicacionLocal']) .  '</p>
+							<h3> Rubro del Local: </h3>
+								<p>	'. htmlspecialchars($rows['rubroLocal']) . ' </p>
+							<h3> Código del Local: </h3>
+								<p>	'. htmlspecialchars($rows['codLocal']) .  '</p>
 						</div>
 						<div class="containerButton">
-						    <input type="submit" name="botonAnashe" id="" class="btn-primary">
+						    <input type="submit" name="botonAnashe" id="" class="btn-primary" value="Ver Promociones">
 						</div>
                 </div>
             ';
@@ -78,7 +65,7 @@
 		// $pag_final=$contador-1;
 	}else{
 		if($total_registros>=1){
-			$tabla.='
+			$tabla.=' <table>
 				<tr class="has-text-centered" >
 					<td>
 						<a href="'.$url.'1" class="button is-link is-rounded is-small mt-4 mb-4">
@@ -99,7 +86,7 @@
 	}
 
 
-	$tabla.='</tbody></table></div>';
+	$tabla.='</tbody></table>';
 
 	// if($total_registros>0 && $pagina<=$Npaginas){
 	// 	$tabla.='<p class="has-text-right">Mostrando locales <strong>'.$pag_inicio.'</strong> al <strong>'.$pag_final.'</strong> de un <strong>total de '.$total_registros.'</strong></p>';
@@ -145,4 +132,25 @@
 //     </div> -->
 
 //      CSS LOCALES 
+
+
+
+// $total = $conexion->query($consulta_total);
+	// $total = (int) $total->fetch_column();
+
+	// $Npaginas =ceil($total/$registros);
+
+	// $tabla.='
+	// <div class="container-fluid">
+    // <table class="table table-bordered table-striped table-hover text-center">
+    //     <thead class="table-dark">
+    //             <tr class="has-text-centered">
+    //             	<th>#</th>
+    //                 <th>Nombre de Local</th>
+    //                 <th>Ubicacion del Local</th>
+    //                 <th>Rubro del Local</th>
+    //                 <th>Imagen del local</th>
+    //             </tr>
+    //         </thead>
+    //         <tbody>';
 
