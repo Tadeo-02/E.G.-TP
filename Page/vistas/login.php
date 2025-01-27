@@ -1,12 +1,3 @@
-<?php
-	include "./inc/navbar.php";
-	include "./inc/script.php";
-?>	
-<head>
-	<?php 
-		include "./inc/head.php";  
-	?> 
-</head>
 <section id="about" class="about">
           <div class="container-fluid">
               <div class="row ">
@@ -29,7 +20,7 @@
                             <a href="#">¿Has olvidado la contraseña?</a>
                             <br>
                             <br>
-                            <a href="/TP ENTORNOS/Page/vistas/signUp.php">Crear Cuenta</a>
+                            <a href="/TP ENTORNOS/Page/index.php?vista=signUp">Crear Cuenta</a>
                         </p>
                         <!-- Identifica si enviamos el formulario -->
                         <?php
@@ -45,8 +36,3 @@
               </div>
           </div>
 </section>
-
-<?php
-    include "./inc/form.php";
-    include "./inc/footer.php";
-?>

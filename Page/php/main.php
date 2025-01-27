@@ -79,21 +79,17 @@ function paginador_tablas($pagina, $Npaginas, $url, $botones) {
 
     // Números de página antes del actual
     if ($pagina > 1) {
-        if(($pagina-1)==1){
-            $tabla .= '<li class="page-item">
-                        <a class="page-link" href="' . $url . ($pagina-1).'">'. ($pagina-1).'</a>
-                    </li>';
-        }else{
+        if(($pagina-1)!=1){
             $tabla .= '<li class="page-item">
                 <a class="page-link" href="' . $url . '1">1</a>
             </li>';
             $tabla .= '<li class="page-item disabled">
                 <span class="page-link">&hellip;</span>
             </li>';
-            $tabla .= '<li class="page-item">
-                <a class="page-link" href="' . $url . ($pagina-1).'">'. ($pagina-1).'</a>
-            </li>';
         };
+        $tabla .= '<li class="page-item">
+            <a class="page-link" href="' . $url . ($pagina-1).'">'. ($pagina-1).'</a>
+        </li>';
     }
 
     // Números de página cercanos
@@ -111,14 +107,10 @@ function paginador_tablas($pagina, $Npaginas, $url, $botones) {
 
     // Números de página después del actual
     if ($pagina < $Npaginas) {
-        if(($pagina+1)==$Npaginas){
-            $tabla .= '<li class="page-item">
-                        <a class="page-link" href="' . $url . ($pagina+1).'">'. ($pagina+1).'</a>
-                    </li>';
-        } else {
-            $tabla .= '<li class="page-item">
-                <a class="page-link" href="' . $url . ($pagina+1).'">'. ($pagina+1).'</a>
-            </li>';
+        $tabla .= '<li class="page-item">
+            <a class="page-link" href="' . $url . ($pagina+1).'">'. ($pagina+1).'</a>
+        </li>';
+        if(($pagina+1)!=$Npaginas){
             $tabla .= '<li class="page-item disabled">
                 <span class="page-link">&hellip;</span>
             </li>';

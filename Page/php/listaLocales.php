@@ -1,14 +1,21 @@
 <?php
-	require_once(__DIR__ . '/../inc/head.php');
 	$conexion=conexion();
 
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
+
 	$tabla="";
 
 	if (isset($busqueda) && $busqueda != "") {
-		$consulta_datos = "SELECT * FROM locales WHERE (rubroLocal LIKE '%$busqueda%') ORDER BY nombreLocal LIMIT $inicio, $registros";
-		$consulta_total = "SELECT COUNT(*) FROM locales WHERE (rubroLocal LIKE '%$busqueda%')";
-	} else {
+		$consulta_datos = "SELECT * FROM locales WHERE (nombreLocal LIKE '%$busqueda%' OR rubroLocal LIKE '%$busqueda%') ORDER BY nombreLocal LIMIT $inicio, $registros";
+		$consulta_total = "SELECT COUNT(*) FROM locales WHERE (nombreLocal LIKE '%$busqueda%' OR rubroLocal LIKE '%$busqueda%')";
+
+	} elseif($rubroLocal != ""){
+
+		$consulta_datos="SELECT * FROM locales  WHERE rubroLocal = '$rubroLocal' ORDER BY nombreLocal ASC LIMIT $inicio,$registros";
+
+		$consulta_total="SELECT COUNT(*) FROM locales WHERE rubroLocal = '$rubroLocal'";
+
+	}else {
 		$consulta_datos = "SELECT * FROM locales ORDER BY nombreLocal LIMIT $inicio, $registros";
 		$consulta_total = "SELECT COUNT(*) FROM locales";
 	}
@@ -25,32 +32,39 @@
 
 	// $Npaginas =ceil($total/$registros);
 
-	$tabla.='
-	<div class="container-fluid">
-    <table class="table table-bordered table-striped table-hover text-center">
-        <thead class="table-dark">
-                <tr class="has-text-centered">
-                	<th>#</th>
-                    <th>Nombre de Local</th>
-                    <th>Ubicacion del Local</th>
-                    <th>Rubro del Local</th>
-                    <th>Imagen del local</th>
-                </tr>
-            </thead>
-            <tbody>
-	';
+	// $tabla.='
+	// <div class="container-fluid">
+    // <table class="table table-bordered table-striped table-hover text-center">
+    //     <thead class="table-dark">
+    //             <tr class="has-text-centered">
+    //             	<th>#</th>
+    //                 <th>Nombre de Local</th>
+    //                 <th>Ubicacion del Local</th>
+    //                 <th>Rubro del Local</th>
+    //                 <th>Imagen del local</th>
+    //             </tr>
+    //         </thead>
+    //         <tbody>';
 
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		// $pag_inicio=$inicio+1;
-		foreach($datos as $rows){
+		foreach($datos as $rows){ 						//<td>'.$contador.'</td>
 			$tabla.='
-				<tr>
-					<td>'.$contador.'</td>
-					<td>' . htmlspecialchars($rows['nombreLocal']) . '</td>
-					<td>' . htmlspecialchars($rows['ubicacionLocal']) . '</td>
-					<td>' . htmlspecialchars($rows['rubroLocal']) . '</td>
-                </tr>
+				<div class="locales>
+						<div class="imgContainer">
+             				<img src="https://i.pinimg.com/736x/44/6e/0e/446e0e3dda539cc4cee175695364bba9.jpg" alt="huevardo">
+         				</div>
+						<div class="textContainer">
+							<h2> Código del Local: ' . htmlspecialchars($rows['codLocal']) . '</h2>
+							<h2> Nombre de Local: <br>' . htmlspecialchars($rows['nombreLocal']) . '</h2>
+							<h2> Ubicacion del Local: ' . htmlspecialchars($rows['ubicacionLocal']) . '</h2>
+							<h2> Rubro del Local: ' . htmlspecialchars($rows['rubroLocal']) . '</h2>
+						</div>
+						<div class="containerButton">
+						    <input type="submit" name="botonAnashe" id="" class="btn-primary">
+						</div>
+                </div>
             ';
 // <td>
 //     <a href="index.php?vista=user_update&user_id_up='.$rows['codLocal'].'" class="btn btn-success btn-sm rounded-pill">Actualizar</a>
@@ -98,3 +112,37 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		echo paginador_tablas($pagina,$Npaginas,$url,7);
 	}
+
+
+
+
+// 	  HTML LOCALES
+
+// <div class="container">
+//         <div class="imgContainer">
+//             <img src="https://i.pinimg.com/736x/44/6e/0e/446e0e3dda539cc4cee175695364bba9.jpg" alt="huevardo">
+//         </div>
+//         <div class="textContainer">
+//             <h2>
+//                 Código del Local:
+//             </h2>
+//             <br>
+//             <h2>
+//                 Nombre del Local:
+//             </h2>
+//             <br>
+//             <h2>
+//                 Ubicación del Local:
+//             </h2>
+//             <br>
+//             <h2>
+//                 Rubro:
+//             </h2>
+//         </div>
+//         <div class="containerButton">
+//             <input type="submit" name="botonAnashe" id="" class="btn-primary">
+//         </div>
+//     </div> -->
+
+//      CSS LOCALES 
+

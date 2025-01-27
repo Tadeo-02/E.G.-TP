@@ -1,13 +1,3 @@
-<?php
-	include "../inc/navbar.php";
-	include "../inc/script.php";
-?>	
-<head>
-	<?php 
-		include "../inc/head.php";  
-	?> 
-</head>
-
 <section id="about" class="about">
 	<div class="container-fluid">
     

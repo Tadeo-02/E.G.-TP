@@ -6,6 +6,7 @@ body {
 	background: #f1fbff;
 }
 
+
 /* HOVER */
 .nav-link.active,
 .nav-link:hover {
@@ -341,25 +342,25 @@ button.btn-danger:hover {
 
 /* Estilo para el Buscador */
 /* General */
-body {
+/* body {
     font-family: 'Arial', sans-serif;
     background-color: #f8f9fa; /* Fondo claro */
-    color: #343a40; /* Texto oscuro */
-}
+    /* color: #343a40; Texto oscuro
+} */ 
 
 /* Títulos */
-h1.display-4 {
+/* h1.display-4 {
     font-weight: bold;
-    color: #007bff; /* Azul Bootstrap */
-}
+    color: #007bff;
+} */
 
-h2.h5 {
+/* h2.h5 {
     font-size: 1.25rem;
-    color: #6c757d; /* Texto gris */
-}
+    color: #6c757d; Texto gris
+} */
 
 /* Inputs y botones */
-.form-control {
+/* .form-control {
     border: 2px solid #007bff;
     box-shadow: none;
     transition: all 0.3s ease-in-out;
@@ -391,20 +392,20 @@ h2.h5 {
 .btn-link {
     color: #17a2b8;
     text-decoration: underline;
-}
+} */
 
 /* Tablas */
-.table thead th {
+/* .table thead th {
     background-color: #e9ecef;
     font-weight: bold;
 }
 
 .table-hover tbody tr:hover {
     background-color: #f1f3f5;
-}
+} */
 
 /* Paginación */
-.pagination .page-link {
+/* .pagination .page-link {
     color: #007bff;
 }
 
@@ -416,10 +417,10 @@ h2.h5 {
 .pagination .page-link:hover {
     background-color: #e2e6ea;
     color: #0056b3;
-}
+} */
 
 /* Espaciados */
-.container {
+/* .container {
     margin-top: 20px;
 }
 
@@ -429,8 +430,36 @@ h2.h5 {
 
 .text-end {
     margin-top: 10px;
+} */
+
+
+.locales{
+    max-width: 560px;
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    gap: 20px; 
+    margin: 0 auto; 
+    border: 3px  solid  black;
+    max-height: 300px;
 }
 
+.imgContainer img {
+    max-width: 100px;
+}
+
+.textContainer {
+    max-width: 300px;
+    text-align: center;
+}
+
+.textContainer h2 {
+    margin: 10px 0;
+}
+
+.containerButton {
+    max-width: 100px;
+} 
 
 
 
