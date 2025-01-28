@@ -6,18 +6,22 @@
 	$tabla="";
 
 	if (isset($busqueda) && $busqueda != "") {
-		$consulta_datos = "SELECT * FROM locales WHERE (nombreLocal LIKE '%$busqueda%' OR rubroLocal LIKE '%$busqueda%') ORDER BY nombreLocal LIMIT $inicio, $registros";
-		$consulta_total = "SELECT COUNT(*) FROM locales WHERE (nombreLocal LIKE '%$busqueda%' OR rubroLocal LIKE '%$busqueda%')";
-
-	} elseif($rubroLocal != ""){
-
-		$consulta_datos="SELECT * FROM locales  WHERE rubroLocal = '$rubroLocal' ORDER BY nombreLocal ASC LIMIT $inicio,$registros";
-
-		$consulta_total="SELECT COUNT(*) FROM locales WHERE rubroLocal = '$rubroLocal'";
+		if($rubroLocal != ""){
+			$consulta_datos="SELECT * FROM locales  WHERE rubroLocal = '$rubroLocal' AND (nombreLocal LIKE '%$busqueda%' OR rubroLocal LIKE '%$busqueda%') ORDER BY nombreLocal ASC LIMIT $inicio,$registros";
+			$consulta_total="SELECT COUNT(*) FROM locales WHERE rubroLocal = '$rubroLocal' AND (nombreLocal LIKE '%$busqueda%' OR rubroLocal LIKE '%$busqueda%')";
+		}else {	
+			$consulta_datos = "SELECT * FROM locales WHERE (nombreLocal LIKE '%$busqueda%' OR rubroLocal LIKE '%$busqueda%') ORDER BY nombreLocal LIMIT $inicio, $registros";
+			$consulta_total = "SELECT COUNT(*) FROM locales WHERE (nombreLocal LIKE '%$busqueda%' OR rubroLocal LIKE '%$busqueda%')";
+		}
 
 	}else {
-		$consulta_datos = "SELECT * FROM locales ORDER BY nombreLocal LIMIT $inicio, $registros";
-		$consulta_total = "SELECT COUNT(*) FROM locales";
+		if($rubroLocal != ""){
+			$consulta_datos="SELECT * FROM locales  WHERE rubroLocal = '$rubroLocal' ORDER BY nombreLocal ASC LIMIT $inicio,$registros";
+			$consulta_total="SELECT COUNT(*) FROM locales WHERE rubroLocal = '$rubroLocal'";
+		}else {	
+			$consulta_datos = "SELECT * FROM locales ORDER BY nombreLocal LIMIT $inicio, $registros";
+			$consulta_total = "SELECT COUNT(*) FROM locales";
+		}
 	}
 
 	$datos = mysqli_query($conexion, $consulta_datos);

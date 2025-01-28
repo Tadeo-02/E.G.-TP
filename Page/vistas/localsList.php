@@ -42,12 +42,63 @@
             <?php
                 // Cerrar la conexión
                 mysqli_close($conexion);
+
+                if(isset($_POST['modulo_buscador'])) {
+                    require_once (__DIR__ . '/../php/buscador.php');
+                }
+            
+                if((!isset($_SESSION['busquedaLocal']) && empty($_SESSION['busquedaLocal'])) || $_SESSION['busquedaLocal'] == ''){
+                    // $_SESSION['busquedaLocal'];
+                
             ?>
+                    <div class="container py-4">
+            
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <form action="" method="POST" autocomplete="off">
+                                    <input type="hidden" name="modulo_buscador" value="locales">
+                                    <div class="input-group">
+                                        <input 
+                                            type="text" 
+                                            name="txt_buscador" 
+                                            class="form-control rounded-pill" 
+                                            placeholder="¿Qué estas buscando?" 
+                                            pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,30}"
+                                            maxlength="30">
+                                        <button type="submit" class="btn btn-info rounded-pill">Buscar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                <?php
+                
+                }else{
+                
+                ?>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <form action="" method="POST" autocomplete="off">
+                                <input type="hidden" name="modulo_buscador" value="locales">
+                                <div class="input-group">
+                                    <input 
+                                        type="text" 
+                                        name="txt_buscador" 
+                                        class="form-control rounded-pill" 
+                                        placeholder= <?php echo $_SESSION['busquedaLocal']; ?>
+                                        pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,30}"
+                                        maxlength="30">
+                                    <button type="submit" class="btn btn-info rounded-pill">Buscar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+            
         </div>
 
         <div class="container">
             <?php
-                $rubroLocal = (isset($_GET['rubroLocal'])) ? $_GET['rubroLocal'] : "";
+                }
+                $rubroLocal = (isset($_GET['rubroLocal'])) ? $_GET['rubroLocal'] : '';
 
                 /*== Verificando categoria ==*/
                 $conexion=conexion();
@@ -68,7 +119,7 @@
                 $pagina=limpiar_cadena($pagina);
                 $url="index.php?vista=localsList&rubroLocal=$rubroLocal&page="; /* <== */
                 $registros=3;
-                $busqueda="";
+                $busqueda= $_SESSION['busquedaLocal'];
 
                 # Paginador locales #
                 require_once (__DIR__. '/../php/listaLocales.php');

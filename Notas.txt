@@ -2,7 +2,8 @@ Sección General
 - Resolver botón desplegable de "Mi Cuenta" para dispositivos móviles
 
 
-
-
 Sección Dueño de Local:
 - Agregar opción de "Mis Locales"
+
+Sección Lista locales:
+- Resolver problema de desaparición del filtro al utilizar el buscador
