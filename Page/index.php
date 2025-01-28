@@ -34,7 +34,6 @@
         include "./vistas/".$_GET['vista'].".php";
 
         // <!-- CONTACTO -->
-        include "./inc/form.php";  
 
         // <!-- FOOTER -->   
         include "./inc/footer.php";

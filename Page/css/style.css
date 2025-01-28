@@ -3,6 +3,7 @@
   font-family: "Montserrat", sans-serif;
 }
 body {
+  margin: 0;
   background: magenta;
 }
 
@@ -214,7 +215,53 @@ body {
 }
 
 /* FOOTER */
-/* soon */
+.footerDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* Hace que las cajas tengan la misma altura */
+  width: 100%;
+}
+
+.footerDiv > div {
+  flex: 1; /* Ambas columnas ocupan el mismo ancho */
+}
+
+.contactoBottom {
+  height: 100%; /* Asegura que las cajas llenen el espacio disponible */
+  background-color: #f8f9fa; /* Fondo blanco para las cajas */
+  padding: 20px;
+}
+
+#contact {
+  background-color: #ff00ff; /* Fondo para diferenciarlo visualmente */
+  padding: 0; /* Ajusta el padding general */
+  margin-bottom: 0;
+  border: 1px solid black;  
+
+}
+body, html {
+  height: 100%; /* Asegura que el cuerpo ocupe toda la ventana */
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1; /* Toma el espacio restante entre el header y el footer */
+}
+
+footer {
+  position: relative; /* Se queda al fondo */
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+
+}
+
+
+
+
+/* Responsive */
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .carousel-caption {
@@ -427,7 +474,7 @@ button.btn-danger:hover {
 } */
 
 .locales {
-  width: 800px;
+  width: 1000px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -453,3 +500,4 @@ button.btn-danger:hover {
 .containerButton {
   max-width: 100px;
 }
+
