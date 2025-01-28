@@ -33,8 +33,6 @@
 
         include "./vistas/".$_GET['vista'].".php";
 
-        // <!-- CONTACTO -->
-
         // <!-- FOOTER -->   
         include "./inc/footer.php";
             

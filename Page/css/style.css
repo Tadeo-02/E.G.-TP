@@ -4,7 +4,7 @@
 }
 body {
   margin: 0;
-  background: magenta;
+  background: #191919;
 }
 
 /* HOVER */
@@ -473,15 +473,22 @@ button.btn-danger:hover {
     margin-top: 10px;
 } */
 
+.centered { 
+  display: flex;
+  justify-content: center;
+}
+
 .locales {
   width: 1000px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   gap: 20px;
-  margin: 0 auto;
-  border: 10px  solid  black;
+  margin: 20px auto;
+  border: 1px  solid  black;
   max-height: 300px;
+  background-color: white;
+  border-radius: 25px;
 }
 
 .imgContainer img {
