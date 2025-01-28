@@ -67,7 +67,9 @@
                                 class="form-control rounded-pill" 
                                 placeholder="¿Qué estas buscando?" 
                                 pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,30}"
-                                maxlength="30">
+                                maxlength="30"
+                                value="<?php echo isset($_SESSION['busquedaLocal']) ? htmlspecialchars($_SESSION['busquedaLocal']) : ''; ?>"
+                                >
                             <button type="submit" class="btn btn-info rounded-pill">Buscar</button>
                         </div>
                     </form>
