@@ -27,11 +27,10 @@
             ?>
 
             <div class="centered row mb-4">
-                
                 <!-- Formulario con un desplegable -->
                 <div class="col-lg-3 col-md-3">
 
-                    <!-- <h2 class="text-center">Rubros</h2> -->
+                    <h2 class="text-center" style="color: white">Rubros</h2>
                     <form action="index.php" method="get" id="rubroForm">
                         <input type="hidden" name="vista" value="localsList">
                         <div class="mb-3">
@@ -62,7 +61,8 @@
                 ?>
                 
                 <div class="col-lg-3 col-md-3">
-
+                    <br>
+                    <br>
                     <form action="" method="POST" autocomplete="off">
                         <input type="hidden" name="modulo_buscador" value="locales">
                         <div class="input-group">
@@ -70,7 +70,7 @@
                                 type="text" 
                                 name="txt_buscador" 
                                 class="form-control rounded-pill" 
-                                placeholder="¿Qué estas buscando?" 
+                                placeholder="¿Qué local estas buscando?" 
                                 pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,30}"
                                 maxlength="30"
                                 value="<?php echo isset($_SESSION['busquedaLocal']) ? htmlspecialchars($_SESSION['busquedaLocal']) : ''; ?>"
@@ -80,21 +80,12 @@
                     </form>
 
                 </div>
-
             </div>
         </div>
 
         <div class="container">
             <?php
-                // }
                 $rubroLocal = (isset($_GET['rubroLocal'])) ? $_GET['rubroLocal'] : '';
-
-                /*== Verificando categoria ==*/
-                $conexion=conexion();
-
-                $consulta_rubro = "SELECT * FROM locales WHERE rubroLocal = '$rubroLocal'";
-
-                $check_rubro = mysqli_query($conexion, $consulta_rubro);
 
                 if(!isset($_GET['page'])){
                     $pagina=1;
