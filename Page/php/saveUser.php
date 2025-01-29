@@ -38,7 +38,7 @@
         }else{
             $checkEmail = conexion();
             $checkEmail = $checkEmail->query("SELECT nombreUsuario FROM usuarios WHERE nombreUsuario = '$email'");
-            if($checkEmail -> num_rows > 0){ //! El tipo usa rowCount(); tener en cuenta por si falla num_rows
+            if($checkEmail -> num_rows > 0){ 
                 echo '<div class="alert alert-danger" role="alert">
                         El email ya está registrado
                       </div>';
@@ -56,7 +56,7 @@
         exit();
     } 
     else {
-        $clave = password_hash($clave_1, PASSWORD_BCRYPT,["cost"=>10]); //! REVISAR
+        $clave = password_hash($clave_1, PASSWORD_BCRYPT,["cost"=>10]); 
     }
 
     // Guardando datos

@@ -32,7 +32,7 @@
                 <div class="bg-light p-4 contactoBottom">
                   
                     <h4><i class="fa-solid fa-map"></i>Dónde estamos</h4>
-                    <p><i class="fa-solid fa-map-pin"></i> Los Álamos 2530, Rosario, Santa Fe, Argentina</p>
+                    <p><i class="fa-solid fa-map-pin"></i> Tero Violado 2530, Rosario, Santa Fe, Argentina</p>
                     <p><i class="fa-solid fa-phone"></i> Telefeno: 341 0344 0555</p>
                     <h4> <i class="fa-solid fa-clock"></i>Horarios </h4>
                     <ul>

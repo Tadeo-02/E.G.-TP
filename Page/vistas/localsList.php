@@ -97,7 +97,7 @@
                 };
 
                 $pagina=limpiar_cadena($pagina);
-                $url="index.php?vista=localsList&rubroLocal=$rubroLocal&page="; /* <== */
+                $url="index.php?vista=localsList&rubroLocal=$rubroLocal&page=";
                 $registros=3;
                 $busqueda= $_SESSION['busquedaLocal'];
 

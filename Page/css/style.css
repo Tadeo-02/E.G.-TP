@@ -473,6 +473,8 @@ button.btn-danger:hover {
     margin-top: 10px;
 } */
 
+/* Listado de Locales */
+
 .centered { 
   display: flex;
   justify-content: center;
@@ -506,5 +508,61 @@ button.btn-danger:hover {
 
 .containerButton {
   max-width: 100px;
+}
+
+
+/* Listado de Promociones */
+
+
+
+.promociones {
+  width: 600px;
+  text-align: center;
+  margin: 20px auto;
+  border: 1px solid black;
+  max-height: 300px;
+  background-color: white;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.textContainer2 {
+  width: 100%;
+}
+
+
+/* Calendario */
+.calendarContainer {
+  background: magenta;
+  padding: 20px;
+  border-radius: 10px;
+  display: inline-block;
+  width: 275px;
+  text-align: center;
+  min-width: 200px;
+}
+.calendarContainer p{
+  font-weight: bold;  /* Negrita */
+  text-transform: uppercase;
+}
+input[type="date"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.calendarContainer button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background: magenta;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.calendarios{
+  gap: 10px;
 }
 

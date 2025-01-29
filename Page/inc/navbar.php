@@ -16,7 +16,7 @@
                 <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=localsList">LOCALES</a>
             </li>  
             <li class="nav-item">
-                <a class="nav-link" href="#cualquieragordo">PROMOCIONES</a>
+                <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=promocionesList">PROMOCIONES</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/TP ENTORNOS/Page/index.php#about">MAPA DEL SITIO</a>
