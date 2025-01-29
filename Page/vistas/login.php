@@ -2,7 +2,7 @@
           <div class="container-fluid">
               <div class="row ">
                   <div class="col-12">
-                    <form action="" method="POST" class="FormularioAjax" autocomplete="on" >
+                    <form action="" method="POST" class="form" autocomplete="on" >
                         <br>
                         <br>  
                         <br>
@@ -22,6 +22,7 @@
                             <br>
                             <a href="/TP ENTORNOS/Page/index.php?vista=signUp">Crear Cuenta</a>
                         </p>
+
                         <!-- Identifica si enviamos el formulario -->
                         <?php
                             if(isset($_POST['nombreUsuario']) && isset($_POST['claveUsuario'])){ //? isset identifica si la variable viene definida

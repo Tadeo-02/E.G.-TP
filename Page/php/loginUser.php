@@ -1,9 +1,5 @@
 <?php
-    // require_once "main.php";
-        
-    // // saco la data del formulario
-    // $email = $_POST["nombreUsuario"];
-    // $password = $_POST["claveUsuario"];
+
 
     $email = limpiar_cadena($_POST['nombreUsuario']); //comillas simples
     $password = limpiar_cadena($_POST['claveUsuario']);
@@ -14,41 +10,30 @@
         echo '<div class="alert alert-danger" role="alert">
             Debe completar todos los campos
             </div>';
-        // header("Location: /TP ENTORNOS/Page/locales.php"); esto lo puso la extensión
         exit();
     }
-
-    // Verificar si los datos tienen el formato correcto
-
-    // if(verificarDatos("[a-zA-Z0-9]{4,20}", $email)){
-    //     echo '<div class="alert alert-danger" role="alert">
-    //         El nombre de usuario no cumple con el formato requerido
-    //         </div>';
-    //     // header("Location: /TP ENTORNOS/Page/locales.php"); esto lo puso la extensión
-    //     exit();
-    // }
 
     if(verificarDatos("[a-zA-Z0-9$@.-]{7,100}", $password)){
         echo '<div class="alert alert-danger" role="alert">
             La contraseña no cumple con el formato requerido
             </div>';
-        // header("Location: /TP ENTORNOS/Page/locales.php"); esto lo puso la extensión
         exit();
     }
 
 
     // Conexion a la DB
+    $conexion = conexion();
 
-    $checkUser = conexion();
-    $checkUser = $checkUser -> query("SELECT * FROM usuarios WHERE nombreUsuario = '$email'"); //  AND claveUsuario = '$password'" 
+    $consulta_usuario = "SELECT * FROM usuarios WHERE nombreUsuario = '$email'";
 
-    if($checkUser -> num_rows==1) //rowCount() es para PDO, num_rows es para mysqli
-    {
+    $checkUser = mysqli_query($conexion, $consulta_usuario); //  AND claveUsuario = '$password'" 
+
+    if($checkUser -> num_rows==1){ //rowCount() es para PDO, num_rows es para mysqli
 
         $checkUser = $checkUser -> fetch_assoc(); //fetch_assoc() es para mysqli, fetch() es para PDO
 
-        if($checkUser['nombreUsuario'] == $email && password_verify($password, $checkUser['claveUsuario']))// password_verifiy es la funcion para procesar las cadenas encriptadas
-        { 
+        if($checkUser['nombreUsuario'] == $email && password_verify($password, $checkUser['claveUsuario'])){// password_verifiy es la funcion para procesar las cadenas encriptadas
+         
             
             // Hacemos un array con los datos del usuario; son las Variables de Sesion
             $_SESSION['nombreUsuario'] = $email;
@@ -66,7 +51,6 @@
             echo '<div class="alert alert-danger" role="alert">
                 El usuario o contraseña son incorrectos
                 </div>';
-            // header("Location: /TP ENTORNOS/Page/locales.php"); esto lo puso la extensión
             exit();
         }
 
@@ -74,10 +58,10 @@
         echo '<div class="alert alert-danger" role="alert">
             El usuario o contraseña son incorrectos
             </div>';
-        // header("Location: /TP ENTORNOS/Page/locales.php"); esto lo puso la extensión
         exit();
-        }
-        $checkUser = null;
+    }
+    
+    $checkUser = null;
 
 
 

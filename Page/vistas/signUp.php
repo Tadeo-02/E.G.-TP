@@ -6,7 +6,7 @@
 
 			<div class="row">
 				<div class="col-12">
-					<form action="/TP ENTORNOS/Page/php/saveUser.php" method="POST" class="FormularioAjax" autocomplete="off" >
+					<form action="/TP ENTORNOS/Page/php/saveUser.php" method="POST" class="form" autocomplete="off" >
 						<br>
                         <br>  
                         <br>
@@ -23,11 +23,11 @@
 							<button type="submit" class="btn btn-primary" value="Ingresar" href="login.php">Registrar</button>
 							<br>
 							<br>
-							<a href="/TP ENTORNOS/Page/vistas/login.php">¿Ya tienes una cuenta? Inicia sesión</a>
+							<a href="/TP ENTORNOS/Page/index.php?vista=login">¿Ya tienes una cuenta? Inicia sesión</a>
 						</p>
 
-					</form>	
-				</div>	
+					</form>
+				</div>
 			</div>
 	</div>			
 </section>

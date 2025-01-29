@@ -1,5 +1,5 @@
 <div class="container-fluid p-0">
-    <h1 class="title">Productos</h1>
+    <h1 class="title">Locales</h1>
 </div>
 
 <div class="row g-0">
@@ -8,7 +8,10 @@
     ?>
     <div class="container">
         <br>
-        <h1 class="text-center" style="color: white"><b>Locales</b></h1>
+        <br>
+        <br>
+        <h1 class="text-center" style="color: white"><b>LOCALES</b></h1>
+        <br>
         <div class="col md-6 lg-6">
 
             <?php
@@ -24,8 +27,10 @@
             ?>
 
             <div class="centered row mb-4">
+                
                 <!-- Formulario con un desplegable -->
                 <div class="col-lg-3 col-md-3">
+
                     <!-- <h2 class="text-center">Rubros</h2> -->
                     <form action="index.php" method="get" id="rubroForm">
                         <input type="hidden" name="vista" value="localsList">
@@ -43,7 +48,9 @@
                             </select>
                         </div>
                     </form>
+
                 </div>
+
                 <?php
                     // Cerrar la conexión
                     mysqli_close($conexion);
@@ -51,13 +58,11 @@
                     if(isset($_POST['modulo_buscador'])) {
                         require_once (__DIR__ . '/../php/buscador.php');
                     }
-                
-                    // if((!isset($_SESSION['busquedaLocal']) && empty($_SESSION['busquedaLocal'])) || $_SESSION['busquedaLocal'] == ''){
                     
                 ?>
                 
-
                 <div class="col-lg-3 col-md-3">
+
                     <form action="" method="POST" autocomplete="off">
                         <input type="hidden" name="modulo_buscador" value="locales">
                         <div class="input-group">
@@ -73,33 +78,10 @@
                             <button type="submit" class="btn btn-info rounded-pill">Buscar</button>
                         </div>
                     </form>
+
                 </div>
 
-
             </div>
-                    <!-- < ? php -->
-                    
-                    <!-- }else{ -->
-                    
-                    <!-- ? > -->
-                        <!-- <div class="centered row">
-                            <div class="col-12 text-center">
-                                <form action="" method="POST" autocomplete="off">
-                                    <input type="hidden" name="modulo_buscador" value="locales">
-                                    <div class="input-group">
-                                        <input 
-                                            type="text" 
-                                            name="txt_buscador" 
-                                            class="form-control rounded-pill" 
-                                            placeholder= "¿Qué estas buscando?" 
-                                            pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,30}"
-                                            maxlength="30">
-                                        <button type="submit" class="btn btn-info rounded-pill">Buscar</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-             -->
         </div>
 
         <div class="container">

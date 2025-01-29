@@ -23,9 +23,6 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=login">INICIAR SESIÓN</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=logout">SALIR</a>
             </li>';
     } else{
         if($_SESSION['tipoUsuario']=="Administrador"){
