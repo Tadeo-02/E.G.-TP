@@ -7,32 +7,30 @@
 
 	if (!empty($diaDesde) && !empty($diaHasta)) {
 		$consulta_datos="SELECT * FROM promociones  
-						 WHERE fechaDesdePromo BETWEEN '$diaDesde' AND '$diaHasta'
-						 OR fechaHastaPromo BETWEEN '$diaDesde' AND '$diaHasta'
+						 WHERE ('$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo) AND ('$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo)
 						 ORDER BY fechaDesdePromo ASC 
 						 LIMIT $inicio, $registros";
 	
 		$consulta_total="SELECT COUNT(*) FROM promociones 
-						 WHERE fechaDesdePromo BETWEEN '$diaDesde' AND '$diaHasta'
-						 OR fechaHastaPromo BETWEEN '$diaDesde' AND '$diaHasta'";
+						 WHERE ('$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo) AND ('$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo)";
 	} 
 	elseif (!empty($diaDesde)) {
 		$consulta_datos="SELECT * FROM promociones  
-						 WHERE fechaDesdePromo >= '$diaDesde' 
+						 WHERE '$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo
 						 ORDER BY fechaDesdePromo ASC 
 						 LIMIT $inicio, $registros";
 	
 		$consulta_total="SELECT COUNT(*) FROM promociones 
-						 WHERE fechaDesdePromo >= '$diaDesde'";
+						 WHERE '$diaDesde'  BETWEEN fechaDesdePromo AND fechaHastaPromo";
 	} 
 	elseif (!empty($diaHasta)) {
 		$consulta_datos="SELECT * FROM promociones  
-						 WHERE fechaHastaPromo <= '$diaHasta' 
+						 WHERE '$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo
 						 ORDER BY fechaDesdePromo ASC 
 						 LIMIT $inicio, $registros";
 	
 		$consulta_total="SELECT COUNT(*) FROM promociones 
-						 WHERE fechaHastaPromo <= '$diaHasta'";
+						 WHERE '$diaHasta'  BETWEEN fechaDesdePromo AND fechaHastaPromo";
 	} 
 	else {    
 		$consulta_datos = "SELECT * FROM promociones 
