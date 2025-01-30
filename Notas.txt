@@ -7,3 +7,6 @@ Sección Dueño de Local:
 
 Sección Lista locales:
 - Resolver problema de desaparición del filtro al utilizar el buscador
+
+Sección lista promociones:
+- Arreglar simetria de filtros y promociones
