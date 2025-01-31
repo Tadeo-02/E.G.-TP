@@ -65,6 +65,9 @@
                                                     <li class="nav-item">
                                                         <a class="nav-link" href="#cualquieragordo">Mis Promociones</a>
                                                     </li> 
+                                                     <li class="nav-item">
+                                                        <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=cargaPromociones">Ingresar Promociones</a>
+                                                    </li> 
                                                     <li class="nav-item">
                                                         <a class="nav-link" href="login.php">Solicitudes de Descuento</a>
                                                     </li>  
