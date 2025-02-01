@@ -7,12 +7,6 @@
             <div class="row cargaPromociones">
                 <div class="col-12">
                     <form action="/TP ENTORNOS/Page/php/savePromociones.php" method="POST" class="form" autocomplete="off" >
-                        <br>
-                        <br>  
-                        <br>
-                        <br>
-                        <br> //? Arreglar
-                        <br>
                         <h1>CARGA DE PROMOCIONES</h1>
                         <br>
 <head>
@@ -68,7 +62,9 @@
 
                             <!-- Días de la promoción -->
                             <div class="mb-3">
-                                <label class="form-label">Días en los que la promoción será válida</label>
+                                
+                            <label class="form-label" style="color: black; text-align: left; display:block;">Días en los que la promoción será válida: </label>
+
                                 <select class="form-select" multiple size="7" name="diasSemana" id="diasSemana" required>
                                     <option value="1">Lunes</option>
                                     <option value="2">Martes</option>
@@ -77,20 +73,6 @@
                                     <option value="5">Viernes</option>
                                     <option value="6">Sábado</option>
                                     <option value="7">Domingo</option>
-                                </select>
-                            </div>
- <!-- <div class="text-center mb-3">
-                                <button type="button" class="btn btn-outline-primary" onclick="mostrarSeleccion()">Mostrar selección</button>
-                            </div>
-                            -->
-
-                            <!-- Activar promoción -->
-                            <div class="mb-3">
-                                <label class="form-label">¿Desea activar la promoción ahora?</label>
-                                <select class="form-select" name="estadoPromo">
-                                    <option value="" disabled selected>Seleccione una opción</option>
-                                    <option value="Activa">Sí</option>
-                                    <option value="Inactiva">No</option>
                                 </select>
                             </div>
 

@@ -41,11 +41,8 @@
     
     // Guardando datos
     $guardar_usuario=conexion();
-    $guardar_usuario=$guardar_usuario->query("INSERT INTO promociones(textoPromo, fechaDesdePromo, fechaHastaPromo, categoriaCliente,diasSemana ,estadoPromo) VALUES('$textoPromo', '$fechaDesdePromo', '$fechaHastaPromo', '$categoriaCliente', '$diasSemana', '$estadoPromo')");
+    $guardar_usuario=$guardar_usuario->query("INSERT INTO promociones(textoPromo, fechaDesdePromo, fechaHastaPromo, categoriaCliente,diasSemana ,estadoPromo) VALUES('$textoPromo', '$fechaDesdePromo', '$fechaHastaPromo', '$categoriaCliente', '$diasSemana', 'Activa')");
 
     header("Location: /TP ENTORNOS/Page/index.php?vista=login");
-
-
-
 
     ?>
