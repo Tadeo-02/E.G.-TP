@@ -1,5 +1,5 @@
 <?php
-
+    
 
     $email = limpiar_cadena($_POST['nombreUsuario']); //comillas simples
     $password = limpiar_cadena($_POST['claveUsuario']);

@@ -32,7 +32,7 @@
         exit();
     }
     
-    if($fechaDesdePromo > $fechaHastaPromo){ //? Revisar si es necesario
+    if($fechaDesdePromo < $fechaHastaPromo){ //? Revisar si es necesario
         echo '<div class="alert alert-danger" role="alert">
                 La fecha de inicio de la prmocion no puede ser posterior a la fecha de fin de la promocion
               </div>';

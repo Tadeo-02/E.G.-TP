@@ -95,7 +95,7 @@
                             </div>
 
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Cargar</button>
+                                <button type="submit" class="btn btn-primary botonPromo">Cargar</button>
                             </div>
                         </form>
                     </div>

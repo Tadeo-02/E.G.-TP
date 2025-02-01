@@ -23,9 +23,9 @@
       if(is_file("./vistas/".$_GET['vista'].".php") && $_GET['vista'] != "404"){ //is_file comprueba si un archivo existe en el directorio indicado
         
         /*== Cerrar sesion ==*/
-      //    if((!isset($_SESSION['codUsuario']) || $_SESSION['codUsuario']=="") || (!isset($_SESSION['nombreUsuario']) || $_SESSION['nombreUsuario']=="")){
-      //      include "./vistas/logout.php";
-      //      exit();
+      //    if((!isset($_SESSION['codUsuario']) || $_SESSION['codUsuario']=="") || (!isset($_SESSION['nombreUsuario']) || $_SESSION['nombreUsuario']=="") && $vista !== 'login'){
+      //      session_destroy();
+      //      header("Location: index.php?vista=login");
       //  }
 
         // <!-- NAVBAR -->
@@ -42,9 +42,17 @@
       } else {
         include "vistas/404.php";
       }
+      
 
       ?>
-      
+      <!-- <script>
+        window.onpageshow = function(event) {
+            if (event.persisted) {
+                window.location.reload();
+            }
+        };
+      </script> -->
+ </script>
   </body>
 </html>
 
