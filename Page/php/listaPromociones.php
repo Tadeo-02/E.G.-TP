@@ -5,42 +5,106 @@
 
 	$tabla="";
 
-	if (!empty($diaDesde) && !empty($diaHasta)) {
-		$consulta_datos="SELECT * FROM promociones  
-						 WHERE ('$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo) AND ('$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo)
-						 ORDER BY fechaDesdePromo ASC 
-						 LIMIT $inicio, $registros";
-	
-		$consulta_total="SELECT COUNT(*) FROM promociones 
-						 WHERE ('$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo) AND ('$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo)";
-	} 
-	elseif (!empty($diaDesde)) {
-		$consulta_datos="SELECT * FROM promociones  
-						 WHERE '$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo
-						 ORDER BY fechaDesdePromo ASC 
-						 LIMIT $inicio, $registros";
-	
-		$consulta_total="SELECT COUNT(*) FROM promociones 
-						 WHERE '$diaDesde'  BETWEEN fechaDesdePromo AND fechaHastaPromo";
-	} 
-	elseif (!empty($diaHasta)) {
-		$consulta_datos="SELECT * FROM promociones  
-						 WHERE '$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo
-						 ORDER BY fechaDesdePromo ASC 
-						 LIMIT $inicio, $registros";
-	
-		$consulta_total="SELECT COUNT(*) FROM promociones 
-						 WHERE '$diaHasta'  BETWEEN fechaDesdePromo AND fechaHastaPromo";
-	} 
-	else {    
-		$consulta_datos = "SELECT * FROM promociones 
-						   ORDER BY fechaDesdePromo 
-						   LIMIT $inicio, $registros";
-	
-		$consulta_total = "SELECT COUNT(*) FROM promociones";
+	$condiciones = []; // Array para almacenar las condiciones de la consulta
+
+	// Agregar condiciones según los filtros seleccionados
+	if (!empty($localActual)) {
+		$condiciones[] = "codLocal = '$localActual'";
+	}
+	if (!empty($diaDesde)) {
+		$condiciones[] = "'$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo";
+	}
+	if (!empty($diaHasta)) {
+		$condiciones[] = "'$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo";
 	}
 	
+	// Convertir condiciones a una cadena SQL
+	$where = !empty($condiciones) ? 'WHERE ' . implode(' AND ', $condiciones) : '';
 	
+	// Construir consultas finales
+	$consulta_datos = "SELECT * FROM promociones 
+					   $where 
+					   ORDER BY fechaDesdePromo ASC 
+					   LIMIT $inicio, $registros";
+	
+	$consulta_total = "SELECT COUNT(*) FROM promociones 
+					   $where";	
+
+
+	// if (!empty($localActual)) {
+	// 	if (!empty($diaDesde) && !empty($diaHasta)) {
+	// 		$consulta_datos="SELECT * FROM promociones 
+	// 						WHERE codLocal = '$localActual' AND ('$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo) AND ('$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo)
+	// 						ORDER BY fechaDesdePromo ASC 
+	// 						LIMIT $inicio, $registros";
+		
+	// 		$consulta_total="SELECT COUNT(*) FROM promociones 
+	// 						WHERE codLocal = '$localActual' AND ('$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo) AND ('$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo)";
+	// 	} 
+	// 	elseif (!empty($diaDesde)) {
+	// 		$consulta_datos="SELECT * FROM promociones  
+	// 						WHERE codLocal = '$localActual' AND ('$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo)
+	// 						ORDER BY fechaDesdePromo ASC 
+	// 						LIMIT $inicio, $registros";
+		
+	// 		$consulta_total="SELECT COUNT(*) FROM promociones 
+	// 						WHERE codLocal = '$localActual' AND ('$diaDesde'  BETWEEN fechaDesdePromo AND fechaHastaPromo)";
+	// 	} 
+	// 	elseif (!empty($diaHasta)) {
+	// 		$consulta_datos="SELECT * FROM promociones  
+	// 						WHERE codLocal = '$localActual' AND ('$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo)
+	// 						ORDER BY fechaDesdePromo ASC 
+	// 						LIMIT $inicio, $registros";
+		
+	// 		$consulta_total="SELECT COUNT(*) FROM promociones 
+	// 						WHERE codLocal = '$localActual' AND ('$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo)";
+	// 	} 
+	// 	else {    
+	// 		$consulta_datos = "SELECT * FROM promociones
+	// 						WHERE codLocal = '$localActual' 
+	// 						ORDER BY fechaDesdePromo 
+	// 						LIMIT $inicio, $registros";
+		
+	// 		$consulta_total = "SELECT COUNT(*) FROM promociones
+	// 						WHERE codLocal = '$localActual'";
+	// 	}	
+	// }
+	// else {
+	// 	if (!empty($diaDesde) && !empty($diaHasta)) {
+	// 		$consulta_datos="SELECT * FROM promociones  
+	// 						WHERE ('$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo) AND ('$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo)
+	// 						ORDER BY fechaDesdePromo ASC 
+	// 						LIMIT $inicio, $registros";
+		
+	// 		$consulta_total="SELECT COUNT(*) FROM promociones 
+	// 						WHERE ('$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo) AND ('$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo)";
+	// 	} 
+	// 	elseif (!empty($diaDesde)) {
+	// 		$consulta_datos="SELECT * FROM promociones  
+	// 						WHERE '$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo
+	// 						ORDER BY fechaDesdePromo ASC 
+	// 						LIMIT $inicio, $registros";
+		
+	// 		$consulta_total="SELECT COUNT(*) FROM promociones 
+	// 						WHERE '$diaDesde'  BETWEEN fechaDesdePromo AND fechaHastaPromo";
+	// 	} 
+	// 	elseif (!empty($diaHasta)) {
+	// 		$consulta_datos="SELECT * FROM promociones  
+	// 						WHERE '$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo
+	// 						ORDER BY fechaDesdePromo ASC 
+	// 						LIMIT $inicio, $registros";
+		
+	// 		$consulta_total="SELECT COUNT(*) FROM promociones 
+	// 						WHERE '$diaHasta'  BETWEEN fechaDesdePromo AND fechaHastaPromo";
+	// 	} 
+	// 	else {    
+	// 		$consulta_datos = "SELECT * FROM promociones 
+	// 						ORDER BY fechaDesdePromo 
+	// 						LIMIT $inicio, $registros";
+		
+	// 		$consulta_total = "SELECT COUNT(*) FROM promociones";
+	// 	}
+	// }
 
 	$datos = mysqli_query($conexion, $consulta_datos);
 
@@ -80,12 +144,16 @@
 			';
 		}else{
 			$tabla.='
-				<tr class="has-text-centered" >
-					<td>
-						<p class="centered" style="color: red">	No hay promociones disponibles para las fechas o locales ingresados </p>
-					</td>
-				</tr>
-			';
+				<div class="promociones">
+					<div class="textContainer2">
+						<tr class="has-text-centered" >
+							<td>
+								<p class="centered" style="color: red"><b>	No hay promociones disponibles para las fechas o locales ingresados </b></p>
+							</td>
+						</tr>
+					</div>
+                </div>
+            ';
 		}
 	}
 

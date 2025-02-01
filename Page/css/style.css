@@ -507,7 +507,7 @@ button.btn-danger:hover {
 }
 
 .containerButton {
-  max-width: 100px;
+  max-width: 200px;
   border: #ffca2c solid 5px;
 }
 
@@ -652,8 +652,9 @@ select[multiple] {
   }
 }
 
-
-
+.botonAnashe {
+  width: 50px;
+}
 
 
 

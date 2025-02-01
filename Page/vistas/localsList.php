@@ -98,13 +98,12 @@
 
                 $pagina=limpiar_cadena($pagina);
                 $url="index.php?vista=localsList&rubroLocal=$rubroLocal&page=";
-                $registros=3;
+                $registros=1;
                 $busqueda= $_SESSION['busquedaLocal'];
 
                 # Paginador locales #
                 require_once (__DIR__. '/../php/listaLocales.php');
 
-                $check_rubro=null;
             ?>
         </div>
     </div>

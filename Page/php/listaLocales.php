@@ -32,7 +32,8 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
-		foreach($datos as $rows){ 						//<td>'.$contador.'</td>
+		foreach($datos as $rows){ 
+			$codLocal = $rows['codLocal'];						//<td>'.$contador.'</td>
 			$tabla.=' 
 				<div class="locales">
 						<div class="imgContainer">
@@ -48,9 +49,13 @@
 							<h3> Código del Local: </h3>
 								<p>	'. htmlspecialchars($rows['codLocal']) .  '</p>
 						</div>
-						<div class="containerButton">
-						    <input type="submit" name="botonAnashe" id="" class="btn-primary" value="Ver Promociones">
-						</div>
+						<form action="index.php" method="GET">
+							<input type="hidden" name="vista" value="promocionesList">
+							<input type="hidden" name="codLocal" value="'.htmlspecialchars($codLocal) .'">
+							<input type="submit" name="botonAnashe" class="btn-primary" value="Ver Promociones">
+						</form>
+
+
                 </div>
             ';
 

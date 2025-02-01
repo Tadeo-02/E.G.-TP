@@ -25,6 +25,7 @@
                 // Obtener el rubro actual de la URL (si está presente)
                 $diaDesdeActual = isset($_POST['diaDesde']) ? $_POST['diaDesde'] : '';
                 $diaHastaActual = isset($_POST['diaHasta']) ? $_POST['diaHasta'] : '';
+
             ?>
 
             <div class="row calendarios">
@@ -51,9 +52,10 @@
                     <?php
                         // Cerrar la conexión
                         mysqli_close($conexion);
-                        
+
                         $diaDesde = isset($_POST['diaDesde']) ? $_POST['diaDesde'] : '';
                         $diaHasta = isset($_POST['diaHasta']) ? $_POST['diaHasta'] : '';
+                        $localActual = isset($_GET['codLocal']) ? $_GET['codLocal'] : '';
 
                         if(!isset($_GET['page'])){
                             $pagina=1;
@@ -65,7 +67,7 @@
                         };
 
                         $pagina=limpiar_cadena($pagina);
-                        $url="index.php?vista=promocionesList&diaDesde=$diaDesde&diaHasta=$diaHasta&page="; 
+                        $url="index.php?vista=promocionesList&diaDesde=$diaDesde&diaHasta=$diaHasta&codLocal=$localActual&page="; 
                         $registros=3;
 
                         # Paginador locales #
