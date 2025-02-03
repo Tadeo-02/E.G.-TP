@@ -30,7 +30,7 @@
 
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Gestionar Local</a>
                         <ul class="dropdown-menu">
-                            <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=cargarLocal">  Cargar Local </a>  </li>
+                            <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=cargaLocales">  Cargar Local </a>  </li>
                             <li><hr class="dropdown-divider"></li>
                             <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=editarLocal">  Editar Local </a>  </li>
                             <li><hr class="dropdown-divider"></li>                         
