@@ -26,8 +26,17 @@
             </li>';
     } else{
         if($_SESSION['tipoUsuario']=="Administrador"){
-            echo '<li class="nav-item">
-                <a class="nav-link" href="login.php">Gestionar Local</a>
+                echo '<li class="nav-item dropdown">
+
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Gestionar Local</a>
+                        <ul class="dropdown-menu">
+                            <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=cargarLocal">  Cargar Local </a>  </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=editarLocal">  Editar Local </a>  </li>
+                            <li><hr class="dropdown-divider"></li>                         
+                            <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=editarLocal">  Eliminar Local </a>  </li>
+                        </ul>
+                </li>
                 </li>    
                 <li class="nav-item">
                     <a class="nav-link" href="login.php">Gestionar Novedades</a>
@@ -82,7 +91,7 @@
                             <li><a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=logout">SALIR</a></li>
                         </ul>
                     </li>';    
-            } else {
+            } else {    
                     echo '<li class="nav-item">
                             <a class="nav-link" href="locales.php"> Mis Locales</a>
                         </li> 
@@ -113,7 +122,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuario</a>
                             <ul class="dropdown-menu">
-                                <li> <p class="dropdown-item"> ' .htmlspecialchars($_SESSION['tipoUsuario']).   '       </p> </li>
+                                <li><p class="dropdown-item"> ' .htmlspecialchars($_SESSION['tipoUsuario']).   '       </p> </li>
                                 <li><p class="dropdown-item">       ' .htmlspecialchars($_SESSION['nombreUsuario']).   '       </p></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=logout">SALIR</a></li>
