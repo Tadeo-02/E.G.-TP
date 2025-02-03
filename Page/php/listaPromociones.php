@@ -31,81 +31,6 @@
 					   $where";	
 
 
-	// if (!empty($localActual)) {
-	// 	if (!empty($diaDesde) && !empty($diaHasta)) {
-	// 		$consulta_datos="SELECT * FROM promociones 
-	// 						WHERE codLocal = '$localActual' AND ('$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo) AND ('$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo)
-	// 						ORDER BY fechaDesdePromo ASC 
-	// 						LIMIT $inicio, $registros";
-		
-	// 		$consulta_total="SELECT COUNT(*) FROM promociones 
-	// 						WHERE codLocal = '$localActual' AND ('$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo) AND ('$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo)";
-	// 	} 
-	// 	elseif (!empty($diaDesde)) {
-	// 		$consulta_datos="SELECT * FROM promociones  
-	// 						WHERE codLocal = '$localActual' AND ('$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo)
-	// 						ORDER BY fechaDesdePromo ASC 
-	// 						LIMIT $inicio, $registros";
-		
-	// 		$consulta_total="SELECT COUNT(*) FROM promociones 
-	// 						WHERE codLocal = '$localActual' AND ('$diaDesde'  BETWEEN fechaDesdePromo AND fechaHastaPromo)";
-	// 	} 
-	// 	elseif (!empty($diaHasta)) {
-	// 		$consulta_datos="SELECT * FROM promociones  
-	// 						WHERE codLocal = '$localActual' AND ('$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo)
-	// 						ORDER BY fechaDesdePromo ASC 
-	// 						LIMIT $inicio, $registros";
-		
-	// 		$consulta_total="SELECT COUNT(*) FROM promociones 
-	// 						WHERE codLocal = '$localActual' AND ('$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo)";
-	// 	} 
-	// 	else {    
-	// 		$consulta_datos = "SELECT * FROM promociones
-	// 						WHERE codLocal = '$localActual' 
-	// 						ORDER BY fechaDesdePromo 
-	// 						LIMIT $inicio, $registros";
-		
-	// 		$consulta_total = "SELECT COUNT(*) FROM promociones
-	// 						WHERE codLocal = '$localActual'";
-	// 	}	
-	// }
-	// else {
-	// 	if (!empty($diaDesde) && !empty($diaHasta)) {
-	// 		$consulta_datos="SELECT * FROM promociones  
-	// 						WHERE ('$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo) AND ('$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo)
-	// 						ORDER BY fechaDesdePromo ASC 
-	// 						LIMIT $inicio, $registros";
-		
-	// 		$consulta_total="SELECT COUNT(*) FROM promociones 
-	// 						WHERE ('$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo) AND ('$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo)";
-	// 	} 
-	// 	elseif (!empty($diaDesde)) {
-	// 		$consulta_datos="SELECT * FROM promociones  
-	// 						WHERE '$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo
-	// 						ORDER BY fechaDesdePromo ASC 
-	// 						LIMIT $inicio, $registros";
-		
-	// 		$consulta_total="SELECT COUNT(*) FROM promociones 
-	// 						WHERE '$diaDesde'  BETWEEN fechaDesdePromo AND fechaHastaPromo";
-	// 	} 
-	// 	elseif (!empty($diaHasta)) {
-	// 		$consulta_datos="SELECT * FROM promociones  
-	// 						WHERE '$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo
-	// 						ORDER BY fechaDesdePromo ASC 
-	// 						LIMIT $inicio, $registros";
-		
-	// 		$consulta_total="SELECT COUNT(*) FROM promociones 
-	// 						WHERE '$diaHasta'  BETWEEN fechaDesdePromo AND fechaHastaPromo";
-	// 	} 
-	// 	else {    
-	// 		$consulta_datos = "SELECT * FROM promociones 
-	// 						ORDER BY fechaDesdePromo 
-	// 						LIMIT $inicio, $registros";
-		
-	// 		$consulta_total = "SELECT COUNT(*) FROM promociones";
-	// 	}
-	// }
-
 	$datos = mysqli_query($conexion, $consulta_datos);
 
 	$total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
@@ -119,7 +44,7 @@
 			$tabla.=' 
 				<div class="promociones">
 						<div class="textContainer2">
-							<h4> Id de la promoción:' . htmlspecialchars($rows['codPromo']) .'  </h4>
+							<h4> Id de la promoción: ' . htmlspecialchars($rows['codPromo']) .'  </h4>
 							<p>	Descripción de Promoción: <b>'. htmlspecialchars($rows['textoPromo']) . '</b></p>
 							<p> Fecha Desde Promo: <b> '. htmlspecialchars($rows['fechaDesdePromo']) .  '</b></p>
 							<p> Fecha Hasta Promo: 	<b>'. htmlspecialchars($rows['fechaHastaPromo']) . ' </b></p>

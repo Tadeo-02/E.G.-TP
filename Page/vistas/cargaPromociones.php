@@ -4,12 +4,13 @@
     
 	<!-- SE MUESTRA EL RESULTADO DEL FORM CON ESTE DIV "form-rest" -->
         <div class="form-rest"></div>
-
+        <?php
+            require_once(__DIR__ . '/../php/main.php');
+        ?>
             <div class="row cargaPromociones">
                 <div class="col-12">
-                    <form action="/TP ENTORNOS/Page/php/savePromociones.php" method="POST" class="form" autocomplete="off" >
-                        <h1>CARGA DE PROMOCIONES</h1>
-                        <br>
+                    <h1>CARGA DE PROMOCIONES</h1>
+                    <br>
 <head>
     <style>
         body {
@@ -29,61 +30,99 @@
     </style>
 </head>
 
-                <div class="container">
-                    <div class="form-container">
-                        <h3 class="text-center mb-4">Formulario de Promoción</h3>
-                        <form>
-                            <!-- Descripción -->
-                            <div class="mb-3">
-                                <label class="form-label">Descripción de la promoción</label>
-                                <input class="form-control" type="text" name="textoPromo" placeholder="Ingrese la descripción de la promoción aquí..." maxlength="70" required>
-                            </div>
+                    <div class="container">
+                        <div class="form-container">
+                            <h3 class="text-center mb-4">Solcitud de Promoción</h3>
+                            <form action="/TP ENTORNOS/Page/php/dueñoLocal/savePromociones.php" method="POST" id="solicitudPromocionForm">
+                            <?php
+                                // Establecer conexión
+                                $conexion = conexion();
 
-                            <!-- Fechas -->
-                            <div class="mb-3">
-                                <label class="form-label">Fecha de inicio de la promoción</label>
-                                <input class="form-control" type="date" name="fechaDesdePromo" required>
-                            </div>
+                                // Consulta para obtener los rubros
+                                $codUsuarioActual = $_SESSION['codUsuario'];
+                                $consulta_filtro = "SELECT * FROM locales WHERE codUsuario = $codUsuarioActual";
 
-                            <div class="mb-3">
-                                <label class="form-label">Fecha de fin de la promoción</label>
-                                <input class="form-control" type="date" name="fechaHastaPromo" required>
-                            </div>
+                                $locales = mysqli_query($conexion, $consulta_filtro);
+                            ?>
 
-                            <!-- Categoría del cliente -->
-                            <div class="mb-3">
-                                <label class="form-label">Categoría del cliente válida para la promoción</label>
-                                <select class="form-select" name="categoriaCliente" required>
-                                    <option value="" disabled selected>Seleccione una categoría</option>
-                                    <option value="1">Inicial</option>
-                                    <option value="2">Medium</option>
-                                    <option value="3">Premium</option>
-                                </select>
-                            </div>
+                                <!-- Local -->
+                                <div class="mb-3">
+                                    <br>
+                                    <label class="form-label" style="color: black; text-align: left; display:block;">Local de la promoción:</label>
+                                    <select class="form-select" name="codLocal" required>
+                                        <option value="" disabled selected>Seleccione un local</option>
+                                        <?php
+                                        // Crear las opciones del desplegable
+                                        foreach ($locales as $row) {
+                                            $nombreLocal = htmlspecialchars($row['nombreLocal']);
+                                            $codLocal = htmlspecialchars($row['codLocal']);
+                                            echo '<option value="' . $codLocal . '">' . $nombreLocal . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
 
-                            <!-- Días de la promoción -->
-                            <div class="mb-3">
-                                
-                            <label class="form-label" style="color: black; text-align: left; display:block;">Días en los que la promoción será válida: </label>
+                                <!-- Descripción -->
+                                <div class="mb-3">
+                                    <br>
+                                    <label class="form-label" style="color: black; text-align: left; display:block;">Descripción de la promoción:</label>
+                                    <input class="form-control" type="text" name="textoPromo" placeholder="Ingrese la descripción de la promoción aquí..." maxlength="70" required>
+                                </div>
 
-                                <select class="form-select" multiple size="7" name="diasSemana" id="diasSemana" required>
-                                    <option value="1">Lunes</option>
-                                    <option value="2">Martes</option>
-                                    <option value="3">Miércoles</option>
-                                    <option value="4">Jueves</option>
-                                    <option value="5">Viernes</option>
-                                    <option value="6">Sábado</option>
-                                    <option value="7">Domingo</option>
-                                </select>
-                            </div>
+                                <!-- Fechas -->
+                                <div class="mb-3">
+                                    <br>
+                                    <label class="form-label" style="color: black; text-align: left; display:block;">Fecha de inicio de la promoción:</label>
+                                    <input class="form-control" type="date" name="fechaDesdePromo" required>
+                                </div>
 
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary botonPromo">Cargar</button>
-                            </div>
-                        </form>
+                                <div class="mb-3">
+                                    <br>
+                                    <label class="form-label" style="color: black; text-align: left; display:block;">Fecha de fin de la promoción:</label>
+                                    <input class="form-control" type="date" name="fechaHastaPromo" required>
+                                </div>
+
+                                <!-- Categoría del cliente -->
+                                <div class="mb-3">
+                                    <br>
+                                    <label class="form-label" style="color: black; text-align: left; display:block;">Categoría del cliente válida para la promoción:</label>
+
+                                    <select class="form-select" name="categoriaCliente" required>
+                                        <option value="" disabled selected>Seleccione una categoría</option>
+                                        <option value="Inicial">Inicial</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="Premium">Premium</option>
+                                    </select>
+                                </div>
+
+                                <!-- Días de la promoción -->
+                                <div class="mb-3">
+                                    <br>
+                                    <label class="form-label" style="color: black; text-align: left; display:block;">Días en los que la promoción será válida: </label>
+
+                                    <select class="form-select" multiple size="7" name="diasSemana" id="diasSemana" required>
+                                        <option value="1">Lunes</option>
+                                        <option value="2">Martes</option>
+                                        <option value="3">Miércoles</option>
+                                        <option value="4">Jueves</option>
+                                        <option value="5">Viernes</option>
+                                        <option value="6">Sábado</option>
+                                        <option value="7">Domingo</option>
+                                    </select>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary botonPromo">Cargar</button>
+                                </div>
+                            </form>
+
+                        </div>
                     </div>
-                </div>
-
+                
+                    <?php
+                        // Cerrar la conexión
+                        mysqli_close($conexion);
+                    ?>
                      
                 </div>
             </div>
@@ -108,8 +147,8 @@
 
 <script>
     function mostrarSeleccion() {
-    let select = document.getElementById("miSelect");
-    let seleccionadas = Array.from(select.selectedOptions).map(opt => opt.value);
-    alert("Opciones seleccionadas: " + seleccionadas.join(", "));
+        let select = document.getElementById("miSelect");
+        let seleccionadas = Array.from(select.selectedOptions).map(opt => opt.value);
+        alert("Opciones seleccionadas: " + seleccionadas.join(", "));
     }
 </script>	

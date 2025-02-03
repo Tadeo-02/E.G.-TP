@@ -32,7 +32,7 @@
                         <ul class="dropdown-menu">
                             <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=cargaLocales">  Cargar Local </a>  </li>
                             <li><hr class="dropdown-divider"></li>
-                            <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=editarLocal">  Editar Local </a>  </li>
+                            <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=editarLocal">  Modificar Local </a>  </li>
                             <li><hr class="dropdown-divider"></li>                         
                             <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=editarLocal">  Eliminar Local </a>  </li>
                         </ul>
@@ -105,10 +105,7 @@
                             <a class="nav-link" href="#cualquieragordo">Mis Promociones</a>
                         </li> 
                         <li class="nav-item">
-                            <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=cargaPromociones">Ingresar Promociones</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.php">Solicitudes de Descuento</a>
+                            <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=cargaPromociones">Solicitudes de Descuento</a>
                         </li>  
                         <li class="nav-item">
                             <a class="nav-link" href="login.php">Usos de Descuento</a>

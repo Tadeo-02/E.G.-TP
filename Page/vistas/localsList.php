@@ -98,8 +98,8 @@
 
                 $pagina=limpiar_cadena($pagina);
                 $url="index.php?vista=localsList&rubroLocal=$rubroLocal&page=";
-                $registros=1;
-                $busqueda= $_SESSION['busquedaLocal'];
+                $registros = 1;
+                $busqueda = (isset( $_SESSION['busquedaLocal'])) ? $_SESSION['busquedaLocal'] : '';
 
                 # Paginador locales #
                 require_once (__DIR__. '/../php/listaLocales.php');
