@@ -34,7 +34,7 @@
                             <li><hr class="dropdown-divider"></li>
                             <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=localsUpdate">  Modificar Local </a>  </li>
                             <li><hr class="dropdown-divider"></li>                         
-                            <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=editarLocales">  Eliminar Local </a>  </li>
+                            <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=localsDelete">  Eliminar Local </a>  </li>
                         </ul>
                 </li>
                 <li class="nav-item dropdown">
