@@ -3,7 +3,9 @@
     
 	<!-- SE MUESTRA EL RESULTADO DEL FORM CON ESTE DIV "form-rest" -->
         <div class="form-rest"></div>
-
+            <?php
+                require_once(__DIR__ . '/../php/main.php');
+            ?>
             <div class="row cargaPromociones">
                 <div class="col-12">                    
                     <h1>CARGA DE LOCALES</h1>
@@ -30,20 +32,22 @@
                 <div class="container">
                     <div class="form-container">
                         <h3 class="text-center mb-4">Formulario de Local</h3>
-                        <form action="/TP ENTORNOS/Page/php/admin/altaLocales.php" method="POST" class="form" autocomplete="off" >
+                        <form action="/TP ENTORNOS/Page/php/admin/altaLocales.php" method="POST" autocomplete="off" >
                             <?php
                                 // Establecer conexión
                                 $conexion = conexion();
 
                                 // Consulta para obtener los rubros
                                 $consulta_rubros = "SELECT * FROM rubros";
+                                $consulta_usuarios = "SELECT * FROM usuarios WHERE tipoUsuario = 'Dueño'";
 
                                 $rubros = mysqli_query($conexion, $consulta_rubros);
+                                $dueños = mysqli_query($conexion, $consulta_usuarios);
                             ?>
 
                             <!-- Nombre del Local -->
                             <div class="mb-3">
-                                <label class="form-label">Nombre del local</label>
+                                <label class="form-label" style="color: black; text-align: left; display:block;">Nombre del local</label>
                                 <input class="form-control" type="text" name="nombreLocal" placeholder="Ingrese el nombre del local aquí..." maxlength="70" required>
                             </div>
 
@@ -65,7 +69,8 @@
 
                             <!-- Días de la promoción -->
                             <div class="mb-3">
-                                <label class="form-label">Ubicación del Local</label> //? REVISAR
+                                <br>
+                                <label class="form-label">Ubicación del Local</label>
                                 <select class="form-select" name="ubicacionLocal" required>
                                     <option value="" disabled selected>Seleccione una ubicacion</option>
                                     <option value="1 . 1">1 . 1</option>
@@ -80,9 +85,25 @@
                                 </select>
                             </div>
 
+                            <div class="mb-3">
+                                <br>
+                                <label class="form-label" style="color: black; text-align: left; display:block;">Dueño del Local:</label>
+                                <select class="form-select" name="codUsuario">
+                                    <option value="" disabled selected>Seleccione el Dueño</option>
+                                    <?php
+                                    // Crear las opciones del desplegable
+                                    foreach ($dueños as $row) {
+                                        $codUsuario = htmlspecialchars($row['codUsuario']);
+                                        echo '<option value="' . $codUsuario . '">' . $codUsuario . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary botonPromo">Cargar</button>
                             </div>
+
                         </form>
                     </div>
                 </div>

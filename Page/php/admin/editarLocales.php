@@ -17,23 +17,20 @@
     $conexion = conexion();
 
     //Verificar si el local ya existe
-    if($nombreLocal != ""){
-        $validarNombre = $conexion ->query ("SELECT nombreLocal  FROM locales WHERE nombreLocal='$nombreLocal' "); 
-        if (($validarNombre->num_rows) > 0 ) { //todo BOCA
-            echo '<div class="alert al  ert-danger" role="alert">
-                    El nombre del Local ya existe
-                  </div>';
-            exit();
-        }
+    $validarNombre = $conexion ->query ("SELECT nombreLocal  FROM locales WHERE nombreLocal='$nombreLocal' "); 
+    if (($validarNombre->num_rows) > 0 ) { //todo BOCA
+        echo '<div class="alert al  ert-danger" role="alert">
+                El nombre del Local ya existe
+                </div>';
+        exit();
     }
-    if ($ubicacionLocal != ""){
-        $validarUbiacion = $conexion ->query ("SELECT ubicacionLocal FROM locales WHERE  ubicacionLocal='$ubicacionLocal'");
-        if(($validarUbiacion->num_rows) > 0){
-            echo '<div class="alert alert-danger" role="alert">
-                La ubicacion del local está ocupada
-                    </div>';
-            exit();
-        }
+
+    $validarUbiacion = $conexion ->query ("SELECT ubicacionLocal FROM locales WHERE  ubicacionLocal='$ubicacionLocal'");
+    if(($validarUbiacion->num_rows) > 0){
+        echo '<div class="alert alert-danger" role="alert">
+            La ubicacion del local está ocupada
+                </div>';
+        exit();
     }
 
     // Guardar Local
