@@ -43,6 +43,8 @@
 
                                 $locales = mysqli_query($conexion, $consulta_locales);
                                 $rubros = mysqli_query($conexion, $consulta_rubros);
+
+                                $localActual = isset($_POST['nombreLocal']) ? $_POST['nombreLocal'] : '';
                             ?>
 
                             <!-- Local -->
@@ -50,15 +52,9 @@
                                 <br>
                                 <label class="form-label" style="color: black; text-align: left; display:block;">Local a modificar:</label>
                                 <select class="form-select" name="localModificado" required>
-                                    <option value="" disabled selected>Seleccione un local</option>
                                     <?php
-                                    // Crear las opciones del desplegable
-                                    foreach ($locales as $row) {
-                                        $nombreLocal = htmlspecialchars($row['nombreLocal']);
-                                        $codLocal = htmlspecialchars($row['codLocal']);
-                                        echo '<option value="' . $codLocal . '">' . $nombreLocal . '</option>';
-                                    }
-                                    ?>
+                                        echo '<option value="'. $localActual .'">'.$localActual.'</option>';
+                                    ?>        
                                 </select>
                             </div>
                             

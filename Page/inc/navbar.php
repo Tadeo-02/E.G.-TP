@@ -26,16 +26,8 @@
             </li>';
     } else{
         if($_SESSION['tipoUsuario']=="Administrador"){
-                echo '<li class="nav-item dropdown">
-
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Gestionar Local</a>
-                        <ul class="dropdown-menu">
-                            <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=cargaLocales">  Cargar Local </a>  </li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=localsUpdate">  Modificar Local </a>  </li>
-                            <li><hr class="dropdown-divider"></li>                         
-                            <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=editarLocales">  Eliminar Local </a>  </li>
-                        </ul>
+                echo '<li class="nav-item">
+                    <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=localsManage">Gestionar Locales</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Gestionar Novedades</a>
