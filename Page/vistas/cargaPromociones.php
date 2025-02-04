@@ -136,9 +136,9 @@
     shadow: true,      // default false
     placeholder: 'Search',  // default Search...
     tagColor: {
-        textColor: '#327b2c',
-        borderColor: '#92e681',
-        bgColor: '#eaffe6',
+        textColor: '#000000',
+        borderColor: '#ffca2c',
+        bgColor: '#ffca2c',
     },
     onChange: function(values) {
         console.log(values)
