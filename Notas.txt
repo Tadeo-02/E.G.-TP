@@ -1,6 +1,8 @@
 Sección General
 - Resolver botón desplegable de "Mi Cuenta" para dispositivos móviles
 
+TODAS LAS SECCIONES:
+- Arreglar alertas
 
 Sección Dueño de Local:
 - Agregar opción de "Mis Locales"
@@ -10,3 +12,5 @@ Sección Lista locales:
 
 Sección lista promociones:
 - Arreglar simetria de filtros y promociones
+
+

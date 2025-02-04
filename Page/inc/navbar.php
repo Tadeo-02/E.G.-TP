@@ -32,14 +32,20 @@
                         <ul class="dropdown-menu">
                             <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=cargaLocales">  Cargar Local </a>  </li>
                             <li><hr class="dropdown-divider"></li>
-                            <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=editarLocal">  Modificar Local </a>  </li>
+                            <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=localsUpdate">  Modificar Local </a>  </li>
                             <li><hr class="dropdown-divider"></li>                         
-                            <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=editarLocal">  Eliminar Local </a>  </li>
+                            <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=editarLocales">  Eliminar Local </a>  </li>
                         </ul>
                 </li>
-                </li>    
-                <li class="nav-item">
-                    <a class="nav-link" href="login.php">Gestionar Novedades</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Gestionar Novedades</a>
+                    <ul class="dropdown-menu">
+                        <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=cargaNovedad">  Cargar Novedad </a>  </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=editarNovedad">  Modificar Novedad </a>  </li>
+                        <li><hr class="dropdown-divider"></li>                         
+                        <li> <a class="dropdown-item" href="/TP ENTORNOS/Page/index.php?vista=editarNovedades">  Eliminar Novedad </a>  </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="login.php">Utilizacion de Descuentos</a>

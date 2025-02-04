@@ -5,10 +5,9 @@
         <div class="form-rest"></div>
 
             <div class="row cargaPromociones">
-                <div class="col-12">
-                    <form action="/TP ENTORNOS/Page/php/admin/altaLocales.php" method="POST" class="form" autocomplete="off" >
-                        <h1>CARGA DE LOCALES</h1>
-                        <br>
+                <div class="col-12">                    
+                    <h1>CARGA DE LOCALES</h1>
+                    <br>
 <head>
     <style>
         body {
@@ -31,27 +30,36 @@
                 <div class="container">
                     <div class="form-container">
                         <h3 class="text-center mb-4">Formulario de Local</h3>
-                        <form>
-                            <!-- Descripción -->
+                        <form action="/TP ENTORNOS/Page/php/admin/altaLocales.php" method="POST" class="form" autocomplete="off" >
+                            <?php
+                                // Establecer conexión
+                                $conexion = conexion();
+
+                                // Consulta para obtener los rubros
+                                $consulta_rubros = "SELECT * FROM rubros";
+
+                                $rubros = mysqli_query($conexion, $consulta_rubros);
+                            ?>
+
+                            <!-- Nombre del Local -->
                             <div class="mb-3">
                                 <label class="form-label">Nombre del local</label>
                                 <input class="form-control" type="text" name="nombreLocal" placeholder="Ingrese el nombre del local aquí..." maxlength="70" required>
                             </div>
 
-                            <!-- Categoría del cliente -->
+                            <!-- Rubro del Local -->
                             <div class="mb-3">
-                                <label class="form-label">Rubro de Local</label>
-                                <select class="form-select" name="rubroLocal" required>
-                                    <option value="" disabled selected>Seleccione un rubro para su local</option>
-                                    <option value="Electrónica">Electrónica</option>
-                                    <option value="Perfumería">Perfumería</option>
-                                    <option value="Gastronomía">Gastronomía</option>
-                                    <option value="Indumentaria">Indumentaria</option>
-                                    <option value="Librería">Librería</option>
-                                    <option value="Juguetería">Juguetería</option>
-                                    <option value="Bazar">Bazar</option>
-                                    <option value="Deportes">Deportes</option>
-                                    <option value="Calzado">Calzado</option>
+                                <br>
+                                <label class="form-label" style="color: black; text-align: left; display:block;">Rubro de Local:</label>
+                                <select class="form-select" name="rubroLocal">
+                                    <option value="" disabled selected>Seleccione un Rubro</option>
+                                    <?php
+                                    // Crear las opciones del desplegable
+                                    foreach ($rubros as $row) {
+                                        $nombreRubro = htmlspecialchars($row['nombreRubro']);
+                                        echo '<option value="' . $nombreRubro . '">' . $nombreRubro . '</option>';
+                                    }
+                                    ?>
                                 </select>
                             </div>
 
@@ -78,7 +86,11 @@
                         </form>
                     </div>
                 </div>
-
+                
+                <?php
+                    // Cerrar la conexión
+                    mysqli_close($conexion);
+                ?>
                      
                 </div>
             </div>
