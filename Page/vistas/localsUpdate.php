@@ -106,11 +106,7 @@
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary botonPromo">Cargar</button>
                             </div>
-
-                            <?php
-
-                            ?>
-
+                            
                         </form>
                     </div>
                 </div>

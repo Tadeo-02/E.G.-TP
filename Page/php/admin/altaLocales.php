@@ -4,50 +4,49 @@
     $nombreLocal = limpiar_cadena($_POST['nombreLocal']);
     $ubicacionLocal = limpiar_cadena($_POST['ubicacionLocal']);
     $rubroLocal = limpiar_cadena($_POST['rubroLocal']);
-
-    $codUsuario = 6; //todo REMAKE
+    $codUsuario = limpiar_cadena($_POST['codUsuario']);
 
     //Verificar campos obligatorios
     if ($nombreLocal == "" || $ubicacionLocal == "" || $rubroLocal == "" || $codUsuario == ""){
         echo '<div class="alert alert-danger" role="alert">
                 Todos los campos obligatorios no han sido completados
               </div>';
-        exit();}
+        exit();
+    }
     
+    $conexion = conexion();
+
     //Verificar si el local ya existe
-    if($nombreLocal != "" && $ubicacionLocal != ""){
-        $validarNombre = conexion();
-        $validarUbiacion = conexion();
-        $validarNombre = $validarNombre ->query ("SELECT nombreLocal  FROM locales WHERE nombreLocal='$nombreLocal' "); 
-        $validarUbiacion = $validarUbiacion ->query ("SELECT ubicacionLocal  FROM locales WHERE  ubicacionLocal='$ubicacionLocal'");
-        if (($validarNombre->num_rows) > 0 ) { //todo BOCA
-            echo '<div class="alert al  ert-danger" role="alert">
-                    El nombre del Local ya existe
-                  </div>';
-            exit();
-        }
-        $validarNombre = null;
-        if(($validarUbiacion->num_rows) > 0){
-            echo '<div class="alert alert-danger" role="alert">
-                La ubicacion del local está ocupada
-                    </div>';
-            exit();
-        }
-        $validarUbiacion = null;
+    $validarNombre = $conexion ->query ("SELECT nombreLocal  FROM locales WHERE nombreLocal='$nombreLocal' "); 
+    if (($validarNombre->num_rows) > 0 ) {
+        echo '<div class="alert al  ert-danger" role="alert">
+                El nombre del Local ya existe
+                </div>';
+        exit();
+    }
 
-        // Guardar Local
-        $guardarLocal = conexion();
-        $guardarLocal = $guardarLocal ->query("INSERT INTO locales (nombreLocal, ubicacionLocal, rubroLocal, codUsuario) VALUES ('$nombreLocal', '$ubicacionLocal', '$rubroLocal', '$codUsuario')");
-        //? Alerta de exito no funciona
-        // if($guardarLocal->num_rows == 1){
-        //     echo '<div class="alert alert-success" role="alert">
-        //             El local fue registrado con éxito
-        //           </div>'; 
-        //     }
+    $validarUbiacion = $conexion ->query ("SELECT ubicacionLocal FROM locales WHERE  ubicacionLocal='$ubicacionLocal'");
+    if(($validarUbiacion->num_rows) > 0){
+        echo '<div class="alert alert-danger" role="alert">
+            La ubicacion del local está ocupada
+                </div>';
+        exit();
+    }
 
-        //Cerrar conexion    
-        $guardarLocal = null;
-        }
+    // Guardar Local
+    $guardarLocal = $conexion ->query("INSERT INTO locales (nombreLocal, ubicacionLocal, rubroLocal, codUsuario) VALUES ('$nombreLocal', '$ubicacionLocal', '$rubroLocal', '$codUsuario')");
+    //? Alerta de exito no funciona
+    // if($guardarLocal->num_rows == 1){
+    //     echo '<div class="alert alert-success" role="alert">
+    //             El local fue registrado con éxito
+    //           </div>'; 
+    //     }
+
+    //Cerrar conexion    
+    mysqli_close($conexion);
+
+    header("Location: /TP ENTORNOS/Page/index.php?vista=cargaLocales");
+    
     
     
     
