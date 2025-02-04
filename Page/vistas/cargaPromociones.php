@@ -100,7 +100,7 @@
                                     <br>
                                     <label class="form-label" style="color: black; text-align: left; display:block;">Días en los que la promoción será válida: </label>
 
-                                    <select class="form-select" multiple size="7" name="diasSemana" id="diasSemana" required>
+                                    <select class="form-select" multiple size="7" name="diasSemana[]" id="diasSemana" required>
                                         <option value="1">Lunes</option>
                                         <option value="2">Martes</option>
                                         <option value="3">Miércoles</option>
@@ -121,6 +121,7 @@
                 
                     <?php
                         // Cerrar la conexión
+                        
                         mysqli_close($conexion);
                     ?>
                      

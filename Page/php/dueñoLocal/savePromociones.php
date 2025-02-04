@@ -7,7 +7,7 @@
     $fechaDesdePromo = limpiar_cadena($_POST['fechaDesdePromo']);
     $fechaHastaPromo = limpiar_cadena($_POST['fechaHastaPromo']);
     $categoriaCliente = limpiar_cadena($_POST['categoriaCliente']);
-    $diasSemana = limpiar_cadena($_POST['diasSemana']);
+    $diasSemana = $_POST['diasSemana'];
 
     // Verificar campos Obligatorios
     if( $codLocal == "" || $textoPromo == "" || $fechaDesdePromo == "" || $fechaHastaPromo == "" || $categoriaCliente == "" || $diasSemana == ""){ 
@@ -24,6 +24,14 @@
     //     exit();
     // }
 
+    if (isset($_POST['diasSemana'])) {
+        $diasSemanaArray = $_POST['diasSemana']; // Captura los días como array
+    } else {
+        $diasSemanaArray = []; // Si no se selecciona nada, queda vacío
+    }
+
+    $diasSemanaJSON = json_encode($diasSemanaArray);
+
     if($fechaDesdePromo == $fechaHastaPromo){ //? Revisar si es necesario
         echo '<div class="alert alert-danger" role="alert">
                 Las promociones no pueden comenzar y terminar el mismo día
@@ -38,9 +46,10 @@
         exit();
     }
     
+    
     // Guardando datos
     $guardar_usuario=conexion();
-    $guardar_usuario=$guardar_usuario->query("INSERT INTO promociones(textoPromo, fechaDesdePromo, fechaHastaPromo, categoriaCliente,diasSemana, estadoPromo, codLocal) VALUES ('$textoPromo', '$fechaDesdePromo', '$fechaHastaPromo', '$categoriaCliente', '$diasSemana', 'Pendiente', $codLocal)");
+    $guardar_usuario=$guardar_usuario->query("INSERT INTO promociones(textoPromo, fechaDesdePromo, fechaHastaPromo, categoriaCliente,diasSemana, estadoPromo, codLocal) VALUES ('$textoPromo', '$fechaDesdePromo', '$fechaHastaPromo', '$categoriaCliente', '$diasSemanaJSON', 'Pendiente', $codLocal)");
 
     echo '<div class="alert alert-success" role="alert">
             Solicitud registrada con exito
