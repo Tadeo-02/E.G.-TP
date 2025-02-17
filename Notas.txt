@@ -13,4 +13,6 @@ Sección Lista locales:
 Sección lista promociones:
 - Arreglar simetria de filtros y promociones
 
+Seccion crear locales:
+- Agregar apartado para insertar una imagen del local
 
