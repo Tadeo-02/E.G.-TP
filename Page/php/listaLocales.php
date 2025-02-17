@@ -42,11 +42,11 @@
 						<div class="textContainer">
 
 								<h1>	'. htmlspecialchars($rows['nombreLocal']) . '</h1>
-							<h3> Ubicacion del Local: </h3>
+							<h4> Ubicacion del Local: </h4>
 								<p> '. htmlspecialchars($rows['ubicacionLocal']) .  '</p>
-							<h3> Rubro del Local: </h3>
+							<h4> Rubro del Local: </h4>
 								<p>	'. htmlspecialchars($rows['rubroLocal']) . ' </p>
-							<h3> Código del Local: </h3>
+							<h4> Código del Local: </h4>
 								<p>	'. htmlspecialchars($rows['codLocal']) .  '</p>
 						</div>
 						<form action="index.php" method="GET">

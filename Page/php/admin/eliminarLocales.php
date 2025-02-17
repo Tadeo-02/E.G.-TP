@@ -20,37 +20,11 @@
             </div>';
             $conexion->close();
     }
-   
-   
-    
 
     // Cerrar la conexión
     $eliminar_local->close();
     $conexion->close();
 
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    header("Location: /TP ENTORNOS/Page/index.php?vista=localsManage");
 
 ?>

@@ -33,7 +33,8 @@
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
 		foreach($datos as $rows){ 
-			$nombreLocal = $rows['nombreLocal'];						//<td>'.$contador.'</td>
+			$nombreLocal = $rows['nombreLocal'];
+			$codLocal = $rows['codLocal']; 						//<td>'.$contador.'</td>
 			$tabla.=' 
 				<div class="locales">
 						<div class="imgContainer">
@@ -42,11 +43,11 @@
 						<div class="textContainer">
 
 								<h1>	'. htmlspecialchars($rows['nombreLocal']) . '</h1>
-							<h3> Ubicacion del Local: </h3>
+							<h4> Ubicacion del Local: </h4>
 								<p> '. htmlspecialchars($rows['ubicacionLocal']) .  '</p>
-							<h3> Rubro del Local: </h3>
+							<h4> Rubro del Local: </h4>
 								<p>	'. htmlspecialchars($rows['rubroLocal']) . ' </p>
-							<h3> Código del Local: </h3>
+							<h4> Código del Local: </h4>
 								<p>	'. htmlspecialchars($rows['codLocal']) .  '</p>
 						</div>
                         <div class="textContainer">
@@ -56,15 +57,16 @@
                         </form>
                         <br>
                         <br>
-                        <form action="index.php?vista=localsDelete&nombreLocal='.htmlspecialchars($nombreLocal) .'" method="POST">
-                            <input type="hidden" name="nombreLocal" value="'.htmlspecialchars($nombreLocal) .'">
-                            <input type="submit" name="botonAnashe" class="btn btn-danger" value="Eliminar Local">
+                        <form action="./php/admin/eliminarLocales.php" method="POST">
+                            <input type="hidden" name="codLocal" value="'.htmlspecialchars($codLocal) .'">
+							<input type="hidden" name="dato" value="valor">
+                            <button type="submit"  name="botonAnashe" value="Eliminar Local" class="btn btn-danger" onclick="return confirmar();">Eliminar Local</button>
                         </form>
                         </div>
 
                 </div>
             ';
-
+//index.php?vista=eliminarLocales&nombreLocal='.htmlspecialchars($nombreLocal) .'
             $contador++;
 		}
 		$pag_final=$contador-1;
@@ -106,3 +108,10 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		echo paginador_tablas($pagina,$Npaginas,$url,7);
 	}
+?>
+
+<script>
+function confirmar() {
+    return confirm("¿Seguro que quieres eliminar este Local?");
+}
+</script>

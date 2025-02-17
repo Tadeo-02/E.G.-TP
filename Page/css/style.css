@@ -656,10 +656,16 @@ select[multiple] {
   width: 50px;
 }
 
-
-
-
-
+.sexo {
+  width: 300px; /* Igual al ancho esperado */
+  height: 38px; /* Igual al filtro y al buscador */
+  font-size: 16px; /* Tamaño de texto uniforme */
+  border-radius: 20px; /* Borde redondeado como el buscador */
+  padding: 0; /* Alinea el texto correctamente */
+  display: flex; 
+  align-items: center; 
+  justify-content: center; /* Centra el contenido */
+}
 
 
 

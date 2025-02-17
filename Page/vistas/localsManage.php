@@ -29,8 +29,12 @@
             <div class="centered row mb-4">
 
                 <div class="col-lg-3 col-md-3">
+                <br>
+                <br>
                     <form action="index.php?vista=cargaLocales" method="POST">
-                        <input type="submit" name="botonAnashe" class="btn btn-success" value="Crear Local">
+                        <div class="mb-3" style="display: flex; justify-content: right;">
+                            <input type="submit" name="botonAnashe" class="btn btn-success sexo" value="Crear Local">
+                        </div>    
                     </form>
                 </div>
 
@@ -39,7 +43,7 @@
 
                     <h2 class="text-center" style="color: white">Rubros</h2>
                     <form action="index.php" method="get" id="rubroForm">
-                        <input type="hidden" name="vista" value="localsList">
+                        <input type="hidden" name="vista" value="localsManage">
                         <div class="mb-3">
                             <select class="form-select" name="rubroLocal" aria-label="Seleccionar Rubro" onchange="this.form.submit()">
                                 <option value="" <?php echo $rubroActual == '' ? 'selected' : ''; ?>>Todos</option>
