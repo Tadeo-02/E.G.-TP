@@ -26,7 +26,6 @@
                 $rubroActual = isset($_GET['rubroLocal']) ? $_GET['rubroLocal'] : '';
             ?>
 
-<<<<<<< Updated upstream
             <div class="centered row mb-4">
 
                 <div class="col-lg-3 col-md-3">
@@ -61,53 +60,39 @@
                     </form>
 
                 </div>
-=======
-<div class="centered row mb-4 d-flex align-items-center justify-content-between">
-    <!-- Botón Crear Local -->
-    <div class="col-lg-3 col-md-3 d-flex align-items-center">
-        <form action="index.php?vista=cargaLocales" method="POST">
-            <input type="submit" name="botonAnashe" class="btn btn-success" value="Crear Local">
-        </form>
-    </div>
->>>>>>> Stashed changes
 
-    <!-- Filtro de Rubros y Buscador en la misma línea -->
-    <div class="col-lg-6 col-md-6 d-flex align-items-center">
-        <!-- Filtro de Rubros -->
-        <form action="index.php" method="get" id="rubroForm" class="d-flex align-items-center me-2">
-            <input type="hidden" name="vista" value="localsList">
-            <label for="rubroLocal" class="text-white me-2">Rubros:</label>
-            <select class="form-select" name="rubroLocal" id="rubroLocal" onchange="this.form.submit()">
-                <option value="" <?php echo $rubroActual == '' ? 'selected' : ''; ?>>Todos</option>
                 <?php
-                foreach ($rubros as $row) {
-                    $nombreRubro = htmlspecialchars($row['nombreRubro']);
-                    $selected = $rubroActual == $nombreRubro ? 'selected' : '';
-                    echo '<option value="' . $nombreRubro . '" ' . $selected . '>' . $nombreRubro . '</option>';
-                }
+                    // Cerrar la conexión
+                    mysqli_close($conexion);
+
+                    if(isset($_POST['modulo_buscador'])) {
+                        require_once (__DIR__ . '/../php/buscador.php');
+                    }
+                    
                 ?>
-            </select>
-        </form>
+                
+                <div class="col-lg-3 col-md-3">
+                    <br>
+                    <br>
+                    <form action="" method="POST" autocomplete="off">
+                        <input type="hidden" name="modulo_buscador" value="locales">
+                        <div class="input-group">
+                            <input 
+                                type="text" 
+                                name="txt_buscador" 
+                                class="form-control rounded-pill" 
+                                placeholder="¿Qué local estas buscando?" 
+                                pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,30}"
+                                maxlength="30"
+                                value="<?php echo isset($_SESSION['busquedaLocal']) ? htmlspecialchars($_SESSION['busquedaLocal']) : ''; ?>"
+                                >
+                            <button type="submit" class="btn btn-info rounded-pill">Buscar</button>
+                        </div>
+                    </form>
 
-        <!-- Buscador -->
-        <form action="" method="POST" autocomplete="off" class="flex-grow-1">
-            <input type="hidden" name="modulo_buscador" value="locales">
-            <div class="input-group">
-                <input 
-                    type="text" 
-                    name="txt_buscador" 
-                    class="form-control rounded" 
-                    placeholder="¿Qué local estás buscando?" 
-                    pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,30}"
-                    maxlength="30"
-                    value="<?php echo isset($_SESSION['busquedaLocal']) ? htmlspecialchars($_SESSION['busquedaLocal']) : ''; ?>"
-                >
-                <button type="submit" class="btn btn-info">Buscar</button>
+                </div>
             </div>
-        </form>
-    </div>
-</div>
-
+        </div>
 
         <div class="container">
             <?php
