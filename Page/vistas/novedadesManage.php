@@ -1,88 +1,52 @@
+<div class="container-fluid p-0">
+    <h1 class="title">Novedades</h1>
+</div>
 
-<section id="about" class="about">
-	<div class="container-fluid">
-    
-	<!-- SE MUESTRA EL RESULTADO DEL FORM CON ESTE DIV "form-rest" -->
-        <div class="form-rest"></div>
+<div class="row g-0">
+    <?php
+        require_once(__DIR__ . '/../php/main.php');
+    ?>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <h1 class="text-center" style="color: white"><b>NOVEDADES</b></h1>
+        <br>
+       
+
+
+
+        <div class="col-lg-12 col-md-12" style="display: flex; justify-content: center; align-items: center;">
+                <br>
+                <br>
+                    <form action="index.php?vista=cargaNovedad" method="POST">
+                        <div class="mb-3" style="display: flex; justify-content: right;">
+                            <input type="submit" name="botonAnashe" class="btn btn-success sexo" value="Crear Novedad">
+                        </div>    
+                    </form>
+
+        </div>
+
+        <div class="container">
             <?php
-                require_once(__DIR__ . '/../php/main.php');
+
+                if(!isset($_GET['page'])){
+                    $pagina=1;
+                }else{
+                    $pagina=(int) $_GET['page'];
+                    if($pagina<=1){
+                        $pagina=1;
+                    }
+                };
+
+                $pagina=limpiar_cadena($pagina);
+                $url="index.php?vista=novedadesManage&page=";
+                $registros = 1;
+
+                # Paginador locales #
+                require_once (__DIR__. '/../php/admin/gestionarNovedades.php');
+
             ?>
-            <div class="row cargaPromociones">
-                <div class="col-12">
-                    <h1>ELIIMINAR NOVEDADES</h1>
-                    <br>
-<head>
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .form-container {
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        select[multiple] {
-            height: auto;
-        }
-    </style>
-</head>
-
-                <div class="container">
-                    <div class="form-container">
-                        <h3 class="text-center mb-4">Formulario de Eliminación de Novedades</h3>
-                        <form action="/TP ENTORNOS/Page/php/admin/eliminarLocales.php" method="POST">
-                        <?php
-                                // Establecer conexión
-                                $conexion = conexion();
-
-                                // Consulta para obtener los rubros
-                                $consulta_locales = "SELECT * FROM locales";
-                                // $consulta_rubros = "SELECT * FROM rubros";
-
-                                $locales = mysqli_query($conexion, $consulta_locales);
-                                // $rubros = mysqli_query($conexion, $consulta_rubros);
-                            ?>
-
-                            <!-- Local -->
-                            <div class="mb-3">
-                                <br>
-                                <label class="form-label" style="color: black; text-align: left; display:block;">Local a modificar:</label>
-                                <select class="form-select" name="codLocal" required>
-                                    <option value="" disabled selected>Seleccione una novedad: </option>
-                                    <?php
-                                    // Crear las opciones del desplegable
-                                    foreach ($locales as $row) {
-                                        $nombreLocal = htmlspecialchars($row['nombreLocal']);
-                                        $codLocal = htmlspecialchars($row['codLocal']);
-                                        echo '<option value="' . $codLocal . '">' . $nombreLocal . '</option>';
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-            
-
-                            <div class="text-center">
-                            <button type="submit" class="btn btn-danger btn-lg">ELIMINAR NOVEDAD</button>
-                            </div>
-
-                            <?php
-
-                            ?>
-
-                        </form>
-                    </div>
-                </div>
-                
-                <?php
-                    // Cerrar la conexión
-                    mysqli_close($conexion);
-                ?>
-                     
-                </div>
-            </div>
-	</div>		
-
-</section>
+        </div>
+    </div>
+</div>

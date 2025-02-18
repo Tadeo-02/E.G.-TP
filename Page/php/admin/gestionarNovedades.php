@@ -1,64 +1,47 @@
 <?php
 	$conexion=conexion();
-
+	
+	//? FECHA HOY
+	$hoy = date("Y-m-d");
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
-
+	
 	$tabla="";
-
-	if (isset($busqueda) && $busqueda != "") {
-		if($rubroLocal != ""){
-			$consulta_datos="SELECT * FROM locales  WHERE rubroLocal = '$rubroLocal' AND nombreLocal LIKE '%$busqueda%' ORDER BY nombreLocal ASC LIMIT $inicio,$registros";
-			$consulta_total="SELECT COUNT(*) FROM locales WHERE rubroLocal = '$rubroLocal' AND nombreLocal LIKE '%$busqueda%'";
-		}else {	
-			$consulta_datos = "SELECT * FROM locales WHERE nombreLocal LIKE '%$busqueda%' ORDER BY nombreLocal LIMIT $inicio, $registros";
-			$consulta_total = "SELECT COUNT(*) FROM locales WHERE nombreLocal LIKE '%$busqueda%'";
-		}
-
-	}else {
-		if($rubroLocal != ""){
-			$consulta_datos="SELECT * FROM locales  WHERE rubroLocal = '$rubroLocal' ORDER BY nombreLocal ASC LIMIT $inicio,$registros";
-			$consulta_total="SELECT COUNT(*) FROM locales WHERE rubroLocal = '$rubroLocal'";
-		}else {	
-			$consulta_datos = "SELECT * FROM locales ORDER BY nombreLocal LIMIT $inicio, $registros";
-			$consulta_total = "SELECT COUNT(*) FROM locales";
-		}
-	}
+	
+	$consulta_datos = "SELECT * FROM novedades WHERE DATE('$hoy') BETWEEN fechaDesdeNovedad AND fechaHastaNovedad  ORDER BY fechaDesdeNovedad DESC LIMIT $inicio, $registros";
+	$consulta_total = "SELECT COUNT(*) FROM novedades WHERE DATE('$hoy') BETWEEN fechaDesdeNovedad AND fechaHastaNovedad ";
 
 	$datos = mysqli_query($conexion, $consulta_datos);
 
 	$total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
 	$Npaginas = ceil($total_registros / $registros);
-
+	
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
 		foreach($datos as $rows){ 
-			$nombreLocal = $rows['nombreLocal'];						//<td>'.$contador.'</td>
+			$textoNovedad = $rows['textoNovedad'];						
 			$tabla.=' 
 				<div class="locales">
-						<div class="imgContainer">
-             				<img src="https://i.pinimg.com/736x/44/6e/0e/446e0e3dda539cc4cee175695364bba9.jpg" alt="huevardo">
-         				</div>
 						<div class="textContainer">
 
-								<h1>	'. htmlspecialchars($rows['nombreLocal']) . '</h1>
-							<h3> Ubicacion del Local: </h3>
-								<p> '. htmlspecialchars($rows['ubicacionLocal']) .  '</p>
-							<h3> Rubro del Local: </h3>
-								<p>	'. htmlspecialchars($rows['rubroLocal']) . ' </p>
-							<h3> Código del Local: </h3>
-								<p>	'. htmlspecialchars($rows['codLocal']) .  '</p>
+								<h1>	'. htmlspecialchars($rows['textoNovedad']) . '</h1>
+							<h3> Fecha desde novedad: </h3>
+								<p> '. htmlspecialchars($rows['fechaDesdeNovedad']) .  '</p>
+							<h3> Fecha hasta novedad: </h3>
+								<p>	'. htmlspecialchars($rows['fechaHastaNovedad']) . ' </p>
+							<h3> Tipo de cliente novedad: </h3>
+								<p>	'. htmlspecialchars($rows['tipoUsuario']) .  '</p>
 						</div>
                         <div class="textContainer">
-                        <form action="index.php?vista=localsUpdate&codLocal='.htmlspecialchars($nombreLocal) .'" method="POST">
-                            <input type="hidden" name="nombreLocal" value="'.htmlspecialchars($nombreLocal) .'">
-                            <input type="submit" name="botonAnashe" class="btn btn-warning" value="Modificar Local">
+                        <form action="index.php?vista=localsUpdate&codLocal='.htmlspecialchars($textoNovedad) .'" method="POST">
+                            <input type="hidden" name="textoNovedad" value="'.htmlspecialchars($textoNovedad) .'">
+                            <input type="submit" name="botonAnashe" class="btn btn-warning" value="Modificar Novedad">
                         </form>
                         <br>
                         <br>
-                        <form action="index.php?vista=localsDelete&nombreLocal='.htmlspecialchars($nombreLocal) .'" method="POST">
-                            <input type="hidden" name="nombreLocal" value="'.htmlspecialchars($nombreLocal) .'">
-                            <input type="submit" name="botonAnashe" class="btn btn-danger" value="Eliminar Local">
+                        <form action="index.php?vista=localsDelete&textoNovedad='.htmlspecialchars($textoNovedad) .'" method="POST">
+                            <input type="hidden" name="textoNovedad" value="'.htmlspecialchars($textoNovedad) .'">
+                            <input type="submit" name="botonAnashe" class="btn btn-danger" value="Eliminar Novedad">
                         </form>
                         </div>
 
@@ -81,7 +64,7 @@
 			$tabla.='
 				<tr class="has-text-centered" >
 					<td>
-						<p class="centered" style="color: red">	No hay locales disponibles </p>
+						<p class="centered" style="color: red">	No hay novedades disponibles </p>
 					</td>
 				</tr>
 			';

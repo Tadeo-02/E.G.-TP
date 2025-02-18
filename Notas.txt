@@ -16,3 +16,7 @@ Sección lista promociones:
 Seccion crear locales:
 - Agregar apartado para insertar una imagen del local
 
+Seccion Novedaes:
+- Agregar función de expiración
+- Agregar/Modificar DB a tipoCliente
+- Ver como resolver si no hay novedades cargadas para gestionar novedades
