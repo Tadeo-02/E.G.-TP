@@ -38,13 +38,12 @@
                                 $conexion = conexion();
 
                                 // Consulta para obtener los rubros
-                                $consulta_locales = "SELECT * FROM locales";
                                 $consulta_rubros = "SELECT * FROM rubros";
-
-                                $locales = mysqli_query($conexion, $consulta_locales);
                                 $rubros = mysqli_query($conexion, $consulta_rubros);
 
-                                $localActual = isset($_POST['nombreLocal']) ? $_POST['nombreLocal'] : '';
+                                // Obtener los datos del local
+                                $codActual = isset($_POST['codLocal']) ? $_POST['codLocal'] : '';
+                                $nombreActual = isset($_POST['nombreLocal']) ? $_POST['nombreLocal'] : '';
                             ?>
 
                             <!-- Local -->
@@ -53,7 +52,7 @@
                                 <label class="form-label" style="color: black; text-align: left; display:block;">Local a modificar:</label>
                                 <select class="form-select" name="localModificado" required>
                                     <?php
-                                        echo '<option value="'. $localActual .'">'.$localActual.'</option>';
+                                        echo '<option value="'. $codActual .'">'.$nombreActual.'</option>';
                                     ?>        
                                 </select>
                             </div>

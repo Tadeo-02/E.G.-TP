@@ -46,7 +46,7 @@
     //Cerrar conexion    
     mysqli_close($conexion);
 
-    header("Location: /TP ENTORNOS/Page/index.php?vista=localsUpdate");
+    header("Location: /TP ENTORNOS/Page/index.php?vista=localsManage");
 
 
     

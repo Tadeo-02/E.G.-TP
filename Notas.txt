@@ -19,4 +19,7 @@ Seccion crear locales:
 Seccion Novedaes:
 - Agregar función de expiración
 - Agregar/Modificar DB a tipoCliente
-- Ver como resolver si no hay novedades cargadas para gestionar novedades
+- Ver como resolver si no hay novedades cargadas para gestionar 
+
+Seccion Modificar:
+- Hacer que te vuelva a la misma pagina del listado donde estabas una vez completas la modificación

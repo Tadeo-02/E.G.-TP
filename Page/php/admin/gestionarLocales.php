@@ -51,8 +51,9 @@
 								<p>	'. htmlspecialchars($rows['codLocal']) .  '</p>
 						</div>
                         <div class="textContainer">
-                        <form action="index.php?vista=localsUpdate&codLocal='.htmlspecialchars($nombreLocal) .'" method="POST">
-                            <input type="hidden" name="nombreLocal" value="'.htmlspecialchars($nombreLocal) .'">
+                        <form action="index.php?vista=localsUpdate" method="POST">
+							<input type="hidden" name="nombreLocal" value="'. htmlspecialchars($nombreLocal) .'">
+							<input type="hidden" name="codLocal" value="'. htmlspecialchars($codLocal) .'">
                             <input type="submit" name="botonAnashe" class="btn btn-warning" value="Modificar Local">
                         </form>
                         <br>
@@ -63,10 +64,8 @@
                             <button type="submit"  name="botonAnashe" value="Eliminar Local" class="btn btn-danger" onclick="return confirmar();">Eliminar Local</button>
                         </form>
                         </div>
-
                 </div>
             ';
-//index.php?vista=eliminarLocales&nombreLocal='.htmlspecialchars($nombreLocal) .'
             $contador++;
 		}
 		$pag_final=$contador-1;

@@ -1,13 +1,14 @@
 <?php
     require_once "../main.php";
     
-    $localModificado = limpiar_cadena($_POST['localModificado']);
-    $nombreLocal = limpiar_cadena($_POST['nombreLocal']);
-    $ubicacionLocal = limpiar_cadena($_POST['ubicacionLocal']);
-    $rubroLocal = limpiar_cadena($_POST['rubroLocal']);
+    $novedadModificada = limpiar_cadena($_POST['novedadModificada']);
+    $textoNovedad = limpiar_cadena($_POST['textoNovedad']);
+    $fechaDesdeNovedad = limpiar_cadena($_POST['fechaDesdeNovedad']);
+    $fechaHastaNovedad = limpiar_cadena($_POST['fechaHastaNovedad']);
+    $tipoUsuario = limpiar_cadena($_POST['tipoUsuario']);
 
     //Verificar campos obligatorios
-    if ($localModificado == "" || $nombreLocal == '' || $ubicacionLocal == '' || $rubroLocal == ''){
+    if ($novedadModificada  == "" || $textoNovedad == "" || $fechaDesdeNovedad == "" || $fechaHastaNovedad == "" || $tipoUsuario == ""){
         echo '<div class="alert alert-danger" role="alert">
                 Todos los campos obligatorios no han sido completados
               </div>';
@@ -16,26 +17,33 @@
     
     $conexion = conexion();
 
-    //Verificar si el local ya existe
-    $validarNombre = $conexion ->query ("SELECT nombreLocal  FROM locales WHERE nombreLocal='$nombreLocal' "); 
-    if (($validarNombre->num_rows) > 0 ) { //todo BOCA
+    //Verificar si la novedad ya existe
+    $validarNombre = $conexion ->query ("SELECT textoNovedad  FROM novedades WHERE textoNovedad='$textoNovedad' "); 
+    if (($validarNombre->num_rows) > 0 ) {
         echo '<div class="alert al  ert-danger" role="alert">
                 El nombre del Local ya existe
                 </div>';
         exit();
     }
 
-    $validarUbiacion = $conexion ->query ("SELECT ubicacionLocal FROM locales WHERE  ubicacionLocal='$ubicacionLocal'");
-    if(($validarUbiacion->num_rows) > 0){
+    // Verificar si la fecha de inicio es menor a la fecha de fin
+    if($fechaDesdeNovedad == $fechaHastaNovedad){ //? Revisar si es necesario
         echo '<div class="alert alert-danger" role="alert">
-            La ubicacion del local está ocupada
-                </div>';
+                Las promociones no pueden comenzar y terminar el mismo día
+              </div>';
+        exit();
+    }
+    
+    if($fechaDesdeNovedad > $fechaHastaNovedad){ //? Revisar si es necesario
+        echo '<div class="alert alert-danger" role="alert">
+                La fecha de inicio de la prmocion no puede ser posterior a la fecha de fin de la promocion
+              </div>';
         exit();
     }
 
     // Guardar Local
-    $guardarLocal = $conexion ->query("UPDATE locales SET nombreLocal = '$nombreLocal', ubicacionLocal = '$ubicacionLocal', rubroLocal = '$rubroLocal' WHERE codLocal = '$localModificado';");
-    
+    $guardarNovedad = $conexion ->query("UPDATE novedades SET textoNovedad = '$textoNovedad', fechaDesdeNovedad = '$fechaDesdeNovedad', fechaHastaNovedad = '$fechaHastaNovedad', tipoUsuario = '$tipoUsuario' WHERE codNovedad = '$novedadModificada';");
+
     //? Alerta de exito no funciona
     // if($guardarLocal->num_rows == 1){
     //     echo '<div class="alert alert-success" role="alert">
@@ -46,7 +54,7 @@
     //Cerrar conexion    
     mysqli_close($conexion);
 
-    header("Location: /TP ENTORNOS/Page/index.php?vista=localsUpdate");
+    header("Location: /TP ENTORNOS/Page/index.php?vista=novedadesManage");
 
 
     

@@ -1,4 +1,3 @@
-
 <section id="about" class="about">
 	<div class="container-fluid">
     
@@ -8,8 +7,8 @@
                 require_once(__DIR__ . '/../php/main.php');
             ?>
             <div class="row cargaPromociones">
-                <div class="col-12">
-                    <h1>ELIIMINAR NOVEDADES</h1>
+                <div class="col-12">                    
+                    <h1>CARGA DE NOVEDADES</h1>
                     <br>
 <head>
     <style>
@@ -32,54 +31,62 @@
 
                 <div class="container">
                     <div class="form-container">
-                        <h3 class="text-center mb-4">Formulario de Eliminación de Novedades</h3>
-                        <form action="/TP ENTORNOS/Page/php/admin/eliminarLocales.php" method="POST">
-                        <?php
-                                // Establecer conexión
-                                $conexion = conexion();
+                        <h3 class="text-center mb-4">Formulario de Novedad</h3>
+                        <form action="/TP ENTORNOS/Page/php/admin/editarNovedades.php" method="POST" autocomplete="off" >
 
-                                // Consulta para obtener los rubros
-                                $consulta_locales = "SELECT * FROM locales";
-                                // $consulta_rubros = "SELECT * FROM rubros";
-
-                                $locales = mysqli_query($conexion, $consulta_locales);
-                                // $rubros = mysqli_query($conexion, $consulta_rubros);
-                            ?>
-
-                            <!-- Local -->
+                            <!-- Cod Novedad -->
                             <div class="mb-3">
                                 <br>
                                 <label class="form-label" style="color: black; text-align: left; display:block;">Local a modificar:</label>
-                                <select class="form-select" name="codLocal" required>
-                                    <option value="" disabled selected>Seleccione una novedad</option>
+                                <select class="form-select" name="novedadModificada" required>
                                     <?php
-                                    // Crear las opciones del desplegable
-                                    foreach ($locales as $row) {
-                                        $nombreLocal = htmlspecialchars($row['nombreLocal']);
-                                        $codLocal = htmlspecialchars($row['codLocal']);
-                                        echo '<option value="' . $codLocal . '">' . $nombreLocal . '</option>';
-                                    }
+                                        $codActual = isset($_POST['codNovedad']) ? $_POST['codNovedad'] : '';
+                                        echo '<option value="'. $codActual .'">'.$codActual.'</option>';
                                     ?>
                                 </select>
                             </div>
-            
 
-                            <div class="text-center">
-                            <button type="submit" class="btn btn-danger btn-lg">ELIMINAR NOVEDAD</button>
+                            <!-- Texto Novedad -->
+                            <div class="mb-3">
+                                <label class="form-label" style="color: black; text-align: left; display:block;">Nombre del local</label>
+                                <input class="form-control" type="text" name="textoNovedad" placeholder="Ingrese el texto de la novedad aquí..." maxlength="100" required>
                             </div>
 
-                            <?php
+                            <!-- Fechas Novedad -->
+                            <div class="mb-3">
+                                    <br>
+                                    <label class="form-label" style="color: black; text-align: left; display:block;">Fecha de inicio de la Novedad:</label>
+                                    <input class="form-control" type="date" name="fechaDesdeNovedad" required>
+                                </div>
 
-                            ?>
+                                <div class="mb-3">
+                                    <br>
+                                    <label class="form-label" style="color: black; text-align: left; display:block;">Fecha de fin de la Novedad:</label>
+                                    <input class="form-control" type="date" name="fechaHastaNovedad" required>
+                            </div>
+
+                            <!-- Días de la promoción -->
+                            <div class="mb-3">
+                                <br>
+                                <label class="form-label">Tipo de Cliente</label>
+                                <select class="form-select" name="tipoUsuario" required>
+                                    <option value="" disabled selected>Seleccione un nivel de Cliente</option>
+                                    <option value="Inicial">Inicial</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Premium">Premium</option>
+                                </select>
+                            </div>
+
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary botonPromo">Cargar</button>
+                            </div>
 
                         </form>
                     </div>
                 </div>
                 
-                <?php
-                    // Cerrar la conexión
-                    mysqli_close($conexion);
-                ?>
+              
                      
                 </div>
             </div>

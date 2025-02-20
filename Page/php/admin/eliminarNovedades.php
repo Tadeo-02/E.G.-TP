@@ -1,22 +1,22 @@
 <?php 
     require_once "../main.php";
 
-    $codLocal = limpiar_cadena($_POST['codLocal']);
+    $codNovedad = limpiar_cadena($_POST['codNovedad']);
     
 
     // Verificar campos Obligatorios
     
     $conexion = conexion();
     
-    $eliminar_local = $conexion->prepare("DELETE FROM locales WHERE codLocal = ?");
-    $eliminar_local->bind_param("i", $codLocal);
-    if($eliminar_local->execute()){
+    $eliminar_novedad = $conexion->prepare("DELETE FROM novedades WHERE codNovedad = ?");
+    $eliminar_novedad->bind_param("s", $codNovedad);
+    if($eliminar_novedad->execute()){
         echo '<div class="alert alert-success" role="alert">
-            Local eliminado con exito
+            Novedad eliminada con exito
             </div>';
     }else{
         echo '<div class="alert alert-danger" role="alert">
-            Error al eliminar el local
+            Error al eliminar la novedad
             </div>';
             $conexion->close();
     }
@@ -25,7 +25,7 @@
     
 
     // Cerrar la conexión
-    $eliminar_local->close();
+    $eliminar_novedad->close();
     $conexion->close();
 
 

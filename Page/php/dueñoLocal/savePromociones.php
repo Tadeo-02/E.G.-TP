@@ -45,16 +45,11 @@
               </div>';
         exit();
     }
-    
+    //! ojo
     
     // Guardando datos
-<<<<<<< Updated upstream
     $guardar_usuario=conexion();
     $guardar_usuario=$guardar_usuario->query("INSERT INTO promociones(textoPromo, fechaDesdePromo, fechaHastaPromo, categoriaCliente,diasSemana, estadoPromo, codLocal) VALUES ('$textoPromo', '$fechaDesdePromo', '$fechaHastaPromo', '$categoriaCliente', '$diasSemanaJSON', 'Pendiente', $codLocal)");
-=======
-    $guardar_promocion=conexion();
-    $guardar_promocion=$guardar_promocion->query("INSERT INTO promociones(textoPromo, fechaDesdePromo, fechaHastaPromo, categoriaCliente,diasSemana, estadoPromo, codLocal) VALUES ('$textoPromo', '$fechaDesdePromo', '$fechaHastaPromo', '$categoriaCliente', '$diasSemana', 'Pendiente', $codLocal)");
->>>>>>> Stashed changes
 
     echo '<div class="alert alert-success" role="alert">
             Solicitud registrada con exito

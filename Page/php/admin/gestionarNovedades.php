@@ -19,7 +19,7 @@
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
 		foreach($datos as $rows){ 
-			$textoNovedad = $rows['textoNovedad'];						
+			$codNovedad = $rows['codNovedad'];						
 			$tabla.=' 
 				<div class="locales">
 						<div class="textContainer">
@@ -33,15 +33,17 @@
 								<p>	'. htmlspecialchars($rows['tipoUsuario']) .  '</p>
 						</div>
                         <div class="textContainer">
-                        <form action="index.php?vista=localsUpdate&codLocal='.htmlspecialchars($textoNovedad) .'" method="POST">
-                            <input type="hidden" name="textoNovedad" value="'.htmlspecialchars($textoNovedad) .'">
+                        <form action="index.php?vista=novedadesUpdate" method="POST">
+                            <input type="hidden" name="codNovedad" value="'.htmlspecialchars($codNovedad) .'">
                             <input type="submit" name="botonAnashe" class="btn btn-warning" value="Modificar Novedad">
                         </form>
                         <br>
                         <br>
-                        <form action="index.php?vista=localsDelete&textoNovedad='.htmlspecialchars($textoNovedad) .'" method="POST">
-                            <input type="hidden" name="textoNovedad" value="'.htmlspecialchars($textoNovedad) .'">
-                            <input type="submit" name="botonAnashe" class="btn btn-danger" value="Eliminar Novedad">
+                        <form action="./php/admin/eliminarNovedades.php" method="POST">
+                            <input type="hidden" name="codNovedad" value="'.htmlspecialchars($codNovedad) .'">
+							<input type="hidden" name="dato" value="valor">
+                            <button type="submit"  name="botonAnashe" value="Eliminar Novedad" class="btn btn-danger" onclick="return confirmar();">Eliminar Novedad</button>
+                        
                         </form>
                         </div>
 
@@ -89,3 +91,11 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		echo paginador_tablas($pagina,$Npaginas,$url,7);
 	}
+
+?>
+
+<script>
+function confirmar() {
+    return confirm("¿Seguro que quieres eliminar esta Novedad?");
+}
+</script>
