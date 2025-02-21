@@ -5,31 +5,45 @@
 
 	$tabla="";
 
-	$condiciones = []; // Array para almacenar las condiciones de la consulta
-
 	// Agregar condiciones según los filtros seleccionados
+
+	$codUsuario = $_SESSION['codUsuario'] ?? null; // Evita error si no está definido
+	$condicionesI = [];
+	$condicionesw = [];
+
+	if (!empty($tipoUsuario) && $codUsuario) {
+		$campos="promociones.codLocal, locales.codLocal,locales.codUsuario,promociones.codPromo, promociones.textoPromo, 
+		promociones.fechaDesdePromo, promociones.fechaHastaPromo, 
+		promociones.diasSemana";
+		$condicionesI[] = "locales ON promociones.codLocal = locales.codLocal";
+		$condicionesW[] = "locales.codUsuario = $codUsuario";
+	} 
 	if (!empty($localActual)) {
-		$condiciones[] = "codLocal = '$localActual'";
+		$condicionesW[] = "codLocal = '$localActual'";
 	}
 	if (!empty($diaDesde)) {
-		$condiciones[] = "'$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo";
+		$condicionesW[] = "'$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo";
 	}
 	if (!empty($diaHasta)) {
-		$condiciones[] = "'$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo";
+		$condicionesW[] = "'$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo";
 	}
 	
-	// Convertir condiciones a una cadena SQL
-	$where = !empty($condiciones) ? 'WHERE ' . implode(' AND ', $condiciones) : '';
 	
+	// Convertir condiciones a una cadena SQL
+	$where = !empty($condicionesW) ? 'WHERE ' . implode(' AND ', $condicionesW) : '';
+	$innerjoin = !empty($condicionesI) ? 'INNER JOIN ' . implode(' AND ', $condicionesI) : '';
+	$select = isset($campos) ? $campos : '*';
+
 	// Construir consultas finales
-	$consulta_datos = "SELECT * FROM promociones 
-					   $where 
-					   ORDER BY fechaDesdePromo ASC 
-					   LIMIT $inicio, $registros";
+	$consulta_datos = "SELECT $select FROM promociones 
+						$innerjoin
+						$where 
+						ORDER BY fechaDesdePromo ASC 
+						LIMIT $inicio, $registros";
 	
 	$consulta_total = "SELECT COUNT(*) FROM promociones 
-					   $where";	
-
+						$innerjoin 
+						$where";
 
 	$datos = mysqli_query($conexion, $consulta_datos);
 
@@ -42,6 +56,7 @@
 		$pag_inicio=$inicio+1;
 		foreach($datos as $rows){ 						
 			$tabla.=' 
+				
 				<div class="promociones">
 						<div class="textContainer2">
 							<h4> Id de la promoción: ' . htmlspecialchars($rows['codPromo']) .'  </h4>

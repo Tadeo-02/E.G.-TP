@@ -78,16 +78,10 @@
                     </li>';    
             } else {    
                     echo '<li class="nav-item">
-                            <a class="nav-link" href="locales.php"> Mis Locales</a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.php">Crear Local</a>
-                        </li>     
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.php">Eliminar Local</a>
+                            <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=localsList">Mis Locales</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#cualquieragordo">Mis Promociones</a>
+                            <a class="nav-link"  href="/TP ENTORNOS/Page/index.php?vista=promocionesList">Mis Promociones</a>
                         </li> 
                         <li class="nav-item">
                             <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=cargaPromociones">Solicitudes de Descuento</a>

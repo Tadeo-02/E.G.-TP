@@ -33,7 +33,6 @@
         $checkUser = $checkUser -> fetch_assoc(); //fetch_assoc() es para mysqli, fetch() es para PDO
 
         if($checkUser['nombreUsuario'] == $email && password_verify($password, $checkUser['claveUsuario'])){// password_verifiy es la funcion para procesar las cadenas encriptadas
-         
             
             // Hacemos un array con los datos del usuario; son las Variables de Sesion
             $_SESSION['nombreUsuario'] = $email;

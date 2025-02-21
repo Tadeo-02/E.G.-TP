@@ -22,10 +22,15 @@
                 $consulta_filtro = "SELECT * FROM promociones";
                 $promociones = mysqli_query($conexion, $consulta_filtro);
 
-                // Obtener el rubro actual de la URL (si está presente)
+                // Obtener el dia actual de la URL (si está presente)
                 $diaDesdeActual = isset($_POST['diaDesde']) ? $_POST['diaDesde'] : '';
                 $diaHastaActual = isset($_POST['diaHasta']) ? $_POST['diaHasta'] : '';
 
+//!
+
+                $tipoUsuario = isset($_SESSION['tipoUsuario']) ? $_SESSION['tipoUsuario'] : '';
+            
+            
             ?>
 
             <div class="row calendarios">
@@ -46,6 +51,24 @@
                             <button type="submit">Enviar</button>
                         </form>
                     </div>
+
+                <?php 
+                if($tipoUsuario == "Dueño"){
+                    echo '<div class="textContainer">
+                    <br>
+                        <form action="index.php?vista=cargaPromociones" method="POST">
+                        <div class="mb-3" style="display: flex; justify-content: right;">
+                            <input type="submit" name="botonAnashe" class="btn btn-success sexo" value="Crear Promoción">
+                        </div>    
+                    </form>
+                       
+                        
+                </div>';
+                   
+                }
+                
+                ?>
+
                 </div>
 
                 <div class="columnaFiltro">
