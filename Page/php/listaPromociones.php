@@ -10,16 +10,19 @@
 	$codUsuario = $_SESSION['codUsuario'] ?? null; // Evita error si no está definido
 	$condicionesI = [];
 	$condicionesw = [];
-
-	if (!empty($tipoUsuario) && $codUsuario) {
-		$campos="promociones.codLocal, locales.codLocal,locales.codUsuario,promociones.codPromo, promociones.textoPromo, 
-		promociones.fechaDesdePromo, promociones.fechaHastaPromo, 
-		promociones.diasSemana";
-		$condicionesI[] = "locales ON promociones.codLocal = locales.codLocal";
+	//? Problema con el if
+	//if (!empty($tipoUsuario) && $codUsuario) { //agregp consulta de nombre local
+	$campos="  locales.codLocal, locales.codUsuario, locales.nombreLocal, 
+	promociones.codLocal, promociones.codPromo, promociones.textoPromo, 
+	promociones.fechaDesdePromo, promociones.fechaHastaPromo, promociones.diasSemana";
+	$condicionesI[] = "INNER JOIN locales ON promociones.codLocal = locales.codLocal"; //Agregar INNER JOIN
+	// if para funcione segun si es dueño o cliente/UNR
+	if ($tipoUsuario == 'Dueño') {
 		$condicionesW[] = "locales.codUsuario = $codUsuario";
-	} 
+		}
+	//} 
 	if (!empty($localActual)) {
-		$condicionesW[] = "codLocal = '$localActual'";
+		$condicionesW[] = "promociones.codLocal = $localActual"; // Indico de cual tabla es el codLocal
 	}
 	if (!empty($diaDesde)) {
 		$condicionesW[] = "'$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo";
@@ -31,21 +34,34 @@
 	
 	// Convertir condiciones a una cadena SQL
 	$where = !empty($condicionesW) ? 'WHERE ' . implode(' AND ', $condicionesW) : '';
-	$innerjoin = !empty($condicionesI) ? 'INNER JOIN ' . implode(' AND ', $condicionesI) : '';
+	$innerjoin = !empty($condicionesI) ? implode(' ', $condicionesI) : ''; // No poner 'INNER JOIN' directamente aquí
 	$select = isset($campos) ? $campos : '*';
 
 	// Construir consultas finales
-	$consulta_datos = "SELECT $select FROM promociones 
+	$consulta_datos = "SELECT $select 
+						FROM promociones 
 						$innerjoin
 						$where 
 						ORDER BY fechaDesdePromo ASC 
-						LIMIT $inicio, $registros";
+						LIMIT $inicio, $registros
+						";
+	// $consulta_datos = "SELECT 	locales.codLocal, locales.codUsuario, locales.nombreLocal, 
+	// 							promociones.codLocal, promociones.codPromo, promociones.textoPromo, 
+	// 							promociones.fechaDesdePromo, promociones.fechaHastaPromo, promociones.diasSemana
+	// 					FROM promociones 
+	// 					INNER JOIN locales ON promociones.codLocal = locales.codLocal
+	// 					WHERE promociones.codLocal = 1
+	// 					ORDER BY fechaDesdePromo ASC
+	// 					LIMIT 0, 3";
+
+
 	
 	$consulta_total = "SELECT COUNT(*) FROM promociones 
 						$innerjoin 
 						$where";
 
 	$datos = mysqli_query($conexion, $consulta_datos);
+
 
 	$total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
 	
@@ -54,11 +70,14 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
-		foreach($datos as $rows){ 						
+		
+		foreach($datos as $rows){ 	
+
 			$tabla.=' 
-				
+
 				<div class="promociones">
 						<div class="textContainer2">
+							<h2> Local: '. htmlspecialchars($rows['nombreLocal']) .'	</h2>
 							<h4> Id de la promoción: ' . htmlspecialchars($rows['codPromo']) .'  </h4>
 							<p>	Descripción de Promoción: <b>'. htmlspecialchars($rows['textoPromo']) . '</b></p>
 							<p> Fecha Desde Promo: <b> '. htmlspecialchars($rows['fechaDesdePromo']) .  '</b></p>

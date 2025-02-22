@@ -491,9 +491,11 @@ button.btn-danger:hover {
   gap: 20px;
   margin: 20px auto;
   border: #ffca2c solid 5px;
-  max-height: 300px;
   background-color: white;
   border-radius: 25px;
+  padding: 10px; /* Agrega espacio interno */
+  height: auto;  /* Se ajusta al contenido */
+  min-height: 200px; /* Opcional: altura mínima */  
 }
 
 .imgContainer img {
@@ -544,30 +546,33 @@ button.btn-danger:hover {
 /* Listado de Promociones */
 
 
-
 .promociones {
   width: 500px;
   text-align: center;
   margin-bottom: 20px;
   border: #ffca2c solid 5px;
-  max-height: 300px;
   background-color: white;
   border-radius: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; /* Asegura que las promociones estén apiladas verticalmente */
+  flex-direction: column; /* Apila verticalmente */
   gap: 10px;
-  height: 200px; /* Espaciado entre promociones */
+  padding: 10px; /* Agrega espacio interno */
+  height: auto;  /* Se ajusta al contenido */
+  min-height: 200px; /* Opcional: altura mínima */
 }
+
+.textContainer2 {
+  width: 100%;
+}
+
+
 @media only screen and (min-width: 400px) and (max-width: 900px) {
   .promociones{
     width: 380px;
     height: 250px;
   }
-}
-.textContainer2 {
-  width: 100%;
 }
 
 

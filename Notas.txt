@@ -4,14 +4,10 @@ Sección General
 TODAS LAS SECCIONES:
 - Arreglar alertas
 
-Sección Dueño de Local:
-- Agregar opción de "Mis Locales"
-
-Sección Lista locales:
-- Resolver problema de desaparición del filtro al utilizar el buscador
-
 Sección lista promociones:
 - Arreglar simetria de filtros y promociones
+- Agregar filtro automático de tipo de cliente y UNR
+- Agregar días de la promocion
 
 Seccion crear locales:
 - Agregar apartado para insertar una imagen del local
@@ -26,3 +22,4 @@ Seccion Modificar:
 
 Seccion Eliminar:
 - Resolver eliminacion de locales con promociones asignadas
+
