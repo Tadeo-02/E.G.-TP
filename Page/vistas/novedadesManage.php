@@ -43,7 +43,7 @@
                 $url="index.php?vista=novedadesManage&page=";
                 $registros = 1;
 
-                # Paginador locales #
+                # Paginador Novedades #
                 require_once (__DIR__. '/../php/admin/gestionarNovedades.php');
 
             ?>

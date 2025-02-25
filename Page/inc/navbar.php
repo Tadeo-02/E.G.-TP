@@ -36,7 +36,7 @@
                     <a class="nav-link" href="login.php">Utilizacion de Descuentos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.php">Solicitudes de Descuento</a>
+                    <a class="nav-link"href="/TP ENTORNOS/Page/index.php?vista=discountRequest">Solicitudes de Descuento</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="login.php">Solicitud de cuenta de Dueño</a>
@@ -59,10 +59,10 @@
                         <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=localsList">LOCALES</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="home.php#about">Novedades</a>
+                        <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=novedadesList">Novedades</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="home.php#about">Descuentos</a>
+                        <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=promocionesList">Descuentos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/TP ENTORNOS/Page/index.php#about">MAPA DEL SITIO</a>

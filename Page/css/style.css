@@ -504,7 +504,7 @@ button.btn-danger:hover {
 
 .textContainer {
   text-align: center;
-  max-width: 400px; /* Ajusta este valor según sea necesario */
+  max-width: 800px; /* Ajusta este valor según sea necesario */
   box-sizing: border-box;
   overflow: hidden; /* Important for containing overflowing content */
 
@@ -557,6 +557,24 @@ button.btn-danger:hover {
   justify-content: center;
   align-items: center;
   flex-direction: column; /* Apila verticalmente */
+  gap: 10px;
+  padding: 10px; /* Agrega espacio interno */
+  height: auto;  /* Se ajusta al contenido */
+  min-height: 200px; /* Opcional: altura mínima */
+}
+.promocionesAdmin {
+  min-width: 500px;
+  width: auto;
+  max-width: 1000px;
+  text-align: center;
+  margin-bottom: 20px;
+  border: #ffca2c solid 5px;
+  background-color: white;
+  border-radius: 25px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row; /* Apila verticalmente */
   gap: 10px;
   padding: 10px; /* Agrega espacio interno */
   height: auto;  /* Se ajusta al contenido */

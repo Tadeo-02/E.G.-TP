@@ -33,7 +33,23 @@
 	
 	
 	// Convertir condiciones a una cadena SQL
+	if($tipoUsuario != 'Administrador') {
+		$condicionesW[] = 'estadoPromo = "Activa"'; // Evitar error de SQL si no hay condiciones
+
+	}
+	else 
+	{
+		$condicionesW[] = 'estadoPromo = "Pendiente"'; // Evitar error de SQL si no hay condiciones
+		// $where = 'WHERE estadoPromo = "Pendiente"';
+		// if (!empty($condicionesW)) {
+		// 	$where .= ' OR (' . implode(' AND ', $condicionesW) . ')';
+		// }
+	}
+	
 	$where = !empty($condicionesW) ? 'WHERE ' . implode(' AND ', $condicionesW) : '';
+
+	
+
 	$innerjoin = !empty($condicionesI) ? implode(' ', $condicionesI) : ''; // No poner 'INNER JOIN' directamente aquí
 	$select = isset($campos) ? $campos : '*';
 
@@ -45,14 +61,7 @@
 						ORDER BY fechaDesdePromo ASC 
 						LIMIT $inicio, $registros
 						";
-	// $consulta_datos = "SELECT 	locales.codLocal, locales.codUsuario, locales.nombreLocal, 
-	// 							promociones.codLocal, promociones.codPromo, promociones.textoPromo, 
-	// 							promociones.fechaDesdePromo, promociones.fechaHastaPromo, promociones.diasSemana
-	// 					FROM promociones 
-	// 					INNER JOIN locales ON promociones.codLocal = locales.codLocal
-	// 					WHERE promociones.codLocal = 1
-	// 					ORDER BY fechaDesdePromo ASC
-	// 					LIMIT 0, 3";
+
 
 
 	
@@ -73,10 +82,11 @@
 		
 		foreach($datos as $rows){ 	
 
-			$tabla.=' 
+			if ($tipoUsuario != "Administrador" ){
+				$tabla.=' 
 
 				<div class="promociones">
-						<div class="textContainer2">
+						<div class="textContainer">
 							<h2> Local: '. htmlspecialchars($rows['nombreLocal']) .'	</h2>
 							<h4> Id de la promoción: ' . htmlspecialchars($rows['codPromo']) .'  </h4>
 							<p>	Descripción de Promoción: <b>'. htmlspecialchars($rows['textoPromo']) . '</b></p>
@@ -86,6 +96,39 @@
 						</div>
                 </div>
             ';
+			}
+			else{
+				$tabla.=' 
+
+				<div class="promocionesAdmin">
+						<div class="textContainer">
+							<h2> Local: '. htmlspecialchars($rows['nombreLocal']) .'	</h2>
+							<h4> Id de la promoción: ' . htmlspecialchars($rows['codPromo']) .'  </h4>
+							<p>	Descripción de Promoción: <b>'. htmlspecialchars($rows['textoPromo']) . '</b></p>
+							<p> Fecha Desde Promo: <b> '. htmlspecialchars($rows['fechaDesdePromo']) .  '</b></p>
+							<p> Fecha Hasta Promo: 	<b>'. htmlspecialchars($rows['fechaHastaPromo']) . ' </b></p>
+							<p> Días de la semana de la promoción: <b>	'. htmlspecialchars($rows['diasSemana']) .  '</b></p>
+						</div>
+						 <div class="textContainer">
+                        <form action="./php/admin/aprobarPromocion.php" method="POST">
+                            <input type="hidden" name="codPromo" value="'.htmlspecialchars($rows['codPromo']) .'">
+							<input type="hidden" name="dato" value="valor">
+                            <button type="submit"  name="botonAnashe" value="APROBAR Solicitud" class="btn btn-success" onclick="return confirmar();">APROBAR Solicitud</button>
+                        </form>
+                        <br>
+                        <br>
+                        <form action="./php/admin/denegarPromocion.php" method="POST">
+                            <input type="hidden" name="codPromo" value="'. htmlspecialchars($rows['codPromo']) .'">
+							<input type="hidden" name="dato" value="valor">
+                            <button type="submit"  name="botonAnashe" value="RECHAZAR Solicitud" class="btn btn-danger" onclick="return confirmar();">RECHAZAR Solicitud</button>
+                        </form>
+                        </div>
+                </div>
+
+            ';
+			}
+
+			
 
             $contador++;
 		}
@@ -134,3 +177,9 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		echo paginador_tablas($pagina,$Npaginas,$url,7);
 	}
+?>
+<script>
+function confirmar() {
+    return confirm("¿Seguro que quieres eliminar este Local?");
+}
+</script>

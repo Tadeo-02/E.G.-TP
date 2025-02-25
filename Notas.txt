@@ -8,9 +8,14 @@ Sección lista promociones:
 - Arreglar simetria de filtros y promociones
 - Agregar filtro automático de tipo de cliente y UNR
 - Agregar días de la promocion
-
-Seccion crear locales:
-- Agregar apartado para insertar una imagen del local
+ Subseccion Admin
+    - Añadir botones de aceptar o denegar solicitud de descuento
+ Subseccion dueño:
+    - Mostrar promociones pendientes y activas + filtro
+Seccion Locales:
+- Meter todo en un solo archivo (juntar todo)
+   Seccion crear locales:
+   - Agregar apartado para insertar una imagen del local
 
 Seccion Novedaes:
 - Agregar función de expiración
