@@ -101,7 +101,6 @@
                 $registros = 1;
                 $busqueda = (isset( $_SESSION['busquedaLocal'])) ? $_SESSION['busquedaLocal'] : '';
 
-                # Paginador locales #
                 require_once (__DIR__. '/../php/listaLocales.php');
 
             ?>

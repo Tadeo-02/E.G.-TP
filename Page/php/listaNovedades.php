@@ -3,17 +3,18 @@
 
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
 
-	$tabla="";
+	$hoy = date("Y-m-d");
 
-	// Agregar condiciones según los filtros seleccionados
+	$tabla="";
 
 	$codUsuario = $_SESSION['codUsuario'] ?? null; // Evita error si no está definido
 
-    $consulta_filtro = "SELECT * FROM novedades";
+	$consulta_datos = "SELECT * FROM novedades WHERE DATE('$hoy') BETWEEN fechaDesdeNovedad AND fechaHastaNovedad  ORDER BY fechaDesdeNovedad DESC LIMIT $inicio, $registros";
+	$consulta_total = "SELECT COUNT(*) FROM novedades WHERE DATE('$hoy') BETWEEN fechaDesdeNovedad AND fechaHastaNovedad ";
 
-    $novedades = mysqli_query($conexion, $consulta_filtro);
+    $novedades = mysqli_query($conexion, $consulta_datos);
 
-	$total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_filtro))[0];
+	$total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
 	
 	$Npaginas = ceil($total_registros / $registros);
 
@@ -23,13 +24,13 @@
 		
 		foreach($novedades as $rows){ 	
             $tabla.=' 
-				<div class="promociones">
+				<div class="locales">
 						<div class="textContainer">
 							<h2> Novedad: '. htmlspecialchars($rows['textoNovedad']) .'	</h2>
-							<h4> Id de la Novedad: ' . htmlspecialchars($rows['codNovedad']) .'  </h4>
-							<p> Fecha Desde Novedad: <b> '. htmlspecialchars($rows['fechaDesdeNovedad']) .  '</b></p>
-							<p> Fecha Hasta Novedad: 	<b>'. htmlspecialchars($rows['fechaHastaNovedad']) . ' </b></p>
-							<p> Tipo de Cliente válido para Novedad: <b>	'. htmlspecialchars($rows['tipoUsuario']) .  '</b></p>
+							<h4> Id: ' . htmlspecialchars($rows['codNovedad']) .'  </h4>
+							<p> Fecha de inicio: <b> '. htmlspecialchars($rows['fechaDesdeNovedad']) .  '</b></p>
+							<p> Fecha de fin: 	<b>'. htmlspecialchars($rows['fechaHastaNovedad']) . ' </b></p>
+							<p> Tipo de Cliente: <b>	'. htmlspecialchars($rows['tipoUsuario']) .  '</b></p>
 						</div>
                 </div>
             ';
