@@ -29,10 +29,22 @@
     </style>
 </head>
 
+<?php 
+// if(isset($_POST['submit'])){
+//     $conexion = conexion();
+
+//     $nombreImagen = $_FILES['imagenLocal']['name'];
+//     $tempname = $_FILES['imagenLocal']['tmp_name']; //chequea si el archivo es valido
+//     $carpeta = '/TP ENTORNOS/Page/img/'. $nombreImagen;
+
+//     $query = mysqli_query($conexion, "INSERT INTO locales (nombreLocal, rubroLocal, ubicacionLocal, codUsuario, imagenLocal) VALUES ('$_POST[nombreLocal]', '$_POST[rubroLocal]', '$_POST[ubicacionLocal]', '$_POST[codUsuario]', '$carpeta')");
+// }
+// ?>
+
                 <div class="container">
                     <div class="form-container">
                         <h3 class="text-center mb-4">Formulario de Local</h3>
-                        <form action="/TP ENTORNOS/Page/php/admin/altaLocales.php" method="POST" autocomplete="off" >
+                        <form action="/TP ENTORNOS/Page/php/admin/altaLocales.php" method="POST" autocomplete="off" enctype="multipart/form-data">
                             <?php
                                 // Establecer conexión
                                 $conexion = conexion();
@@ -43,6 +55,8 @@
 
                                 $rubros = mysqli_query($conexion, $consulta_rubros);
                                 $dueños = mysqli_query($conexion, $consulta_usuarios);
+
+                                
                             ?>
 
                             <!-- Nombre del Local -->
@@ -98,6 +112,11 @@
                                     }
                                     ?>
                                 </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" style="color: black; text-align: left; display:block;">Imagen del Local</label>
+                                <input class="form-control" type="file" name="imagenLocal" required>
                             </div>
 
                             <div class="text-center">

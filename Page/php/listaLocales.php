@@ -37,8 +37,8 @@
 			$tabla.=' 
 				<div class="locales">
 						<div class="imgContainer">
-             				<img src="https://i.pinimg.com/736x/44/6e/0e/446e0e3dda539cc4cee175695364bba9.jpg" alt="huevardo">
-         				</div>
+							<img src="/TP ENTORNOS/Page/img/' . htmlspecialchars($rows['imagenLocal']) . '" 
+             				alt="Imagen de ' . htmlspecialchars($rows['nombreLocal']) . '">         				</div>
 						<div class="textContainer">
 
 								<h1>	'. htmlspecialchars($rows['nombreLocal']) . '</h1>

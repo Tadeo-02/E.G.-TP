@@ -5,6 +5,20 @@
     $ubicacionLocal = limpiar_cadena($_POST['ubicacionLocal']);
     $rubroLocal = limpiar_cadena($_POST['rubroLocal']);
     $codUsuario = limpiar_cadena($_POST['codUsuario']);
+    if (isset($_FILES["imagenLocal"]) && $_FILES["imagenLocal"]["error"] == 0) {
+        $nombreImagen = time() . "_" . $_FILES["imagenLocal"]["name"]; // Evita archivos duplicados
+        $tempname = $_FILES["imagenLocal"]["tmp_name"];
+        $carpetaDestino = dirname(__DIR__) . "/img/"; // Define solo la carpeta
+        if (!is_dir($carpetaDestino)) {
+            mkdir($carpetaDestino, 0777, true); // Crea la carpeta si no existe
+        }
+        $rutaFinal = $carpetaDestino . $nombreImagen; // Ahora agregamos la imagen correctamente
+
+        $rutaFinal = $carpetaDestino . $nombreImagen;        
+        if (move_uploaded_file($tempname, $rutaFinal)) {
+            echo "Imagen subida con éxito: " . $rutaFinal;
+        }
+    }
 
     //Verificar campos obligatorios
     if ($nombreLocal == "" || $ubicacionLocal == "" || $rubroLocal == "" || $codUsuario == ""){
@@ -34,7 +48,14 @@
     }
 
     // Guardar Local
-    $guardarLocal = $conexion ->query("INSERT INTO locales (nombreLocal, ubicacionLocal, rubroLocal, codUsuario) VALUES ('$nombreLocal', '$ubicacionLocal', '$rubroLocal', '$codUsuario')");
+    $guardarLocal = $conexion ->query("INSERT INTO locales (nombreLocal, ubicacionLocal, rubroLocal, codUsuario, imagenLocal) VALUES ('$nombreLocal', '$ubicacionLocal', '$rubroLocal', '$codUsuario', '$nombreImagen')");
+    
+    if(move_uploaded_file($tempname, $carpeta)){
+        echo "Imagen subida con éxito";
+    }else{
+        echo "Error al subir la imagen";
+    }
+    
     //? Alerta de exito no funciona
     // if($guardarLocal->num_rows == 1){
     //     echo '<div class="alert alert-success" role="alert">

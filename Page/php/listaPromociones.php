@@ -4,6 +4,7 @@
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
 
 	$tabla="";
+	
 
 	// Agregar condiciones según los filtros seleccionados
 
@@ -81,8 +82,24 @@
 		$pag_inicio=$inicio+1;
 		
 		foreach($datos as $rows){ 	
+			//decodifico el arreglo json
+			$numerosDias = json_decode($rows['diasSemana'], true);
+			if (!is_array($numerosDias)) {
+				$numerosDias = [$numerosDias]; // Convertir número único en array
+			}
+			$arrayDiasSemana = [
+				1 => 'Lunes',
+				2 => 'Martes',
+				3 => 'Miércoles',
+				4 => 'Jueves',
+				5 => 'Viernes',
+				6 => 'Sábado',
+				7 => 'Domingo'
+			];
+			$palabraDias = array_map(fn($num) => $arrayDiasSemana[$num] ?? 'Desconocido', $numerosDias);
 
 			if ($tipoUsuario != "Administrador" ){
+				
 				$tabla.=' 
 
 				<div class="promociones">
@@ -90,9 +107,9 @@
 							<h2> Local: '. htmlspecialchars($rows['nombreLocal']) .'	</h2>
 							<h4> Id de la promoción: ' . htmlspecialchars($rows['codPromo']) .'  </h4>
 							<p>	Descripción de Promoción: <b>'. htmlspecialchars($rows['textoPromo']) . '</b></p>
-							<p> Fecha Desde Promo: <b> '. htmlspecialchars($rows['fechaDesdePromo']) .  '</b></p>
-							<p> Fecha Hasta Promo: 	<b>'. htmlspecialchars($rows['fechaHastaPromo']) . ' </b></p>
-							<p> Días de la semana de la promoción: <b>	'. htmlspecialchars($rows['diasSemana']) .  '</b></p>
+							<p> Fecha Desde: <b> '. htmlspecialchars($rows['fechaDesdePromo']) .  '</b></p>
+							<p> Fecha Hasta: 	<b>'. htmlspecialchars($rows['fechaHastaPromo']) . ' </b></p>
+							<p> Días de la semana válidos: <b>' . htmlspecialchars(implode(', ', $palabraDias)) . '</b></p>
 						</div>
                 </div>
             ';
@@ -105,9 +122,9 @@
 							<h2> Local: '. htmlspecialchars($rows['nombreLocal']) .'	</h2>
 							<h4> Id de la promoción: ' . htmlspecialchars($rows['codPromo']) .'  </h4>
 							<p>	Descripción de Promoción: <b>'. htmlspecialchars($rows['textoPromo']) . '</b></p>
-							<p> Fecha Desde Promo: <b> '. htmlspecialchars($rows['fechaDesdePromo']) .  '</b></p>
-							<p> Fecha Hasta Promo: 	<b>'. htmlspecialchars($rows['fechaHastaPromo']) . ' </b></p>
-							<p> Días de la semana de la promoción: <b>	'. htmlspecialchars($rows['diasSemana']) .  '</b></p>
+							<p> Fecha Desde: <b> '. htmlspecialchars($rows['fechaDesdePromo']) .  '</b></p>
+							<p> Fecha Hasta: 	<b>'. htmlspecialchars($rows['fechaHastaPromo']) . ' </b></p>
+							<p> Días de la semana válidos: <b>' . htmlspecialchars(implode(', ', $palabraDias)) . '</b></p>
 						</div>
 						 <div class="textContainer">
                         <form action="./php/admin/aprobarPromocion.php" method="POST">
