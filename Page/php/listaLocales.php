@@ -33,11 +33,11 @@
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
 		foreach($datos as $rows){ 
-			$codLocal = $rows['codLocal'];						//<td>'.$contador.'</td>
+			$codLocal = $rows['codLocal']; //Para mostrar la imagen usamos la etiqueta img con la ruta src donde almacenamos las imagenes + nombre de la imagen que se guarda en la DB
 			$tabla.=' 
 				<div class="locales">
 						<div class="imgContainer">
-							<img src="/TP ENTORNOS/Page/img/' . htmlspecialchars($rows['imagenLocal']) . '" 
+							<img src="/TP ENTORNOS/Page/php/admin/locales/' . htmlspecialchars($rows['imagenLocal']) . '" 
              				alt="Imagen de ' . htmlspecialchars($rows['nombreLocal']) . '">         				</div>
 						<div class="textContainer">
 

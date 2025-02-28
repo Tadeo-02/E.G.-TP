@@ -28,3 +28,5 @@ Seccion Modificar:
 Seccion Eliminar:
 - Resolver eliminacion de locales con promociones asignadas
 
+!!!
+AGREGAR CAMPO imagenLocal en la db de locales como varchar de 50 caracteres

@@ -5,19 +5,13 @@
     $ubicacionLocal = limpiar_cadena($_POST['ubicacionLocal']);
     $rubroLocal = limpiar_cadena($_POST['rubroLocal']);
     $codUsuario = limpiar_cadena($_POST['codUsuario']);
-    if (isset($_FILES["imagenLocal"]) && $_FILES["imagenLocal"]["error"] == 0) {
-        $nombreImagen = time() . "_" . $_FILES["imagenLocal"]["name"]; // Evita archivos duplicados
-        $tempname = $_FILES["imagenLocal"]["tmp_name"];
-        $carpetaDestino = dirname(__DIR__) . "/img/"; // Define solo la carpeta
-        if (!is_dir($carpetaDestino)) {
-            mkdir($carpetaDestino, 0777, true); // Crea la carpeta si no existe
-        }
-        $rutaFinal = $carpetaDestino . $nombreImagen; // Ahora agregamos la imagen correctamente
+    
+    $nombreImagen = $_FILES['imagenLocal']['name']; // lo que guardamos en la DB es el nombre de la imagen, ya que despues para mostrarlas leemos la ruta donde se guardan las imagenes
+    $tempname = $_FILES['imagenLocal']['tmp_name']; //esto lo que haces es verificar que el tipo de archivo sea correcto, es algo integrado de php
+    $carpeta = 'locales/' . $nombreImagen; //gurado donde voy a guardar la imagen que está subiendo el administrador desde su pc
 
-        $rutaFinal = $carpetaDestino . $nombreImagen;        
-        if (move_uploaded_file($tempname, $rutaFinal)) {
-            echo "Imagen subida con éxito: " . $rutaFinal;
-        }
+    if(move_uploaded_file($tempname, $carpeta)){ //esto lo que hace es mover la imagen a la carpeta que le indiqué, donde vamos a guardar todas las imagenes de locales
+        echo "Imagen subida con éxito"; //este echo no es necesario
     }
 
     //Verificar campos obligatorios
