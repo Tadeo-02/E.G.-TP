@@ -33,6 +33,7 @@
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
 		foreach($datos as $rows){ 
+			$nombreLocal = $rows['nombreLocal'];
 			$codLocal = $rows['codLocal']; //Para mostrar la imagen usamos la etiqueta img con la ruta src donde almacenamos las imagenes + nombre de la imagen que se guarda en la DB
 			$tabla.=' 
 				<div class="locales">
@@ -40,7 +41,6 @@
 							<img src="/TP ENTORNOS/Page/php/admin/locales/' . htmlspecialchars($rows['imagenLocal']) . '" 
              				alt="Imagen de ' . htmlspecialchars($rows['nombreLocal']) . '">         				</div>
 						<div class="textContainer">
-
 								<h1>	'. htmlspecialchars($rows['nombreLocal']) . '</h1>
 							<h4> Ubicacion del Local: </h4>
 								<p> '. htmlspecialchars($rows['ubicacionLocal']) .  '</p>
@@ -48,16 +48,51 @@
 								<p>	'. htmlspecialchars($rows['rubroLocal']) . ' </p>
 							<h4> Código del Local: </h4>
 								<p>	'. htmlspecialchars($rows['codLocal']) .  '</p>
+						</div>';
+			if(!isset($_SESSION['tipoUsuario']) || (isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Cliente"))  {
+				$tabla.= '<div class="textContainer">
+							<form action="index.php" method="GET">
+								<input type="hidden" name="vista" value="promocionesList">
+								<input type="hidden" name="codLocal" value="'.htmlspecialchars($codLocal) .'">
+								<input type="submit" name="botonAnashe" class="btn-primary" value="Ver Promociones">
+							</form>
+                		</div>
+					</div>';
+			}
+			elseif ($_SESSION['tipoUsuario'] == "Administrador"){
+				$tabla.='<div class="textContainer">
+							<form action="index.php?vista=localsUpdate" method="POST">
+								<input type="hidden" name="nombreLocal" value="'. htmlspecialchars($nombreLocal) .'">
+								<input type="hidden" name="codLocal" value="'. htmlspecialchars($codLocal) .'">
+								<input type="submit" name="botonAnashe" class="btn btn-warning" value="Modificar Local">
+							</form>
+							<br>
+							<br>
+							<form action="./php/admin/eliminarLocales.php" method="POST">
+								<input type="hidden" name="codLocal" value="'.htmlspecialchars($codLocal) .'">
+								<input type="hidden" name="dato" value="valor">
+								<button type="submit"  name="botonAnashe" value="Eliminar Local" class="btn btn-danger" onclick="return confirmar();">Eliminar Local</button>
+							</form>
+                        </div>
+					</div>';
+			}
+			else {
+				$tabla.='<div class="textContainer">
+							<form action="index.php?vista=localsUpdate" method="POST">
+								<input type="hidden" name="nombreLocal" value="'. htmlspecialchars($nombreLocal) .'">
+								<input type="hidden" name="codLocal" value="'. htmlspecialchars($codLocal) .'">
+								<input type="submit" name="botonAnashe" class="btn btn-warning" value="Modificar Local">
+							</form>
+							<br>
+							<br>
+							<form action="./php/admin/eliminarLocales.php" method="POST">
+								<input type="hidden" name="codLocal" value="'.htmlspecialchars($codLocal) .'">
+								<input type="hidden" name="dato" value="valor">
+								<button type="submit"  name="botonAnashe" value="Eliminar Local" class="btn btn-danger" onclick="return confirmar();">Eliminar Local</button>
+							</form>
 						</div>
-						<form action="index.php" method="GET">
-							<input type="hidden" name="vista" value="promocionesList">
-							<input type="hidden" name="codLocal" value="'.htmlspecialchars($codLocal) .'">
-							<input type="submit" name="botonAnashe" class="btn-primary" value="Ver Promociones">
-						</form>
-
-
-                </div>
-            ';
+					</div>';
+			}
 
             $contador++;
 		}
@@ -102,3 +137,9 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		echo paginador_tablas($pagina,$Npaginas,$url,7);
 	}
+?>
+<script>
+function confirmar() {
+    return confirm("¿Seguro que quieres eliminar este Local?");
+}
+</script>

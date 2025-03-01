@@ -36,20 +36,20 @@
             
                             <!-- Texto Novedad -->
                             <div class="mb-3">
-                                <label class="form-label" style="color: black; text-align: left; display:block;">Nombre del local</label>
+                                <label class="form-label" style="color: black; text-align: left; display:block;">Texto:</label>
                                 <input class="form-control" type="text" name="textoNovedad" placeholder="Ingrese el texto de la novedad aquí..." maxlength="100" required>
                             </div>
 
                             <!-- Fechas Novedad -->
                             <div class="mb-3">
                                     <br>
-                                    <label class="form-label" style="color: black; text-align: left; display:block;">Fecha de inicio de la Novedad:</label>
+                                    <label class="form-label" style="color: black; text-align: left; display:block;">Fecha de inicio:</label>
                                     <input class="form-control" type="date" name="fechaDesdeNovedad" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <br>
-                                    <label class="form-label" style="color: black; text-align: left; display:block;">Fecha de fin de la Novedad:</label>
+                                    <label class="form-label" style="color: black; text-align: left; display:block;">Fecha de fin:</label>
                                     <input class="form-control" type="date" name="fechaHastaNovedad" required>
                             </div>
 

@@ -54,7 +54,7 @@
     //Cerrar conexion    
     mysqli_close($conexion);
 
-    header("Location: /TP ENTORNOS/Page/index.php?vista=cargaNovedad");
+    header("Location: /TP ENTORNOS/Page/index.php?vista=novedadesList");
     
     
     

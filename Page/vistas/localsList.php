@@ -27,9 +27,21 @@
             ?>
 
             <div class="centered row mb-4">
+
+                <?php if (isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Administrador") { ?>
+                    <div class="col-lg-3 col-md-3">
+                    <br>
+                    <br>
+                        <form action="index.php?vista=cargaLocales" method="POST">
+                            <div class="mb-3" style="display: flex; justify-content: right;">
+                                <input type="submit" name="botonAnashe" class="btn btn-success sexo" value="Crear Local">
+                            </div>    
+                        </form>
+                    </div>';
+                <?php } ?>
+
                 <!-- Formulario con un desplegable -->
                 <div class="col-lg-3 col-md-3">
-
                     <h2 class="text-center" style="color: white">Rubros</h2>
                     <form action="index.php" method="get" id="rubroForm">
                         <input type="hidden" name="vista" value="localsList">
@@ -47,7 +59,6 @@
                             </select>
                         </div>
                     </form>
-
                 </div>
 
                 <?php

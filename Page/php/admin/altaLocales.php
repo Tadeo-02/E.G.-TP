@@ -60,7 +60,7 @@
     //Cerrar conexion    
     mysqli_close($conexion);
 
-    header("Location: /TP ENTORNOS/Page/index.php?vista=cargaLocales");
+    header("Location: /TP ENTORNOS/Page/index.php?vista=localsList");
     
     
     

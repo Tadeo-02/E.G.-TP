@@ -27,10 +27,10 @@
     } else{
         if($_SESSION['tipoUsuario']=="Administrador"){
                 echo '<li class="nav-item">
-                    <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=localsManage">Gestionar Locales</a>
+                    <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=localsList">Gestionar Locales</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=novedadesManage">Gestionar Novedades</a>
+                    <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=novedadesList">Gestionar Novedades</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="login.php">Utilizacion de Descuentos</a>
