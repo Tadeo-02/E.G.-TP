@@ -17,7 +17,11 @@
 						<label>Clave</label>
 						<input class="form-control" type="password" name="claveUsuario1" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********" required>
 						<label>Repetir clave</label>
-						<input class="form-control" type="password" name="claveUsuario2" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********"" required>
+						<input class="form-control" type="password" name="claveUsuario2" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********" required>
+						<label>¿Es Dueño de Local?</label>
+						<div class="form-check" style="display:flex ;justify-content: center; align-items: center;">
+						<input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="esDueño" >
+						</div>
 						<p class="has-text-centered">
 							<br>
 							<button type="submit" class="btn btn-primary" value="Ingresar" href="login.php">Registrar</button>

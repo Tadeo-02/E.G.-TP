@@ -5,6 +5,7 @@
     $email = limpiar_cadena($_POST['nombreUsuario']);
     $clave_1 = limpiar_cadena($_POST['claveUsuario1']);
     $clave_2 = limpiar_cadena($_POST['claveUsuario2']);
+    $checkBox = limpiar_cadena($_POST['esDueño']);
 
     // Verificar campos Obligatorios
     if( $clave_1 == "" || $clave_2 == "" || $email == ""){ //! Decidir si agregamos un perfil de usuario o simplemente usamos el mail
@@ -61,7 +62,11 @@
 
     // Guardando datos
     $guardar_usuario = conexion();
-    $guardar_usuario = $guardar_usuario->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario) VALUES('$clave', '$email', 'Inicial', 'Cliente')");
+    if($checkBox == 1){
+        $guardar_usuario = $guardar_usuario->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', NULL, 'Dueño', 'Pendiente')");
+    }else{
+       $guardar_usuario = $guardar_usuario->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', 'Inicial', 'Cliente','Activo')");
+    }
 
     header("Location: /TP ENTORNOS/Page/index.php?vista=login");
 

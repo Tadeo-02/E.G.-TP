@@ -12,10 +12,9 @@
 
 	$codUsuario = $_SESSION['codUsuario'] ?? null; // Evita error si no está definido
 	
-	$consulta_datos = "SELECT * FROM novedades WHERE DATE('$hoy') BETWEEN fechaDesdeNovedad AND fechaHastaNovedad  ORDER BY fechaDesdeNovedad DESC LIMIT $inicio, $registros";
-	$consulta_total = "SELECT COUNT(*) FROM novedades WHERE DATE('$hoy') BETWEEN fechaDesdeNovedad AND fechaHastaNovedad ";
+	$consulta_total = "SELECT * FROM usuarios WHERE estadoCuenta = 'Pendiente'";
 
-	$datos = mysqli_query($conexion, $consulta_datos);
+	$datos = mysqli_query($conexion, $consulta_total);
 
 	$total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
 	$Npaginas = ceil($total_registros / $registros);
@@ -24,35 +23,28 @@
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
 		foreach($datos as $rows){ 
-			$codNovedad = $rows['codNovedad'];						
+			$codUsuario = $rows['codUsuario'];						
 			$tabla.=' 
 				<div class="locales">
 						<div class="textContainer">
 
-								<h1>	'. htmlspecialchars($rows['textoNovedad']) . '</h1>
-							<h4> Fecha desde novedad: </h4>
-								<p> '. htmlspecialchars($rows['fechaDesdeNovedad']) .  '</p>
-							<h4> Fecha hasta novedad: </h4>
-								<p>	'. htmlspecialchars($rows['fechaHastaNovedad']) . ' </p>
-							<h4> Tipo de cliente novedad: </h4>
-								<p>	'. htmlspecialchars($rows['tipoCliente']) .  '</p>
+								<h1>	'. htmlspecialchars($rows['nombreUsuario']) . '</h1>
 						</div>';
-			if(!isset($_SESSION['tipoCliente']) || (isset($_SESSION['tipoCliente']) && $_SESSION['tipoUsuario'] == "Administrador"))  {
                 $tabla.='<div class="textContainer">
-							<form action="index.php?vista=novedadesUpdate" method="POST">
-								<input type="hidden" name="codNovedad" value="'.htmlspecialchars($codNovedad) .'">
-								<input type="submit" name="botonAnashe" class="btn btn-warning" value="Modificar Novedad">
+							<form action="./php/admin/aprobarSolicitudCuenta.php" method="POST">
+								<input type="hidden" name="codUsuario" value="'.htmlspecialchars($codUsuario) .'">
+								<input type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud">
 							</form>
 							<br>
 							<br>
-							<form action="./php/admin/eliminarNovedades.php" method="POST">
-								<input type="hidden" name="codNovedad" value="'.htmlspecialchars($codNovedad) .'">
+							<form action="./php/admin/denegarSolicitudCuenta.php" method="POST">
+								<input type="hidden" name="codUsuario" value="'.htmlspecialchars($codUsuario) .'">
 								<input type="hidden" name="dato" value="valor">
-								<button type="submit"  name="botonAnashe" value="Eliminar Novedad" class="btn btn-danger" onclick="return confirmar();">Eliminar Novedad</button>
+								<button type="submit"  name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger" onclick="return confirmar();">Denegar Solicitud</button>
 							
 							</form>
                         </div>';
-					}
+					
             $tabla.= '</div>';
             
 
@@ -72,7 +64,7 @@
 			$tabla.='
 				<tr class="has-text-centered" >
 					<td>
-						<p class="centered" style="color: red">	No hay novedades disponibles </p>
+						<p class="centered" style="color: red">	No hay solicitudes de cuenta de dueño disponibles </p>
 					</td>
 				</tr>
 			';
@@ -84,7 +76,7 @@
 
 	if($total_registros>0 && $pagina<=$Npaginas){
 		$tabla.='<p style="text-align: center; color: white;">
-    		Mostrando locales <strong>'. $pag_inicio .'</strong> al 
+    		Mostrando Solicitudes de Cuenta de dueño <strong>'. $pag_inicio .'</strong> al 
     		<strong>'. $pag_final .'</strong> de un 
     		<strong>total de '.$total_registros.'</strong>
 		</p>';
@@ -102,6 +94,10 @@
 
 <script>
 function confirmar() {
-    return confirm("¿Seguro que quieres eliminar esta Novedad?");
+    return confirm("¿Seguro que quieres rechazar esta solicitud?");
 }
 </script>
+
+
+
+

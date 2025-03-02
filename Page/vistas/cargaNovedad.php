@@ -57,7 +57,7 @@
                             <div class="mb-3">
                                 <br>
                                 <label class="form-label">Tipo de Cliente</label>
-                                <select class="form-select" name="tipoUsuario" required>
+                                <select class="form-select" name="tipoCliente" required>
                                     <option value="" disabled selected>Seleccione un nivel de Cliente</option>
                                     <option value="Inicial">Inicial</option>
                                     <option value="Medium">Medium</option>

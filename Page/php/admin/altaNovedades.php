@@ -4,10 +4,10 @@
     $textoNovedad = limpiar_cadena($_POST['textoNovedad']);
     $fechaDesdeNovedad = limpiar_cadena($_POST['fechaDesdeNovedad']);
     $fechaHastaNovedad = limpiar_cadena($_POST['fechaHastaNovedad']);
-    $tipoUsuario = limpiar_cadena($_POST['tipoUsuario']);
+    $tipoCliente = limpiar_cadena($_POST['tipoCliente']);
 
     //Verificar campos obligatorios
-    if ($textoNovedad == "" || $fechaDesdeNovedad == "" || $fechaHastaNovedad == "" || $tipoUsuario == ""){
+    if ($textoNovedad == "" || $fechaDesdeNovedad == "" || $fechaHastaNovedad == "" || $tipoCliente == ""){
         echo '<div class="alert alert-danger" role="alert">
                 Todos los campos obligatorios no han sido completados
               </div>';
@@ -43,7 +43,7 @@
 
 
     // Guardar Local
-    $guardarNovedad = $conexion ->query("INSERT INTO novedades (textoNovedad, fechaDesdeNovedad, fechaHastaNovedad, tipoUsuario) VALUES ('$textoNovedad', '$fechaDesdeNovedad', '$fechaHastaNovedad', '$tipoUsuario')");
+    $guardarNovedad = $conexion ->query("INSERT INTO novedades (textoNovedad, fechaDesdeNovedad, fechaHastaNovedad, tipoCliente) VALUES ('$textoNovedad', '$fechaDesdeNovedad', '$fechaHastaNovedad', '$tipoCliente')");
     //? Alerta de exito no funciona
     // if($guardarLocal->num_rows == 1){
     //     echo '<div class="alert alert-success" role="alert">
