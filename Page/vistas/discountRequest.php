@@ -14,51 +14,14 @@
         <br>
         <div class="col md-6 lg-6">
 
-            <?php
-                // Establecer conexión
-                $conexion = conexion();
-
-                // Consulta para obtener las promociones
-                $consulta_filtro = "SELECT * FROM promociones WHERE estadoPromo = 'Pendiente'";
-                $promociones = mysqli_query($conexion, $consulta_filtro);
-
-                //? Revisar fecha antes
-                // Obtener el rubro actual de la URL (si está presente)
-                $diaDesdeActual = isset($_POST['diaDesde']) ? $_POST['diaDesde'] : '';
-                $diaHastaActual = isset($_POST['diaHasta']) ? $_POST['diaHasta'] : '';
-                $tipoUsuario = isset($_SESSION['tipoUsuario']) ? $_SESSION['tipoUsuario'] : '';
-
-
-            ?>
-
             <div class="row calendarios">
-                
-                <!-- Formulario con un desplegable -->
-                <div class="columnaFiltro">
-                    <div class="calendarContainer">
-                        <p>Selecciona una fecha</p>
-                        <form action="" method="POST">
-                            <label for="diaDesde">Fecha Inicio:</label>
-                            <input type="date" id="diaDesde" name="diaDesde">
-                            <br>
-                            <br>
-                            <label for="diaHasta">Fecha Fin:</label>
-                            <input type="date" id="diaHasta" name="diaHasta">
-                            <br>
-
-                            <button type="submit">Enviar</button>
-                        </form>
-                    </div>
-                </div>
 
                 <div class="columnaFiltro">
                     <?php
-                        // Cerrar la conexión
-                        mysqli_close($conexion);
 
                         $diaDesde = isset($_POST['diaDesde']) ? $_POST['diaDesde'] : '';
                         $diaHasta = isset($_POST['diaHasta']) ? $_POST['diaHasta'] : '';
-                        $localActual = isset($_GET['codLocal']) ? $_GET['codLocal'] : '';
+                        // $localActual = isset($_GET['codLocal']) ? $_GET['codLocal'] : '';
 
                         if(!isset($_GET['page'])){
                             $pagina=1;
@@ -70,11 +33,10 @@
                         };
 
                         $pagina=limpiar_cadena($pagina);
-                        $url="index.php?vista=promocionesList&diaDesde=$diaDesde&diaHasta=$diaHasta&codLocal=$localActual&page="; 
+                        $url="index.php?vista=promocionesList&page="; 
                         $registros=3;
 
-                        # Paginador locales #
-                        require_once (__DIR__. '/../php/listaPromociones.php');
+                        require_once (__DIR__. '/../php/dueñoLocal/listaSolicitudDescuentos.php');
 
                     ?>
                 </div>

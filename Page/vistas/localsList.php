@@ -113,7 +113,6 @@
                 $busqueda = (isset( $_SESSION['busquedaLocal'])) ? $_SESSION['busquedaLocal'] : '';
 
                 require_once (__DIR__. '/../php/listaLocales.php');
-
             ?>
         </div>
     </div>

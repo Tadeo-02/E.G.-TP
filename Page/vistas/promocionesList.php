@@ -26,11 +26,7 @@
                 $diaDesdeActual = isset($_POST['diaDesde']) ? $_POST['diaDesde'] : '';
                 $diaHastaActual = isset($_POST['diaHasta']) ? $_POST['diaHasta'] : '';
 
-//!
-
                 $tipoUsuario = isset($_SESSION['tipoUsuario']) ? $_SESSION['tipoUsuario'] : '';
-            
-            
             ?>
 
             <div class="row calendarios">
@@ -61,16 +57,10 @@
                             <input type="submit" name="botonAnashe" class="btn btn-success sexo" value="Crear Promoción">
                         </div>    
                     </form>
-                       
-                        
-                </div>';
-                   
+                </div>';     
                 }
-                
                 ?>
-
                 </div>
-
                 <div class="columnaFiltro">
                     <?php
                         // Cerrar la conexión
@@ -93,9 +83,7 @@
                         $url="index.php?vista=promocionesList&diaDesde=$diaDesde&diaHasta=$diaHasta&codLocal=$localActual&page="; 
                         $registros=3;
 
-                        # Paginador locales #
                         require_once (__DIR__. '/../php/listaPromociones.php');
-
                     ?>
                 </div>
             </div>

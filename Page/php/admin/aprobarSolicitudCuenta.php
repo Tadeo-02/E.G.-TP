@@ -3,13 +3,8 @@
 
     $codUsuario = limpiar_cadena($_POST['codUsuario']);
     $nuevoEstado = "Activa";
-    
-
-    // Verificar campos Obligatorios
-    
+        
     $conexion = conexion();
-
-
     
     $aprobar_cuenta = $conexion->prepare("UPDATE usuarios SET estadoCuenta = ? WHERE codUsuario = ?");
     $aprobar_cuenta->bind_param("si",$nuevoEstado,  $codUsuario);

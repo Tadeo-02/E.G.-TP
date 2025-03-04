@@ -504,10 +504,13 @@ button.btn-danger:hover {
 
 .textContainer {
   text-align: center;
-  max-width: 800px; /* Ajusta este valor según sea necesario */
+  max-width: 800px; /* Ajusta esto según sea necesario */
+  width: 100%; /* Asegura que ocupe el ancho completo del contenedor padre */
   box-sizing: border-box;
-  overflow: hidden; /* Important for containing overflowing content */
-
+  word-wrap: break-word; /* Asegura que las palabras largas se rompan */
+  white-space: normal; /* Permite que el texto se ajuste en múltiples líneas */
+  overflow: hidden; /* Cambiado a hidden para evitar desbordamiento */
+  padding: 10px; /* Agregado padding para mejorar la legibilidad */
 }
 
 .textContainer h2 {

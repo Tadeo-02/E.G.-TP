@@ -8,7 +8,7 @@
     $checkBox = limpiar_cadena($_POST['esDueño']);
 
     // Verificar campos Obligatorios
-    if( $clave_1 == "" || $clave_2 == "" || $email == ""){ //! Decidir si agregamos un perfil de usuario o simplemente usamos el mail
+    if( $clave_1 == "" || $clave_2 == "" || $email == ""){
         echo '<div class="alert alert-danger" role="alert">
                 Todos los campos obligatorios no han sido completados
               </div>';

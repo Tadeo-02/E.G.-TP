@@ -7,7 +7,6 @@
         if($modulo_buscador=="locales"){
             $txt_buscador=limpiar_cadena($_POST['txt_buscador']);
             $_SESSION['busquedaLocal']=$txt_buscador;
-            // header("Location: ./index.php?vista=localsList&rubroLocal=$rubroLocal&page=");
         }
 
     }else{

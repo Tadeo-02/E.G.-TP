@@ -84,7 +84,7 @@
                             <a class="nav-link"  href="/TP ENTORNOS/Page/index.php?vista=promocionesList">Mis Promociones</a>
                         </li> 
                         <li class="nav-item">
-                            <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=cargaPromociones">Solicitudes de Descuento</a>
+                            <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=discountRequest">Solicitudes de Descuento</a>
                         </li>  
                         <li class="nav-item">
                             <a class="nav-link" href="login.php">Usos de Descuento</a>

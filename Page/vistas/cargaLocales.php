@@ -6,40 +6,28 @@
             <?php
                 require_once(__DIR__ . '/../php/main.php');
             ?>
-            <div class="row cargaPromociones">
-                <div class="col-12">                    
-                    <h1>CARGA DE LOCALES</h1>
-                    <br>
+        <div class="row cargaPromociones">
+            <div class="col-12">                    
+                <h1>CARGA DE LOCALES</h1>
+                <br>
 <head>
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .form-container {
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        select[multiple] {
-            height: auto;
-        }
-    </style>
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .form-container {
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    select[multiple] {
+        height: auto;
+    }
+</style>
 </head>
-
-<?php 
-// if(isset($_POST['submit'])){
-//     $conexion = conexion();
-
-//     $nombreImagen = $_FILES['imagenLocal']['name'];
-//     $tempname = $_FILES['imagenLocal']['tmp_name']; //chequea si el archivo es valido
-//     $carpeta = '/TP ENTORNOS/Page/img/'. $nombreImagen;
-
-//     $query = mysqli_query($conexion, "INSERT INTO locales (nombreLocal, rubroLocal, ubicacionLocal, codUsuario, imagenLocal) VALUES ('$_POST[nombreLocal]', '$_POST[rubroLocal]', '$_POST[ubicacionLocal]', '$_POST[codUsuario]', '$carpeta')");
-// }
-// ?>
 
                 <div class="container">
                     <div class="form-container">
@@ -126,14 +114,14 @@
                         </form>
                     </div>
                 </div>
-                
-                <?php
-                    // Cerrar la conexión
-                    mysqli_close($conexion);
-                ?>
-                     
-                </div>
+            
+            <?php
+                // Cerrar la conexión
+                mysqli_close($conexion);
+            ?>
+                    
             </div>
+        </div>
 	</div>		
 
 </section>

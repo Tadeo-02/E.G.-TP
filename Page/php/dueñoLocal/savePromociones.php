@@ -16,13 +16,6 @@
               </div>';
         exit();
     }
-    
-    // if(verificarDatos("[a-zA-Z0-9$@.-]{1,100}", $textoPromo)){ //? Revisar si es necesario
-    //     echo '<div class="alert alert-danger" role="alert">
-    //             La descripcion de la promocion debe contener al menos 20 caracteres	
-    //           </div>';
-    //     exit();
-    // }
 
     if (isset($_POST['diasSemana'])) {
         $diasSemanaArray = $_POST['diasSemana']; // Captura los días como array
@@ -32,20 +25,19 @@
 
     $diasSemanaJSON = json_encode($diasSemanaArray);
 
-    if($fechaDesdePromo == $fechaHastaPromo){ //? Revisar si es necesario
+    if($fechaDesdePromo == $fechaHastaPromo){ 
         echo '<div class="alert alert-danger" role="alert">
                 Las promociones no pueden comenzar y terminar el mismo día
               </div>';
         exit();
     }
     
-    if($fechaDesdePromo > $fechaHastaPromo){ //? Revisar si es necesario
+    if($fechaDesdePromo > $fechaHastaPromo){ 
         echo '<div class="alert alert-danger" role="alert">
                 La fecha de inicio de la prmocion no puede ser posterior a la fecha de fin de la promocion
               </div>';
         exit();
     }
-    //! ojo
     
     // Guardando datos
     $guardar_usuario=conexion();
@@ -54,7 +46,6 @@
     echo '<div class="alert alert-success" role="alert">
             Solicitud registrada con exito
         </div>';
-
 
     //Cerrar conexion    
     $guardar_promocion = null;

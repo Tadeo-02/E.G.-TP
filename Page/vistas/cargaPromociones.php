@@ -130,6 +130,7 @@
 	</div>		
 
 </section>
+<!-- Selector de los días con JS -->
 <script>
     new MultiSelectTag('diasSemana', {
     rounded: true,    // default true

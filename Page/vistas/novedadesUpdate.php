@@ -65,7 +65,7 @@
                                     <input class="form-control" type="date" name="fechaHastaNovedad" required>
                             </div>
 
-                            <!-- Días de la promoción -->
+                            <!-- Tipo de cliente -->
                             <div class="mb-3">
                                 <br>
                                 <label class="form-label">Tipo de Cliente</label>

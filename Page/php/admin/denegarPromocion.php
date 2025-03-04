@@ -4,13 +4,8 @@
     $codPromo = limpiar_cadena($_POST['codPromo']);
     $nuevoEstado = "Denegado";
     
-
-    // Verificar campos Obligatorios
-    
     $conexion = conexion();
 
-
-    
     $denegar_promo = $conexion->prepare("UPDATE promociones SET estadoPromo = ? WHERE codPromo = ?");
     $denegar_promo->bind_param("si",$nuevoEstado,  $codPromo);
     if($denegar_promo->execute()){

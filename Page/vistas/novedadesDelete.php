@@ -2,7 +2,6 @@
 <section id="about" class="about">
 	<div class="container-fluid">
     
-	<!-- SE MUESTRA EL RESULTADO DEL FORM CON ESTE DIV "form-rest" -->
         <div class="form-rest"></div>
             <?php
                 require_once(__DIR__ . '/../php/main.php');
@@ -38,12 +37,9 @@
                                 // Establecer conexión
                                 $conexion = conexion();
 
-                                // Consulta para obtener los rubros
                                 $consulta_locales = "SELECT * FROM locales";
-                                // $consulta_rubros = "SELECT * FROM rubros";
 
                                 $locales = mysqli_query($conexion, $consulta_locales);
-                                // $rubros = mysqli_query($conexion, $consulta_rubros);
                             ?>
 
                             <!-- Local -->

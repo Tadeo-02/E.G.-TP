@@ -30,7 +30,6 @@
                 $url="index.php?vista=ownerAccountRequest&page=";
                 $registros = 1;
 
-                # Paginador Novedades #
                 require_once (__DIR__. '/../php/admin/solicitudCuentaDueño.php');
 
             ?>

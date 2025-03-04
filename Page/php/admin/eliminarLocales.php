@@ -1,11 +1,8 @@
 <?php 
     require_once "../main.php";
 
-    $codLocal = limpiar_cadena($_POST['codLocal']);
-    
+    $codLocal = limpiar_cadena($_POST['codLocal']);  
 
-    // Verificar campos Obligatorios
-    
     $conexion = conexion();
     
     $eliminar_local = $conexion->prepare("DELETE FROM locales WHERE codLocal = ?");

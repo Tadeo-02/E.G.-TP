@@ -7,6 +7,9 @@ Sección General
 Sección lista promociones:
 - Arreglar simetria de filtros y promociones
 - Agregar filtro automático de tipo de cliente y UNR
+    Subseccion uso promociones:
+    - Arreglar que el Usuario no pueda solicitar promociones las cuales no hayan iniciado/ya hayan terminado
+    - Decidir si el usuario solo puede solicitar la promocion en uno de los dias de semana que este habilitada o en cualquier momento
 
 Seccion Novedaes:
 - Agregar función de expiración

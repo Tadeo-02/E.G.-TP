@@ -55,7 +55,6 @@
 					}
             $tabla.= '</div>';
             
-
             $contador++;
 		}
 		$pag_final=$contador-1;
@@ -97,7 +96,6 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		echo paginador_tablas($pagina,$Npaginas,$url,7);
 	}
-
 ?>
 
 <script>

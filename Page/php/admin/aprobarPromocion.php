@@ -3,13 +3,8 @@
 
     $codPromo = limpiar_cadena($_POST['codPromo']);
     $nuevoEstado = "Activa";
-    
-
-    // Verificar campos Obligatorios
-    
+        
     $conexion = conexion();
-
-
     
     $aprobar_promo = $conexion->prepare("UPDATE promociones SET estadoPromo = ? WHERE codPromo = ?");
     $aprobar_promo->bind_param("si",$nuevoEstado,  $codPromo);

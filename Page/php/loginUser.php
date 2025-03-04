@@ -1,7 +1,7 @@
 <?php
-    
+    require_once "main.php";
 
-    $email = limpiar_cadena($_POST['nombreUsuario']); //comillas simples
+    $email = limpiar_cadena($_POST['nombreUsuario']);
     $password = limpiar_cadena($_POST['claveUsuario']);
 
 
@@ -26,11 +26,11 @@
 
     $consulta_usuario = "SELECT * FROM usuarios WHERE nombreUsuario = '$email'";
 
-    $checkUser = mysqli_query($conexion, $consulta_usuario); //  AND claveUsuario = '$password'" 
+    $checkUser = mysqli_query($conexion, $consulta_usuario);
 
-    if($checkUser -> num_rows==1){ //rowCount() es para PDO, num_rows es para mysqli
+    if($checkUser -> num_rows==1){ 
 
-        $checkUser = $checkUser -> fetch_assoc(); //fetch_assoc() es para mysqli, fetch() es para PDO
+        $checkUser = $checkUser -> fetch_assoc(); 
 
         if($checkUser['nombreUsuario'] == $email && password_verify($password, $checkUser['claveUsuario'])){// password_verifiy es la funcion para procesar las cadenas encriptadas
                 

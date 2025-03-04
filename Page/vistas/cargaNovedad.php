@@ -1,32 +1,31 @@
 <section id="about" class="about">
 	<div class="container-fluid">
     
-	<!-- SE MUESTRA EL RESULTADO DEL FORM CON ESTE DIV "form-rest" -->
         <div class="form-rest"></div>
             <?php
                 require_once(__DIR__ . '/../php/main.php');
             ?>
-            <div class="row cargaPromociones">
-                <div class="col-12">                    
-                    <h1>CARGA DE NOVEDADES</h1>
-                    <br>
+        <div class="row cargaPromociones">
+            <div class="col-12">                    
+                <h1>CARGA DE NOVEDADES</h1>
+                <br>
 <head>
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .form-container {
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        select[multiple] {
-            height: auto;
-        }
-    </style>
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .form-container {
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    select[multiple] {
+        height: auto;
+    }
+</style>
 </head>
 
                 <div class="container">
@@ -53,7 +52,7 @@
                                     <input class="form-control" type="date" name="fechaHastaNovedad" required>
                             </div>
 
-                            <!-- Días de la promoción -->
+                            <!-- Tipo de cliente -->
                             <div class="mb-3">
                                 <br>
                                 <label class="form-label">Tipo de Cliente</label>
@@ -64,20 +63,15 @@
                                     <option value="Premium">Premium</option>
                                 </select>
                             </div>
-
-
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary botonPromo">Cargar</button>
                             </div>
 
                         </form>
                     </div>
-                </div>
-                
-              
-                     
-                </div>
+                </div>                  
             </div>
+        </div>
 	</div>		
 
 </section>
