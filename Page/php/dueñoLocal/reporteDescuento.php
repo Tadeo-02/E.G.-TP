@@ -13,14 +13,15 @@
                    INNER JOIN locales ON locales.codLocal = promociones.codLocal";
 
 	$condicionesW[] = "locales.codUsuario = $codDueño"; // Indico de cual tabla es el codLocal
-	$condicionesW[] = "uso_promociones.estado = 'Pendiente'"; // Indico de cual tabla es el codLocal
+	$condicionesW[] = "uso_promociones.estado = 'Aprobada'"; // Indico de cual tabla es el codLocal
 	$where = !empty($condicionesW) ? 'WHERE ' . implode(' AND ', $condicionesW) : '';
 
 	$innerjoin = !empty($condicionesI) ? implode(' ', $condicionesI) : ''; // No poner 'INNER JOIN' directamente aca
 	$select = isset($campos) ? $campos : '*';
 
 	// Construir consultas finales
-	$consulta_datos = "SELECT $select 
+	$consulta_datos = "SELECT DISTINCT 'uso_promociones.codPromo',
+                        $select 
 						FROM uso_promociones 
 						$innerjoin
 						$where 
@@ -30,7 +31,7 @@
 	$consulta_total = "SELECT COUNT(*) FROM uso_promociones 
 						$innerjoin 
 						$where";
-
+                        
 	$datos = mysqli_query($conexion, $consulta_datos);
 	$total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
 	$Npaginas = ceil($total_registros / $registros);
@@ -41,31 +42,19 @@
 		foreach($datos as $rows){ 
 			$codCliente = $rows['codCliente'];
 			$codPromo = $rows['codPromo'];
+            $consulta_contador = "SELECT COUNT(*) FROM uso_promociones WHERE estado = 'Aprobada' AND  codPromo = $codPromo";
+            $datosContador = mysqli_query($conexion, $consulta_contador);
+            $fila = mysqli_fetch_row($datosContador);
 			$tabla.=' 
 				<div class="locales">
 					<div class="textContainer">
-					<p> El cliente ... '. htmlspecialchars($rows['nombreUsuario']) . ' (COD '. htmlspecialchars($rows['codCliente']) . ') ... <br> desea solicitar el descuento '. htmlspecialchars($rows['textoPromo']) . ' (COD '. htmlspecialchars($rows['codPromo']) . ')
+					<p> El descuento '. htmlspecialchars($rows['textoPromo']) . ' (COD '. htmlspecialchars($rows['codPromo']) . ')
 					<br> del local '. htmlspecialchars($rows['nombreLocal']) . ' (COD '. htmlspecialchars($rows['codLocal']) . ') 
+                    <br> ha sido utilizado Nº:   '. htmlspecialchars($fila[0]).' veces
 					</p>
-					</div>
-                	<div class="textContainer10">
-						<form action="./php/cliente/aprobarSolicitudDescuentoCliente.php" method="POST">
-							<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
-							<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
-							<input type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud">
-						</form>
-						<br>
-						<br>
-						<form action="./php/cliente/denegarSolicitudDescuentoCliente.php" method="POST">
-							<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
-							<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
-							<input type="hidden" name="dato" value="valor">
-							<button type="submit"  name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger" onclick="return confirmar();">Denegar Solicitud</button>
-						</form>
-                    </div>	
+					</div>	
         		</div>';
             
-
             $contador++;
 		}
 		$pag_final=$contador-1;
@@ -113,7 +102,4 @@ function confirmar() {
     return confirm("¿Seguro que quieres rechazar esta solicitud?");
 }
 </script>
-
-
-
 
