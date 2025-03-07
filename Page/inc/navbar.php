@@ -44,6 +44,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/TP ENTORNOS/Page/index.php#about">MAPA DEL SITIO</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=sendEmail">MAIL</a>
+                </li>
                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Usuario</a>
                     <ul class="dropdown-menu">
