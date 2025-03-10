@@ -1,5 +1,5 @@
 <div class="container-fluid p-0">
-    <h1 class="title">solicitud de Cuenta de Dueño</h1>
+    <h1 class="title">Solicitud de Cuenta de Dueño</h1>
 </div>
 
 <div class="row g-0">
@@ -10,7 +10,7 @@
         <br>
         <br>
         <br>
-        <h1 class="text-center" style="color: white"><b>Solicitudes</b></h1>
+        <h1 class="text-center" style="color: white"><b>SOLICITUDES DE CUENTA</b></h1>
         <br>
 
 

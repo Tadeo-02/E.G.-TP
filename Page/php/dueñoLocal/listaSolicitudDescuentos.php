@@ -49,14 +49,14 @@
 					</p>
 					</div>
                 	<div class="textContainer10">
-						<form action="./php/cliente/aprobarSolicitudDescuentoCliente.php" method="POST">
+						<form action="./aprobarSolicitudDescuentoCliente.php" method="POST">
 							<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
 							<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
 							<input type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud">
 						</form>
 						<br>
 						<br>
-						<form action="./php/cliente/denegarSolicitudDescuentoCliente.php" method="POST">
+						<form action="./denegarSolicitudDescuentoCliente.php" method="POST">
 							<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
 							<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
 							<input type="hidden" name="dato" value="valor">
@@ -82,7 +82,7 @@
 			$tabla.='
 				<tr class="has-text-centered" >
 					<td>
-						<p class="centered" style="color: red">	No hay solicitudes de cuenta de dueño disponibles </p>
+						<p class="centered" style="color: red">	No hay solicitudes de promociones disponibles </p>
 					</td>
 				</tr>
 			';

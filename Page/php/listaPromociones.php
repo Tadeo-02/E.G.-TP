@@ -85,17 +85,8 @@
 			];
 
 			$palabraDias = array_map(fn($num) => $arrayDiasSemana[$num] ?? 'Desconocido', $numerosDias);
-			
-			$valorCategoria = $rows['categoriaCliente'];
-			$arrayCategoriaCliente = [
-				"Inicial" => 1,
-				"Medium" => 2,
-				"Premium" => 3,
-			];
-			$numeroCategoria = $arrayCategoriaCliente[$valorCategoria] ?? 'Desconocido';
-			$numeroCliente = $arrayCategoriaCliente[$_SESSION['categoriaCliente']] ?? 'Desconocido';
 
-			if ($tipoUsuario == '') {
+			if ($tipoUsuario == '' || $tipoUsuario == "Dueño") {
 				$tabla.=' 
 				<div class="promociones">
 					<div class="textContainer">
@@ -109,8 +100,16 @@
 					</div>
                 </div>
             ';
-			}		
-			elseif ($tipoUsuario == "Cliente"){
+			} elseif ($tipoUsuario == "Cliente"){
+				$valorCategoria = $rows['categoriaCliente'];
+				$arrayCategoriaCliente = [
+					"Inicial" => 1,
+					"Medium" => 2,
+					"Premium" => 3,
+				];
+				$numeroCategoria = $arrayCategoriaCliente[$valorCategoria] ?? 'Desconocido';
+				$numeroCliente = $arrayCategoriaCliente[$_SESSION['categoriaCliente']] ?? 'Desconocido';
+
 				$tabla.='
 				<div class="promociones">
 					<div class="textContainer">
@@ -122,29 +121,27 @@
 						<p> Días de la semana válidos: <b>' . htmlspecialchars(implode(', ', $palabraDias)) . '</b></p>
 						<p> Tipo de Cliente: <b>' . htmlspecialchars($rows['categoriaCliente']) . '</b></p>
 					</div>';
-				if($numeroCategoria > $numeroCliente){
-					$tabla.='<div class="textContainer">
-						<form action="" method="POST">
-							<input type="hidden" name="codPromo" value="'.htmlspecialchars($rows['codPromo']) .'">
-							<input type="hidden" name="dato" value="valor">
-							<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-danger" onclick="return alertar();">Solicitar Descuento</button>
-						</form>
-					</div>
-				</div>';
-				}else{
-					$tabla.='<div class="textContainer">
-							<form action="./php/cliente/saveSolicitudPromoCliente.php" method="POST">
+					if($numeroCategoria > $numeroCliente){
+						$tabla.='<div class="textContainer">
+							<form action="" method="POST">
 								<input type="hidden" name="codPromo" value="'.htmlspecialchars($rows['codPromo']) .'">
-								<input type="hidden" name="codUsuario" value="'.htmlspecialchars($_SESSION['codUsuario']).'">
-								<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-success" onclick="return confirmar();">Solicitar Descuento</button>
+								<input type="hidden" name="dato" value="valor">
+								<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-danger" onclick="return alertar();">Solicitar Descuento</button>
 							</form>
 						</div>
 					</div>';
-				}
-					
+					}else{
+						$tabla.='<div class="textContainer">
+								<form action="./php/cliente/saveSolicitudPromoCliente.php" method="POST">
+									<input type="hidden" name="codPromo" value="'.htmlspecialchars($rows['codPromo']) .'">
+									<input type="hidden" name="codUsuario" value="'.htmlspecialchars($_SESSION['codUsuario']).'">
+									<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-success" onclick="return confirmar();">Solicitar Descuento</button>
+								</form>
+							</div>
+						</div>';
+					}
 			}else{
 				$tabla.=' 
-
 				<div class="promocionesAdmin">
 						<div class="textContainer">
 							<h2> Local: '. htmlspecialchars($rows['nombreLocal']) .'	</h2>
@@ -168,10 +165,8 @@
 								<input type="hidden" name="dato" value="valor">
 								<button type="submit"  name="botonAnashe" value="RECHAZAR Solicitud" class="btn btn-danger" onclick="return confirmar();">RECHAZAR Solicitud</button>
 							</form>
-                        </div>
-                </div>
-
-            ';
+						</div>
+				</div>';
 			}
             $contador++;
 		}

@@ -50,58 +50,17 @@
         echo "Error al subir la imagen";
     }
     
-    //? Alerta de exito no funciona
-    // if($guardarLocal->num_rows == 1){
-    //     echo '<div class="alert alert-success" role="alert">
-    //             El local fue registrado con éxito
-    //           </div>'; 
-    //     }
-
     //Cerrar conexion    
     mysqli_close($conexion);
 
-    header("Location: /TP ENTORNOS/Page/index.php?vista=localsList");
+    if (isset($_SERVER['HTTP_REFERER'])) {
+        // Redireccionar al usuario a la página anterior
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit();
+    } else {
+        // En caso de que no haya página anterior, redirigir a una página predeterminada
+        header("Location: index.php");
+        exit();
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-     // //Arma la instrucción SQL y luego la ejecuta   
-    // $validarDatos = "SELECT Count(*) as canti FROM locales WHERE nombreLocal=? AND ubicacionLocal=?";
-    
-  
-    // $resultado = mysqli_query($link, $validarDatos) or die(mysqli_error($link));
-    // $cantLocales = mysqli_fetch_assoc($resultado);
-    // $stmt = mysqli_prepare($link, $validarDatos);
-    // mysqli_stmt_bind_param($stmt, "ss", $nombreLocal, $ubicacionLocal);
-    // mysqli_stmt_execute($stmt);
-    // mysqli_stmt_bind_result($stmt, $vCantLocales);
-    // mysqli_stmt_fetch($stmt);
-    // mysqli_stmt_close($stmt);
-
-    // if ($cantLocales['canti'] != 0) {
-    //     echo ("El local ya existe<br>");
-
-    // } 
-    // else {
-    //     $link = $guardar_usuario->query("INSERT INTO locales (nombreLocal, ubicacionLocal, rubroLocal, codUsuario) VALUES ('$nombreLocal', '$ubicacionLocal', '$rubroLocal', '$codUsuario')");
-    //     echo ("El local fue registrado con éxito. <br>");
-
-    //     // Liberar conjunto de resultados
-    //     mysqli_free_result($vResultado);
-    // }
-    // // Cerrar la conexion
-    // mysqli_close($guardar_usuario);
+?>

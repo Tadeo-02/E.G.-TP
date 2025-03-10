@@ -1,101 +1,110 @@
 <?php
-	$conexion=conexion();
+$conexion = conexion();
 
-	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
-	
-	//? FECHA HOY
-	$hoy = date("Y-m-d");
+$inicio = ($pagina > 0) ? (($pagina * $registros) - $registros) : 0;
 
-	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
-	
-	$tabla="";
+//? FECHA HOY
+$hoy = date("Y-m-d");
 
-	$codUsuario = $_SESSION['codUsuario'] ?? null; // Evita error si no está definido
-	
-	$consulta_total = "SELECT * FROM usuarios WHERE estadoCuenta = 'Pendiente'";
+$inicio = ($pagina > 0) ? (($pagina * $registros) - $registros) : 0;
 
-	$datos = mysqli_query($conexion, $consulta_total);
+$tabla = "";
 
-	$total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
-	$Npaginas = ceil($total_registros / $registros);
-	
-	if($total_registros>=1 && $pagina<=$Npaginas){
-		$contador=$inicio+1;
-		$pag_inicio=$inicio+1;
-		foreach($datos as $rows){ 
-			$codUsuario = $rows['codUsuario'];						
-			$tabla.=' 
+$codUsuario = $_SESSION['codUsuario'] ?? null; // Evita error si no está definido
+
+$consulta_total = "SELECT * FROM usuarios WHERE estadoCuenta = 'Pendiente'";
+
+$datos = mysqli_query($conexion, $consulta_total);
+
+$resultado = mysqli_query($conexion, $consulta_total);
+if ($resultado && mysqli_num_rows($resultado) > 0) {
+	$total_registros = mysqli_fetch_array($resultado)[0];
+} else {
+	$total_registros = 0; // O un valor predeterminado
+}
+// $total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
+
+$Npaginas = ceil($total_registros / $registros);
+
+if ($total_registros >= 1 && $pagina <= $Npaginas) {
+	$contador = $inicio + 1;
+	$pag_inicio = $inicio + 1;
+	foreach ($datos as $rows) {
+		$codUsuario = $rows['codUsuario'];
+		$nombreUsuario = $rows['nombreUsuario'];
+		$tabla .= ' 
 				<div class="locales">
 						<div class="textContainer">
-
-								<h1>	'. htmlspecialchars($rows['nombreUsuario']) . '</h1>
+								<h1>' . htmlspecialchars($nombreUsuario) . '</h1>
 						</div>';
-                $tabla.='<div class="textContainer">
+		$tabla .= '<div class="textContainer">
 							<form action="./php/admin/aprobarSolicitudCuenta.php" method="POST">
-								<input type="hidden" name="codUsuario" value="'.htmlspecialchars($codUsuario) .'">
-								<input type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud">
+								<input type="hidden" name="codUsuario" value="' . htmlspecialchars($codUsuario) . '">
+								<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
+								<input type="hidden" name="asunto" value="Solicitud cuenta"> <br>
+								<input type="hidden" name="mensaje" value="Su solicitud de cuenta ha sido ACEPTADA."> <br>
+								<button type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar Solicitud</button>
 							</form>
-							<br>
 							<br>
 							<form action="./php/admin/denegarSolicitudCuenta.php" method="POST">
-								<input type="hidden" name="codUsuario" value="'.htmlspecialchars($codUsuario) .'">
-								<input type="hidden" name="dato" value="valor">
-								<button type="submit"  name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger" onclick="return confirmar();">Denegar Solicitud</button>
-							
+								<input type="hidden" name="codUsuario" value="' . htmlspecialchars($codUsuario) . '">
+								<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
+								<input type="hidden" name="asunto" value="Solicitud cuenta de due&ntilde;o"> <br>
+								<input type="hidden" name="mensaje" value="Su solicitud de cuenta ha sido RECHAZADA."> <br>
+								<button type="submit"  name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger" onclick="return rechazar();">Denegar Solicitud</button>
 							</form>
                         </div>';
-					
-            $tabla.= '</div>';
-            
 
-            $contador++;
-		}
-		$pag_final=$contador-1;
-	}else{
-		if($total_registros>=1){
-			$tabla.=' <table>
+		$tabla .= '</div>';
+
+		$contador++;
+	}
+	$pag_final = $contador - 1;
+} else {
+	if ($total_registros >= 1) {
+		$tabla .= ' <table>
 				<tr class="has-text-centered" >
 					<td>
-						<a href="'.$url.'1" class="button is-link is-rounded is-small mt-4 mb-4		Haga clic acá para recargar el listado
+						<a href="' . $url . '1" class="button is-link is-rounded is-small mt-4 mb-4		Haga clic acá para recargar el listado
                     </
 				</tr>
 			';
-		}else{
-			$tabla.='
+	} else {
+		$tabla .= '
 				<tr class="has-text-centered" >
 					<td>
-						<p class="centered" style="color: red">	No hay solicitudes de cuenta de dueño disponibles </p>
+						<p class="centered" style="color: red">	No hay solicitudes de cuenta de dueño pendientes </p>
 					</td>
 				</tr>
 			';
-		}
 	}
+}
 
-	$tabla.='</tbody></table>';
+$tabla .= '</tbody></table>';
 
-	if($total_registros>0 && $pagina<=$Npaginas){
-		$tabla.='<p style="text-align: center; color: white;">
-    		Mostrando Solicitudes de Cuenta de dueño <strong>'. $pag_inicio .'</strong> al 
-    		<strong>'. $pag_final .'</strong> de un 
-    		<strong>total de '.$total_registros.'</strong>
+if ($total_registros > 0 && $pagina <= $Npaginas) {
+	$tabla .= '<p style="text-align: center; color: white;">
+    		Mostrando Solicitudes de Cuenta de dueño <strong>' . $pag_inicio . '</strong> al 
+    		<strong>' . $pag_final . '</strong> de un 
+    		<strong>total de ' . $total_registros . '</strong>
 		</p>';
-	}
+}
 
-	mysqli_close($conexion);
+mysqli_close($conexion);
 
-	echo $tabla;
+echo $tabla;
 
-	if($total_registros>=1 && $pagina<=$Npaginas){
-		echo paginador_tablas($pagina,$Npaginas,$url,7);
-	}
+if ($total_registros >= 1 && $pagina <= $Npaginas) {
+	echo paginador_tablas($pagina, $Npaginas, $url, 7);
+}
 ?>
 
 <script>
-function confirmar() {
-    return confirm("¿Seguro que quieres rechazar esta solicitud?");
-}
+	function confirmar() {
+		return confirm("¿Seguro que quieres aceptar esta solicitud?");
+	}
+
+	function rechazar() {
+		return confirm("¿Seguro que quieres rechazar esta solicitud?");
+	}
 </script>
-
-
-
-

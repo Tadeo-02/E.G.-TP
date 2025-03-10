@@ -6,13 +6,16 @@
 	$tabla="";
 	
 	$codDueño = isset($_SESSION['codUsuario']) ? $_SESSION['codUsuario'] : '';
+	$tipoUsuario = isset($_SESSION['tipoUsuario']) ? $_SESSION['tipoUsuario'] : '';
 
 	$campos="uso_promociones.codCliente, uso_promociones.codPromo, uso_promociones.fechaUsoPromo, uso_promociones.estado, promociones.codLocal, promociones.codPromo, promociones.textoPromo, promociones.categoriaCliente, promociones.fechaDesdePromo, promociones.fechaHastaPromo, promociones.diasSemana, usuarios.nombreUsuario, usuarios.codUsuario, usuarios.categoriaCliente, locales.codLocal, locales.codUsuario, locales.nombreLocal";
 	$condicionesI[] = "INNER JOIN promociones ON promociones.codPromo = uso_promociones.codPromo 
                    INNER JOIN usuarios ON uso_promociones.codCliente = usuarios.codUsuario 
                    INNER JOIN locales ON locales.codLocal = promociones.codLocal";
 
-	$condicionesW[] = "locales.codUsuario = $codDueño"; // Indico de cual tabla es el codLocal
+	if($tipoUsuario == "Dueño"){
+		$condicionesW[] = "locales.codUsuario = $codDueño"; // Indico de cual tabla es el codLocal
+	}
 	$condicionesW[] = "uso_promociones.estado = 'Aprobada'"; // Indico de cual tabla es el codLocal
 	$where = !empty($condicionesW) ? 'WHERE ' . implode(' AND ', $condicionesW) : '';
 
@@ -71,7 +74,7 @@
 			$tabla.='
 				<tr class="has-text-centered" >
 					<td>
-						<p class="centered" style="color: red">	No hay solicitudes de cuenta de dueño disponibles </p>
+						<p class="centered" style="color: red">	No se ha utilizado ningún descuento </p>
 					</td>
 				</tr>
 			';

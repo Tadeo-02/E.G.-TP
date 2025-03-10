@@ -44,17 +44,20 @@
     // Guardar Local
     $guardarNovedad = $conexion ->query("UPDATE novedades SET textoNovedad = '$textoNovedad', fechaDesdeNovedad = '$fechaDesdeNovedad', fechaHastaNovedad = '$fechaHastaNovedad', tipoUsuario = '$tipoUsuario' WHERE codNovedad = '$novedadModificada';");
 
-    //? Alerta de exito no funciona
-    // if($guardarLocal->num_rows == 1){
-    //     echo '<div class="alert alert-success" role="alert">
-    //             El local fue modificado con éxito
-    //           </div>'; 
-    //     }
 
     //Cerrar conexion    
     mysqli_close($conexion);
 
-    header("Location: /TP ENTORNOS/Page/index.php?vista=novedadesList");
+    if (isset($_SERVER['HTTP_REFERER'])) {
+        // Redireccionar al usuario a la página anterior
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit();
+    } else {
+        // En caso de que no haya página anterior, redirigir a una página predeterminada
+        header("Location: index.php");
+        exit();
+    }
 
+?>
 
     

@@ -14,11 +14,14 @@ Sección lista promociones:
 Seccion Novedaes:
 - Agregar función de expiración
 
-Seccion Modificar:
-- Hacer que te vuelva a la misma pagina del listado donde estabas una vez completas la modificación
-
 Seccion Eliminar:
 - Resolver eliminacion de locales con promociones asignadas
 
 Seccion Aprobar/Denegar Solicitud de Descuento Dueño:
 - Configurar notificacion de mail para aceptacion y rechazacion de descuento para notificar al cliente
+
+Función enviar mail
+- Arreglar ubicación de los archivos
+
+Mapa del sitio:
+- Agregar las subfunciones (como crear locales en mis locales) para asi tener un link directo a las mismas en lugar de tener que mirar los listados

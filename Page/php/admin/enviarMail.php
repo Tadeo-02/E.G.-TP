@@ -7,7 +7,7 @@ require 'phpmailer/src/Exception.php';
 require 'phpmailer/src/PHPMailer.php';
 require 'phpmailer/src/SMTP.php';
 
-if(isset($_POST["send"])){
+if(isset($_POST["botonAnashe"])){
     $mail = new PHPMailer(true);
     $mail -> isSMTP();
     $mail -> Host = 'smtp.gmail.com';
@@ -25,30 +25,10 @@ if(isset($_POST["send"])){
 
     $mail -> Subject = $_POST["asunto"];
     $mail -> Body = $_POST["mensaje"];
+    $mail -> Body .= '<br><p>NOVA SHOPPING</p>';
 
     $mail -> send();
-    echo 'Mensaje enviado correctamente';
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ?>

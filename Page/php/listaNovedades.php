@@ -35,7 +35,7 @@
 							<h4> Fecha hasta novedad: </h4>
 								<p>	'. htmlspecialchars($rows['fechaHastaNovedad']) . ' </p>
 							<h4> Tipo de cliente novedad: </h4>
-								<p>	'. htmlspecialchars($rows['tipoCliente']) .  '</p>
+								<p>	'. htmlspecialchars($rows['tipoUsuario']) .  '</p>
 						</div>';
 			if(!isset($_SESSION['tipoCliente']) || (isset($_SESSION['tipoCliente']) && $_SESSION['tipoUsuario'] == "Administrador"))  {
                 $tabla.='<div class="textContainer">
