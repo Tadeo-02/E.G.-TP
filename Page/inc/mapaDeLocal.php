@@ -25,7 +25,7 @@
                                 } else{
                                     if($_SESSION['tipoUsuario']=="Administrador"){
                                         echo '<li class="nav-item">
-                                            <a class="nav-link" href="login.php/TP ENTORNOS/Page/index.php?vista=localsList">Gestionar Local</a>
+                                            <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=localsList">Gestionar Local</a>
                                             </li>    
                                             <li class="nav-item">
                                                 <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=novedadesList">Gestionar Novedades</a>
@@ -71,7 +71,7 @@
                                 };
                             ?> 
                             </ul>
-                            <a href="#" class="btn btn-warning">Learn More</a>
+                    
                       </div>
                   </div>
               </div>

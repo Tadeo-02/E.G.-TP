@@ -640,6 +640,7 @@ input[type="date"] {
   flex-direction: column; /* Asegura que los elementos dentro estén apilados verticalmente */
   flex: 1; /* Ajusta el tamaño de las columnas para ocupar el espacio disponible */
   max-width: 400px; /* Opcional: Limita el ancho máximo de la columna */
+
 }
 
 

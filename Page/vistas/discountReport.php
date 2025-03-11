@@ -10,13 +10,9 @@
         <br>
         <br>
         <br>
-        <h1 class="text-center" style="color: white"><b>SOLICITUDES DE DESCUENTO</b></h1>
-        <br>
-        <div class="col md-6 lg-6">
-
-            <div class="row calendarios">
-
-                <div class="columnaFiltro">
+        <h1 class="text-center" style="color: white"><b>REPORTE DE UTILIZACION DE DESCUENTOS</b></h1>
+      
+                <div class="container">
                     <?php
 
                         $diaDesde = isset($_POST['diaDesde']) ? $_POST['diaDesde'] : '';
@@ -40,8 +36,7 @@
 
                     ?>
                 </div>
-            </div>
-        </div>
+            
     </div>
 </div>
 
