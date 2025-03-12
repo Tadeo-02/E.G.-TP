@@ -22,6 +22,6 @@
     $eliminar_local->close();
     $conexion->close();
 
-    header("Location: /TP ENTORNOS/Page/index.php?vista=localsList");
+    header("Location: /TP ENTORNOS/index.php?vista=localsList");
 
 ?>

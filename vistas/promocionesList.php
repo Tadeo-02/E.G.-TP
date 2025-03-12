@@ -51,13 +51,13 @@
                 <?php 
                 if($tipoUsuario == "Dueño"){
                     echo '<div class="textContainer">
-                    <br>
-                        <form action="index.php?vista=cargaPromociones" method="POST">
-                        <div class="mb-3" style="display: flex; justify-content: right;">
-                            <input type="submit" name="botonAnashe" class="btn btn-success sexo" value="Crear Promoción">
-                        </div>    
-                    </form>
-                </div>';     
+                            <br>
+                            <form action="index.php?vista=cargaPromociones" method="POST">
+                            <div class="mb-3" style="display: flex; justify-content: right;">
+                                <input type="submit" name="botonAnashe" class="btn btn-success sexo" value="Crear Promoción">
+                            </div>    
+                            </form>
+                        </div>';     
                 }
                 ?>
                 </div>

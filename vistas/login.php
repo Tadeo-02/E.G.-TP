@@ -20,7 +20,7 @@
                             <a href="#">¿Has olvidado la contraseña?</a>
                             <br>
                             <br>
-                            <a href="/TP ENTORNOS/Page/index.php?vista=signUp">Crear Cuenta</a>
+                            <a href="/TP ENTORNOS/index.php?vista=signUp">Crear Cuenta</a>
                         </p>
 
                         <!-- Identifica si enviamos el formulario -->

@@ -32,7 +32,7 @@
                 <div class="container">
                     <div class="form-container">
                         <h3 class="text-center mb-4">Formulario de Modificacion del Local</h3>
-                        <form action="/TP ENTORNOS/Page/php/admin/editarLocales.php" method="POST" id="solicitudPromocionForm">
+                        <form action="/TP ENTORNOS/php/admin/editarLocales.php" method="POST" id="solicitudPromocionForm">
                             <?php
                                 // Establecer conexión
                                 $conexion = conexion();

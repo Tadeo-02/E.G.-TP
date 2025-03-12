@@ -33,7 +33,7 @@
                     <div class="container">
                         <div class="form-container">
                             <h3 class="text-center mb-4">Solcitud de Promoción</h3>
-                            <form action="/TP ENTORNOS/Page/php/dueñoLocal/savePromociones.php" method="POST" id="solicitudPromocionForm">
+                            <form action="/TP ENTORNOS/php/dueñoLocal/savePromociones.php" method="POST" id="solicitudPromocionForm">
                             <?php
                                 // Establecer conexión
                                 $conexion = conexion();
