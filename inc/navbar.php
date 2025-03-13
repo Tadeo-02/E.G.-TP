@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-                <a class="nav-link" href="/TP ENTORNOS/Page/index.php?vista=home">INICIO</a>
+                <a class="nav-link" href="/TP ENTORNOS/index.php?vista=home">INICIO</a>
             </li>
 <?php
     if((!isset($_SESSION['codUsuario']) || $_SESSION['codUsuario']=="") || (!isset($_SESSION['nombreUsuario']) || $_SESSION['nombreUsuario']=="")){

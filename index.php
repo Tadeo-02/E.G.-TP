@@ -1,5 +1,3 @@
-
-
 <?php require "./inc/sessionStart.php";  ?>
 
 <!DOCTYPE html>
