@@ -15,55 +15,55 @@
                                 <?php
                                 if((!isset($_SESSION['codUsuario']) || $_SESSION['codUsuario']=="") || (!isset($_SESSION['nombreUsuario']) || $_SESSION['nombreUsuario']=="")){
                                     echo '<li class="nav-item">
-                                             <a class="nav-link" href="/TP ENTORNOS/index.php?vista=localsList">LOCALES</a>
+                                             <a class="nav-link" href="/index.php?vista=localsList">LOCALES</a>
                                         </li>  
                                         <li class="nav-item">
-                                            <a class="nav-link" href="/TP ENTORNOS/index.php?vista=promocionesList">PROMOCIONES</a>
+                                            <a class="nav-link" href="/index.php?vista=promocionesList">PROMOCIONES</a>
                                         </li>
                                         
                                         ';
                                 } else{
                                     if($_SESSION['tipoUsuario']=="Administrador"){
                                         echo '<li class="nav-item">
-                                            <a class="nav-link" href="/TP ENTORNOS/index.php?vista=localsList">Gestionar Local</a>
+                                            <a class="nav-link" href="/index.php?vista=localsList">Gestionar Local</a>
                                             </li>    
                                             <li class="nav-item">
-                                                <a class="nav-link" href="/TP ENTORNOS/index.php?vista=novedadesList">Gestionar Novedades</a>
+                                                <a class="nav-link" href="/index.php?vista=novedadesList">Gestionar Novedades</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="/TP ENTORNOS/index.php?vista=discountReport">Utilizacion de Descuentos</a>
+                                                <a class="nav-link" href="/index.php?vista=discountReport">Utilizacion de Descuentos</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="/TP ENTORNOS/index.php?vista=promocionesList">Solicitudes de Descuento</a>
+                                                <a class="nav-link" href="/index.php?vista=promocionesList">Solicitudes de Descuento</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="/TP ENTORNOS/index.php?vista=ownerAccountRequest">Solicitud de cuenta de Dueño</a>
+                                                <a class="nav-link" href="/index.php?vista=ownerAccountRequest">Solicitud de cuenta de Dueño</a>
                                             </li>
                                             ';
                                     } else {
                                         if($_SESSION['tipoUsuario']=="Cliente") {
                                             echo '<li class="nav-item">
-                                                    <a class="nav-link" href="/TP ENTORNOS/index.php?vista=localsList">LOCALES</a>
+                                                    <a class="nav-link" href="/index.php?vista=localsList">LOCALES</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="/TP ENTORNOS/index.php?vista=novedadesList">Novedades</a>
+                                                    <a class="nav-link" href="/index.php?vista=novedadesList">Novedades</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="/TP ENTORNOS/index.php?vista=promocionesList">Descuentos</a>
+                                                    <a class="nav-link" href="/index.php?vista=promocionesList">Descuentos</a>
                                                 </li>
                                                ';    
                                         } else {
                                                 echo '<li class="nav-item">
-                                                        <a class="nav-link" href="/TP ENTORNOS/index.php?vista=localsList"> Mis Locales</a>
+                                                        <a class="nav-link" href="/index.php?vista=localsList"> Mis Locales</a>
                                                     </li> 
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="/TP ENTORNOS/index.php?vista=promocionesList">Mis Promociones</a>
+                                                        <a class="nav-link" href="/index.php?vista=promocionesList">Mis Promociones</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="/TP ENTORNOS/index.php?vista=discountRequest">Solicitudes de Descuento</a>
+                                                        <a class="nav-link" href="/index.php?vista=discountRequest">Solicitudes de Descuento</a>
                                                     </li>  
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="/TP ENTORNOS/index.php?vista=discountReportlogin.php">Usos de Descuento</a>
+                                                        <a class="nav-link" href="/index.php?vista=discountReportlogin.php">Usos de Descuento</a>
                                                     </li>     
                                                     ';        
                                         };

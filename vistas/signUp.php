@@ -6,7 +6,7 @@
 
 			<div class="row">
 				<div class="col-12">
-					<form action="/TP ENTORNOS/php/saveUser.php" method="POST" class="form" autocomplete="off" >
+					<form action="/php/saveUser.php" method="POST" class="form" autocomplete="off" >
 						<br>
                         <br>  
                         <br>
@@ -27,7 +27,7 @@
 							<button type="submit" class="btn btn-primary" value="Ingresar" href="login.php">Registrar</button>
 							<br>
 							<br>
-							<a href="/TP ENTORNOS/index.php?vista=login">¿Ya tienes una cuenta? Inicia sesión</a>
+							<a href="/index.php?vista=login">¿Ya tienes una cuenta? Inicia sesión</a>
 						</p>
 
 					</form>
