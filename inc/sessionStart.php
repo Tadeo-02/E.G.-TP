@@ -1,5 +1,5 @@
 <?php 
-    ob_start(); //soluciona error en deploy
+    ob_start();
     session_name("UNR");
     session_start();
 ?>

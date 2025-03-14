@@ -1,2 +1,2 @@
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/ajax.js"></script>
+<script src="/TP ENTORNOS/js/bootstrap.bundle.min.js"></script>
+<script src="/TP ENTORNOS/js/ajax.js"></script>

@@ -28,6 +28,6 @@
     $eliminar_novedad->close();
     $conexion->close();
 
-    header("Location: /index.php?vista=novedadesList");
+    header("Location: /TP ENTORNOS/index.php?vista=novedadesList");
 
 ?>
