@@ -61,18 +61,29 @@ function renombrar_fotos($nombre){
 
 // Funcion paginador de tablas
 function paginador_tablas($pagina, $Npaginas, $url, $botones) {
-    $tabla = '<nav aria-label="Page navigation example">
+    $tabla = '
+                <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">';
 
     // Botón "Anterior"
     if ($pagina <= 1) {
         $tabla .= '<li class="page-item disabled">
-                      <a class="page-link" href="#" tabindex="-1">Anterior</a>
-                   </li>';
+                    <span class="d-none d-sm-block">
+                        <a class="page-link" href="#" aria-label="Anterior">Anterior</a>
+                    </span>
+                    <span class="d-block d-sm-none">
+                        <a class="page-link" href="#" aria-label="Anterior"><</a>
+                    </span>
+                </li>';
     } else {
         $tabla .= '<li class="page-item">
-                      <a class="page-link" href="' . $url . ($pagina - 1) . '">Anterior</a>
-                   </li>';
+                    <span class="d-none d-sm-block">
+                        <a class="page-link" href="' . $url . ($pagina - 1) . '" aria-label="Anterior">Anterior</a>
+                    </span>
+                    <span class="d-block d-sm-none">
+                        <a class="page-link" href="' . $url . ($pagina - 1) . '" aria-label="Anterior"><</a>
+                    </span>
+                </li>';
     }
 
     $ci = 0;
@@ -124,16 +135,27 @@ function paginador_tablas($pagina, $Npaginas, $url, $botones) {
     // Botón "Siguiente"
     if ($pagina == $Npaginas) {
         $tabla .= '<li class="page-item disabled">
-                      <a class="page-link" href="#" tabindex="-1">Siguiente</a>
-                   </li>';
+                    <span class="d-none d-sm-block">
+                        <a class="page-link" href="#"  tabindex="-1">Siguiente</a>
+                    </span>
+                    <span class="d-block d-sm-none">
+                        <a class="page-link" href="#"  tabindex="-1">></a>
+                    </span>
+                </li>';
     } else {
         $tabla .= '<li class="page-item">
-                      <a class="page-link" href="' . $url . ($pagina + 1) . '">Siguiente</a>
-                   </li>';
+                    <span class="d-none d-sm-block">
+                        <a class="page-link" href="'. $url . ($pagina + 1) .'"  tabindex="-1">Siguiente</a>
+                    </span>
+                    <span class="d-block d-sm-none">
+                        <a class="page-link" href="'. $url . ($pagina + 1) .'"  tabindex="-1">></a>
+                    </span>
+                </li>';
     }
 
     $tabla .= '</ul>
-            </nav>';
+            </nav>
+            ';
 
     return $tabla;
 }

@@ -19,7 +19,7 @@
 	// if para funcione segun si es dueño o cliente/UNR
 	if ($tipoUsuario == 'Dueño') {
 		$condicionesW[] = "locales.codUsuario = $codUsuario";
-		}
+	}
 	//} 
 	if (!empty($localActual)) {
 		$condicionesW[] = "promociones.codLocal = $localActual"; // Indico de cual tabla es el codLocal
@@ -68,6 +68,7 @@
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
 		
+		//! Ubicarlo adentro de cada if para mejor funcionalidad
 		foreach($datos as $rows){ 	
 			//decodifico el arreglo json
 			$numerosDias = json_decode($rows['diasSemana'], true);
@@ -99,7 +100,7 @@
 						<p> Tipo de Cliente: <b>' . htmlspecialchars($rows['categoriaCliente']) . '</b></p>
 					</div>
                 </div>
-            ';
+            ';  
 			} elseif ($tipoUsuario == "Cliente"){
 				$valorCategoria = $rows['categoriaCliente'];
 				$arrayCategoriaCliente = [
@@ -201,10 +202,10 @@
 
 	if($total_registros>0 && $pagina<=$Npaginas){
 		$tabla.='<p style="text-align: center; color: white;">
-    		Mostrando promociones <strong>'. $pag_inicio .'</strong> al 
-    		<strong>'. $pag_final .'</strong> de un 
-    		<strong>total de '.$total_registros.'</strong>
-		</p>';
+					Mostrando promociones <strong>'. $pag_inicio .'</strong> al 
+					<strong>'. $pag_final .'</strong> de un 
+					<strong>total de '.$total_registros.'</strong>
+				</p>';
 	}
 
 	mysqli_close($conexion);

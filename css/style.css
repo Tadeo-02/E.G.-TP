@@ -258,7 +258,11 @@ footer {
 
 }
 
-
+/* PAGINADOR */
+.paginador{
+  display: flex;
+  justify-content: center;
+}
 
 
 /* Responsive */
@@ -275,6 +279,9 @@ footer {
   }
   .img-area img {
     width: 100%;
+  }
+  .paginador{
+    
   }
 }
 @media only screen and (max-width: 767px) {
@@ -635,15 +642,13 @@ input[type="date"] {
   align-items: flex-start; /* Asegura que todos los elementos comiencen desde la parte superior */
   gap: 20px; /* Espaciado entre columnas */
 }
+
 .columnaFiltro {
   display: flex;
   flex-direction: column; /* Asegura que los elementos dentro estén apilados verticalmente */
   flex: 1; /* Ajusta el tamaño de las columnas para ocupar el espacio disponible */
   max-width: 400px; /* Opcional: Limita el ancho máximo de la columna */
-
 }
-
-
 
 
 /* CARGAR PROMOCIONES */
