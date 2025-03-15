@@ -69,47 +69,71 @@
 		$pag_inicio=$inicio+1;
 		
 		//! Ubicarlo adentro de cada if para mejor funcionalidad
-		foreach($datos as $rows){ 	
-			//decodifico el arreglo json
-			$numerosDias = json_decode($rows['diasSemana'], true);
-			if (!is_array($numerosDias)) {
-				$numerosDias = [$numerosDias]; // Convertir número único en array
-			}
-			$arrayDiasSemana = [
-				1 => 'Lunes',
-				2 => 'Martes',
-				3 => 'Miércoles',
-				4 => 'Jueves',
-				5 => 'Viernes',
-				6 => 'Sábado',
-				7 => 'Domingo'
-			];
 
-			$palabraDias = array_map(fn($num) => $arrayDiasSemana[$num] ?? 'Desconocido', $numerosDias);
 
-			if ($tipoUsuario == '' || $tipoUsuario == "Dueño") {
-				$tabla.=' 
-				<div class="promociones">
-					<div class="textContainer">
-						<h2> Local: '. htmlspecialchars($rows['nombreLocal']) .'	</h2>
-						<h4> Id de la promoción: ' . htmlspecialchars($rows['codPromo']) .'  </h4>
-						<p>	Descripción de Promoción: <b>'. htmlspecialchars($rows['textoPromo']) . '</b></p>
-						<p> Fecha Desde: <b> '. htmlspecialchars($rows['fechaDesdePromo']) .  '</b></p>
-						<p> Fecha Hasta: 	<b>'. htmlspecialchars($rows['fechaHastaPromo']) . ' </b></p>
-						<p> Días de la semana válidos: <b>' . htmlspecialchars(implode(', ', $palabraDias)) . '</b></p>
-						<p> Tipo de Cliente: <b>' . htmlspecialchars($rows['categoriaCliente']) . '</b></p>
-					</div>
-                </div>
-            ';  
-			} elseif ($tipoUsuario == "Cliente"){
-				$valorCategoria = $rows['categoriaCliente'];
-				$arrayCategoriaCliente = [
-					"Inicial" => 1,
-					"Medium" => 2,
-					"Premium" => 3,
+			
+
+		if ($tipoUsuario == '' || $tipoUsuario == "Dueño") {
+
+			foreach($datos as $rows){ 	
+				//decodifico el arreglo json
+				$numerosDias = json_decode($rows['diasSemana'], true);
+				if (!is_array($numerosDias)) {
+					$numerosDias = [$numerosDias]; // Convertir número único en array
+				}
+				$arrayDiasSemana = [
+					1 => 'Lunes',
+					2 => 'Martes',
+					3 => 'Miércoles',
+					4 => 'Jueves',
+					5 => 'Viernes',
+					6 => 'Sábado',
+					7 => 'Domingo'
 				];
+
+				$palabraDias = array_map(fn($num) => $arrayDiasSemana[$num] ?? 'Desconocido', $numerosDias);
+			$tabla.=' 
+			<div class="promociones">
+				<div class="textContainer">
+					<h2> Local: '. htmlspecialchars($rows['nombreLocal']) .'	</h2>
+					<h4> Id de la promoción: ' . htmlspecialchars($rows['codPromo']) .'  </h4>
+					<p>	Descripción de Promoción: <b>'. htmlspecialchars($rows['textoPromo']) . '</b></p>
+					<p> Fecha Desde: <b> '. htmlspecialchars($rows['fechaDesdePromo']) .  '</b></p>
+					<p> Fecha Hasta: 	<b>'. htmlspecialchars($rows['fechaHastaPromo']) . ' </b></p>
+					<p> Días de la semana válidos: <b>' . htmlspecialchars(implode(', ', $palabraDias)) . '</b></p>
+					<p> Tipo de Cliente: <b>' . htmlspecialchars($rows['categoriaCliente']) . '</b></p>
+				</div>
+			</div>
+		';  
+		}
+		} elseif ($tipoUsuario == "Cliente"){
+			$arrayCategoriaCliente = [
+				"Inicial" => 1,
+				"Medium" => 2,
+				"Premium" => 3,
+			];
+			$numeroCliente = $arrayCategoriaCliente[$_SESSION['categoriaCliente']] ?? 'Desconocido';
+
+			foreach($datos as $rows){ 	
+				//decodifico el arreglo json
+				$numerosDias = json_decode($rows['diasSemana'], true);
+				if (!is_array($numerosDias)) {
+					$numerosDias = [$numerosDias]; // Convertir número único en array
+				}
+				$arrayDiasSemana = [
+					1 => 'Lunes',
+					2 => 'Martes',
+					3 => 'Miércoles',
+					4 => 'Jueves',
+					5 => 'Viernes',
+					6 => 'Sábado',
+					7 => 'Domingo'
+				];
+				$palabraDias = array_map(fn($num) => $arrayDiasSemana[$num] ?? 'Desconocido', $numerosDias);
+
+				$valorCategoria = $rows['categoriaCliente'];
+				
 				$numeroCategoria = $arrayCategoriaCliente[$valorCategoria] ?? 'Desconocido';
-				$numeroCliente = $arrayCategoriaCliente[$_SESSION['categoriaCliente']] ?? 'Desconocido';
 
 				$tabla.='
 				<div class="promociones">
@@ -122,26 +146,43 @@
 						<p> Días de la semana válidos: <b>' . htmlspecialchars(implode(', ', $palabraDias)) . '</b></p>
 						<p> Tipo de Cliente: <b>' . htmlspecialchars($rows['categoriaCliente']) . '</b></p>
 					</div>';
-					if($numeroCategoria > $numeroCliente){
-						$tabla.='<div class="textContainer">
-							<form action="" method="POST">
+				if($numeroCategoria > $numeroCliente){
+					$tabla.='<div class="textContainer">
+						<form action="" method="POST">
+							<input type="hidden" name="codPromo" value="'.htmlspecialchars($rows['codPromo']) .'">
+							<input type="hidden" name="dato" value="valor">
+							<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-danger" onclick="return alertar();">Solicitar Descuento</button>
+						</form>
+					</div>
+				</div>';
+				}else{
+					$tabla.='<div class="textContainer">
+							<form action="./php/cliente/saveSolicitudPromoCliente.php" method="POST">
 								<input type="hidden" name="codPromo" value="'.htmlspecialchars($rows['codPromo']) .'">
-								<input type="hidden" name="dato" value="valor">
-								<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-danger" onclick="return alertar();">Solicitar Descuento</button>
+								<input type="hidden" name="codUsuario" value="'.htmlspecialchars($_SESSION['codUsuario']).'">
+								<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-success" onclick="return confirmar();">Solicitar Descuento</button>
 							</form>
 						</div>
 					</div>';
-					}else{
-						$tabla.='<div class="textContainer">
-								<form action="./php/cliente/saveSolicitudPromoCliente.php" method="POST">
-									<input type="hidden" name="codPromo" value="'.htmlspecialchars($rows['codPromo']) .'">
-									<input type="hidden" name="codUsuario" value="'.htmlspecialchars($_SESSION['codUsuario']).'">
-									<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-success" onclick="return confirmar();">Solicitar Descuento</button>
-								</form>
-							</div>
-						</div>';
-					}
-			}else{
+				}
+			}
+		}else{
+			foreach($datos as $rows){ 	
+				//decodifico el arreglo json
+				$numerosDias = json_decode($rows['diasSemana'], true);
+				if (!is_array($numerosDias)) {
+					$numerosDias = [$numerosDias]; // Convertir número único en array
+				}
+				$arrayDiasSemana = [
+					1 => 'Lunes',
+					2 => 'Martes',
+					3 => 'Miércoles',
+					4 => 'Jueves',
+					5 => 'Viernes',
+					6 => 'Sábado',
+					7 => 'Domingo'
+				];
+				$palabraDias = array_map(fn($num) => $arrayDiasSemana[$num] ?? 'Desconocido', $numerosDias);
 				$tabla.=' 
 				<div class="promocionesAdmin">
 						<div class="textContainer">
@@ -169,10 +210,13 @@
 						</div>
 				</div>';
 			}
-            $contador++;
 		}
+		$contador++;
 		$pag_final=$contador-1;
-	}else{
+	}
+	
+
+	else{
 		if($total_registros>=1){
 			$tabla.=' <table>
 				<tr class="has-text-centered" >

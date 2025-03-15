@@ -511,8 +511,8 @@ button.btn-danger:hover {
 
 .textContainer {
   text-align: center;
-  max-width: 800px; /* Ajusta esto según sea necesario */
-  width: 100%; /* Asegura que ocupe el ancho completo del contenedor padre */
+  max-width: 1000px; /* Ajusta esto según sea necesario */
+  width: auto; /* Asegura que ocupe el ancho completo del contenedor padre */
   box-sizing: border-box;
   word-wrap: break-word; /* Asegura que las palabras largas se rompan */
   white-space: normal; /* Permite que el texto se ajuste en múltiples líneas */
@@ -542,14 +542,28 @@ button.btn-danger:hover {
 
 }
 .textContainer h4, .textContainer p {
-  white-space: nowrap; /* Prevents wrapping */
+  /* white-space: nowrap; 
   overflow: hidden;
-  text-overflow: ellipsis; /* Adds "..." if it overflows */
+  text-overflow: ellipsis;  */
   margin: 5px 0; /* Add some spacing back */
+}
+.parrafo p{
+  font-size: 25px;
 }
 @media (max-width: 768px) {
   .textContainer {
       max-width: 90%; /* O un valor específico en píxeles */
+  }
+}
+@media (max-width: 768px) { /* Ajusta este valor según sea necesario */
+  .locales {
+    flex-direction: column; /* Apila los elementos en pantallas pequeñas */
+    align-items: center; /* Centra los elementos */
+    width: 100%; /* Opcional: ajusta el ancho al 100% */
+  }
+
+  .textContainer {
+    max-width: 90%; /* Evita que el texto se extienda demasiado */
   }
 }
 

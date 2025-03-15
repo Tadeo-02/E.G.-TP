@@ -42,7 +42,24 @@
                     </ul>
                     <p></p>
                 </div>
-            </div>  
+            </div>
+            <!-- NEWSLETTER  -->
+              <div class="col-md-6 p-4">
+                <div class="bg-light p-4 contactoBottom">
+                    <h4>NEWSLETTER</h4>
+                    <p>Recibe las últimas noticias y ofertas especiales</p>
+                    <div class="input-group mb-3">
+                        <form action="./php/newsletter.php" method="POST">
+                            <input type="text" class="form-control" placeholder="Ingrese su dirección de correo electrónico" aria-label="Ingrese su dirección de correo electrónico" aria-describedby="button-addon2" name="email">
+                            <input type="hidden" name="mensaje" value="Usted ha sido suscripto al Newsletter de Nova Shopping. Gracias por elegirnos"> <br>
+                            <input type="hidden" name="asunto" value="Newsletter Nova Shopping"> <br>
+                            <button class="btn btn-warning" type="submit" id="button-addon2"  name="botonAnashe">Suscribirse</button>
+
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
         </div>            
     </div>
 </section>

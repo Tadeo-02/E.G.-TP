@@ -50,10 +50,10 @@
             $fila = mysqli_fetch_row($datosContador);
 			$tabla.=' 
 				<div class="locales">
-					<div class="textContainer">
-					<p> El descuento '. htmlspecialchars($rows['textoPromo']) . ' (COD '. htmlspecialchars($rows['codPromo']) . ')
-					<br> del local '. htmlspecialchars($rows['nombreLocal']) . ' (COD '. htmlspecialchars($rows['codLocal']) . ') 
-                    <br> ha sido utilizado Nº:   '. htmlspecialchars($fila[0]).' veces
+					<div class="textContainer parrafo">
+					<p> El DESCUENTO <b> '. htmlspecialchars($rows['textoPromo']) . ' </b> (COD '. htmlspecialchars($rows['codPromo']) . ')
+					<br> del LOCAL <b>'. htmlspecialchars($rows['nombreLocal']) . ' </b> (COD '. htmlspecialchars($rows['codLocal']) . ') 
+                    <br> ha sido utilizado Nº:    <b>'. htmlspecialchars($fila[0]).' </b> VECES
 					</p>
 					</div>	
         		</div>';

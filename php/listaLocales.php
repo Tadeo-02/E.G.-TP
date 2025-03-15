@@ -36,7 +36,7 @@
 			$nombreLocal = $rows['nombreLocal'];
 			$codLocal = $rows['codLocal']; //Para mostrar la imagen usamos la etiqueta img con la ruta src donde almacenamos las imagenes + nombre de la imagen que se guarda en la DB
 			$tabla.=' 
-				<div class="locales">
+				<div class="locales col-12 col-md-4">
 						<div class="imgContainer">
 							<img src="/TP ENTORNOS/Page/php/admin/locales/' . htmlspecialchars($rows['imagenLocal']) . '" 
              				alt="Imagen de ' . htmlspecialchars($rows['nombreLocal']) . '">         				</div>
@@ -50,7 +50,7 @@
 								<p>	'. htmlspecialchars($rows['codLocal']) .  '</p>
 						</div>';
 			if(!isset($_SESSION['tipoUsuario']) || (isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Cliente"))  {
-				$tabla.= '<div class="textContainer">
+				$tabla.= '<div class="textContainer col-12 col-md-4">
 							<form action="index.php" method="GET">
 								<input type="hidden" name="vista" value="promocionesList">
 								<input type="hidden" name="codLocal" value="'.htmlspecialchars($codLocal) .'">
@@ -60,7 +60,7 @@
 					</div>';
 			}
 			elseif ($_SESSION['tipoUsuario'] == "Administrador"){
-				$tabla.='<div class="textContainer">
+				$tabla.='<div class="textContainer col-12 col-md-4">
 							<form action="index.php?vista=localsUpdate" method="POST">
 								<input type="hidden" name="nombreLocal" value="'. htmlspecialchars($nombreLocal) .'">
 								<input type="hidden" name="codLocal" value="'. htmlspecialchars($codLocal) .'">
@@ -77,7 +77,7 @@
 					</div>';
 			}
 			else {
-				$tabla.='<div class="textContainer">
+				$tabla.='<div class="textContainer ">
 							<form action="index.php?vista=localsUpdate" method="POST">
 								<input type="hidden" name="nombreLocal" value="'. htmlspecialchars($nombreLocal) .'">
 								<input type="hidden" name="codLocal" value="'. htmlspecialchars($codLocal) .'">
