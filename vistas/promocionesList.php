@@ -27,7 +27,7 @@
             $tipoUsuario = isset($_SESSION['tipoUsuario']) ? $_SESSION['tipoUsuario'] : '';
         ?>
 
-        <div class="row calendarios ndea col-lg-10 col-md-10 col-12">
+        <div class="row calendarios col-lg-10 col-md-10 col-12">
             
             <!-- Formulario con un desplegable -->
             <div class="columnaFiltro col-lg-3 col-md-10 col-12">
@@ -59,7 +59,7 @@
                 }
                 ?>
             </div>
-            <div class="columnaFiltro col-lg-3 col-md-10 col-12">
+            <div class="columnaPromo col-lg-7 col-md-10 col-12">
                 <?php
                     // Cerrar la conexión
                     mysqli_close($conexion);

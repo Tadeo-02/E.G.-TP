@@ -41,7 +41,7 @@
     
     // Guardando datos
     $guardar_usuario=conexion();
-    $guardar_usuario=$guardar_usuario->query("INSERT INTO promociones(textoPromo, fechaDesdePromo, fechaHastaPromo, categoriaCliente,diasSemana, estadoPromo, codLocal) VALUES ('$textoPromo', '$fechaDesdePromo', '$fechaHastaPromo', '$categoriaCliente', '$diasSemanaJSON', 'Pendiente', $codLocal)");
+    $guardar_usuario=$guardar_usuario->query("INSERT INTO promociones(textoPromo, fechaDesdePromo, fechaHastaPromo, categoriaCliente,diasSemana, estadoPromo, codLocal) VALUES ('$textoPromo', '$fechaDesdePromo', '$fechaHastaPromo', '$categoriaCliente', '$diasSemanaJSON', 'Pendiente', '$codLocal')");
 
     echo '<div class="alert alert-success" role="alert">
             Solicitud registrada con exito
