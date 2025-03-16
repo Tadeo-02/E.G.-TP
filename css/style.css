@@ -587,11 +587,9 @@ button.btn-danger:hover {
   min-height: 200px; /* Opcional: altura mínima */
 }
 .promocionesAdmin {
-  min-width: 500px;
   width: auto;
-  max-width: 1000px;
   text-align: center;
-  margin-bottom: 20px;
+  margin: 20px auto;
   border: #ffca2c solid 5px;
   background-color: white;
   border-radius: 25px;
@@ -599,12 +597,25 @@ button.btn-danger:hover {
   justify-content: space-around;
   align-items: center;
   flex-direction: row; /* Apila verticalmente */
-  gap: 10px;
+  gap: 20px;
   padding: 10px; /* Agrega espacio interno */
   height: auto;  /* Se ajusta al contenido */
   min-height: 200px; /* Opcional: altura mínima */
-}
 
+ /
+}
+@media (max-width: 768px) { /* Ajusta este valor según sea necesario */
+  .promocionesAdmin {
+    flex-direction: column; /* Apila los elementos en pantallas pequeñas */
+    align-items: center; /* Centra los elementos */
+    width: 100%; /* Opcional: ajusta el ancho al 100% */
+  }
+}
+/* @media (max-width: 768px) { 
+  .ndea {
+    width: 412px;
+  }
+} */
 .textContainer2 {
   width: 100%;
 }
@@ -663,6 +674,7 @@ input[type="date"] {
   flex: 1; /* Ajusta el tamaño de las columnas para ocupar el espacio disponible */
   max-width: 400px; /* Opcional: Limita el ancho máximo de la columna */
 }
+
 
 
 /* CARGAR PROMOCIONES */

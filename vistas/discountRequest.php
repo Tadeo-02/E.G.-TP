@@ -16,7 +16,7 @@
 
             <div class="row calendarios">
 
-                <div class="columnaFiltro">
+                <div class="container">
                     <?php
 
                         $diaDesde = isset($_POST['diaDesde']) ? $_POST['diaDesde'] : '';

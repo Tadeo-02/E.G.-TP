@@ -42,13 +42,13 @@
 			$codCliente = $rows['codCliente'];
 			$codPromo = $rows['codPromo'];
 			$tabla.=' 
-				<div class="locales">
+				<div class="locales col-12 col-md-4">
 					<div class="textContainer">
 					<p> El cliente ... '. htmlspecialchars($rows['nombreUsuario']) . ' (COD '. htmlspecialchars($rows['codCliente']) . ') ... <br> desea solicitar el descuento '. htmlspecialchars($rows['textoPromo']) . ' (COD '. htmlspecialchars($rows['codPromo']) . ')
 					<br> del local '. htmlspecialchars($rows['nombreLocal']) . ' (COD '. htmlspecialchars($rows['codLocal']) . ') 
 					</p>
 					</div>
-                	<div class="textContainer10">
+                	<div class="textContainer col-12 col-md-4">
 						<form action="./aprobarSolicitudDescuentoCliente.php" method="POST">
 							<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
 							<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">

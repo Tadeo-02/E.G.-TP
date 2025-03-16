@@ -27,10 +27,10 @@
             $tipoUsuario = isset($_SESSION['tipoUsuario']) ? $_SESSION['tipoUsuario'] : '';
         ?>
 
-        <div class="row calendarios col-lg-10 col-md-10 col-10">
+        <div class="row calendarios ndea col-lg-10 col-md-10 col-12">
             
             <!-- Formulario con un desplegable -->
-            <div class="columnaFiltro col-lg-3 col-md-10 col-10">
+            <div class="columnaFiltro col-lg-3 col-md-10 col-12">
                 <div class="calendarContainer">
                     <p>Selecciona una fecha</p>
                     <form action="" method="POST">
@@ -59,7 +59,7 @@
                 }
                 ?>
             </div>
-            <div class="columnaFiltro col-lg-3 col-md-10 col-10">
+            <div class="columnaFiltro col-lg-3 col-md-10 col-12">
                 <?php
                     // Cerrar la conexión
                     mysqli_close($conexion);
