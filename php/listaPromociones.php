@@ -1,7 +1,16 @@
 <?php
+	if (isset($_SESSION['mensaje'])) {
+		echo "<script>
+				alert('" . $_SESSION['mensaje'] . "');
+			</script>";
+		unset($_SESSION['mensaje']); // Eliminar el mensaje después de mostrarlo
+	}
+
 	$conexion=conexion();
 
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
+
+    $hoy = date("Y-m-d");
 
 	$tabla="";
 	
@@ -10,8 +19,8 @@
 	$codUsuario = $_SESSION['codUsuario'] ?? null; // Evita error si no está definido
 	$condicionesI = [];
 	$condicionesw = [];
-	//? Problema con el if
-	//if (!empty($tipoUsuario) && $codUsuario) { //agregp consulta de nombre local
+
+	//if (!empty($tipoUsuario) && $codUsuario) { //agrega consulta de nombre local
 	$campos="  locales.codLocal, locales.codUsuario, locales.nombreLocal, 
 	promociones.codLocal, promociones.codPromo, promociones.textoPromo, promociones.categoriaCliente,
 	promociones.fechaDesdePromo, promociones.fechaHastaPromo, promociones.diasSemana";
@@ -67,11 +76,6 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
-		
-		//! Ubicarlo adentro de cada if para mejor funcionalidad
-
-
-			
 
 		if ($tipoUsuario == '' || $tipoUsuario == "Dueño") {
 
@@ -148,11 +152,12 @@
 					</div>';
 				if($numeroCategoria > $numeroCliente){
 					$tabla.='<div class="textContainer">
-						<form action="" method="POST">
-							<input type="hidden" name="codPromo" value="'.htmlspecialchars($rows['codPromo']) .'">
-							<input type="hidden" name="dato" value="valor">
-							<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-danger" onclick="return alertar();">Solicitar Descuento</button>
-						</form>
+							<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-danger" onclick="return alertar1();">Solicitar Descuento</button>
+					</div>
+				</div>';
+				}elseif($rows['fechaDesdePromo'] > $hoy){
+					$tabla.='<div class="textContainer">
+							<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-danger" onclick="return alertar2();">Solicitar Descuento</button>
 					</div>
 				</div>';
 				}else{
@@ -197,14 +202,12 @@
 						<div class="textContainer">
 							<form action="./php/admin/aprobarPromocion.php" method="POST">
 								<input type="hidden" name="codPromo" value="'.htmlspecialchars($rows['codPromo']) .'">
-								<input type="hidden" name="dato" value="valor">
 								<button type="submit"  name="botonAnashe" value="APROBAR Solicitud" class="btn btn-success" onclick="return confirmar();">APROBAR Solicitud</button>
 							</form>
 							<br>
 							<br>
 							<form action="./php/admin/denegarPromocion.php" method="POST">
 								<input type="hidden" name="codPromo" value="'. htmlspecialchars($rows['codPromo']) .'">
-								<input type="hidden" name="dato" value="valor">
 								<button type="submit"  name="botonAnashe" value="RECHAZAR Solicitud" class="btn btn-danger" onclick="return confirmar();">RECHAZAR Solicitud</button>
 							</form>
 						</div>
@@ -264,7 +267,10 @@
 function confirmar() {
     return confirm("¿Seguro que quieres solicitar este Descuento?");
 }
-function alertar() {
+function alertar1() {
     return confirm("Usted no puede acceder a esta promocion porque su nivel de usuario es menor al solicitado");
+}
+function alertar2() {
+    return confirm("Por favor, vuelva a intentarlo cuando el periodo de la promoción haya iniciado");
 }
 </script>
