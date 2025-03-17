@@ -7,20 +7,20 @@
 
 	if (isset($busqueda) && $busqueda != "") {
 		if($rubroLocal != ""){
-			$consulta_datos="SELECT * FROM locales  WHERE rubroLocal = '$rubroLocal' AND nombreLocal LIKE '%$busqueda%' ORDER BY nombreLocal ASC LIMIT $inicio,$registros";
-			$consulta_total="SELECT COUNT(*) FROM locales WHERE rubroLocal = '$rubroLocal' AND nombreLocal LIKE '%$busqueda%'";
+			$consulta_datos="SELECT * FROM locales  WHERE rubroLocal = '$rubroLocal' AND nombreLocal LIKE '%$busqueda%' AND estadoLocal = 1 ORDER BY nombreLocal ASC LIMIT $inicio,$registros";
+			$consulta_total="SELECT COUNT(*) FROM locales WHERE rubroLocal = '$rubroLocal' AND nombreLocal LIKE '%$busqueda%' AND estadoLocal = 1";
 		}else {	
-			$consulta_datos = "SELECT * FROM locales WHERE nombreLocal LIKE '%$busqueda%' ORDER BY nombreLocal LIMIT $inicio, $registros";
-			$consulta_total = "SELECT COUNT(*) FROM locales WHERE nombreLocal LIKE '%$busqueda%'";
+			$consulta_datos = "SELECT * FROM locales WHERE nombreLocal LIKE '%$busqueda%' AND estadoLocal = 1 ORDER BY nombreLocal LIMIT $inicio, $registros";
+			$consulta_total = "SELECT COUNT(*) FROM locales WHERE nombreLocal LIKE '%$busqueda%' AND estadoLocal = 1";
 		}
 
 	}else {
 		if($rubroLocal != ""){
-			$consulta_datos="SELECT * FROM locales  WHERE rubroLocal = '$rubroLocal' ORDER BY nombreLocal ASC LIMIT $inicio,$registros";
-			$consulta_total="SELECT COUNT(*) FROM locales WHERE rubroLocal = '$rubroLocal'";
+			$consulta_datos="SELECT * FROM locales  WHERE rubroLocal = '$rubroLocal' AND estadoLocal = 1 ORDER BY nombreLocal ASC LIMIT $inicio,$registros";
+			$consulta_total="SELECT COUNT(*) FROM locales WHERE rubroLocal = '$rubroLocal' AND estadoLocal = 1";
 		}else {	
-			$consulta_datos = "SELECT * FROM locales ORDER BY nombreLocal LIMIT $inicio, $registros";
-			$consulta_total = "SELECT COUNT(*) FROM locales";
+			$consulta_datos = "SELECT * FROM locales WHERE estadoLocal = 1 ORDER BY nombreLocal LIMIT $inicio, $registros";
+			$consulta_total = "SELECT COUNT(*) FROM locales WHERE estadoLocal = 1";
 		}
 	}
 
