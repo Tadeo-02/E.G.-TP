@@ -11,11 +11,16 @@
 
     $aprobar_promo = $conexion->prepare("UPDATE uso_promociones SET estado = ? WHERE codCliente = ? AND codPromo = ?");
     $aprobar_promo->bind_param("sii",$estado,  $codCliente, $codPromo);
+    require_once "./admin/enviarMail.php";
+
     if($aprobar_promo->execute()){
         echo "Promo aprobada con éxito";}
     else{
         echo "Error al aprobar la promo";
     }
+
+    require_once "./admin/enviarMail.php";
+
 
     // Cerrar la conexión
     $aprobar_promo->close();
@@ -39,4 +44,3 @@
 
 
 
-?>

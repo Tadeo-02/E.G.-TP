@@ -14,6 +14,7 @@
     else{
         echo "Error al rechazar la promo";
     }
+    require_once "./admin/enviarMail.php";
 
     // Cerrar la conexión
     $denegar_promo->close();
@@ -31,4 +32,3 @@
     
 ?>
 
-?>

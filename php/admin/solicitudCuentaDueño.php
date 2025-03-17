@@ -41,7 +41,7 @@ if ($total_registros >= 1 && $pagina <= $Npaginas) {
 							<form action="./php/admin/aprobarSolicitudCuenta.php" method="POST">
 								<input type="hidden" name="codUsuario" value="' . htmlspecialchars($codUsuario) . '">
 								<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
-								<input type="hidden" name="asunto" value="Solicitud cuenta"> <br>
+								<input type="hidden" name="asunto" value="Solicitud cuenta de due&ntilde;o"> <br>
 								<input type="hidden" name="mensaje" value="Su solicitud de cuenta ha sido ACEPTADA."> <br>
 								<button type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar Solicitud</button>
 							</form>
@@ -51,7 +51,7 @@ if ($total_registros >= 1 && $pagina <= $Npaginas) {
 								<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
 								<input type="hidden" name="asunto" value="Solicitud cuenta de due&ntilde;o"> <br>
 								<input type="hidden" name="mensaje" value="Su solicitud de cuenta ha sido RECHAZADA."> <br>
-								<button type="submit"  name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger" onclick="return rechazar();">Denegar Solicitud</button>
+								<button type="submit" name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger" onclick="return rechazar();">Denegar Solicitud</button>
 							</form>
                         </div>';
 

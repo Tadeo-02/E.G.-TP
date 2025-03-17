@@ -41,6 +41,7 @@
 		foreach($datos as $rows){ 
 			$codCliente = $rows['codCliente'];
 			$codPromo = $rows['codPromo'];
+			$nombreUsuario = $rows['nombreUsuario'];
 			$tabla.=' 
 				<div class="locales col-12 col-md-4">
 					<div class="textContainer">
@@ -49,18 +50,23 @@
 					</p>
 					</div>
                 	<div class="textContainer col-12 col-md-4">
-						<form action="./aprobarSolicitudDescuentoCliente.php" method="POST">
+						<form action="./cliente/aprobarSolicitudDescuentoCliente.php" method="POST">
 							<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
 							<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
-							<input type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud">
+							<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
+							<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
+							<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido ACEPTADA."> <br>
+							<button type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar Solicitud</button>
 						</form>
 						<br>
 						<br>
-						<form action="./denegarSolicitudDescuentoCliente.php" method="POST">
+						<form action="./cliente/denegarSolicitudDescuentoCliente.php" method="POST">
 							<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
 							<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
-							<input type="hidden" name="dato" value="valor">
-							<button type="submit"  name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger" onclick="return confirmar();">Denegar Solicitud</button>
+							<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
+							<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
+							<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido RECHAZADA."> <br>
+							<button type="submit" name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger" onclick="return rechazar();">Denegar Solicitud</button>
 						</form>
                     </div>	
         		</div>';
@@ -107,11 +113,14 @@
 		echo paginador_tablas($pagina,$Npaginas,$url,7);
 	}
 ?>
-
 <script>
-function confirmar() {
-    return confirm("¿Seguro que quieres rechazar esta solicitud?");
-}
+	function confirmar() {
+		return confirm("¿Seguro que quieres aceptar esta solicitud?");
+	}
+
+	function rechazar() {
+		return confirm("¿Seguro que quieres rechazar esta solicitud?");
+	}
 </script>
 
 

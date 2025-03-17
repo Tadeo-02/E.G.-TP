@@ -20,7 +20,8 @@
     // Verificar campos Obligatorios
     if( $codCliente == "" || $codPromo == "" ){ 
         $_SESSION['mensaje'] = "Error al registrar la solicitud";
-        
+        header("Location: ../index.php"); 
+        exit();
     } else{
         // Guardando datos
         $guardar_promo=conexion();
@@ -33,11 +34,14 @@
 
         if (!in_array($arrayDiasSemana[$diaDeLaSemana], $diasSemanaPermitidos)) {
             $_SESSION['mensaje'] = "La solicitud no está disponible este día de la semana";
+            header("Location: ../vistas/404.php"); 
 
         } else{
             $guardar_promo=$guardar_promo->query("INSERT INTO uso_promociones (codCliente, codPromo, fechaUsoPromo, estado) VALUES ('$codCliente', '$codPromo', '$hoy', 'Pendiente')");
 
             $_SESSION['mensaje'] = "Solicitud registrada con éxito";
+            header("Location: ../vistas/localsList.php"); 
+
             //Cerrar conexion    
             $guardar_promo = null;
         }
