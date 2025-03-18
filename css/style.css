@@ -60,7 +60,6 @@ body {
   text-decoration: none;
   padding: 0.5rem 1rem;
   line-height: 2.3;
-  width: 100%;
 }
 .navbar-nav a {
   font-size: 15px;
@@ -168,7 +167,7 @@ body {
   text-align: center;
   border: 2px solid #3498db;
   padding: 14px 10px;
-  width: 15%;
+  width: 200px;
   outline: none;
   color: white;
   border-radius: 24px;
@@ -176,7 +175,7 @@ body {
 }
 .form input[type="email"]:focus,
 .form input[type="password"]:focus {
-  width: 20%;
+  width: 280px;
   border-color: #2ecc71;
 }
 .form input[type="submit"] {
@@ -259,6 +258,13 @@ footer {
 
 }
 
+/* PAGINADOR */
+.paginador{
+  display: flex;
+  justify-content: center;
+}
+
+
 /* Responsive */
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -273,6 +279,9 @@ footer {
   }
   .img-area img {
     width: 100%;
+  }
+  .paginador{
+    
   }
 }
 @media only screen and (max-width: 767px) {
@@ -473,6 +482,7 @@ button.btn-danger:hover {
     margin-top: 10px;
 } */
 
+
 /* Listado de Locales */
 
 .centered { 
@@ -481,7 +491,7 @@ button.btn-danger:hover {
 }
 
 .locales {
-  width: 100%;
+  width: 1000px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -496,12 +506,12 @@ button.btn-danger:hover {
 }
 
 .imgContainer img {
-  max-width: 180px
+  max-width: 180px;
 }
 
 .textContainer {
   text-align: center;
-  max-width: 100%; /* Ajusta esto según sea necesario */
+  max-width: 1000px; /* Ajusta esto según sea necesario */
   width: auto; /* Asegura que ocupe el ancho completo del contenedor padre */
   box-sizing: border-box;
   word-wrap: break-word; /* Asegura que las palabras largas se rompan */
@@ -518,7 +528,6 @@ button.btn-danger:hover {
   max-width: 200px;
   border: #ffca2c solid 5px;
 }
-
 .textContainer h1 {
   word-wrap: break-word; /* Allows words to break */
   overflow-wrap: break-word; /* For older browsers */
@@ -530,8 +539,8 @@ button.btn-danger:hover {
   -webkit-line-clamp: 2; /* Number of lines to show */
   -webkit-box-orient: vertical; /* Vertical orientation */
   overflow: hidden; /* Hide any further overflow */
-}
 
+}
 .textContainer h4, .textContainer p {
   /* white-space: nowrap; 
   overflow: hidden;
@@ -543,22 +552,8 @@ button.btn-danger:hover {
 }
 @media (max-width: 768px) {
   .textContainer {
-      max-width: 90%;
+      max-width: 90%; /* O un valor específico en píxeles */
   }
-}
-.locales {
-  width: 80%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  gap: 20px;
-  margin: 20px auto;
-  border: #ffca2c solid 5px;
-  background-color: white;
-  border-radius: 25px;
-  padding: 10px; /* Agrega espacio interno */
-  height: auto;  /* Se ajusta al contenido */
-  min-height: 200px; /* Opcional: altura mínima */  
 }
 @media (max-width: 768px) { /* Ajusta este valor según sea necesario */
   .locales {
@@ -585,16 +580,16 @@ button.btn-danger:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row; /* Apila verticalmente */
+  flex-direction: column; /* Apila verticalmente */
   gap: 10px;
   padding: 10px; /* Agrega espacio interno */
   height: auto;  /* Se ajusta al contenido */
   min-height: 200px; /* Opcional: altura mínima */
 }
 .promocionesAdmin {
-  width: 700px;
+  width: auto;
   text-align: center;
-  margin-bottom: 20px;
+  margin: 20px auto;
   border: #ffca2c solid 5px;
   background-color: white;
   border-radius: 25px;
@@ -602,27 +597,20 @@ button.btn-danger:hover {
   justify-content: space-around;
   align-items: center;
   flex-direction: row; /* Apila verticalmente */
-  gap: 10px;
+  gap: 20px;
   padding: 10px; /* Agrega espacio interno */
   height: auto;  /* Se ajusta al contenido */
   min-height: 200px; /* Opcional: altura mínima */
-}
 
+ /
+}
 @media (max-width: 768px) { /* Ajusta este valor según sea necesario */
-  .promocionesAdmin{
-    flex-direction: column; /* Apila los elementos en pantallas pequeñas */
-    align-items: center; /* Centra los elementos */
-    width: 100%; /* Opcional: ajusta el ancho al 100% */
-  }
-  .promociones{
+  .promocionesAdmin {
     flex-direction: column; /* Apila los elementos en pantallas pequeñas */
     align-items: center; /* Centra los elementos */
     width: 100%; /* Opcional: ajusta el ancho al 100% */
   }
 }
-
-
-
 /* @media (max-width: 768px) { 
   .ndea {
     width: 412px;
@@ -681,12 +669,6 @@ input[type="date"] {
 }
 
 .columnaFiltro {
-  display: flex;
-  flex-direction: column; /* Asegura que los elementos dentro estén apilados verticalmente */
-  flex: 1; /* Ajusta el tamaño de las columnas para ocupar el espacio disponible */
-  max-width: 400px; /* Opcional: Limita el ancho máximo de la columna */
-}
-.columnaPromo {
   display: flex;
   flex-direction: column; /* Asegura que los elementos dentro estén apilados verticalmente */
   flex: 1; /* Ajusta el tamaño de las columnas para ocupar el espacio disponible */
@@ -758,11 +740,10 @@ select[multiple] {
 }
 
 .botonAnashe {
-  display: flex;
-  justify-content: center; 
+  width: 50px;
 }
 
-.btnCrear {
+.sexo {
   width: 300px; /* Igual al ancho esperado */
   height: 38px; /* Igual al filtro y al buscador */
   font-size: 16px; /* Tamaño de texto uniforme */
@@ -771,14 +752,6 @@ select[multiple] {
   display: flex; 
   align-items: center; 
   justify-content: center; /* Centra el contenido */
-}
-
-@media (max-width: 768px) {
-  .btnCrear {
-      display: flex;
-      justify-content: center; 
-      width: 100%;
-  }
 }
 
 

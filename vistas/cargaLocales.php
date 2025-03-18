@@ -101,15 +101,11 @@
                                     ?>
                                 </select>
                             </div>
-                            
-                            <br>
 
                             <div class="mb-3">
                                 <label class="form-label" style="color: black; text-align: left; display:block;">Imagen del Local</label>
                                 <input class="form-control" type="file" name="imagenLocal" required>
                             </div>
-
-                            <br>
 
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary botonPromo">Cargar</button>
