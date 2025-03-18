@@ -12,8 +12,8 @@ if(isset($_POST["botonAnashe"])){
     $mail -> isSMTP();
     $mail -> Host = 'smtp.gmail.com';
     $mail -> SMTPAuth = true;
-    $mail -> Username ='shoppingnovarosario@gmail.com';
-    $mail -> Password = 'nxiwalfkdcqaiqdk';
+    $mail -> Username ='novashopping00@gmail.com';
+    $mail -> Password = 'zyvhsqfvwloruife';
     $mail -> SMTPSecure = 'ssl';
     $mail -> Port = 465;
     
