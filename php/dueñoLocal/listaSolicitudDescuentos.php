@@ -49,14 +49,14 @@
 					</p>
 					</div>
                 	<div class="textContainer col-12 col-md-4">
-						<form action="./aprobarSolicitudDescuentoCliente.php" method="POST">
+						<form action="./php/dueñoLocal/aprobarSolicitudDescuentoCliente.php" method="POST">
 							<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
 							<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
 							<input type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud">
 						</form>
 						<br>
 						<br>
-						<form action="./denegarSolicitudDescuentoCliente.php" method="POST">
+						<form action="./php/dueñoLocal/denegarSolicitudDescuentoCliente.php" method="POST">
 							<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
 							<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
 							<input type="hidden" name="dato" value="valor">
