@@ -11,8 +11,10 @@
     if($denegar_promo->execute()){
         echo "Promoción denegada con éxito";}
     else{
-        echo "Error al denegar la promoción";
+        echo "Error al denegar la promoción";    
     }
+
+    require_once __DIR__ . "/../enviarMail.php";
 
     // Cerrar la conexión
     $denegar_promo->close();

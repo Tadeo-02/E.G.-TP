@@ -14,6 +14,8 @@
         echo "Error al aprobar la promoción";
     }
 
+    require_once __DIR__ . "/../enviarMail.php";
+
     // Cerrar la conexión
     $aprobar_promo->close();
     $conexion->close();

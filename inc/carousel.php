@@ -9,24 +9,24 @@
           <img src="img/home-1.jpg" class="d-block w-100" alt="...">
           <div class="carousel-caption">
             <h5>EL SHOPPING QUE BUSCAS</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
-                <p><a href="/TP ENTORNOS/vistas/localsList.php?page=" class="btn btn-warning mt-3">Haz click aquí para ver los locales del shopping</a></p>
+                <p>Diferentes eventos y actividades todos los meses</p>
+                <p><a href="/TP ENTORNOS/vistas/novedadesList.php?page=" class="btn btn-warning mt-3">Haz click aquí para ver las novedades del shopping</a></p>
           </div>
         </div>
         <div class="carousel-item">
           <img src="img/home-2.jpg" class="d-block w-100" alt="...">
           <div class="carousel-caption">
              <h5>VARIEDAD DE LOCALES A TU DISPOSICIÓN</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
-                <p><a href="/TP ENTORNOS/vistas/localsList.php?page=" class="btn btn-warning mt-3">Haz click aquí para ver los locales del shopping</a></p>
+             <p>Numerosos locales de todo tipo de rubro</p>
+             <p><a href="/TP ENTORNOS/vistas/localsList.php?page=" class="btn btn-warning mt-3">Haz click aquí para ver los locales del shopping</a></p>
           </div>
         </div>
         <div class="carousel-item">
           <img src="img/home-3.jpg" class="d-block w-100" alt="...">
           <div class="carousel-caption">
             <h5>CINE, PATIO DE COMIDAS Y MÁS</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, nulla, tempore. Deserunt excepturi quas vero.</p>
-                            <p><a href="/TP ENTORNOS/vistas/localsList.php?page=" class="btn btn-warning mt-3">Haz click aquí para ver los locales del shopping</a></p>
+            <p>Variedad de promociones todas las semanas</p>
+            <p><a href="/TP ENTORNOS/vistas/promocionesList.php?page=" class="btn btn-warning mt-3">Haz click aquí para ver las promociones del shopping</a></p>
           </div>
         </div>
       </div>

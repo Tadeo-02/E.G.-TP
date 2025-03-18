@@ -14,7 +14,7 @@
     else{
         echo "Error al rechazar la promo";
     }
-    require_once "./admin/enviarMail.php";
+    require_once __DIR__ . "/../enviarMail.php";
 
     // Cerrar la conexión
     $denegar_promo->close();

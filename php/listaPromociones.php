@@ -203,12 +203,18 @@
 							<form action="./php/admin/aprobarPromocion.php" method="POST">
 								<input type="hidden" name="codPromo" value="'.htmlspecialchars($rows['codPromo']) .'">
 								<button type="submit"  name="botonAnashe" value="APROBAR Solicitud" class="btn btn-success" onclick="return aprobar();">APROBAR Solicitud</button>
+								<input type="hidden" name="asunto" value="Solicitud de descuento"> <br>
+								<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido ACEPTADA."> <br>
+								<button type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar Solicitud</button>
 							</form>
 							<br>
 							<br>
 							<form action="./php/admin/denegarPromocion.php" method="POST">
 								<input type="hidden" name="codPromo" value="'. htmlspecialchars($rows['codPromo']) .'">
 								<button type="submit"  name="botonAnashe" value="RECHAZAR Solicitud" class="btn btn-danger" onclick="return rechazar();">RECHAZAR Solicitud</button>
+								<input type="hidden" name="asunto" value="Solicitud de Descuento;o"> <br>
+								<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido RECHAZADA."> <br>
+								<button type="submit" name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger" onclick="return rechazar();">Denegar Solicitud</button>
 							</form>
 						</div>
 				</div>';

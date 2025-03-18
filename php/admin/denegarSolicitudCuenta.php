@@ -14,7 +14,7 @@
         echo "Error al rechazar la cuenta";
     }
 
-    require_once "./enviarMail.php";
+    require_once __DIR__ . "/../enviarMail.php";
 
     // Cerrar la conexión
     $denegar_cuenta->close();
