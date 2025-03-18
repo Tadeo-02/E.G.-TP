@@ -13,9 +13,6 @@ Sección lista promociones:
 Seccion Novedaes:
 - Agregar función de expiración
 
-Seccion Eliminar:
-- Resolver eliminacion de locales con promociones asignadas
-
 Seccion Aprobar/Denegar Solicitud de Descuento Dueño:
 - Configurar notificacion de mail para aceptacion y rechazacion de descuento para notificar al cliente
 
