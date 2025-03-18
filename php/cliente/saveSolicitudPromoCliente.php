@@ -19,33 +19,36 @@
 
     // Verificar campos Obligatorios
     if( $codCliente == "" || $codPromo == "" ){ 
-        $_SESSION['mensaje'] = "Error al registrar la solicitud";
-        header("Location: ../index.php"); 
+        echo '<div class="alert alert-danger" role="alert">
+                Todos los campos obligatorios no han sido completados
+              </div>';
         exit();
-    } else{
-        // Guardando datos
-        $guardar_promo=conexion();
-        $consulta_promo = "SELECT * FROM promociones WHERE codPromo = '$codPromo'";
-        $datos = mysqli_query($guardar_promo, $consulta_promo);
-
-        $fila = mysqli_fetch_assoc($datos);
-
-        $diasSemanaPermitidos = explode(',', $fila['diasSemana']); // Convertir cadena a array
-
-        if (!in_array($arrayDiasSemana[$diaDeLaSemana], $diasSemanaPermitidos)) {
-            $_SESSION['mensaje'] = "La solicitud no está disponible este día de la semana";
-            header("Location: ../vistas/404.php"); 
-
-        } else{
-            $guardar_promo=$guardar_promo->query("INSERT INTO uso_promociones (codCliente, codPromo, fechaUsoPromo, estado) VALUES ('$codCliente', '$codPromo', '$hoy', 'Pendiente')");
-
-            $_SESSION['mensaje'] = "Solicitud registrada con éxito";
-            header("Location: ../vistas/localsList.php"); 
-
-            //Cerrar conexion    
-            $guardar_promo = null;
-        }
     }
+    // Guardando datos
+    $guardar_promo=conexion();
+    $consulta_promo = "SELECT * FROM promociones WHERE codPromo = '$codPromo'";
+    $datos = mysqli_query($guardar_promo, $consulta_promo);
+
+    $fila = mysqli_fetch_assoc($datos);
+
+    $diasSemanaLimpios = preg_replace('/[^0-9,]/', '', $fila['diasSemana']); // Eliminar caracteres no deseados
+    $diasSemanaPermitidos = explode(',', $diasSemanaLimpios); // Convertir a array
+
+    if (!in_array($arrayDiasSemana[$diaDeLaSemana], $diasSemanaPermitidos)) {
+        echo '<div class="alert alert-danger" role="alert">
+            La solicitud no está disponible este día de la semana
+        </div>';
+        exit();
+    }
+
+    $guardar_promo=$guardar_promo->query("INSERT INTO uso_promociones (codCliente, codPromo, fechaUsoPromo, estado) VALUES ('$codCliente', '$codPromo', '$hoy', 'Pendiente')");
+
+    echo '<div class="alert alert-success" role="alert">
+            Solicitud registrada con exito
+        </div>';
+
+    //Cerrar conexion    
+    $guardar_promo = null;
 
     if (isset($_SERVER['HTTP_REFERER'])) {
         // Redireccionar al usuario a la página anterior

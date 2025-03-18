@@ -1,4 +1,6 @@
 <?php
+	require_once(__DIR__ . '../vencimientoPromociones.php');
+
 	if (isset($_SESSION['mensaje'])) {
 		echo "<script>
 				alert('" . $_SESSION['mensaje'] . "');
@@ -40,7 +42,6 @@
 		$condicionesW[] = "'$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo";
 	}
 	
-	
 	// Convertir condiciones a una cadena SQL
 	if($tipoUsuario != 'Administrador') {
 		$condicionesW[] = 'estadoPromo = "Activa"'; // Evitar error de SQL si no hay condiciones
@@ -56,12 +57,11 @@
 
 	// Construir consultas finales
 	$consulta_datos = "SELECT $select 
-						FROM promociones 
+						FROM promociones
 						$innerjoin
-						$where 
-						ORDER BY fechaDesdePromo ASC 
-						LIMIT $inicio, $registros
-						";
+						$where
+						ORDER BY fechaDesdePromo ASC
+						LIMIT $inicio, $registros";
 
 	$consulta_total = "SELECT COUNT(*) FROM promociones 
 						$innerjoin 
@@ -202,13 +202,13 @@
 						<div class="textContainer">
 							<form action="./php/admin/aprobarPromocion.php" method="POST">
 								<input type="hidden" name="codPromo" value="'.htmlspecialchars($rows['codPromo']) .'">
-								<button type="submit"  name="botonAnashe" value="APROBAR Solicitud" class="btn btn-success" onclick="return confirmar();">APROBAR Solicitud</button>
+								<button type="submit"  name="botonAnashe" value="APROBAR Solicitud" class="btn btn-success" onclick="return aprobar();">APROBAR Solicitud</button>
 							</form>
 							<br>
 							<br>
 							<form action="./php/admin/denegarPromocion.php" method="POST">
 								<input type="hidden" name="codPromo" value="'. htmlspecialchars($rows['codPromo']) .'">
-								<button type="submit"  name="botonAnashe" value="RECHAZAR Solicitud" class="btn btn-danger" onclick="return confirmar();">RECHAZAR Solicitud</button>
+								<button type="submit"  name="botonAnashe" value="RECHAZAR Solicitud" class="btn btn-danger" onclick="return rechazar();">RECHAZAR Solicitud</button>
 							</form>
 						</div>
 				</div>';
@@ -272,5 +272,11 @@ function alertar1() {
 }
 function alertar2() {
     return confirm("Por favor, vuelva a intentarlo cuando el periodo de la promoción haya iniciado");
+}
+function aprobar() {
+    return confirm("¿Seguro que quieres aprobar esta solicitud de descuento?");
+}
+function rechazar() {
+    return confirm("¿Seguro que quieres rechazar esta solicitud de descuento?");
 }
 </script>
