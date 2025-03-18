@@ -4,12 +4,6 @@ TODAS LAS SECCIONES:
 Sección General
 - Resolver botón desplegable de "Mi Cuenta" para dispositivos móviles
 
-Sección lista promociones:
-
-    Subseccion uso promociones:
-    - Arreglar que el Usuario no pueda solicitar promociones las cuales no hayan iniciado/ya hayan terminado
-    - Decidir si el usuario solo puede solicitar la promocion en uno de los dias de semana que este habilitada o en cualquier momento
-
 Seccion Novedaes:
 - Agregar función de expiración
 
