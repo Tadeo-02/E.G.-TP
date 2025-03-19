@@ -13,11 +13,6 @@
         <h1 class="text-center" style="color: white"><b>PROMOCIONES</b></h1>
         <br>
         <?php
-            $params = [
-                'diaDesde' => '',
-                'diaHasta' => '',
-                'codLocal' => '',
-            ];
 
             // Establecer conexión
             $conexion = conexion();
@@ -70,9 +65,9 @@
                     // Cerrar la conexión
                     mysqli_close($conexion);
 
-                    $params['diaDesde'] = isset($_POST['diaDesde']) ? $_POST['diaDesde'] : '';
-                    $params['diaHasta'] = isset($_POST['diaHasta']) ? $_POST['diaHasta'] : '';
-                    $params['codLocal'] = isset($_GET['codLocal']) ? $_GET['codLocal'] : '';
+                    $diaDesde = isset($_POST['diaDesde']) ? $_POST['diaDesde'] : '';
+                    $diaHasta = isset($_POST['diaHasta']) ? $_POST['diaHasta'] : '';
+                    $localActual = isset($_GET['codLocal']) ? $_GET['codLocal'] : '';
 
                     if(!isset($_GET['page'])){
                         $pagina=1;
@@ -84,15 +79,7 @@
                     };
                     $pagina=limpiar_cadena($pagina);
 
-
-                    // Construir la URL eliminando los parámetros vacíos
-                    $query = http_build_query(array_filter($params, fn($value) => $value !== ''));
-                    // URL base
-                    $baseUrl = "index.php?vista=promocionesList&page=";
-                    // Concatenar URL con los parámetros
-                    $url = $query ? "$baseUrl?$query" : $baseUrl;
-                    
-                    // $url="index.php?vista=promocionesList&diaDesde=$diaDesde&diaHasta=$diaHasta&codLocal=$localActual&page="; 
+                    $url="index.php?vista=promocionesList&diaDesde=$diaDesde&diaHasta=$diaHasta&codLocal=$localActual&page=";
                     $registros=3;
 
                     require_once (__DIR__. '/../php/listaPromociones.php');

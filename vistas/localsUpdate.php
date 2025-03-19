@@ -85,16 +85,10 @@
                                 <br>
                                 <label class="form-label">Ubicación del Local:</label>
                                 <select class="form-select" name="ubicacionLocal" required>
-                                    <option value="" disabled selected>Seleccione una ubicacion</option>
-                                    <option value="1 . 1">1 . 1</option>
-                                    <option value="1 . 2">1 . 2</option>
-                                    <option value="1 . 3">1 . 3</option>
-                                    <option value="1 . 4">1 . 4</option>
-                                    <option value="2 . 1">2 . 1</option>
-                                    <option value="2 . 2">2 . 2</option>
-                                    <option value="2 . 3">2 . 3</option>
-                                    <option value="2 . 4">2 . 4</option>
-                                    <option value="2 . 5">2 . 5</option>
+                                    <option value="" disabled selected>Seleccione el piso: </option>
+                                    <option value="Planta Baja">Planta Baja</option>
+                                    <option value="Piso 1">Piso 1</option>
+                                    <option value="Piso 2">Piso 2</option>
                                 </select>
                             </div>
 

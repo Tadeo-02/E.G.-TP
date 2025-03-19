@@ -28,7 +28,7 @@
 
                 $pagina=limpiar_cadena($pagina);
                 $url="index.php?vista=ownerAccountRequest&page=";
-                $registros = 1;
+                $registros = 10;
 
                 require_once (__DIR__. '/../php/admin/solicitudCuentaDueño.php');
 

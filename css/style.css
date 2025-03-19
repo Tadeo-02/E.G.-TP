@@ -743,6 +743,10 @@ select[multiple] {
   width: 50px;
 }
 
+.from{
+  width: auto;
+}
+
 .sexo {
   width: 300px; /* Igual al ancho esperado */
   height: 38px; /* Igual al filtro y al buscador */

@@ -4,12 +4,6 @@ TODAS LAS SECCIONES:
 Sección General
 - Resolver botón desplegable de "Mi Cuenta" para dispositivos móviles
 
-Seccion Novedaes:
-- Agregar función de expiración
-
-Seccion Aprobar/Denegar Solicitud de Descuento Dueño:
-- Configurar notificacion de mail para aceptacion y rechazacion de descuento para notificar al cliente
-
 Función enviar mail
 - Arreglar ubicación de los archivos
 
