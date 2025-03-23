@@ -24,14 +24,13 @@
 
                 // Obtener el rubro actual de la URL (si está presente)
                 $rubroActual = isset($_GET['rubroLocal']) ? $_GET['rubroLocal'] : '';
+                $sortActual = isset ($_GET['sortBy']) ? $_GET['sortBy'] : '';
             ?>
 
             <div class="centered row mb-4">
 
                 <?php if (isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Administrador") { ?>
                     <div class="col-lg-3 col-md-3">
-                    <br>
-                    <br>
                         <form action="index.php?vista=cargaLocales" method="POST">
                             <div class="mb-3" style="display: flex; justify-content: right;">
                                 <input type="submit" name="botonAnashe" class="btn btn-success sexo" value="Crear Local">
@@ -40,26 +39,34 @@
                     </div>';
                 <?php } ?>
 
-                <!-- Formulario con un desplegable -->
-                <div class="col-lg-3 col-md-3">
-                    <h2 class="text-center" style="color: white">Rubros</h2>
-                    <form action="index.php" method="get" id="rubroForm">
-                        <input type="hidden" name="vista" value="localsList">
-                        <div class="mb-3">
+                <!-- Formularios con desplegable -->
+                <form action="index.php" method="get" id="rubroForm" class="col-lg-5 col-md-5">
+                    <input type="hidden" name="vista" value="localsList">
+                    <div class="row">
+                        <div class="col">
+                            <select class="form-select" name="sortBy" aria-label="Seleccionar orden" onchange="this.form.submit()">
+                                <option value="" disabled select <?php echo $sortActual == '' ? 'selected' : ''; ?>>Ordenar por</option>
+                                <option value="nombreLocal" <?php echo $sortActual == 'nombreLocal' ? 'selected' : ''; ?>>Nombre</option>
+                                <option value="ubicacionLocal" <?php echo $sortActual == 'ubicacionLocal' ? 'selected' : ''; ?>>Ubicación</option>
+                                <option value="codLocal" <?php echo $sortActual == 'codLocal' ? 'selected' : ''; ?>>Codigo de local</option>
+                                <option value="rubroLocal" <?php echo $sortActual == 'rubroLocal' ? 'selected' : ''; ?>>Rubro</option>
+                            </select>
+                        </div>
+                        <div class="col">    
                             <select class="form-select" name="rubroLocal" aria-label="Seleccionar Rubro" onchange="this.form.submit()">
-                                <option value="" <?php echo $rubroActual == '' ? 'selected' : ''; ?>>Todos</option>
+                                <option value="" <?php echo $rubroActual == '' ? 'selected' : ''; ?>>Todos los rubros</option>
                                 <?php
                                 // Crear las opciones del desplegable
                                 foreach ($rubros as $row) {
                                     $nombreRubro = htmlspecialchars($row['nombreRubro']);
                                     $selected = $rubroActual == $nombreRubro ? 'selected' : '';
-                                    echo '<option value="' . $nombreRubro . '" ' . $selected . '>' . $nombreRubro . '</option>';
-                                }
+                                        echo '<option value="' . $nombreRubro . '" ' . $selected . '>' . $nombreRubro . '</option>';
+                                    }
                                 ?>
                             </select>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
 
                 <?php
                     // Cerrar la conexión
@@ -72,8 +79,6 @@
                 ?>
                 
                 <div class="col-lg-3 col-md-3">
-                    <br>
-                    <br>
                     <form action="" method="POST" autocomplete="off">
                         <input type="hidden" name="modulo_buscador" value="locales">
                         <div class="input-group">
@@ -86,7 +91,6 @@
                                 maxlength="30"
                                 value="<?php echo isset($_SESSION['busquedaLocal']) ? htmlspecialchars($_SESSION['busquedaLocal']) : ''; ?>"
                                 >
-                            <button type="submit" class="btn btn-info rounded-pill">Buscar</button>
                         </div>
                     </form>
 
@@ -97,6 +101,7 @@
         <div class="container">
             <?php
                 $rubroLocal = (isset($_GET['rubroLocal'])) ? $_GET['rubroLocal'] : '';
+                $ordenar = (isset($_GET['sortBy'])) ? $_GET['sortBy'] : 'nombreLocal';
 
                 if(!isset($_GET['page'])){
                     $pagina=1;
@@ -108,7 +113,7 @@
                 };
 
                 $pagina=limpiar_cadena($pagina);
-                $url="index.php?vista=localsList&rubroLocal=$rubroLocal&page=";
+                $url="index.php?vista=localsList&rubroLocal=$rubroLocal&sortBy=$ordenar&page=";
                 $registros = 1;
                 $busqueda = (isset( $_SESSION['busquedaLocal'])) ? $_SESSION['busquedaLocal'] : '';
 

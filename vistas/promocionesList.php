@@ -22,30 +22,44 @@
             $promociones = mysqli_query($conexion, $consulta_filtro);
 
             // Obtener el dia actual de la URL (si está presente)
-            $diaDesdeActual = isset($_POST['diaDesde']) ? $_POST['diaDesde'] : '';
-            $diaHastaActual = isset($_POST['diaHasta']) ? $_POST['diaHasta'] : '';
+            $diaDesdeActual = isset($_GET['diaDesde']) ? $_GET['diaDesde'] : '';
+            $diaHastaActual = isset($_GET['diaHasta']) ? $_GET['diaHasta'] : '';
 
             $tipoUsuario = isset($_SESSION['tipoUsuario']) ? $_SESSION['tipoUsuario'] : '';
+            $sortActual = isset ($_GET['sortBy']) ? $_GET['sortBy'] : '';
         ?>
 
         <div class="row calendarios ndea col-lg-10 col-md-10 col-12">
             
             <!-- Formulario con un desplegable -->
             <div class="columnaFiltro col-lg-3 col-md-10 col-12">
-                <div class="calendarContainer">
-                    <p>Selecciona una fecha</p>
-                    <form action="" method="POST">
-                        <label for="diaDesde">Fecha Inicio:</label>
-                        <input type="date" id="diaDesde" name="diaDesde">
-                        <br>
-                        <br>
-                        <label for="diaHasta">Fecha Fin:</label>
-                        <input type="date" id="diaHasta" name="diaHasta">
-                        <br>
 
-                        <button type="submit">Enviar</button>
+                    <form action="index.php" method="get" id="sortForm">
+                        <input type="hidden" name="vista" value="promocionesList">
+                        <div class="calendarContainer">
+                            <p>Selecciona una fecha</p>
+                            <label for="diaDesde">Fecha Inicio:</label>
+                            <input type="date" id="diaDesde" name="diaDesde">
+                            <br>
+                            <br>
+                            <label for="diaHasta">Fecha Fin:</label>
+                            <input type="date" id="diaHasta" name="diaHasta">
+                            <br>
+                            <button type="submit">Enviar</button>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="">
+                            <select class="form-select" name="sortBy" aria-label="Seleccionar orden" onchange="this.form.submit()">
+                                <option value="" disabled select <?php echo $sortActual == '' ? 'selected' : ''; ?>>Ordenar por</option>
+                                <option value="promociones.codLocal" <?php echo $sortActual == 'codLocal' ? 'selected' : ''; ?>>Local</option>
+                                <option value="categoriaCliente" <?php echo $sortActual == 'categoriaCliente' ? 'selected' : ''; ?>>Tipo cliente</option>
+                                <option value="fechaDesdePromo" <?php echo $sortActual == 'fechaDesdePromo' ? 'selected' : ''; ?>>Fecha inicio</option>
+                                <option value="fechaHastaPromo" <?php echo $sortActual == 'fechaHastaPromo' ? 'selected' : ''; ?>>Fecha fin</option>
+                                <option value="codPromo" <?php echo $sortActual == 'codPromo' ? 'selected' : ''; ?>>ID promoción</option>
+                            </select>
+                        </div>
                     </form>
-                </div>
 
                 <?php 
                 if($tipoUsuario == "Dueño"){
@@ -65,9 +79,10 @@
                     // Cerrar la conexión
                     mysqli_close($conexion);
 
-                    $diaDesde = isset($_POST['diaDesde']) ? $_POST['diaDesde'] : '';
-                    $diaHasta = isset($_POST['diaHasta']) ? $_POST['diaHasta'] : '';
+                    $diaDesde = isset($_GET['diaDesde']) ? $_GET['diaDesde'] : '';
+                    $diaHasta = isset($_GET['diaHasta']) ? $_GET['diaHasta'] : '';
                     $localActual = isset($_GET['codLocal']) ? $_GET['codLocal'] : '';
+                    $ordenar = isset($_GET['sortBy']) ? $_GET['sortBy'] : '';
 
                     if(!isset($_GET['page'])){
                         $pagina=1;
@@ -79,7 +94,7 @@
                     };
                     $pagina=limpiar_cadena($pagina);
 
-                    $url="index.php?vista=promocionesList&diaDesde=$diaDesde&diaHasta=$diaHasta&codLocal=$localActual&page=";
+                    $url="index.php?vista=promocionesList&diaDesde=$diaDesde&diaHasta=$diaHasta&codLocal=$localActual&sortBy=$ordenar&page=";
                     $registros=3;
 
                     require_once (__DIR__. '/../php/listaPromociones.php');

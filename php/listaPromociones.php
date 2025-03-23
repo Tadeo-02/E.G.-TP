@@ -18,6 +18,7 @@
 	
 	// Agregar condiciones según los filtros seleccionados
 
+	$sort = $ordenar != '' ? $ordenar : 'fechaDesdePromo';
 	$codUsuario = $_SESSION['codUsuario'] ?? null; // Evita error si no está definido
 	$condicionesI = [];
 	$condicionesw = [];
@@ -60,7 +61,7 @@
 						FROM promociones
 						$innerjoin
 						$where
-						ORDER BY fechaDesdePromo ASC
+						ORDER BY $sort ASC
 						LIMIT $inicio, $registros";
 
 	$consulta_total = "SELECT COUNT(*) FROM promociones 

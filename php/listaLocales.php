@@ -2,27 +2,21 @@
 	$conexion=conexion();
 
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
-
+	
 	$tabla="";
 
-	if (isset($busqueda) && $busqueda != "") {
-		if($rubroLocal != ""){
-			$consulta_datos="SELECT * FROM locales  WHERE rubroLocal = '$rubroLocal' AND nombreLocal LIKE '%$busqueda%' ORDER BY nombreLocal ASC LIMIT $inicio,$registros";
-			$consulta_total="SELECT COUNT(*) FROM locales WHERE rubroLocal = '$rubroLocal' AND nombreLocal LIKE '%$busqueda%'";
-		}else {	
-			$consulta_datos = "SELECT * FROM locales WHERE nombreLocal LIKE '%$busqueda%' ORDER BY nombreLocal LIMIT $inicio, $registros";
-			$consulta_total = "SELECT COUNT(*) FROM locales WHERE nombreLocal LIKE '%$busqueda%'";
-		}
-
-	}else {
-		if($rubroLocal != ""){
-			$consulta_datos="SELECT * FROM locales  WHERE rubroLocal = '$rubroLocal' ORDER BY nombreLocal ASC LIMIT $inicio,$registros";
-			$consulta_total="SELECT COUNT(*) FROM locales WHERE rubroLocal = '$rubroLocal'";
-		}else {	
-			$consulta_datos = "SELECT * FROM locales ORDER BY nombreLocal LIMIT $inicio, $registros";
-			$consulta_total = "SELECT COUNT(*) FROM locales";
-		}
+	$condiciones = [];
+	if (!empty($rubroLocal)) {
+		$condiciones[] = "rubroLocal = '$rubroLocal'";
 	}
+	if (!empty($busqueda)) {
+		$condiciones[] = "nombreLocal LIKE '%$busqueda%'";
+	}
+
+	$where = count($condiciones) > 0 ? 'WHERE ' . implode(' AND ', $condiciones) : '';
+
+	$consulta_datos = "SELECT * FROM locales $where ORDER BY $ordenar ASC LIMIT $inicio, $registros";
+	$consulta_total = "SELECT COUNT(*) FROM locales $where";
 
 	$datos = mysqli_query($conexion, $consulta_datos);
 
@@ -59,23 +53,6 @@
                 		</div>
 					</div>';
 			}
-			// elseif ($_SESSION['tipoUsuario'] == "Administrador"){
-			// 	$tabla.='<div class="textContainer col-12 col-md-4">
-			// 				<form action="index.php?vista=localsUpdate" method="POST">
-			// 					<input type="hidden" name="nombreLocal" value="'. htmlspecialchars($nombreLocal) .'">
-			// 					<input type="hidden" name="codLocal" value="'. htmlspecialchars($codLocal) .'">
-			// 					<input type="submit" name="botonAnashe" class="btn btn-warning" value="Modificar Local">
-			// 				</form>
-			// 				<br>
-			// 				<br>
-			// 				<form action="./php/admin/eliminarLocales.php" method="POST">
-			// 					<input type="hidden" name="codLocal" value="'.htmlspecialchars($codLocal) .'">
-			// 					<input type="hidden" name="dato" value="valor">
-			// 					<button type="submit"  name="botonAnashe" value="Eliminar Local" class="btn btn-danger" onclick="return confirmar();">Eliminar Local</button>
-			// 				</form>
-            //             </div>
-			// 		</div>';
-			// }
 			else {
 				$tabla.='<div class="textContainer ">
 							<form action="index.php?vista=localsUpdate" method="POST">

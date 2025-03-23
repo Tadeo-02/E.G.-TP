@@ -94,9 +94,11 @@ function paginador_tablas($pagina, $Npaginas, $url, $botones) {
             $tabla .= '<li class="page-item">
                 <a class="page-link" href="' . $url . '1">1</a>
             </li>';
-            $tabla .= '<li class="page-item disabled">
-                <span class="page-link">&hellip;</span>
-            </li>';
+            if(($pagina-2)!=1){
+                $tabla .= '<li class="page-item disabled">
+                    <span class="page-link">&hellip;</span>
+                </li>';
+            }
         };
         $tabla .= '<li class="page-item">
             <a class="page-link" href="' . $url . ($pagina-1).'">'. ($pagina-1).'</a>
@@ -122,9 +124,11 @@ function paginador_tablas($pagina, $Npaginas, $url, $botones) {
             <a class="page-link" href="' . $url . ($pagina+1).'">'. ($pagina+1).'</a>
         </li>';
         if(($pagina+1)!=$Npaginas){
-            $tabla .= '<li class="page-item disabled">
-                <span class="page-link">&hellip;</span>
-            </li>';
+            if(($pagina+2)!=$Npaginas){
+                $tabla .= '<li class="page-item disabled">
+                    <span class="page-link">&hellip;</span>
+                </li>';
+            }
             $tabla .= '<li class="page-item">
                 <a class="page-link" href="' . $url . $Npaginas . '">' . $Npaginas . '</a>
             </li>';

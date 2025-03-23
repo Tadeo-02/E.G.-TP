@@ -29,7 +29,7 @@
                         };
 
                         $pagina=limpiar_cadena($pagina);
-                        $url="index.php?vista=promocionesList&page="; 
+                        $url="index.php?vista=discountReport&page="; 
                         $registros=3;
 
                         require_once (__DIR__. '/../php/dueñoLocal/reporteDescuento.php');
