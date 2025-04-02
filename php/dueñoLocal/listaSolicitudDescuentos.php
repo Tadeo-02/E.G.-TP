@@ -34,44 +34,64 @@
 	$datos = mysqli_query($conexion, $consulta_datos);
 	$total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
 	$Npaginas = ceil($total_registros / $registros);
-	
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
+		$tabla =' <div class="locales">
+					<table>
+						<thead>
+							<tr>
+								<th>Cliente</th>
+								<th>Cod Cliente</th>
+								<th>Promoción</th>
+								<th>Código Promoción</th>
+								<th>Local</th>
+								<th>Código Local</th>
+								<th></th>
+							</tr>
+						</thead>
+		';
 		foreach($datos as $rows){ 
 			$codCliente = $rows['codCliente'];
 			$codPromo = $rows['codPromo'];
+            $consulta_contador = "SELECT COUNT(*) FROM uso_promociones WHERE estado = 'Aprobada' AND  codPromo = $codPromo";
+            $datosContador = mysqli_query($conexion, $consulta_contador);
+            $fila = mysqli_fetch_row($datosContador);
 			$nombreUsuario = $rows['nombreUsuario'];
+			$codUsuario = $rows['codUsuario'];
+			$nombreLocal = $rows['nombreLocal'];
 			$tabla.=' 
-				<div class="locales col-12 col-md-4">
-					<div class="textContainer">
-					<p> El cliente ... '. htmlspecialchars($rows['nombreUsuario']) . ' (COD '. htmlspecialchars($rows['codCliente']) . ') ... <br> desea solicitar el descuento '. htmlspecialchars($rows['textoPromo']) . ' (COD '. htmlspecialchars($rows['codPromo']) . ')
-					<br> del local '. htmlspecialchars($rows['nombreLocal']) . ' (COD '. htmlspecialchars($rows['codLocal']) . ') 
-					</p>
+							<tbody>
+								<tr class="has-text-centered";>
+									<td> '.htmlspecialchars($rows['nombreUsuario']).'</td>
+									<td>'. htmlspecialchars($rows['codCliente']) . '</td>
+									<td>'. htmlspecialchars($rows['textoPromo']) .'</td>
+									<td>'. htmlspecialchars($rows['codPromo']) .'</td>
+									<td>'. htmlspecialchars($rows['nombreLocal']) .'</td>
+									<td>'. htmlspecialchars($rows['codLocal']) .'</td>
+									<td class="botonesTD">
+			<div class="formContainerSolicitud">							
+										<form action="./php/dueñoLocal/aprobarSolicitudDescuentoCliente.php" method="POST">
+										<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
+										<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
+										<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
+										<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
+										<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido ACEPTADA."> <br>
+										<button type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar Solicitud</button>
+										</form>							
+										<form action="./php/dueñoLocal/denegarSolicitudDescuentoCliente.php" method="POST">
+										<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
+										<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
+										<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
+										<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
+										<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido RECHAZADA."> <br>
+										<button type="submit" name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger" onclick="return rechazar();">Denegar Solicitud</button>
+									</form>
+									</td>
+								</tr>
 					</div>
-                	<div class="textContainer col-12 col-md-4">
-						<form action="./php/dueñoLocal/aprobarSolicitudDescuentoCliente.php" method="POST">
-							<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
-							<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
-							<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
-							<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
-							<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido ACEPTADA."> <br>
-							<button type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar Solicitud</button>
-						</form>
-						<br>
-						<br>
-						<form action="./php/dueñoLocal/denegarSolicitudDescuentoCliente.php" method="POST">
-							<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
-							<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
-							<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
-							<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
-							<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido RECHAZADA."> <br>
-							<button type="submit" name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger" onclick="return rechazar();">Denegar Solicitud</button>
-						</form>
-                    </div>	
-        		</div>';
+								';
             
-
             $contador++;
 		}
 		$pag_final=$contador-1;
@@ -80,22 +100,26 @@
 			$tabla.=' <table>
 				<tr class="has-text-centered" >
 					<td>
-						<a href="'.$url.'1" class="button is-link is-rounded is-small mt-4 mb-4		Haga clic acá para recargar el listado
-                    </
+						<a href="'.$url.'1" class="button is-link is-rounded is-small mt-4 mb-4		Haga clic acá para recargar el listado>
+                    </td>
 				</tr>
 			';
 		}else{
 			$tabla.='
 				<tr class="has-text-centered" >
 					<td>
-						<p class="centered" style="color: red">	No hay solicitudes de promociones disponibles </p>
+						<p class="centered" style="color: red">	No se ha utilizado ningún descuento </p>
 					</td>
 				</tr>
 			';
 		}
 	}
 
-	$tabla.='</tbody></table>';
+	$tabla.='</tbody>
+			</table>	
+        		</div>
+	</tbody></table>';
+
 
 	if($total_registros>0 && $pagina<=$Npaginas){
 		$tabla.='<p style="text-align: center; color: white;">

@@ -315,20 +315,34 @@ footer {
 /* LISTADOS */
 table {
   border-collapse: collapse;
-  margin: 20px 0;
   font-size: 16px;
   min-width: 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
-
-/* Estilo para las celdas */
-table th,
-table td {
-  padding: 12px 15px;
-  vertical-align: middle;
+.botonesTD {
+    padding: 5px;
+    vertical-align: top; 
 }
 
-/* Encabezado de la tabla */
+.formContainerSolicitud {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center; 
+}
+
+.formContainerSolicitud form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    height: auto;
+}
+
+
+
 table thead th {
   background-color: #343a40;
   color: #ffffff;
@@ -336,7 +350,6 @@ table thead th {
   text-transform: uppercase;
 }
 
-/* Fila alterna para las filas del cuerpo */
 table tbody tr:nth-child(odd) {
   background-color: #f8f9fa;
 }
@@ -345,17 +358,20 @@ table tbody tr:nth-child(even) {
   background-color: #ffffff;
 }
 
-/* Hover para filas del cuerpo */
 table tbody tr:hover {
   background-color: #dee2e6;
   cursor: pointer;
 }
 
-/* Estilo para imágenes */
 table td img {
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+/* table th,
+table td {
+  padding: 12px 15px;
+  vertical-align: middle;
+} */
 
 /* Estilo para los botones */
 button {
