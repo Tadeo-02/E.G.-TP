@@ -30,7 +30,7 @@
 
                         $pagina=limpiar_cadena($pagina);
                         $url="index.php?vista=discountReport&page="; 
-                        $registros=3;
+                        $registros=15;
 
                         require_once (__DIR__. '/../php/dueñoLocal/reporteDescuento.php');
 

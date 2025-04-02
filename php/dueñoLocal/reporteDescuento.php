@@ -8,30 +8,27 @@
 	$codDueño = isset($_SESSION['codUsuario']) ? $_SESSION['codUsuario'] : '';
 	$tipoUsuario = isset($_SESSION['tipoUsuario']) ? $_SESSION['tipoUsuario'] : '';
 
-	$campos="uso_promociones.codCliente, uso_promociones.codPromo, uso_promociones.fechaUsoPromo, uso_promociones.estado, promociones.codLocal, promociones.codPromo, promociones.textoPromo, promociones.categoriaCliente, promociones.fechaDesdePromo, promociones.fechaHastaPromo, promociones.diasSemana, usuarios.nombreUsuario, usuarios.codUsuario, usuarios.categoriaCliente, locales.codLocal, locales.codUsuario, locales.nombreLocal";
-	$condicionesI[] = "INNER JOIN promociones ON promociones.codPromo = uso_promociones.codPromo 
-                   INNER JOIN usuarios ON uso_promociones.codCliente = usuarios.codUsuario 
-                   INNER JOIN locales ON locales.codLocal = promociones.codLocal";
+	$campos="uso_promociones.codCliente, uso_promociones.codPromo, uso_promociones.fechaUsoPromo, uso_promociones.estado, promociones.codLocal, promociones.codPromo, promociones.textoPromo, promociones.categoriaCliente, promociones.fechaDesdePromo, promociones.fechaHastaPromo, promociones.diasSemana, locales.codLocal, locales.codUsuario, locales.nombreLocal";
 
 	if($tipoUsuario == "Dueño"){
-		$condicionesW[] = "locales.codUsuario = $codDueño"; // Indico de cual tabla es el codLocal
+		$condicionesW[] = "locales.codUsuario = $codDueño";
 	}
-	$condicionesW[] = "uso_promociones.estado = 'Aprobada'"; // Indico de cual tabla es el codLocal
+	$condicionesW[] = "uso_promociones.estado = 'Aprobada'";
 	$where = !empty($condicionesW) ? 'WHERE ' . implode(' AND ', $condicionesW) : '';
 
-	$innerjoin = !empty($condicionesI) ? implode(' ', $condicionesI) : ''; // No poner 'INNER JOIN' directamente aca
+	$innerjoin = "INNER JOIN uso_promociones ON promociones.codPromo = uso_promociones.codPromo  
+                   INNER JOIN locales ON locales.codLocal = promociones.codLocal";
 	$select = isset($campos) ? $campos : '*';
 
 	// Construir consultas finales
-	$consulta_datos = "SELECT DISTINCT 'uso_promociones.codPromo',
-                        $select 
-						FROM uso_promociones 
+	$consulta_datos = "SELECT DISTINCT promociones.codPromo, $select 
+						FROM promociones 
 						$innerjoin
 						$where 
-						ORDER BY fechaUsoPromo ASC 
+						ORDER BY locales.codLocal ASC 
 						LIMIT $inicio, $registros";
 
-	$consulta_total = "SELECT COUNT(*) FROM uso_promociones 
+	$consulta_total = "SELECT COUNT(DISTINCT promociones.codPromo) FROM promociones 
 						$innerjoin 
 						$where";
                         
@@ -42,6 +39,18 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
+		$tabla =' <div class="locales">
+					<table>
+						<thead>
+							<tr>
+								<th>Promoción</th>
+								<th>Código Promoción</th>
+								<th>Local</th>
+								<th>Código Local</th>
+								<th>Usos</th>
+							</tr>
+						</thead>
+		';
 		foreach($datos as $rows){ 
 			$codCliente = $rows['codCliente'];
 			$codPromo = $rows['codPromo'];
@@ -49,14 +58,15 @@
             $datosContador = mysqli_query($conexion, $consulta_contador);
             $fila = mysqli_fetch_row($datosContador);
 			$tabla.=' 
-				<div class="locales">
-					<div class="textContainer parrafo">
-					<p> El DESCUENTO <b> '. htmlspecialchars($rows['textoPromo']) . ' </b> (COD '. htmlspecialchars($rows['codPromo']) . ')
-					<br> del LOCAL <b>'. htmlspecialchars($rows['nombreLocal']) . ' </b> (COD '. htmlspecialchars($rows['codLocal']) . ') 
-                    <br> ha sido utilizado Nº:    <b>'. htmlspecialchars($fila[0]).' </b> VECES
-					</p>
-					</div>	
-        		</div>';
+							<tbody>
+								<tr class="has-text-centered" >
+									<td>'.$rows['textoPromo'].'</td>
+									<td>'.$rows['codPromo'].'</td>
+									<td>'.$rows['nombreLocal'].'</td>
+									<td>'.$rows['codLocal'].'</td>
+									<td>'.$fila[0].'</td>
+								</tr>
+			';
             
             $contador++;
 		}
@@ -81,7 +91,10 @@
 		}
 	}
 
-	$tabla.='</tbody></table>';
+	$tabla.='</tbody>
+			</table>	
+        		</div>
+	</tbody></table>';
 
 	if($total_registros>0 && $pagina<=$Npaginas){
 		$tabla.='<p style="text-align: center; color: white;">

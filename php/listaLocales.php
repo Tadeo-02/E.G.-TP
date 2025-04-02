@@ -2,12 +2,18 @@
 	$conexion=conexion();
 
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
-	
+
 	$tabla="";
 
+	$tipoUsuario = isset($_SESSION['tipoUsuario']) ? $_SESSION['tipoUsuario'] : '';
+	$codDueño = isset($_SESSION['codUsuario']) ? $_SESSION['codUsuario'] : '';
+
 	$condiciones = [];
-	if (!empty($rubroLocal)) {
-		$condiciones[] = "rubroLocal = '$rubroLocal'";
+	if ($tipoUsuario == "Dueño") {
+		$condiciones[] = "codUsuario = '$codDueño'";
+	}
+	if (!empty($busqueda)) {
+		$condiciones[] = "nombreLocal LIKE '%$busqueda%'";
 	}
 	if (!empty($busqueda)) {
 		$condiciones[] = "nombreLocal LIKE '%$busqueda%'";
