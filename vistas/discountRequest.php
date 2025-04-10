@@ -14,14 +14,9 @@
         <br>
         <div class="col md-6 lg-6">
 
-            <div class="row calendarios">
-
                 <div class="container">
                     <?php
-
-                        $diaDesde = isset($_POST['diaDesde']) ? $_POST['diaDesde'] : '';
-                        $diaHasta = isset($_POST['diaHasta']) ? $_POST['diaHasta'] : '';
-                        // $localActual = isset($_GET['codLocal']) ? $_GET['codLocal'] : '';
+                        $ordenar = isset($_GET['sortBy']) ? $_GET['sortBy'] : 'codUso';
 
                         if(!isset($_GET['page'])){
                             $pagina=1;
@@ -33,8 +28,8 @@
                         };
 
                         $pagina=limpiar_cadena($pagina);
-                        $url="index.php?vista=discountRequest&page="; 
-                        $registros=3;
+                        $url="index.php?vista=discountRequest&sortBy=$ordenar&page="; 
+                        $registros=9;
 
                         require_once (__DIR__. '/../php/dueñoLocal/listaSolicitudDescuentos.php');
 

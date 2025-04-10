@@ -373,6 +373,11 @@ table td {
   vertical-align: middle;
 } */
 
+.linkTabla{
+  color: #000000;
+  text-decoration: none;
+}
+
 /* Estilo para los botones */
 button {
   font-size: 14px;

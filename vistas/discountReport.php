@@ -14,10 +14,7 @@
       
                 <div class="container">
                     <?php
-
-                        $diaDesde = isset($_POST['diaDesde']) ? $_POST['diaDesde'] : '';
-                        $diaHasta = isset($_POST['diaHasta']) ? $_POST['diaHasta'] : '';
-                        // $localActual = isset($_GET['codLocal']) ? $_GET['codLocal'] : '';
+                        $ordenar = isset($_GET['sortBy']) ? $_GET['sortBy'] : 'codUso';
 
                         if(!isset($_GET['page'])){
                             $pagina=1;
@@ -29,7 +26,7 @@
                         };
 
                         $pagina=limpiar_cadena($pagina);
-                        $url="index.php?vista=discountReport&page="; 
+                        $url="index.php?vista=discountReport&sortBy=$ordenar&page="; 
                         $registros=15;
 
                         require_once (__DIR__. '/../php/dueñoLocal/reporteDescuento.php');

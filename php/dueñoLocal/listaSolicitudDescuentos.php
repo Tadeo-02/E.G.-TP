@@ -24,7 +24,7 @@
 						FROM uso_promociones 
 						$innerjoin
 						$where 
-						ORDER BY fechaUsoPromo ASC 
+						ORDER BY $ordenar ASC 
 						LIMIT $inicio, $registros";
 
 	$consulta_total = "SELECT COUNT(*) FROM uso_promociones 
@@ -37,16 +37,31 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
-		$tabla =' <div class="col-10-lg col-10" style="display:flex; justify-content: center;">
+		$tabla =' <div class="col-10-lg col-10">
 					<table>
 						<thead>
 							<tr>
-								<th>Cliente</th>
-								<th>Cod Cliente</th>
-								<th>Promoción</th>
-								<th>Código Promoción</th>
-								<th>Local</th>
-								<th>Código Local</th>
+								<th>
+									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountRequest&sortBy=uso_promociones.fechaUsoPromo">Fecha solicitud</a>
+								</th>
+								<th>
+									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountRequest&sortBy=uso_promociones.codCliente">Cod Cliente</a>
+								</th>
+								<th>
+									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountRequest&sortBy=usuarios.nombreUsuario">Mail Cliente</a>		
+								</th>
+								<th>
+									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountRequest&sortBy=uso_promociones.codPromo">Código Promoción</a>
+								</th>
+								<th>
+									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountRequest&sortBy=promociones.textoPromo">Promoción</a>
+								</th>
+								<th>
+									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountRequest&sortBy=locales.codLocal">Código Local</a>
+								</th>
+								<th>
+									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountRequest&sortBy=locales.nombreLocal">Local</a>
+								</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -63,12 +78,13 @@
 			$tabla.=' 
 							<tbody>
 								<tr class="has-text-centered";>
-									<td> '.htmlspecialchars($rows['nombreUsuario']).'</td>
+									<td> '.htmlspecialchars($rows['fechaUsoPromo']).'</td>
 									<td>'. htmlspecialchars($rows['codCliente']) . '</td>
-									<td>'. htmlspecialchars($rows['textoPromo']) .'</td>
+									<td> '.htmlspecialchars($rows['nombreUsuario']).'</td>
 									<td>'. htmlspecialchars($rows['codPromo']) .'</td>
-									<td>'. htmlspecialchars($rows['nombreLocal']) .'</td>
+									<td>'. htmlspecialchars($rows['textoPromo']) .'</td>
 									<td>'. htmlspecialchars($rows['codLocal']) .'</td>
+									<td>'. htmlspecialchars($rows['nombreLocal']) .'</td>
 									<td class="botonesTD">
 										<div class="formContainerSolicitud">							
 											<form action="./php/dueñoLocal/aprobarSolicitudDescuentoCliente.php" method="POST">

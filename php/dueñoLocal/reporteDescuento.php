@@ -25,7 +25,7 @@
 						FROM promociones 
 						$innerjoin
 						$where 
-						ORDER BY locales.codLocal ASC 
+						ORDER BY $ordenar ASC 
 						LIMIT $inicio, $registros";
 
 	$consulta_total = "SELECT COUNT(DISTINCT promociones.codPromo) FROM promociones 
@@ -43,11 +43,21 @@
 					<table>
 						<thead>
 							<tr>
-								<th>Promoción</th>
-								<th>Código Promoción</th>
-								<th>Local</th>
-								<th>Código Local</th>
-								<th>Usos</th>
+								<th>
+									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountReport&sortBy=uso_promociones.codPromo">Código Promoción</a>
+								</th>
+								<th>
+									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountReport&sortBy=promociones.textoPromo">Promoción</a>
+								</th>
+								<th>
+									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountReport&sortBy=locales.codLocal">Código Local</a>
+								</th>
+								<th>
+									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountReport&sortBy=locales.nombreLocal">Local</a>
+								</th>
+								<th>
+									Usos
+								</th>
 							</tr>
 						</thead>
 		';
@@ -60,10 +70,10 @@
 			$tabla.=' 
 							<tbody>
 								<tr class="has-text-centered" >
-									<td>'.$rows['textoPromo'].'</td>
 									<td>'.$rows['codPromo'].'</td>
-									<td>'.$rows['nombreLocal'].'</td>
+									<td>'.$rows['textoPromo'].'</td>
 									<td>'.$rows['codLocal'].'</td>
+									<td>'.$rows['nombreLocal'].'</td>
 									<td>'.$fila[0].'</td>
 								</tr>
 			';
