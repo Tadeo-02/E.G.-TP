@@ -39,7 +39,7 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
-		$tabla =' <div class="">
+		$tabla =' <div class="col lg-10 md-4 table table-bordered text-center align-middle" style="display:flex; justify-content: center;">
 					<table>
 						<thead>
 							<tr>

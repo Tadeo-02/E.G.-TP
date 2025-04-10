@@ -37,15 +37,7 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-		$tabla =' <div class="col-10-lg col-10">
-=======
 		$tabla =' <div class="col lg-10 md-4 table table-bordered text-center align-middle" style="display:flex; justify-content: center;">
->>>>>>> Stashed changes
-=======
-		$tabla =' <div class="col lg-10 md-4 table table-bordered text-center align-middle" style="display:flex; justify-content: center;">
->>>>>>> Stashed changes
 					<table>
 						<thead>
 							<tr>
@@ -92,16 +84,12 @@
 									<td>'. htmlspecialchars($rows['codPromo']) .'</td>
 									<td>'. htmlspecialchars($rows['textoPromo']) .'</td>
 									<td>'. htmlspecialchars($rows['codLocal']) .'</td>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 									<td>'. htmlspecialchars($rows['nombreLocal']) .'</td>
 									<td class="botonesTD">
-=======
+
 									<td class="botonesTD" style="width: 25%;">
->>>>>>> Stashed changes
-=======
+
 									<td class="botonesTD" style="width: 25%;">
->>>>>>> Stashed changes
 										<div class="formContainerSolicitud">							
 											<form action="./php/dueñoLocal/aprobarSolicitudDescuentoCliente.php" method="POST" class"d-inline">
 												<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
