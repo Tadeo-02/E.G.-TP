@@ -15,7 +15,10 @@
         <div class="col md-4 lg-10">
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
 >>>>>>> Stashed changes
                 <div class="container">

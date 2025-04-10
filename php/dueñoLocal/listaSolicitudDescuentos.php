@@ -38,7 +38,11 @@
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		$tabla =' <div class="col-10-lg col-10">
+=======
+		$tabla =' <div class="col lg-10 md-4 table table-bordered text-center align-middle" style="display:flex; justify-content: center;">
+>>>>>>> Stashed changes
 =======
 		$tabla =' <div class="col lg-10 md-4 table table-bordered text-center align-middle" style="display:flex; justify-content: center;">
 >>>>>>> Stashed changes
@@ -89,8 +93,12 @@
 									<td>'. htmlspecialchars($rows['textoPromo']) .'</td>
 									<td>'. htmlspecialchars($rows['codLocal']) .'</td>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 									<td>'. htmlspecialchars($rows['nombreLocal']) .'</td>
 									<td class="botonesTD">
+=======
+									<td class="botonesTD" style="width: 25%;">
+>>>>>>> Stashed changes
 =======
 									<td class="botonesTD" style="width: 25%;">
 >>>>>>> Stashed changes
