@@ -15,6 +15,3 @@ Lista Promociones:
 
 TODOS los listados:
 - Agregar filtro para ordenar listado
-
-Reporte uso de promociones:
-- Arreglar consulta a la base de datos

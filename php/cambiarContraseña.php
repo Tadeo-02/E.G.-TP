@@ -5,7 +5,6 @@
     $email = limpiar_cadena($_POST['nombreUsuario']);
     $clave_1 = limpiar_cadena($_POST['claveUsuario1']);
     $clave_2 = limpiar_cadena($_POST['claveUsuario2']);
-    $checkBox = limpiar_cadena($_POST['esDueño']);
 
     // Verificar campos Obligatorios
     if( $clave_1 == "" || $clave_2 == "" || $email == ""){
@@ -32,9 +31,9 @@
         }else{
             $checkEmail = conexion();
             $checkEmail = $checkEmail->query("SELECT nombreUsuario FROM usuarios WHERE nombreUsuario = '$email'");
-            if($checkEmail -> num_rows > 0){ 
+            if($checkEmail -> num_rows < 1){ 
                 echo '<div class="alert alert-danger" role="alert">
-                        El email ya está registrado
+                        El email ingresado no existe
                       </div>';
                 exit();
             }
@@ -55,16 +54,9 @@
 
     // Guardando datos
     $guardar_usuario = conexion();
-    if($checkBox == 1){
-        $guardar_usuario = $guardar_usuario->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', NULL, 'Dueño', 'Pendiente')");
-    }else{
-       $guardar_usuario = $guardar_usuario->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', 'Inicial', 'Cliente','Activa')");
-    }
+    $guardar_usuario = $guardar_usuario->query("UPDATE usuarios SET claveUsuario = '$clave' WHERE nombreUsuario = '$email'");    
 
     header("Location: /TP ENTORNOS/index.php?vista=login");
 
 
 ?>
-
-
-

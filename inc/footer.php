@@ -31,10 +31,10 @@
             <div class="col-md-6 p-4">
                 <div class="bg-light p-4 contactoBottom">
                   
-                    <h4><i class="fa-solid fa-map"></i>Dónde estamos</h4>
+                    <h4><i class="fa-solid fa-map"></i> Dónde estamos</h4>
                     <p><i class="fa-solid fa-map-pin"></i> Tero Violado 2530, Rosario, Santa Fe, Argentina</p>
                     <p><i class="fa-solid fa-phone"></i> Telefeno: 341 0344 0555</p>
-                    <h4> <i class="fa-solid fa-clock"></i>Horarios </h4>
+                    <h4> <i class="fa-solid fa-clock"></i> Horarios </h4>
                     <ul>
                         <li><p><b>Locales:</b> Lunes a Domngo de 10hs a 21hs</p></li>
                         <li><p><b>Patio de Comidas:</b> Lunes a Domingo desde las 8hs hasta las 00hs</p></li>

@@ -37,7 +37,7 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
-		$tabla =' <div class="locales">
+		$tabla =' <div class="col-10-lg col-10" style="display:flex; justify-content: center;">
 					<table>
 						<thead>
 							<tr>
@@ -70,26 +70,27 @@
 									<td>'. htmlspecialchars($rows['nombreLocal']) .'</td>
 									<td>'. htmlspecialchars($rows['codLocal']) .'</td>
 									<td class="botonesTD">
-			<div class="formContainerSolicitud">							
-										<form action="./php/dueñoLocal/aprobarSolicitudDescuentoCliente.php" method="POST">
-										<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
-										<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
-										<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
-										<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
-										<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido ACEPTADA."> <br>
-										<button type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar Solicitud</button>
-										</form>							
-										<form action="./php/dueñoLocal/denegarSolicitudDescuentoCliente.php" method="POST">
-										<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
-										<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
-										<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
-										<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
-										<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido RECHAZADA."> <br>
-										<button type="submit" name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger" onclick="return rechazar();">Denegar Solicitud</button>
-									</form>
+										<div class="formContainerSolicitud">							
+											<form action="./php/dueñoLocal/aprobarSolicitudDescuentoCliente.php" method="POST">
+												<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
+												<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
+												<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
+												<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
+												<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido ACEPTADA."> <br>
+												<button type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar Solicitud</button>
+											</form>							
+											<form action="./php/dueñoLocal/denegarSolicitudDescuentoCliente.php" method="POST">
+												<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
+												<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
+												<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
+												<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
+												<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido RECHAZADA."> <br>
+												<button type="submit" name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger" onclick="return rechazar();">Denegar Solicitud</button>
+											</form>
+										</div>
 									</td>
 								</tr>
-					</div>
+					
 								';
             
             $contador++;

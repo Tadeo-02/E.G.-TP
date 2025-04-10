@@ -17,7 +17,7 @@
                             <button type="submit" class="btn btn-primary" value="Ingresar" href="">Confirmar</button>
                             <br>
                             <br>
-                            <a href="#">¿Has olvidado la contraseña?</a>
+                            <a href="/TP ENTORNOS/index.php?vista=changePassword">¿Has olvidado la contraseña?</a>
                             <br>
                             <br>
                             <a href="/TP ENTORNOS/index.php?vista=signUp">Crear Cuenta</a>

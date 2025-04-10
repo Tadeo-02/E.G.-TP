@@ -8,7 +8,7 @@
                   </div>
                   <div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">
                       <div class="about-text">
-                            <h2>MAPA DEL LOCAL</h2>
+                            <h2>MAPA DEL SITIO</h2>
                             <ul class="has-text-centered">
                                 <li><a class="nav-link" href="#">Inicio</a></li>
                                 

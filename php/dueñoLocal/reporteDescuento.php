@@ -39,7 +39,7 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
-		$tabla =' <div class="locales">
+		$tabla =' <div class="">
 					<table>
 						<thead>
 							<tr>

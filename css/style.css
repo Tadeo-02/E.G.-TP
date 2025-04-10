@@ -344,8 +344,8 @@ table {
 
 
 table thead th {
-  background-color: #343a40;
-  color: #ffffff;
+  background-color: #ffca2c;
+  color: #000000;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -743,7 +743,7 @@ select[multiple] {
   width: 100%;
   padding: 8px;
   font-size: 14px;
-  border-radius: 6px;
+  formorder-radius: 6px;
 }
 
 /* Mejorar la apariencia en pantallas pequeñas */

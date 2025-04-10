@@ -15,8 +15,8 @@
 	if (!empty($busqueda)) {
 		$condiciones[] = "nombreLocal LIKE '%$busqueda%'";
 	}
-	if (!empty($busqueda)) {
-		$condiciones[] = "nombreLocal LIKE '%$busqueda%'";
+	if (!empty($rubroLocal)) {
+		$condiciones[] = "rubroLocal = '$rubroLocal'";
 	}
 
 	$where = count($condiciones) > 0 ? 'WHERE ' . implode(' AND ', $condiciones) : '';
