@@ -28,11 +28,11 @@
             $tipoUsuario = isset($_SESSION['tipoUsuario']) ? $_SESSION['tipoUsuario'] : '';
             $sortActual = isset ($_GET['sortBy']) ? $_GET['sortBy'] : '';
         ?>
-
-        <div class="row calendarios ndea col-lg-10 col-md-10 col-12">
+//! Cambio de md de 10 a 4 para arrelgar muestro de promociones en pantallas chicas
+        <div class="row calendarios ndea col-lg-10 col-md-4 col-12">
             
             <!-- Formulario con un desplegable -->
-            <div class="columnaFiltro col-lg-3 col-md-10 col-12">
+            <div class="columnaFiltro col-lg-3 col-md-4 col-12">
 
                     <form action="index.php" method="get" id="sortForm">
                         <input type="hidden" name="vista" value="promocionesList">

@@ -191,7 +191,7 @@
 				$palabraDias = array_map(fn($num) => $arrayDiasSemana[$num] ?? 'Desconocido', $numerosDias);
 				$tabla.=' 
 				<div class="promocionesAdmin">
-						<div class="textContainer">
+						<div class="textContainer locales col-12 col-md-4">
 							<h2> Local: '. htmlspecialchars($rows['nombreLocal']) .'	</h2>
 							<h4> Id de la promoción: ' . htmlspecialchars($rows['codPromo']) .'  </h4>
 							<p>	Descripción de Promoción: <b>'. htmlspecialchars($rows['textoPromo']) . '</b></p>

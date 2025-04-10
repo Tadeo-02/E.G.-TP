@@ -12,8 +12,12 @@
         <br>
         <h1 class="text-center" style="color: white"><b>SOLICITUDES DE DESCUENTO</b></h1>
         <br>
-        <div class="col md-6 lg-6">
+        <div class="col md-4 lg-10">
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
                 <div class="container">
                     <?php
                         $ordenar = isset($_GET['sortBy']) ? $_GET['sortBy'] : 'codUso';
@@ -35,7 +39,7 @@
 
                     ?>
                 </div>
-            </div>
+            
         </div>
     </div>
 </div>

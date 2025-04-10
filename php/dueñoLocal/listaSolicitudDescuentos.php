@@ -37,7 +37,11 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
+<<<<<<< Updated upstream
 		$tabla =' <div class="col-10-lg col-10">
+=======
+		$tabla =' <div class="col lg-10 md-4 table table-bordered text-center align-middle" style="display:flex; justify-content: center;">
+>>>>>>> Stashed changes
 					<table>
 						<thead>
 							<tr>
@@ -76,7 +80,7 @@
 			$codUsuario = $rows['codUsuario'];
 			$nombreLocal = $rows['nombreLocal'];
 			$tabla.=' 
-							<tbody>
+							<tbody style="align-items: center;">
 								<tr class="has-text-centered";>
 									<td> '.htmlspecialchars($rows['fechaUsoPromo']).'</td>
 									<td>'. htmlspecialchars($rows['codCliente']) . '</td>
@@ -84,10 +88,14 @@
 									<td>'. htmlspecialchars($rows['codPromo']) .'</td>
 									<td>'. htmlspecialchars($rows['textoPromo']) .'</td>
 									<td>'. htmlspecialchars($rows['codLocal']) .'</td>
+<<<<<<< Updated upstream
 									<td>'. htmlspecialchars($rows['nombreLocal']) .'</td>
 									<td class="botonesTD">
+=======
+									<td class="botonesTD" style="width: 25%;">
+>>>>>>> Stashed changes
 										<div class="formContainerSolicitud">							
-											<form action="./php/dueñoLocal/aprobarSolicitudDescuentoCliente.php" method="POST">
+											<form action="./php/dueñoLocal/aprobarSolicitudDescuentoCliente.php" method="POST" class"d-inline">
 												<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
 												<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
 												<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
@@ -95,7 +103,7 @@
 												<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido ACEPTADA."> <br>
 												<button type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar Solicitud</button>
 											</form>							
-											<form action="./php/dueñoLocal/denegarSolicitudDescuentoCliente.php" method="POST">
+											<form action="./php/dueñoLocal/denegarSolicitudDescuentoCliente.php" method="POST" class"d-inline">
 												<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
 												<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
 												<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
@@ -132,8 +140,8 @@
 		}
 	}
 
-	$tabla.='</tbody>
-			</table>	
+	$tabla.='			</tbody>
+					</table>	
         		</div>
 	</tbody></table>';
 
