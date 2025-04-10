@@ -37,8 +37,8 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
-		$tabla =' <div class="col lg-10 md-4 table table-bordered text-center align-middle" style="display:flex; justify-content: center;">
-					<table>
+		$tabla =' <div class="table-responsive table table-bordered text-center align-middle" style="display:flex; justify-content: center;">
+    					<table class="" style="width: 100%; table-layout: fixed;">
 						<thead>
 							<tr>
 								<th>
@@ -85,13 +85,9 @@
 									<td>'. htmlspecialchars($rows['textoPromo']) .'</td>
 									<td>'. htmlspecialchars($rows['codLocal']) .'</td>
 									<td>'. htmlspecialchars($rows['nombreLocal']) .'</td>
-									<td class="botonesTD">
-
-									<td class="botonesTD" style="width: 25%;">
-
 									<td class="botonesTD" style="width: 25%;">
 										<div class="formContainerSolicitud">							
-											<form action="./php/dueñoLocal/aprobarSolicitudDescuentoCliente.php" method="POST" class"d-inline">
+											<form action="./php/dueñoLocal/aprobarSolicitudDescuentoCliente.php" method="POST">
 												<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
 												<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
 												<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
@@ -99,7 +95,7 @@
 												<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido ACEPTADA."> <br>
 												<button type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar Solicitud</button>
 											</form>							
-											<form action="./php/dueñoLocal/denegarSolicitudDescuentoCliente.php" method="POST" class"d-inline">
+											<form action="./php/dueñoLocal/denegarSolicitudDescuentoCliente.php" method="POST">
 												<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
 												<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
 												<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>

@@ -330,7 +330,6 @@ table {
     gap: 10px;
     align-items: center; 
 }
-
 .formContainerSolicitud form {
     display: flex;
     align-items: center;
@@ -338,6 +337,7 @@ table {
     padding: 0;
     margin: 0;
 }
+
 
 
 
@@ -779,6 +779,31 @@ select[multiple] {
 
 
 
+/* LISTADOS */
+table {
+  border-collapse: collapse;
+  font-size: 16px;
+  min-width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+.botonesTD {
+    padding: 5px;
+    vertical-align: top; 
+}
+
+.formContainerSolicitud {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center; 
+}
+.formContainerSolicitud form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
 
 
 
