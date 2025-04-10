@@ -44,6 +44,9 @@
 						<thead>
 							<tr>
 								<th>
+									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountReport&sortBy=uso_promociones.fechaUsoPromo">Fecha Uso</a>
+								</th>
+								<th>
 									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountReport&sortBy=uso_promociones.codPromo">Código Promoción</a>
 								</th>
 								<th>
@@ -70,6 +73,7 @@
 			$tabla.=' 
 							<tbody>
 								<tr class="has-text-centered" >
+									<td>'.$rows['fechaUsoPromo'].'</td>
 									<td>'.$rows['codPromo'].'</td>
 									<td>'.$rows['textoPromo'].'</td>
 									<td>'.$rows['codLocal'].'</td>

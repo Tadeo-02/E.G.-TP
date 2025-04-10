@@ -13,14 +13,6 @@
         <h1 class="text-center" style="color: white"><b>SOLICITUDES DE DESCUENTO</b></h1>
         <br>
         <div class="col md-4 lg-10">
-
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-
->>>>>>> Stashed changes
                 <div class="container">
                     <?php
                         $ordenar = isset($_GET['sortBy']) ? $_GET['sortBy'] : 'codUso';

@@ -14,7 +14,7 @@
       
                 <div class="container">
                     <?php
-                        $ordenar = isset($_GET['sortBy']) ? $_GET['sortBy'] : 'codUso';
+                        $ordenar = isset($_GET['sortBy']) ? $_GET['sortBy'] : 'fechaUsoPromo';
 
                         if(!isset($_GET['page'])){
                             $pagina=1;
