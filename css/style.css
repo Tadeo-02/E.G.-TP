@@ -265,12 +265,6 @@ footer {
 
 }
 
-/* PAGINADOR */
-.paginador{
-  display: flex;
-  justify-content: center;
-}
-
 
 /* Responsive */
 
@@ -440,98 +434,6 @@ button.btn-danger:hover {
     width: 100%;
   }
 }
-/* Estilo para el Buscador */
-/* General */
-/* body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa; /* Fondo claro */
-/* color: #343a40; Texto oscuro
-} */
-
-/* Títulos */
-/* h1.display-4 {
-    font-weight: bold;
-    color: #007bff;
-} */
-
-/* h2.h5 {
-    font-size: 1.25rem;
-    color: #6c757d; Texto gris
-} */
-
-/* Inputs y botones */
-/* .form-control {
-    border: 2px solid #007bff;
-    box-shadow: none;
-    transition: all 0.3s ease-in-out;
-}
-
-.form-control:focus {
-    border-color: #0056b3;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-.btn {
-    transition: all 0.3s ease-in-out;
-}
-
-.btn:hover {
-    filter: brightness(0.9);
-}
-
-.btn-info {
-    background-color: #007bff;
-    border: none;
-}
-
-.btn-danger {
-    background-color: #dc3545;
-    border: none;
-}
-
-.btn-link {
-    color: #17a2b8;
-    text-decoration: underline;
-} */
-
-/* Tablas */
-/* .table thead th {
-    background-color: #e9ecef;
-    font-weight: bold;
-}
-
-.table-hover tbody tr:hover {
-    background-color: #f1f3f5;
-} */
-
-/* Paginación */
-/* .pagination .page-link {
-    color: #007bff;
-}
-
-.pagination .page-item.active .page-link {
-    background-color: #007bff;
-    border-color: #007bff;
-}
-
-.pagination .page-link:hover {
-    background-color: #e2e6ea;
-    color: #0056b3;
-} */
-
-/* Espaciados */
-/* .container {
-    margin-top: 20px;
-}
-
-.table-container {
-    margin-bottom: 30px;
-}
-
-.text-end {
-    margin-top: 10px;
-} */
-
 
 /* Listado de Locales */
 
@@ -617,8 +519,6 @@ button.btn-danger:hover {
 }
 
 /* Listado de Promociones */
-
-
 .promociones {
   width: auto;
   text-align: center;
@@ -798,6 +698,18 @@ select[multiple] {
   formorder-radius: 6px;
 }
 
+.botonCrearNovedad{
+  min-width: 340px;
+  padding: 10px;
+}
+
+@media (max-width: 575px) {
+  .botonCrearNovedad{
+  min-width: 100%;
+  }
+}
+
+
 /* Mejorar la apariencia en pantallas pequeñas */
 @media (max-width: 600px) {
   .form-container {
@@ -805,6 +717,7 @@ select[multiple] {
       max-width: 400px;
       padding: 10px;
   }
+  
 }
 
 .from{

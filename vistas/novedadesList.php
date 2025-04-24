@@ -6,20 +6,22 @@
     <?php
         require_once(__DIR__ . '/../php/main.php');
     ?>
-    <div class="container widht">
+    <div class="container centered" style="align-items: center; flex-direction: column; padding: 10px;">
         <br>
         <br>
         <br>
         <h1 class="text-center" style="color: white"><b>NOVEDADES</b></h1>
         <br>
 
+        <!-- BOTON CREAR NOVEDADES, SOLO LO VE EL ADMIN -->
         <?php if (isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Administrador") { ?>
-        <div class="col-lg- mb-3 botonNovedad">
-            <form action="index.php?vista=cargaNovedad" method="POST">
-                    <input type="submit" name="" class="btn btn-success crear" value="Crear Novedad">  
-            </form>
+            <div class="col-lg-3 mb-3 botonCrearNovedad">
+                <form action="index.php?vista=cargaNovedad" method="POST">
+                    <div class="">
+                        <input type="submit" name="" class="btn btn-success crear" value="Crear Novedad"> 
+                    </div>
+                </form>
         </div>
-            
         <?php } ?>
 
         <div class="container">
