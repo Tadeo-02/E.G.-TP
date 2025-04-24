@@ -1,9 +1,6 @@
 TODAS LAS SECCIONES:
 - Arreglar alertas
 
-Sección General
-- Resolver botón desplegable de "Mi Cuenta" para dispositivos móviles
-
 Función enviar mail
 - Arreglar ubicación de los archivos
 
@@ -15,3 +12,6 @@ Lista Promociones:
 
 TODOS los listados:
 - Agregar filtro para ordenar listado
+
+CSS:
+- Arreglarlo

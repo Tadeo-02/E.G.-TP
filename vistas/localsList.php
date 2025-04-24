@@ -6,7 +6,7 @@
     <?php
         require_once(__DIR__ . '/../php/main.php');
     ?>
-    <div class="container">
+    <div class="container widht">
         <br>
         <br>
         <br>
@@ -30,19 +30,19 @@
             <div class="centered row mb-4">
 
                 <?php if (isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Administrador") { ?>
-                    <div class="col-lg-3 col-md-3">
+                    <div class="col-lg-3 col-md-3 col-12 mb-3">
                         <form action="index.php?vista=cargaLocales" method="POST">
-                            <div class="mb-3" style="display: flex; justify-content: right;">
-                                <input type="submit" name="botonAnashe" class="btn btn-success sexo" value="Crear Local">
-                            </div>    
+                            <div class="botonCrear">
+                                <input type="submit" name="" class="btn btn-success crear" value="Crear Local">
+                            </div>
                         </form>
-                    </div>';
+                    </div>
                 <?php } ?>
 
                 <!-- Formularios con desplegable -->
                 <form action="index.php" method="get" id="rubroForm" class="col-lg-5 col-md-5">
                     <input type="hidden" name="vista" value="localsList">
-                    <div class="row">
+                    <div class="row mb-3">
                         <div class="col">
                             <select class="form-select" name="sortBy" aria-label="Seleccionar orden" onchange="this.form.submit()">
                                 <option value="" disabled select <?php echo $sortActual == '' ? 'selected' : ''; ?>>Ordenar por</option>

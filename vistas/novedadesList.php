@@ -6,26 +6,20 @@
     <?php
         require_once(__DIR__ . '/../php/main.php');
     ?>
-    <div class="container">
+    <div class="container widht">
         <br>
         <br>
         <br>
         <h1 class="text-center" style="color: white"><b>NOVEDADES</b></h1>
         <br>
-       
-
 
         <?php if (isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Administrador") { ?>
-            <div class="col-lg-12 col-md-12" style="display: flex; justify-content: center; align-items: center;">
-                    <br>
-                    <br>
-                        <form action="index.php?vista=cargaNovedad" method="POST">
-                            <div class="mb-3" style="display: flex; justify-content: right;">
-                                <input type="submit" name="botonAnashe" class="btn btn-success sexo" value="Crear Novedad">
-                            </div>    
-                        </form>
-
-            </div>
+        <div class="col-lg- mb-3 botonNovedad">
+            <form action="index.php?vista=cargaNovedad" method="POST">
+                    <input type="submit" name="" class="btn btn-success crear" value="Crear Novedad">  
+            </form>
+        </div>
+            
         <?php } ?>
 
         <div class="container">

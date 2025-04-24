@@ -28,11 +28,11 @@
             $tipoUsuario = isset($_SESSION['tipoUsuario']) ? $_SESSION['tipoUsuario'] : '';
             $sortActual = isset ($_GET['sortBy']) ? $_GET['sortBy'] : '';
         ?>
-//! Cambio de md de 10 a 4 para arrelgar muestro de promociones en pantallas chicas
-        <div class="row calendarios ndea col-lg-10 col-md-4 col-12">
+        <!-- Cambio de md de 10 a 4 para arrelgar muestro de promociones en pantallas chicas -->
+        <div class="row calendarios">
             
             <!-- Formulario con un desplegable -->
-            <div class="columnaFiltro col-lg-3 col-md-4 col-12">
+            <div class="columnaFiltro1 col-lg-4 col-md-4 col-12">
 
                     <form action="index.php" method="get" id="sortForm">
                         <input type="hidden" name="vista" value="promocionesList">
@@ -59,22 +59,21 @@
                                 <option value="codPromo" <?php echo $sortActual == 'codPromo' ? 'selected' : ''; ?>>ID promoción</option>
                             </select>
                         </div>
+                        <br>
                     </form>
 
                 <?php 
                 if($tipoUsuario == "Dueño"){
-                    echo '<div class="textContainer">
-                            <br>
-                            <form action="index.php?vista=cargaPromociones" method="POST">
-                            <div class="mb-3" style="display: flex; justify-content: right;">
-                                <input type="submit" name="botonAnashe" class="btn btn-success sexo" value="Crear Promoción">
-                            </div>    
-                            </form>
-                        </div>';     
+                    echo '<form action="index.php?vista=cargaPromociones" method="POST">
+                            <div class="botonCrear">
+                                <input type="submit" name="" class="btn btn-success crear" value="Crear Promoción">
+                            </div>
+                        </form>
+                        ';     
                 }
                 ?>
             </div>
-            <div class="columnaFiltro col-lg-3 col-md-10 col-12">
+            <div class="columnaFiltro2 col-lg-7 col-md-7 col-12">
                 <?php
                     // Cerrar la conexión
                     mysqli_close($conexion);

@@ -1,4 +1,5 @@
 <!-- NAVBAR -->
+<div class="navWidht">
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
         <a class="navbar-brand" href="/TP ENTORNOS/index.php"><span class="text-warning">NO</span>VA</a>
