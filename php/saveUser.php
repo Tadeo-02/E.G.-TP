@@ -61,7 +61,7 @@
        $guardar_usuario = $guardar_usuario->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', 'Inicial', 'Cliente','Activa')");
     }
 
-    header("Location: /TP ENTORNOS/index.php?vista=login");
+    header("Location: index.php?vista=login");
 
 
 ?>

@@ -1,5 +1,5 @@
 <?php
-	require_once(__DIR__ . '../vencimientoPromociones.php');
+	require_once(__DIR__ . '/vencimientoPromociones.php');
 
 	if (isset($_SESSION['mensaje'])) {
 		echo "<script>

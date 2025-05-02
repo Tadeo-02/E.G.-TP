@@ -44,19 +44,19 @@
 						<thead>
 							<tr>
 								<th>
-									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountReport&sortBy=uso_promociones.fechaUsoPromo">Fecha Uso</a>
+									<a class="linkTabla" href="index.php?vista=discountReport&sortBy=uso_promociones.fechaUsoPromo">Fecha Uso</a>
 								</th>
 								<th>
-									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountReport&sortBy=uso_promociones.codPromo">Código Promoción</a>
+									<a class="linkTabla" href="index.php?vista=discountReport&sortBy=uso_promociones.codPromo">Código Promoción</a>
 								</th>
 								<th>
-									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountReport&sortBy=promociones.textoPromo">Promoción</a>
+									<a class="linkTabla" href="index.php?vista=discountReport&sortBy=promociones.textoPromo">Promoción</a>
 								</th>
 								<th>
-									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountReport&sortBy=locales.codLocal">Código Local</a>
+									<a class="linkTabla" href="index.php?vista=discountReport&sortBy=locales.codLocal">Código Local</a>
 								</th>
 								<th>
-									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountReport&sortBy=locales.nombreLocal">Local</a>
+									<a class="linkTabla" href="index.php?vista=discountReport&sortBy=locales.nombreLocal">Local</a>
 								</th>
 								<th>
 									Usos

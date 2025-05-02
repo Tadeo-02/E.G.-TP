@@ -10,7 +10,7 @@
           <div class="carousel-caption">
             <h5>EL SHOPPING QUE BUSCAS</h5>
                 <p>Diferentes eventos y actividades todos los meses</p>
-                <p><a href="/TP ENTORNOS/vistas/novedadesList.php?page=" class="btn btn-warning mt-3">Haz click aquí para ver las novedades del shopping</a></p>
+                <p><a href="vistas/novedadesList.php?page=" class="btn btn-warning mt-3">Haz click aquí para ver las novedades del shopping</a></p>
           </div>
         </div>
         <div class="carousel-item">
@@ -18,7 +18,7 @@
           <div class="carousel-caption">
              <h5>VARIEDAD DE LOCALES A TU DISPOSICIÓN</h5>
              <p>Numerosos locales de todo tipo de rubro</p>
-             <p><a href="/TP ENTORNOS/vistas/localsList.php?page=" class="btn btn-warning mt-3">Haz click aquí para ver los locales del shopping</a></p>
+             <p><a href="vistas/localsList.php?page=" class="btn btn-warning mt-3">Haz click aquí para ver los locales del shopping</a></p>
           </div>
         </div>
         <div class="carousel-item">
@@ -26,7 +26,7 @@
           <div class="carousel-caption">
             <h5>CINE, PATIO DE COMIDAS Y MÁS</h5>
             <p>Variedad de promociones todas las semanas</p>
-            <p><a href="/TP ENTORNOS/vistas/promocionesList.php?page=" class="btn btn-warning mt-3">Haz click aquí para ver las promociones del shopping</a></p>
+            <p><a href="vistas/promocionesList.php?page=" class="btn btn-warning mt-3">Haz click aquí para ver las promociones del shopping</a></p>
           </div>
         </div>
       </div>

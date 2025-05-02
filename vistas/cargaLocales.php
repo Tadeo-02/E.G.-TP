@@ -32,7 +32,7 @@
                 <div class="container">
                     <div class="form-container">
                         <h3 class="text-center mb-4">Formulario de Local</h3>
-                        <form action="/TP ENTORNOS/php/admin/altaLocales.php" method="POST" autocomplete="off" enctype="multipart/form-data">
+                        <form action="php/admin/altaLocales.php" method="POST" autocomplete="off" enctype="multipart/form-data">
                             <?php
                                 // Establecer conexión
                                 $conexion = conexion();

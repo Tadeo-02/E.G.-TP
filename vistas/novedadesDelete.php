@@ -32,7 +32,7 @@
                 <div class="container">
                     <div class="form-container">
                         <h3 class="text-center mb-4">Formulario de Eliminación de Novedades</h3>
-                        <form action="/TP ENTORNOS/php/admin/eliminarLocales.php" method="POST">
+                        <form action="php/admin/eliminarLocales.php" method="POST">
                         <?php
                                 // Establecer conexión
                                 $conexion = conexion();

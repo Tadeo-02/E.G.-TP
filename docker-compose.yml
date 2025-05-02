@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  apache-app:
+    image: apache-mysqli
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - "C:/Xampp/htdocs/TP ENTORNOS:/var/www/html"
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql
+    volumes:
+      - "C:/Xampp/htdocs/TP ENTORNOS/DB:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: pw
+    networks:
+      - app-network
+  
+  phpmyadmin:
+    image: phpmyadmin
+    environment:
+      PMA_HOST: mysql
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+
+networks:
+  app-network:
+    driver: bridge

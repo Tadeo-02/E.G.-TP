@@ -2,7 +2,7 @@
           <div class="container-fluid">
               <div class="row ">
                   <div class="col-12">
-                    <form action="/TP ENTORNOS/php/cambiarContraseña.php" method="POST" class="form" autocomplete="on" >
+                    <form action="php/cambiarContraseña.php" method="POST" class="form" autocomplete="on" >
                         <br>
                         <br>  
                         <br>
@@ -19,7 +19,7 @@
                             <button type="submit" class="btn btn-primary" value="Ingresar" href="login.php">Confirmar</button>
                             <br>
                             <br>
-                            <a href="/TP ENTORNOS/index.php?vista=login">Iniciar sesión</a>
+                            <a href="index.php?vista=login">Iniciar sesión</a>
                         </p>
                     </form>
                   </div>

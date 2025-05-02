@@ -56,7 +56,7 @@
     $guardar_usuario = conexion();
     $guardar_usuario = $guardar_usuario->query("UPDATE usuarios SET claveUsuario = '$clave' WHERE nombreUsuario = '$email'");    
 
-    header("Location: /TP ENTORNOS/index.php?vista=login");
+    header("Location: index.php?vista=login");
 
 
 ?>

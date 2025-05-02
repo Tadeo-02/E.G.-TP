@@ -42,25 +42,25 @@
 						<thead>
 							<tr>
 								<th>
-									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountRequest&sortBy=uso_promociones.fechaUsoPromo">Fecha solicitud</a>
+									<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=uso_promociones.fechaUsoPromo">Fecha solicitud</a>
 								</th>
 								<th>
-									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountRequest&sortBy=uso_promociones.codCliente">Cod Cliente</a>
+									<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=uso_promociones.codCliente">Cod Cliente</a>
 								</th>
 								<th>
-									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountRequest&sortBy=usuarios.nombreUsuario">Mail Cliente</a>		
+									<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=usuarios.nombreUsuario">Mail Cliente</a>		
 								</th>
 								<th>
-									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountRequest&sortBy=uso_promociones.codPromo">Código Promoción</a>
+									<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=uso_promociones.codPromo">Código Promoción</a>
 								</th>
 								<th>
-									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountRequest&sortBy=promociones.textoPromo">Promoción</a>
+									<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=promociones.textoPromo">Promoción</a>
 								</th>
 								<th>
-									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountRequest&sortBy=locales.codLocal">Código Local</a>
+									<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=locales.codLocal">Código Local</a>
 								</th>
 								<th>
-									<a class="linkTabla" href="/TP ENTORNOS/index.php?vista=discountRequest&sortBy=locales.nombreLocal">Local</a>
+									<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=locales.nombreLocal">Local</a>
 								</th>
 								<th></th>
 							</tr>
