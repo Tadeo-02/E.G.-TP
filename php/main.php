@@ -1,7 +1,10 @@
 <?php
 // conexion a la base de datos
 function conexion(){ 
-    $link = mysqli_connect("mysql", "root", "pw") or die("Problemas de conexion a la base de datos");
+    //? CONEXION DOCKER
+    //$link = mysqli_connect("mysql", "root", "pw") or die("Problemas de conexion a la base de datos");
+    //? CONEXION LOCAL
+    $link = mysqli_connect("localhost", "root") or die("Problemas de conexion a la base de datos");
     mysqli_select_db($link, "tp entornos");
     return $link;
 }
