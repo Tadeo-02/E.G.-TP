@@ -13,7 +13,8 @@
         <h1 class="text-center" style="color: white"><b>SOLICITUDES DE DESCUENTO</b></h1>
         <br>
         <div class="col md-4 lg-10">
-                <div class="container">
+                <div class="container">   
+                   <!-- Filtro para ordenar -->
                     <?php
                         $ordenar = isset($_GET['sortBy']) ? $_GET['sortBy'] : 'codUso';
 

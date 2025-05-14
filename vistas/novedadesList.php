@@ -12,7 +12,6 @@
         <br>
         <h1 class="text-center" style="color: white"><b>NOVEDADES</b></h1>
         <br>
-
         <!-- BOTON CREAR NOVEDADES, SOLO LO VE EL ADMIN -->
         <?php if (isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Administrador") { ?>
             <div class="col-lg-3 mb-3 botonCrearNovedad">
@@ -26,7 +25,6 @@
 
         <div class="container">
             <?php
-
                 if(!isset($_GET['page'])){
                     $pagina=1;
                 }else{
@@ -41,7 +39,6 @@
                 $registros = 1;
 
                 require_once (__DIR__. '/../php/listaNovedades.php');
-
             ?>
         </div>
     </div>

@@ -3,9 +3,6 @@
 
     $codNovedad = limpiar_cadena($_POST['codNovedad']);
     
-
-    // Verificar campos Obligatorios
-    
     $conexion = conexion();
     
     $eliminar_novedad = $conexion->prepare("DELETE FROM novedades WHERE codNovedad = ?");
@@ -20,14 +17,9 @@
             </div>';
             $conexion->close();
     }
-   
-   
-    
-
     // Cerrar la conexión
     $eliminar_novedad->close();
     $conexion->close();
 
     header("Location: index.php?vista=novedadesList");
-
 ?>

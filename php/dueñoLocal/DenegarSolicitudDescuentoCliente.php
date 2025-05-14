@@ -14,6 +14,8 @@
     else{
         echo "Error al rechazar la promo";
     }
+
+    //Informo via mail
     require_once __DIR__ . "/../enviarMail.php";
 
     // Cerrar la conexión
@@ -29,6 +31,4 @@
         header("Location: index.php");
         exit();
     }
-    
 ?>
-

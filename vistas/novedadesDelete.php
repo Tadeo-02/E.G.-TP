@@ -59,7 +59,6 @@
                                 </select>
                             </div>
             
-
                             <div class="text-center">
                             <button type="submit" class="btn btn-danger btn-lg">ELIMINAR NOVEDAD</button>
                             </div>

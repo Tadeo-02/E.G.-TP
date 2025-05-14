@@ -61,6 +61,7 @@ if ($total_registros >= 1 && $pagina <= $Npaginas) {
 	}
 	$pag_final = $contador - 1;
 } else {
+	// Si no hay registros, mostrar un mensaje
 	if ($total_registros >= 1) {
 		$tabla .= ' <table>
 				<tr class="has-text-centered" >
@@ -81,7 +82,7 @@ if ($total_registros >= 1 && $pagina <= $Npaginas) {
 }
 
 $tabla .= '</tbody></table>';
-
+//Paginador
 if ($total_registros > 0 && $pagina <= $Npaginas) {
 	$tabla .= '<p style="text-align: center; color: white;">
     		Mostrando Solicitudes de Cuenta de dueño <strong>' . $pag_inicio . '</strong> al 

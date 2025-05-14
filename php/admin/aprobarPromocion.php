@@ -14,6 +14,7 @@
         echo "Error al aprobar la promoción";
     }
 
+    //Informo via mail
     require_once __DIR__ . "/../enviarMail.php";
 
     // Cerrar la conexión

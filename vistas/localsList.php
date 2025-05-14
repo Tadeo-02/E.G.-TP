@@ -1,4 +1,4 @@
-<div class="container-fluid p-0">
+  <div class="container-fluid p-0">
     <h1 class="title">Locales</h1>
 </div>
 
@@ -99,6 +99,7 @@
         </div>
 
         <div class="container">
+            <!-- Filtro para ordenar -->
             <?php
                 $rubroLocal = (isset($_GET['rubroLocal'])) ? $_GET['rubroLocal'] : '';
                 $ordenar = (isset($_GET['sortBy'])) ? $_GET['sortBy'] : 'nombreLocal';

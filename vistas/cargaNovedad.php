@@ -27,7 +27,7 @@
     }
 </style>
 </head>
-
+<!-- Form con para cargar novedad -->
                 <div class="container">
                     <div class="form-container">
                         <h3 class="text-center mb-4">Formulario de Novedad</h3>

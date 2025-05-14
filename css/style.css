@@ -732,6 +732,7 @@ table {
   min-width: 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
+
 .botonesTD {
     padding: 5px;
     vertical-align: top; 
@@ -751,6 +752,59 @@ table {
     margin: 0;
 }
 
+.wrapper{
+  width: min(900px, 100% - 3rem);
+  margin-inline: auto;
+  background-color: white;
+}
 
+.reporte{
+  font-size: 1rem;
+  font-family: system-ui;
+  line-height: 1.5;
+  width: 100%;
+  border-collapse: collapse;
+  border: #ffca2c solid 5px;
+  border-radius: 25px;
+}
+
+.reporteHeading, .reporteContent{
+  padding: 1rem;
+}
+
+.reporteHeading{
+  text-align: left;
+  background: #bfbfbf;
+}
+
+.reporteRow:nth-of-type(2n){
+  background-color: #eaeaea;
+}
+.reporteRow:hover {
+  background-color: #bfbfbf;
+}
+
+@media (max-width: 900px){
+  .reporteHeading{
+    display: none;
+  }
+  .reporteContent{
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 15ch auto;
+    padding: 0.5rem 1rem;
+  } 
+  .reporteContent:first-child{
+    padding-top: 2rem;
+  }
+  .reporteContent:last-child{
+    padding-top: 2rem;
+  }
+  .reporteContent::before{
+    content: attr(data-cell) ": ";
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+}
 
 

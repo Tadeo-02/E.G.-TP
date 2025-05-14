@@ -7,8 +7,6 @@
 			</script>";
 		unset($_SESSION['mensaje']); // Eliminar el mensaje después de mostrarlo
 	}
-
-	//conexion a la base de datos
 	$conexion=conexion();
 
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;

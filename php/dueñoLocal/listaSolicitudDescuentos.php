@@ -6,7 +6,7 @@
 	$tabla="";
 
 	$codDueño = isset($_SESSION['codUsuario']) ? $_SESSION['codUsuario'] : '';
-
+	//Armar consulta
 	$campos="uso_promociones.codCliente, uso_promociones.codPromo, uso_promociones.fechaUsoPromo, uso_promociones.estado, promociones.codLocal, promociones.codPromo, promociones.textoPromo, promociones.categoriaCliente, promociones.fechaDesdePromo, promociones.fechaHastaPromo, promociones.diasSemana, usuarios.nombreUsuario, usuarios.codUsuario, usuarios.categoriaCliente, locales.codLocal, locales.codUsuario, locales.nombreLocal";
 	$condicionesI[] = "INNER JOIN promociones ON promociones.codPromo = uso_promociones.codPromo 
                    INNER JOIN usuarios ON uso_promociones.codCliente = usuarios.codUsuario 
@@ -34,6 +34,7 @@
 	$datos = mysqli_query($conexion, $consulta_datos);
 	$total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
 	$Npaginas = ceil($total_registros / $registros);
+	//Mostrar solicitud de Descuentos
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
@@ -113,6 +114,7 @@
 		}
 		$pag_final=$contador-1;
 	}else{
+		// Si no hay registros, mostrar un mensaje
 		if($total_registros>=1){
 			$tabla.=' <table>
 				<tr class="has-text-centered" >
@@ -137,7 +139,7 @@
         		</div>
 	</tbody></table>';
 
-
+	//Paginador
 	if($total_registros>0 && $pagina<=$Npaginas){
 		$tabla.='<p style="text-align: center; color: white;">
     		Mostrando Solicitudes de Cuenta de dueño <strong>'. $pag_inicio .'</strong> al 

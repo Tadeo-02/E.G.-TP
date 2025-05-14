@@ -14,6 +14,7 @@
         echo "Error al rechazar la cuenta";
     }
 
+    //Informo via mail
     require_once __DIR__ . "/../enviarMail.php";
 
     // Cerrar la conexión

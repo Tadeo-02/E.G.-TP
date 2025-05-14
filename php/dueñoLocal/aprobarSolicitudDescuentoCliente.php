@@ -7,8 +7,6 @@
         
     $conexion = conexion();
 
-    // $aumentar_contador = $conexion->prepare("UPDATE promociones SET contador = contador + 1 WHERE codPromo = ?");
-
     $aprobar_promo = $conexion->prepare("UPDATE uso_promociones SET estado = ? WHERE codCliente = ? AND codPromo = ? LIMIT 1");
     $aprobar_promo->bind_param("sii",$estado,  $codCliente, $codPromo);
 
@@ -17,9 +15,8 @@
     else{
         echo "Error al aprobar la promo";
     }
-
+    //Informo via mail
     require_once __DIR__ . "/../enviarMail.php";
-
 
     // Cerrar la conexión
     $aprobar_promo->close();
@@ -34,12 +31,4 @@
         header("Location: index.php");
         exit();
     }
-    
 ?>
-
-
-
-
-
-
-

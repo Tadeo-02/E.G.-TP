@@ -1,7 +1,7 @@
 <?php
 	$conexion=conexion();
 	
-	//? FECHA HOY
+	// FECHA HOY
 	$hoy = date("Y-m-d");
 
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;

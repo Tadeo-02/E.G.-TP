@@ -11,8 +11,9 @@
         <br>
         <br>
         <h1 class="text-center" style="color: white"><b>REPORTE DE UTILIZACION DE DESCUENTOS</b></h1>
-      
+        <br>
                 <div class="container">
+                    <!-- Filtro para ordenar -->
                     <?php
                         $ordenar = isset($_GET['sortBy']) ? $_GET['sortBy'] : 'fechaUsoPromo';
 

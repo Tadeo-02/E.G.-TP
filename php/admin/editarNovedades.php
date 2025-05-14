@@ -44,7 +44,6 @@
     // Guardar Local
     $guardarNovedad = $conexion ->query("UPDATE novedades SET textoNovedad = '$textoNovedad', fechaDesdeNovedad = '$fechaDesdeNovedad', fechaHastaNovedad = '$fechaHastaNovedad', tipoUsuario = '$tipoUsuario' WHERE codNovedad = '$novedadModificada';");
 
-
     //Cerrar conexion    
     mysqli_close($conexion);
 
@@ -57,7 +56,6 @@
         header("Location: index.php");
         exit();
     }
-
 ?>
 
     

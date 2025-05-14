@@ -1,9 +1,8 @@
 
 <section id="about" class="about">
 	<div class="container-fluid">
-    
-	<!-- SE MUESTRA EL RESULTADO DEL FORM CON ESTE DIV "form-rest" -->
-        <div class="form-rest"></div>
+        
+        <div class="form-rest"></div> <!--se utiliza para mostrar el resultado dentro de este "form-rest"  -->
         <?php
             require_once(__DIR__ . '/../php/main.php');
         ?>
@@ -29,6 +28,7 @@
         }
     </style>
 </head>
+<!-- Form con para cargar promocion -->
 
                     <div class="container">
                         <div class="form-container">
@@ -133,9 +133,9 @@
 <!-- Selector de los días con JS -->
 <script>
     new MultiSelectTag('diasSemana', {
-    rounded: true,    // default true
-    shadow: true,      // default false
-    placeholder: 'Search',  // default Search...
+    rounded: true,    
+    shadow: true,      
+    placeholder: 'Search',  
     tagColor: {
         textColor: '#000000',
         borderColor: '#ffca2c',
