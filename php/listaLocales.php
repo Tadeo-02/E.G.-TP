@@ -7,7 +7,8 @@
 
 	$tipoUsuario = isset($_SESSION['tipoUsuario']) ? $_SESSION['tipoUsuario'] : '';
 	$codDueño = isset($_SESSION['codUsuario']) ? $_SESSION['codUsuario'] : '';
-
+	
+	// Definimos los datos a consultar
 	$condiciones = [];
 	if ($tipoUsuario == "Dueño") {
 		$condiciones[] = "codUsuario = '$codDueño'";
@@ -80,6 +81,8 @@
             $contador++;
 		}
 		$pag_final=$contador-1;
+
+	// Si no hay registros, mostrar un mensaje
 	}else{
 		if($total_registros>=1){
 			$tabla.=' <table>
@@ -102,9 +105,9 @@
 		}
 	}
 
-
 	$tabla.='</tbody></table>';
 
+	//Paginador
 	if($total_registros>0 && $pagina<=$Npaginas){
 		$tabla.='<p style="text-align: center; color: white;">
     		Mostrando locales <strong>'. $pag_inicio .'</strong> al 

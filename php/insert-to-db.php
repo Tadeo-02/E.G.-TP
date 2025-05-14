@@ -1,4 +1,5 @@
 <?php
+//? CODIGO PHP PARA INSERTAR EN LA BASE DE DATOS EN DOCKER
 $servername = "172.17.0.3";
 $username = "root";
 $password = "pw";

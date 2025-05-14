@@ -8,6 +8,7 @@
 		unset($_SESSION['mensaje']); // Eliminar el mensaje después de mostrarlo
 	}
 
+	//conexion a la base de datos
 	$conexion=conexion();
 
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
@@ -27,8 +28,8 @@
 	$campos="  locales.codLocal, locales.codUsuario, locales.nombreLocal, 
 	promociones.codLocal, promociones.codPromo, promociones.textoPromo, promociones.categoriaCliente,
 	promociones.fechaDesdePromo, promociones.fechaHastaPromo, promociones.diasSemana";
-	$condicionesI[] = "INNER JOIN locales ON promociones.codLocal = locales.codLocal"; //Agregar INNER JOIN
-	// if para funcione segun si es dueño o cliente/UNR
+	$condicionesI[] = "INNER JOIN locales ON promociones.codLocal = locales.codLocal";
+	// Verificacion segun si es dueño o cliente/UNR
 	if ($tipoUsuario == 'Dueño') {
 		$condicionesW[] = "locales.codUsuario = $codUsuario";
 	}
@@ -37,7 +38,7 @@
 		$condicionesW[] = "promociones.codLocal = $localActual"; // Indico de cual tabla es el codLocal
 	}
 	if (!empty($diaDesde)) {
-		$condicionesW[] = "'$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo";
+		$condicionesW[] = "'$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo"; // Indico fecha desde y hasta de la promo
 	}
 	if (!empty($diaHasta)) {
 		$condicionesW[] = "'$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo";
@@ -53,7 +54,7 @@
 	
 	$where = !empty($condicionesW) ? 'WHERE ' . implode(' AND ', $condicionesW) : '';
 
-	$innerjoin = !empty($condicionesI) ? implode(' ', $condicionesI) : ''; // No poner 'INNER JOIN' directamente aca
+	$innerjoin = !empty($condicionesI) ? implode(' ', $condicionesI) : ''; 
 	$select = isset($campos) ? $campos : '*';
 
 	// Construir consultas finales
@@ -225,7 +226,7 @@
 		$pag_final=$contador-1;
 	}
 	
-
+	// Si no hay registros, mostrar un mensaje
 	else{
 		if($total_registros>=1){
 			$tabla.=' <table>
@@ -254,6 +255,7 @@
 
 	$tabla.='</tbody></table>';
 
+	//Paginador
 	if($total_registros>0 && $pagina<=$Npaginas){
 		$tabla.='<p style="text-align: center; color: white;">
 					Mostrando promociones <strong>'. $pag_inicio .'</strong> al 

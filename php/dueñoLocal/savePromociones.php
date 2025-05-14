@@ -24,7 +24,7 @@
     }
 
     $diasSemanaJSON = json_encode($diasSemanaArray);
-
+    // Verificacion de fecha
     if($fechaDesdePromo == $fechaHastaPromo){ 
         echo '<div class="alert alert-danger" role="alert">
                 Las promociones no pueden comenzar y terminar el mismo día

@@ -7,6 +7,7 @@
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
 	
 	$tabla="";
+	//Consultas de acuerdo a la categoria de cliente
 	if($_SESSION['categoriaCliente'] == "Medium"){
 		$consulta_datos = "SELECT * FROM novedades 
 					WHERE (DATE ('$hoy') BETWEEN fechaDesdeNovedad AND fechaHastaNovedad) AND (tipoCliente = 'Inicial' OR tipoCliente = 'Medium')
@@ -110,6 +111,7 @@
 	
 	$tabla.='</tbody></table>';
 
+	// Si no hay registros, mostrar un mensaje
 	if($total_registros>0 && $pagina<=$Npaginas){
 		$tabla.='<p style="text-align: center; color: white;">
     		Mostrando novedades <strong>'. $pag_inicio .'</strong> al 
