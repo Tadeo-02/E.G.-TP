@@ -157,6 +157,7 @@ body {
   flex-direction: column;
   justify-content: center; /* Centra los elementos verticalmente */
 }
+
 .form h1 {
   color: white;
   text-transform: uppercase;
@@ -231,6 +232,12 @@ body {
 
 .footerDiv > div {
   flex: 1; /* Ambas columnas ocupan el mismo ancho */
+}
+
+@media (max-width: 750px){
+  .footerDiv{
+    display: grid;
+  }
 }
 
 .contactoBottom {
@@ -328,6 +335,7 @@ table {
     gap: 10px;
     align-items: center; 
 }
+
 .formContainerSolicitud form {
     display: flex;
     align-items: center;
@@ -428,7 +436,7 @@ button.btn-danger:hover {
 
 @media only screen and (max-width: 768px) {
   .botonCrear{
-      justify-content: center;
+    justify-content: center;
   }
   .botonNovedad{
     width: 100%;
@@ -753,9 +761,12 @@ table {
 }
 
 .wrapper{
-  width: min(900px, 100% - 3rem);
+  width: min(1000px, 100% - 3rem);
   margin-inline: auto;
   background-color: white;
+}
+.wrapperSolDesc{
+width: min(1400px, 100% - 3rem);
 }
 
 .reporte{
@@ -766,6 +777,9 @@ table {
   border-collapse: collapse;
   border: #ffca2c solid 5px;
   border-radius: 25px;
+  table-layout: auto;
+  overflow-x: auto;
+  max-width: 100%;
 }
 
 .reporteHeading, .reporteContent{
@@ -784,7 +798,29 @@ table {
   background-color: #bfbfbf;
 }
 
-@media (max-width: 900px){
+@media (max-width: 1200px) {
+    .reporte{
+        font-size: 12px;
+    }
+    .reporteHeading, .reporteRow {
+        padding: 5px;
+    }
+}
+
+@media (min-width: 1201px) {
+    .reporte{
+        font-size: 14px;
+    }
+    .reporteHeading, .reporteRow {
+        padding: 10px;
+    }
+    .table-container {
+        padding: 0 15px; /* Para centrar */
+    }
+}
+
+
+@media (max-width: 1000px){
   .reporteHeading{
     display: none;
   }
@@ -807,4 +843,23 @@ table {
   }
 }
 
+
+
+@media (max-width: 500px){
+  .reporte{
+    font-size: 0.8rem; /* Reduce el tamaño de la fuente */
+  }
+  .formContainerSolicitud {
+    display: grid;
+  }
+  .reporteContent{
+    word-wrap: break-word; /* Fuerza la división del texto */
+    white-space: normal; /* Permite el salto de línea */
+  }
+  .btnTabla{
+    padding: 0.3em 0.5em;
+    font-size: 0.9rem; /* Ajusta el tamaño de la fuente */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+  }
+}
 

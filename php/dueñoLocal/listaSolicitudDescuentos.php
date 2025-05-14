@@ -38,35 +38,32 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
-		$tabla =' <div class="table-responsive table table-bordered text-center align-middle" style="display:flex; justify-content: center;">
-    					<table class="" style="width: 100%; table-layout: fixed;">
-						<thead>
-							<tr>
-								<th>
-									<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=uso_promociones.fechaUsoPromo">Fecha solicitud</a>
-								</th>
-								<th>
-									<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=uso_promociones.codCliente">Cod Cliente</a>
-								</th>
-								<th>
-									<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=usuarios.nombreUsuario">Mail Cliente</a>		
-								</th>
-								<th>
-									<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=uso_promociones.codPromo">Código Promoción</a>
-								</th>
-								<th>
-									<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=promociones.textoPromo">Promoción</a>
-								</th>
-								<th>
-									<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=locales.codLocal">Código Local</a>
-								</th>
-								<th>
-									<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=locales.nombreLocal">Local</a>
-								</th>
-								<th></th>
-							</tr>
-						</thead>
-		';
+		$tabla =' <div class="wrapper wrapperSolDesc">
+					<table class="reporte">
+						<tr class="reporteRow">
+							<th class="reporteHeading">
+								<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=uso_promociones.fechaUsoPromo">Fecha solicitud</a>
+							</th>
+							<th class="reporteHeading">
+								<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=uso_promociones.codCliente">Cod Cliente</a>
+							</th>
+							<th class="reporteHeading">
+								<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=usuarios.nombreUsuario">Mail Cliente</a>	
+							</th>
+							<th class="reporteHeading">
+								<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=uso_promociones.codPromo">Código Promoción</a>
+							</th>
+							<th class="reporteHeading">
+								<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=promociones.textoPromo">Promoción</a>
+							</th>
+							<th class="reporteHeading">
+								<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=locales.codLocal">Código Local</a>
+							</th>
+							<th class="reporteHeading">
+								<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=locales.nombreLocal">Local</a>
+							</th>
+							<th class="reporteHeading"></th>
+						</tr>';
 		foreach($datos as $rows){ 
 			$codCliente = $rows['codCliente'];
 			$codPromo = $rows['codPromo'];
@@ -76,39 +73,35 @@
 			$nombreUsuario = $rows['nombreUsuario'];
 			$codUsuario = $rows['codUsuario'];
 			$nombreLocal = $rows['nombreLocal'];
-			$tabla.=' 
-							<tbody style="align-items: center;">
-								<tr class="has-text-centered";>
-									<td> '.htmlspecialchars($rows['fechaUsoPromo']).'</td>
-									<td>'. htmlspecialchars($rows['codCliente']) . '</td>
-									<td> '.htmlspecialchars($rows['nombreUsuario']).'</td>
-									<td>'. htmlspecialchars($rows['codPromo']) .'</td>
-									<td>'. htmlspecialchars($rows['textoPromo']) .'</td>
-									<td>'. htmlspecialchars($rows['codLocal']) .'</td>
-									<td>'. htmlspecialchars($rows['nombreLocal']) .'</td>
-									<td class="botonesTD" style="width: 25%;">
-										<div class="formContainerSolicitud">							
-											<form action="./php/dueñoLocal/aprobarSolicitudDescuentoCliente.php" method="POST">
-												<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
-												<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
-												<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
-												<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
-												<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido ACEPTADA."> <br>
-												<button type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar Solicitud</button>
-											</form>							
-											<form action="./php/dueñoLocal/denegarSolicitudDescuentoCliente.php" method="POST">
-												<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
-												<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
-												<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
-												<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
-												<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido RECHAZADA."> <br>
-												<button type="submit" name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger" onclick="return rechazar();">Denegar Solicitud</button>
-											</form>
-										</div>
-									</td>
-								</tr>
-					
-								';
+			$tabla.='<tr class="reporteRow">
+						<td data-cell="Fecha Uso" class="reporteContent">'.htmlspecialchars($rows['fechaUsoPromo']).'</td>
+						<td data-cell="Código Cliente" class="reporteContent">'. htmlspecialchars($rows['codCliente']) . '</td>
+						<td data-cell="Promoción" class="reporteContent">'.htmlspecialchars($rows['nombreUsuario']).'</td>
+						<td data-cell="Código Promo" class="reporteContent">'. htmlspecialchars($rows['codPromo']) .'</td>
+						<td data-cell="Texto Promo" class="reporteContent">'. htmlspecialchars($rows['textoPromo']) .'</td>
+						<td data-cell="Código Local" class="reporteContent">'. htmlspecialchars($rows['codLocal']) .'</td>
+						<td data-cell="Nombre Local" class="reporteContent">'. htmlspecialchars($rows['nombreLocal']) .'</td>
+						<td data-cell="Aceptar/Rechazar" class="botonesTD reporteContent" style="width: 25%;">
+							<div class="formContainerSolicitud">							
+								<form action="./php/dueñoLocal/aprobarSolicitudDescuentoCliente.php" method="POST">
+									<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
+									<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
+									<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
+									<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
+									<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido ACEPTADA."> <br>
+									<button type="submit" name="botonAnashe" class="btn btn-success btnTabla" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar</button>
+								</form>							
+								<form action="./php/dueñoLocal/denegarSolicitudDescuentoCliente.php" method="POST">
+									<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
+									<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
+									<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
+									<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
+									<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido RECHAZADA."> <br>
+									<button type="submit" name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger btnTabla" onclick="return rechazar();">Denegar</button>
+								</form>
+							</div>
+						</td>
+					</tr>';
             
             $contador++;
 		}
@@ -134,9 +127,8 @@
 		}
 	}
 
-	$tabla.='			</tbody>
-					</table>	
-        		</div>
+	$tabla.='</table>	
+        </div>
 	</tbody></table>';
 
 	//Paginador
@@ -168,4 +160,64 @@
 
 
 
-
+<!-- <div class="wrapper">
+	<table class="reporte">
+		<caption>
+			Usos de descuentos
+		</caption>
+		<tr class="reporteRow">
+			<th class="reporteHeading">
+				<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=uso_promociones.fechaUsoPromo">Fecha solicitud</a>
+			</th>
+			<th class="reporteHeading">
+				<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=uso_promociones.codCliente">Cod Cliente</a>
+			</th>
+			<th class="reporteHeading">
+				<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=usuarios.nombreUsuario">Mail Cliente</a>	
+			</th>
+			<th class="reporteHeading">
+				<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=uso_promociones.codPromo">Código Promoción</a>
+			</th>
+			<th class="reporteHeading">
+				<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=promociones.textoPromo">Promoción</a>
+			</th>
+			<th class="reporteHeading">
+				<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=locales.codLocal">Código Local</a>
+			</th>
+			<th class="reporteHeading">
+				<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=locales.nombreLocal">Local</a>
+			</th>
+			<th class="reporteHeading"></th>
+		</tr>
+		<tr class="reporteRow">
+			<td data-cell="Fecha Uso" class="reporteContent">'.htmlspecialchars($rows['fechaUsoPromo']).'</td>
+			<td data-cell="Código Cliente" class="reporteContent">'. htmlspecialchars($rows['codCliente']) . '</td>
+			<td data-cell="Promoción" class="reporteContent">'.htmlspecialchars($rows['nombreUsuario']).'</td>
+			<td data-cell="Código Promo" class="reporteContent">'. htmlspecialchars($rows['codPromo']) .'</td>
+			<td data-cell="Texto Promo" class="reporteContent">'. htmlspecialchars($rows['textoPromo']) .'</td>
+			<td data-cell="Código Local" class="reporteContent">'. htmlspecialchars($rows['codLocal']) .'</td>
+			<td data-cell="Nombre Local" class="reporteContent">'. htmlspecialchars($rows['nombreLocal']) .'</td>
+			<td data-cell="Aceptar/Rechazar" class="botonesTD reporteContent" style="width: 25%;">
+				<div class="formContainerSolicitud">							
+					<form action="./php/dueñoLocal/aprobarSolicitudDescuentoCliente.php" method="POST">
+						<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
+						<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
+						<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
+						<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
+						<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido ACEPTADA."> <br>
+						<button type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar Solicitud</button>
+					</form>							
+					<form action="./php/dueñoLocal/denegarSolicitudDescuentoCliente.php" method="POST">
+						<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
+						<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
+						<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
+						<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
+						<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido RECHAZADA."> <br>
+						<button type="submit" name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger" onclick="return rechazar();">Denegar Solicitud</button>
+					</form>
+				</div>
+			</td>
+		</tr>
+		
+	</table>
+</div> -->
