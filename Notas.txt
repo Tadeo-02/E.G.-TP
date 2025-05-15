@@ -1,17 +1,18 @@
 TODAS LAS SECCIONES:
 - Arreglar alertas
 
-Función enviar mail
-- Arreglar ubicación de los archivos
-
-Mapa del sitio:
-- Agregar las subfunciones (como crear locales en mis locales) para asi tener un link directo a las mismas en lugar de tener que mirar los listados
-
 Lista Promociones:
 - Ordenar el listado luego de haberlo filtrado segun las fechas hace que se reinicie. Solucionar
 
-TODOS los listados:
-- Agregar filtro para ordenar listado
+Usuarios:
+- Crear función para que el tipo de cliente se actualice automaticamente dependiendo de la cantidad de promociones que uso
 
-CSS:
-- Arreglarlo
+Opcional:
+TODOS las tablas:
+- Agregar filtro para ordenar tablas en tamaños de pantalla pequeños
+
+Novedades:
+- Cambiar frontend
+
+
+

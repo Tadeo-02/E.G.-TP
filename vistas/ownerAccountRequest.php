@@ -10,7 +10,7 @@
         <br>
         <br>
         <br>
-        <h1 class="text-center" style="color: white"><b>SOLICITUDES DE CUENTA</b></h1>
+        <h1 class="text-center" style="color: white"><b>SOLICITUDES DE CUENTA DE DUEÑO</b></h1>
         <br>
 
 
