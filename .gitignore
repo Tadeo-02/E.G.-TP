@@ -1,0 +1,24 @@
+# Archivos de base de datos MySQL
+DB/
+!DB/.gitkeep
+
+# Archivos de PHPMailer (si quieres excluirlos)
+# php/phpmailer/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Archivos temporales
+*.tmp
+*.bak
+*~

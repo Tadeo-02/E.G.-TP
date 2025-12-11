@@ -36,10 +36,14 @@
 		foreach($datos as $rows){ 
 			$nombreLocal = $rows['nombreLocal'];
 			$codLocal = $rows['codLocal']; //Para mostrar la imagen usamos la etiqueta img con la ruta src donde almacenamos las imagenes + nombre de la imagen que se guarda en la DB
-			$tabla.=' 
-				<div class="locales col-12 col-md-4">
-						<div class="imgContainer">
-							<img src="php/admin/locales/' . htmlspecialchars($rows['imagenLocal']) . '" 
+		
+		// Verificar si hay imagen, sino usar una por defecto
+		$imagenLocal = !empty($rows['imagenLocal']) ? htmlspecialchars($rows['imagenLocal']) : 'imagenLocal.jpeg';
+		
+		$tabla.=' 
+			<div class="locales col-12 col-md-4">
+					<div class="imgContainer">
+					<img src="/php/admin/locales/' . $imagenLocal . '" 
              				alt="Imagen de ' . htmlspecialchars($rows['nombreLocal']) . '">         				</div>
 						<div class="textContainer">
 								<h1>	'. htmlspecialchars($rows['nombreLocal']) . '</h1>

@@ -14,7 +14,7 @@
         echo "Error al aprobar la cuenta";
     }
 
-    require_once __DIR__ . "/../enviarMail.php";
+    // require_once __DIR__ . "/../enviarMail.php"; // FUNCIONALIDAD DE EMAIL DESHABILITADA
 
     // Cerrar la conexión
     $aprobar_cuenta->close();

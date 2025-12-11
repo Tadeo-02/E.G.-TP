@@ -48,12 +48,10 @@
                     <h4>NEWSLETTER</h4>
                     <p>Recibe las últimas noticias y ofertas especiales</p>
                     <div class="input-group">
-                        <form action="./php/newsletter.php" method="POST">
+                        <form onsubmit="event.preventDefault(); alert('Funcionalidad de newsletter deshabilitada.');">
                             <input type="text" class="form-control" placeholder="Ingrese su email" aria-label="Ingrese su email" aria-describedby="button-addon2" name="email">
-                            <input type="hidden" name="mensaje" value="Usted ha sido suscripto al Newsletter de Nova Shopping. Gracias por elegirnos"> <br>
-                            <input type="hidden" name="asunto" value="Newsletter Nova Shopping"> <br>
-                            <button class="btn btn-warning" type="submit" id="button-addon2"  name="botonAnashe">Suscribirse</button>
-
+                            <br>
+                            <button class="btn btn-warning" type="submit" id="button-addon2">Suscribirse</button>
                         </form>
                     </div>
                     

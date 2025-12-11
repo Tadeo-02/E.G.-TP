@@ -16,7 +16,7 @@
         echo "Error al aprobar la promo";
     }
     //Informo via mail
-    require_once __DIR__ . "/../enviarMail.php";
+    // require_once __DIR__ . "/../enviarMail.php"; // FUNCIONALIDAD DE EMAIL DESHABILITADA
 
     // Cerrar la conexión
     $aprobar_promo->close();
