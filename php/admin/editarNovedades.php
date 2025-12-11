@@ -5,10 +5,10 @@
     $textoNovedad = limpiar_cadena($_POST['textoNovedad']);
     $fechaDesdeNovedad = limpiar_cadena($_POST['fechaDesdeNovedad']);
     $fechaHastaNovedad = limpiar_cadena($_POST['fechaHastaNovedad']);
-    $tipoUsuario = limpiar_cadena($_POST['tipoUsuario']);
+    $tipoCliente = limpiar_cadena($_POST['tipoCliente']);
 
     //Verificar campos obligatorios
-    if ($novedadModificada  == "" || $textoNovedad == "" || $fechaDesdeNovedad == "" || $fechaHastaNovedad == "" || $tipoUsuario == ""){
+    if ($novedadModificada  == "" || $textoNovedad == "" || $fechaDesdeNovedad == "" || $fechaHastaNovedad == "" || $tipoCliente == ""){
         echo '<div class="alert alert-danger" role="alert">
                 Todos los campos obligatorios no han sido completados
               </div>';
@@ -16,15 +16,6 @@
     }
     
     $conexion = conexion();
-
-    //Verificar si la novedad ya existe
-    $validarNombre = $conexion ->query ("SELECT textoNovedad  FROM novedades WHERE textoNovedad='$textoNovedad' "); 
-    if (($validarNombre->num_rows) > 0 ) {
-        echo '<div class="alert al  ert-danger" role="alert">
-                El nombre del Local ya existe
-                </div>';
-        exit();
-    }
 
     // Verificar si la fecha de inicio es menor a la fecha de fin
     if($fechaDesdeNovedad == $fechaHastaNovedad){ //? Revisar si es necesario
@@ -42,7 +33,7 @@
     }
 
     // Guardar Local
-    $guardarNovedad = $conexion ->query("UPDATE novedades SET textoNovedad = '$textoNovedad', fechaDesdeNovedad = '$fechaDesdeNovedad', fechaHastaNovedad = '$fechaHastaNovedad', tipoUsuario = '$tipoUsuario' WHERE codNovedad = '$novedadModificada';");
+    $guardarNovedad = $conexion ->query("UPDATE novedades SET textoNovedad = '$textoNovedad', fechaDesdeNovedad = '$fechaDesdeNovedad', fechaHastaNovedad = '$fechaHastaNovedad', tipoCliente = '$tipoCliente' WHERE codNovedad = '$novedadModificada';");
 
     //Cerrar conexion    
     mysqli_close($conexion);

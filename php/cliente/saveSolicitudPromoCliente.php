@@ -1,11 +1,16 @@
 <?php
-   require_once "../main.php";
+require_once "../main.php";
 
-    // Guardar datos de los inputs
-    $codCliente = limpiar_cadena($_POST['codUsuario']);
-    $codPromo = limpiar_cadena($_POST['codPromo']);
-    $hoy = date("Y-m-d");
-    $diaDeLaSemana = date("l", strtotime($hoy));
+// Ensure session is started for flash messages
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
+
+// Guardar datos de los inputs
+ $codCliente = limpiar_cadena($_POST['codUsuario'] ?? '');
+ $codPromo = limpiar_cadena($_POST['codPromo'] ?? '');
+ $hoy = date("Y-m-d");
+ $diaDeLaSemana = date("l", strtotime($hoy));
 
     $arrayDiasSemana = [
     'Monday' => "1",
@@ -19,9 +24,9 @@
 
     // Verificar campos Obligatorios
     if( $codCliente == "" || $codPromo == "" ){ 
-        echo '<div class="alert alert-danger" role="alert">
-                Todos los campos obligatorios no han sido completados
-              </div>';
+        $_SESSION['mensaje'] = 'Todos los campos obligatorios no han sido completados';
+        $redirect = $_SERVER['HTTP_REFERER'] ?? 'index.php';
+        header('Location: ' . $redirect);
         exit();
     }
     // Guardando datos
@@ -35,30 +40,24 @@
     $diasSemanaPermitidos = explode(',', $diasSemanaLimpios); // Convertir a array
 
     if (!in_array($arrayDiasSemana[$diaDeLaSemana], $diasSemanaPermitidos)) {
-        echo '<div class="alert alert-danger" role="alert">
-            La solicitud no está disponible este día de la semana
-        </div>';
+        // Usar mensaje en sesión y redirigir (evita output antes de header)
+        $_SESSION['mensaje'] = 'La solicitud no está disponible este día de la semana';
+        $redirect = $_SERVER['HTTP_REFERER'] ?? 'index.php';
+        header('Location: ' . $redirect);
         exit();
     }
 
     $guardar_promo=$guardar_promo->query("INSERT INTO uso_promociones (codCliente, codPromo, fechaUsoPromo, estado) VALUES ('$codCliente', '$codPromo', '$hoy', 'Pendiente')");
 
-    echo '<div class="alert alert-success" role="alert">
-            Solicitud registrada con exito
-        </div>';
+    $_SESSION['mensaje'] = 'Solicitud registrada con exito';
 
     //Cerrar conexion    
     $guardar_promo = null;
 
-    if (isset($_SERVER['HTTP_REFERER'])) {
-        // Redireccionar al usuario a la página anterior
-        header("Location: " . $_SERVER['HTTP_REFERER']);
-        exit();
-    } else {
-        // En caso de que no haya página anterior, redirigir a una página predeterminada
-        header("Location: index.php");
-        exit();    
-    }
+    $redirect = $_SERVER['HTTP_REFERER'] ?? 'index.php';
+    header('Location: ' . $redirect);
+    exit();
+    
     ?>
 
 

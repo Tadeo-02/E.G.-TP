@@ -75,7 +75,7 @@
                                 <div class="mb-3">
                                     <br>
                                     <label class="form-label" style="color: black; text-align: left; display:block;">Descripción de la promoción:</label>
-                                    <input class="form-control" type="text" name="textoPromo" placeholder="Ingrese la descripción de la promoción aquí..." maxlength="70" required>
+                                    <textarea class="form-control" name="textoPromo" rows="4" placeholder="Ingrese la descripción de la promoción aquí..." maxlength="500" required></textarea>
                                 </div>
 
                                 <!-- Fechas -->

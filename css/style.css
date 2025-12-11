@@ -451,18 +451,255 @@ button.btn-danger:hover {
 }
 
 .locales {
-  width: auto;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  gap: 20px;
-  margin: 20px auto;
+  display: block;
   border: #ffca2c solid 5px;
   background-color: white;
   border-radius: 25px;
-  padding: 10px; /* Agrega espacio interno */
-  height: auto; /* Se ajusta al contenido */
-  min-height: 200px; /* Opcional: altura mínima */
+  height: auto;
+  overflow: hidden;
+}
+
+/* Novedades con diseño mejorado */
+.novedades {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  border: #ffca2c solid 3px;
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.textContainer-novedad {
+  text-align: left;
+  width: 100%;
+}
+
+.textContainer-novedad h2 {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.novedad-meta {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+.novedad-meta span {
+  display: inline-block;
+}
+
+.novedad-meta strong {
+  color: #333;
+  font-weight: 600;
+}
+
+.textContainer-novedad-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .novedades {
+    padding: 15px;
+  }
+
+  .textContainer-novedad h2 {
+    font-size: 1.2rem;
+  }
+
+  .novedad-meta {
+    font-size: 0.8rem;
+    gap: 10px;
+  }
+}
+
+.textContainer-promo {
+  text-align: left;
+  width: 100%;
+  max-width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.textContainer-promo h2 {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  line-height: 1.4;
+  font-weight: 600;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.promo-descripcion {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.promo-meta {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.promo-meta span {
+  display: inline-block;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.promo-meta strong {
+  color: #333;
+  font-weight: 600;
+}
+
+.promo-id {
+  color: #999;
+  font-size: 0.8rem;
+}
+
+.textContainer-promo-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0 15px 5px;
+}
+
+@media (max-width: 768px) {
+  .textContainer-promo h2 {
+    font-size: 1.2rem;
+  }
+
+  .promo-descripcion {
+    font-size: 0.95rem;
+  }
+
+  .promo-meta {
+    font-size: 0.8rem;
+    gap: 10px;
+  }
+}
+
+/* Estilos para locales */
+.imgContainer-local {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 15px 15px 0 0;
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imgContainer-local img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.textContainer-local {
+  text-align: left;
+  width: 100%;
+  padding: 15px;
+}
+
+.textContainer-local h2 {
+  color: #333;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.local-info {
+  margin-bottom: 15px;
+}
+
+.local-info p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.local-info strong {
+  color: #333;
+  font-weight: 600;
+}
+
+.local-meta {
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+.local-id {
+  color: #999;
+  font-size: 0.8rem;
+}
+
+.textContainer-local-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 15px 15px;
+}
+
+@media (max-width: 768px) {
+  .textContainer-local h2 {
+    font-size: 1.2rem;
+  }
+
+  .local-info p {
+    font-size: 0.9rem;
+  }
+
+  .imgContainer-local {
+    height: 180px;
+  }
 }
 
 .imgContainer img {
@@ -515,34 +752,36 @@ button.btn-danger:hover {
   }
 }
 @media (max-width: 768px) {
-  /* Ajusta este valor según sea necesario */
   .locales {
-    flex-direction: column; /* Apila los elementos en pantallas pequeñas */
-    align-items: center; /* Centra los elementos */
-    width: 100%; /* Opcional: ajusta el ancho al 100% */
+    margin: 15px 0;
   }
 
   .textContainer {
-    max-width: 90%; /* Evita que el texto se extienda demasiado */
+    max-width: 100%;
   }
 }
 
 /* Listado de Promociones */
 .promociones {
-  width: auto;
+  width: 100%;
+  max-width: 100%;
   text-align: center;
   margin-bottom: 20px;
   border: #ffca2c solid 5px;
   background-color: white;
   border-radius: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; /* Apila verticalmente */
-  gap: 10px;
-  padding: 10px; /* Agrega espacio interno */
-  height: auto; /* Se ajusta al contenido */
-  min-height: 200px; /* Opcional: altura mínima */
+  display: block;
+  height: auto;
+  box-sizing: border-box;
+  overflow: visible;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .promociones {
+    width: 100%;
+    margin: 0 0 15px 0;
+  }
 }
 
 .promocionesAdmin {
@@ -580,8 +819,8 @@ button.btn-danger:hover {
 
 @media only screen and (min-width: 400px) and (max-width: 900px) {
   .promociones {
-    width: 380px;
-    height: 250px;
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -636,9 +875,16 @@ input[type="date"] {
   .calendarios {
     margin-left: 0%;
     margin-right: 0%;
+    flex-direction: column;
   }
   .widht {
-    padding: 20px; /* Agrega espacio interno */
+    padding: 20px;
+  }
+
+  .columnaFiltro1,
+  .columnaFiltro2 {
+    width: 100%;
+    flex: none;
   }
 }
 
@@ -651,9 +897,12 @@ input[type="date"] {
 
 .columnaFiltro2 {
   display: flex;
-  flex-direction: column; /* Asegura que los elementos dentro estén apilados verticalmente */
+  flex-direction: column;
   flex: 2;
-  width: auto;
+  width: 100%;
+  min-width: 0;
+  padding: 0 15px;
+  box-sizing: border-box;
 }
 
 /* CARGAR PROMOCIONES */

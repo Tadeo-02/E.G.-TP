@@ -1,14 +1,13 @@
 <?php 
     require_once "../main.php";
 
-    $codCliente = limpiar_cadena($_POST['codCliente']);
-    $codPromo = limpiar_cadena($_POST['codPromo']);
+    $codUso = limpiar_cadena($_POST['codUsoPromociones']);
     $estado = "Rechazado";
         
     $conexion = conexion();
 
-    $denegar_promo = $conexion->prepare("UPDATE uso_promociones SET estado = ? WHERE codCliente = ? AND codPromo = ?");
-    $denegar_promo->bind_param("sii",$estado,  $codCliente, $codPromo);
+    $denegar_promo = $conexion->prepare("UPDATE uso_promociones SET estado = ? WHERE codUsoPromociones = ?");
+    $denegar_promo->bind_param("si", $estado, $codUso);
     $denegar_promo->execute();
 
     //Informo via mail

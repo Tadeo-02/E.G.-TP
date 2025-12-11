@@ -3,7 +3,7 @@
 
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
 
-	$tabla="";
+	$tabla='';
 
 	$tipoUsuario = isset($_SESSION['tipoUsuario']) ? $_SESSION['tipoUsuario'] : '';
 	$codDueño = isset($_SESSION['codUsuario']) ? $_SESSION['codUsuario'] : '';
@@ -41,45 +41,48 @@
 		$imagenLocal = !empty($rows['imagenLocal']) ? htmlspecialchars($rows['imagenLocal']) : 'imagenLocal.jpeg';
 		
 		$tabla.=' 
-			<div class="locales col-12 col-md-4">
-					<div class="imgContainer">
-					<img src="/php/admin/locales/' . $imagenLocal . '" 
-             				alt="Imagen de ' . htmlspecialchars($rows['nombreLocal']) . '">         				</div>
-						<div class="textContainer">
-								<h1>	'. htmlspecialchars($rows['nombreLocal']) . '</h1>
-							<h4> Ubicacion del Local: </h4>
-								<p> '. htmlspecialchars($rows['ubicacionLocal']) .  '</p>
-							<h4> Rubro del Local: </h4>
-								<p>	'. htmlspecialchars($rows['rubroLocal']) . ' </p>
-							<h4> Código del Local: </h4>
-								<p>	'. htmlspecialchars($rows['codLocal']) .  '</p>
-						</div>';
+			<div class="col-12 col-md-6 mb-2 mb-md-4">
+				<div class="locales">
+					<div class="imgContainer-local">
+						<img src="/php/admin/locales/' . $imagenLocal . '" 
+             					alt="Imagen de ' . htmlspecialchars($rows['nombreLocal']) . '">
+					</div>
+					<div class="textContainer-local">
+						<h2>'. htmlspecialchars($rows['nombreLocal']) . '</h2>
+						<div class="local-info">
+							<p><strong>📍 Ubicación:</strong> '. htmlspecialchars($rows['ubicacionLocal']) .  '</p>
+							<p><strong>🏷️ Rubro:</strong> '. htmlspecialchars($rows['rubroLocal']) . '</p>
+						</div>
+						<div class="local-meta">
+							<span class="local-id">ID: '. htmlspecialchars($rows['codLocal']) .'</span>
+						</div>
+					</div>';
 			if(!isset($_SESSION['tipoUsuario']) || (isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Cliente"))  {
-				$tabla.= '<div class="textContainer col-12 col-md-4">
+				$tabla.= '<div class="textContainer-local-buttons">
 							<form action="index.php" method="GET">
 								<input type="hidden" name="vista" value="promocionesList">
 								<input type="hidden" name="codLocal" value="'.htmlspecialchars($codLocal) .'">
 								<button type="submit" id="botonAnashe" class="btn btn-primary">Ver Promociones</button>
 							</form>
                 		</div>
-					</div>';
+					</div>
+				</div>';
 			}
 			else {
-				$tabla.='<div class="textContainer ">
+				$tabla.='<div class="textContainer-local-buttons">
 							<form action="index.php?vista=localsUpdate" method="POST">
 								<input type="hidden" name="nombreLocal" value="'. htmlspecialchars($nombreLocal) .'">
 								<input type="hidden" name="codLocal" value="'. htmlspecialchars($codLocal) .'">
 								<input type="submit" name="botonAnashe" class="btn btn-warning" value="Modificar Local">
 							</form>
-							<br>
-							<br>
 							<form action="./php/admin/eliminarLocales.php" method="POST">
 								<input type="hidden" name="codLocal" value="'.htmlspecialchars($codLocal) .'">
 								<input type="hidden" name="dato" value="valor">
 								<button type="submit"  name="botonAnashe" value="Eliminar Local" class="btn btn-danger" onclick="return confirmar();">Eliminar Local</button>
 							</form>
 						</div>
-					</div>';
+					</div>
+				</div>';
 			}
 
             $contador++;

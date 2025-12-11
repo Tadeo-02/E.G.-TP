@@ -1,18 +1,29 @@
 <?php 
     require_once "../main.php";
 
-    $codCliente = limpiar_cadena($_POST['codCliente']);
-    $codPromo = limpiar_cadena($_POST['codPromo']);
+    // Now expect primary key codUsoPromociones
+    $codUso = limpiar_cadena($_POST['codUsoPromociones']);
     $estado = "Aprobada";
-        
+
     $conexion = conexion();
 
-    $aprobar_promo = $conexion->prepare("UPDATE uso_promociones SET estado = ? WHERE codCliente = ? AND codPromo = ? LIMIT 1");
-    $aprobar_promo->bind_param("sii",$estado,  $codCliente, $codPromo);
+    // Obtener el codCliente asociado para actualizar la categoría luego
+    $stmtGet = $conexion->prepare("SELECT codCliente FROM uso_promociones WHERE codUsoPromociones = ? LIMIT 1");
+    $stmtGet->bind_param("i", $codUso);
+    $stmtGet->execute();
+    $res = $stmtGet->get_result();
+    $row = $res->fetch_assoc();
+    $codCliente = $row['codCliente'] ?? null;
+    $stmtGet->close();
+
+    $aprobar_promo = $conexion->prepare("UPDATE uso_promociones SET estado = ? WHERE codUsoPromociones = ? LIMIT 1");
+    $aprobar_promo->bind_param("si", $estado, $codUso);
     $aprobar_promo->execute();
-    
+
     // Actualizar categoría del cliente basado en promociones usadas
-    actualizarCategoriaCliente($conexion, $codCliente);
+    if ($codCliente) {
+        actualizarCategoriaCliente($conexion, $codCliente);
+    }
 
     // Cerrar la conexión
     $aprobar_promo->close();

@@ -36,7 +36,7 @@
                             <!-- Cod Novedad -->
                             <div class="mb-3">
                                 <br>
-                                <label class="form-label" style="color: black; text-align: left; display:block;">Local a modificar:</label>
+                                <label class="form-label" style="color: black; text-align: left; display:block;">Novedad a modificar:</label>
                                 <select class="form-select" name="novedadModificada" required>
                                     <?php
                                         $codActual = isset($_POST['codNovedad']) ? $_POST['codNovedad'] : '';
@@ -47,8 +47,8 @@
 
                             <!-- Texto Novedad -->
                             <div class="mb-3">
-                                <label class="form-label" style="color: black; text-align: left; display:block;">Nombre del local</label>
-                                <input class="form-control" type="text" name="textoNovedad" placeholder="Ingrese el texto de la novedad aquí..." maxlength="100" required>
+                                <label class="form-label" style="color: black; text-align: left; display:block;">Texto novedad</label>
+                                <textarea class="form-control" name="textoNovedad" rows="4" placeholder="Ingrese el texto de la novedad aquí..." maxlength="500" required></textarea>
                             </div>
 
                             <!-- Fechas Novedad -->

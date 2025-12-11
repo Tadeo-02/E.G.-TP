@@ -10,7 +10,11 @@
           <div class="carousel-caption">
             <h5>EL SHOPPING QUE BUSCAS</h5>
                 <p>Diferentes eventos y actividades todos los meses</p>
-                <p><a href="vistas/novedadesList.php?page=" class="btn btn-warning mt-3">Haz click aquí para ver las novedades del shopping</a></p>
+                <?php if(isset($_SESSION['codUsuario']) && $_SESSION['codUsuario']!=""){ ?>
+                    <p><a href="index.php?vista=novedadesList&page=" class="btn btn-warning mt-3">Haz click aquí para ver las novedades del shopping</a></p>
+                <?php } else { ?>
+                    <p><a href="index.php?vista=login" class="btn btn-warning mt-3">Inicia sesión para ver las novedades</a></p>
+                <?php } ?>
           </div>
         </div>
         <div class="carousel-item">

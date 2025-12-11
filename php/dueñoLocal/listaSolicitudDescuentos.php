@@ -7,7 +7,7 @@
 
 	$codDueño = isset($_SESSION['codUsuario']) ? $_SESSION['codUsuario'] : '';
 	//Armar consulta
-	$campos="uso_promociones.codCliente, uso_promociones.codPromo, uso_promociones.fechaUsoPromo, uso_promociones.estado, promociones.codLocal, promociones.codPromo, promociones.textoPromo, promociones.categoriaCliente, promociones.fechaDesdePromo, promociones.fechaHastaPromo, promociones.diasSemana, usuarios.nombreUsuario, usuarios.codUsuario, usuarios.categoriaCliente, locales.codLocal, locales.codUsuario, locales.nombreLocal";
+	$campos="uso_promociones.codUsoPromociones, uso_promociones.codCliente, uso_promociones.codPromo, uso_promociones.fechaUsoPromo, uso_promociones.estado, promociones.codLocal, promociones.codPromo, promociones.textoPromo, promociones.categoriaCliente, promociones.fechaDesdePromo, promociones.fechaHastaPromo, promociones.diasSemana, usuarios.nombreUsuario, usuarios.codUsuario, usuarios.categoriaCliente, locales.codLocal, locales.codUsuario, locales.nombreLocal";
 	$condicionesI[] = "INNER JOIN promociones ON promociones.codPromo = uso_promociones.codPromo 
                    INNER JOIN usuarios ON uso_promociones.codCliente = usuarios.codUsuario 
                    INNER JOIN locales ON locales.codLocal = promociones.codLocal";
@@ -65,6 +65,7 @@
 							<th class="reporteHeading"></th>
 						</tr>';
 		foreach($datos as $rows){ 
+			$codUso = $rows['codUsoPromociones'];
 			$codCliente = $rows['codCliente'];
 			$codPromo = $rows['codPromo'];
             $consulta_contador = "SELECT COUNT(*) FROM uso_promociones WHERE estado = 'Aprobada' AND  codPromo = $codPromo";
@@ -84,16 +85,14 @@
 						<td data-cell="Aceptar/Rechazar" class="botonesTD reporteContent" style="width: 25%;">
 							<div class="formContainerSolicitud">							
 								<form action="./php/dueñoLocal/aprobarSolicitudDescuentoCliente.php" method="POST">
-									<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
-									<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
+									<input type="hidden" name="codUsoPromociones" value="'.htmlspecialchars($codUso) .'">
 									<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
 									<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
 									<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido ACEPTADA."> <br>
 									<button type="submit" name="botonAnashe" class="btn btn-success btnTabla" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar</button>
 								</form>							
 								<form action="./php/dueñoLocal/denegarSolicitudDescuentoCliente.php" method="POST">
-									<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
-									<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
+									<input type="hidden" name="codUsoPromociones" value="'.htmlspecialchars($codUso) .'">
 									<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
 									<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
 									<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido RECHAZADA."> <br>

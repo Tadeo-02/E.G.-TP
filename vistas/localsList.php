@@ -99,6 +99,7 @@
         </div>
 
         <div class="container">
+            <div class="row g-4">
             <!-- Filtro para ordenar -->
             <?php
                 $rubroLocal = (isset($_GET['rubroLocal'])) ? $_GET['rubroLocal'] : '';
@@ -115,11 +116,12 @@
 
                 $pagina=limpiar_cadena($pagina);
                 $url="index.php?vista=localsList&rubroLocal=$rubroLocal&sortBy=$ordenar&page=";
-                $registros = 1;
+                $registros = 10;
                 $busqueda = (isset( $_SESSION['busquedaLocal'])) ? $_SESSION['busquedaLocal'] : '';
 
                 require_once (__DIR__. '/../php/listaLocales.php');
             ?>
+            </div>
         </div>
     </div>
 </div>

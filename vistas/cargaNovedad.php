@@ -36,7 +36,7 @@
                             <!-- Texto Novedad -->
                             <div class="mb-3">
                                 <label class="form-label" style="color: black; text-align: left; display:block;">Texto:</label>
-                                <input class="form-control" type="text" name="textoNovedad" placeholder="Ingrese el texto de la novedad aquí..." maxlength="100" required>
+                                <textarea class="form-control" name="textoNovedad" rows="4" placeholder="Ingrese el texto de la novedad aquí..." maxlength="500" required></textarea>
                             </div>
 
                             <!-- Fechas Novedad -->

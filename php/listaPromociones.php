@@ -70,12 +70,14 @@
 	$datos = mysqli_query($conexion, $consulta_datos);
 
 	$total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
-	
+    
 	$Npaginas = ceil($total_registros / $registros);
 
+	// Número de filas devueltas en esta página (para calcular pag_final correctamente)
+	$filas_pagina = mysqli_num_rows($datos);
+
 	if($total_registros>=1 && $pagina<=$Npaginas){
-		$contador=$inicio+1;
-		$pag_inicio=$inicio+1;
+		$pag_inicio = $inicio + 1;
 
 		if ($tipoUsuario == '' || $tipoUsuario == "Dueño") {
 
@@ -98,14 +100,16 @@
 				$palabraDias = array_map(fn($num) => $arrayDiasSemana[$num] ?? 'Desconocido', $numerosDias);
 			$tabla.=' 
 			<div class="promociones">
-				<div class="textContainer">
-					<h2> Local: '. htmlspecialchars($rows['nombreLocal']) .'	</h2>
-					<h4> Id de la promoción: ' . htmlspecialchars($rows['codPromo']) .'  </h4>
-					<p>	Descripción de Promoción: <b>'. htmlspecialchars($rows['textoPromo']) . '</b></p>
-					<p> Fecha Desde: <b> '. htmlspecialchars($rows['fechaDesdePromo']) .  '</b></p>
-					<p> Fecha Hasta: 	<b>'. htmlspecialchars($rows['fechaHastaPromo']) . ' </b></p>
-					<p> Días de la semana válidos: <b>' . htmlspecialchars(implode(', ', $palabraDias)) . '</b></p>
-					<p> Tipo de Cliente: <b>' . htmlspecialchars($rows['categoriaCliente']) . '</b></p>
+				<div class="textContainer-promo">
+					<h2>'. htmlspecialchars($rows['nombreLocal']) .'</h2>
+					<p class="promo-descripcion">'. htmlspecialchars($rows['textoPromo']) . '</p>
+					<div class="promo-meta">
+						<span><strong>Desde:</strong> '. htmlspecialchars($rows['fechaDesdePromo']) .'</span>
+						<span><strong>Hasta:</strong> '. htmlspecialchars($rows['fechaHastaPromo']) .'</span>
+						<span><strong>Días:</strong> ' . htmlspecialchars(implode(', ', $palabraDias)) . '</span>
+						<span><strong>Categoría:</strong> ' . htmlspecialchars($rows['categoriaCliente']) . '</span>
+						<span class="promo-id">ID: ' . htmlspecialchars($rows['codPromo']) .'</span>
+					</div>
 				</div>
 			</div>
 		';  
@@ -141,34 +145,37 @@
 
 				$tabla.='
 				<div class="promociones">
-					<div class="textContainer">
-						<h2> Local: '. htmlspecialchars($rows['nombreLocal']) .'	</h2>
-						<h4> Id de la promoción: ' . htmlspecialchars($rows['codPromo']) .'  </h4>
-						<p>	Descripción de Promoción: <b>'. htmlspecialchars($rows['textoPromo']) . '</b></p>
-						<p> Fecha Desde: <b> '. htmlspecialchars($rows['fechaDesdePromo']) .  '</b></p>
-						<p> Fecha Hasta: 	<b>'. htmlspecialchars($rows['fechaHastaPromo']) . ' </b></p>
-						<p> Días de la semana válidos: <b>' . htmlspecialchars(implode(', ', $palabraDias)) . '</b></p>
-						<p> Tipo de Cliente: <b>' . htmlspecialchars($rows['categoriaCliente']) . '</b></p>
-					</div>';
-				if($numeroCategoria > $numeroCliente){
-					$tabla.='<div class="textContainer">
-							<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-danger" onclick="return alertar1();">Solicitar Descuento</button>
+					<div class="textContainer-promo">
+						<h2>'. htmlspecialchars($rows['nombreLocal']) .'</h2>
+						<p class="promo-descripcion">'. htmlspecialchars($rows['textoPromo']) . '</p>
+						<div class="promo-meta">
+							<span><strong>Desde:</strong> '. htmlspecialchars($rows['fechaDesdePromo']) .'</span>
+							<span><strong>Hasta:</strong> '. htmlspecialchars($rows['fechaHastaPromo']) .'</span>
+							<span><strong>Días:</strong> ' . htmlspecialchars(implode(', ', $palabraDias)) . '</span>
+							<span><strong>Categoría:</strong> ' . htmlspecialchars($rows['categoriaCliente']) . '</span>
+							<span class="promo-id">ID: ' . htmlspecialchars($rows['codPromo']) .'</span>
+						</div>
 					</div>
+					<div class="textContainer-promo-buttons">';
+				if($numeroCategoria > $numeroCliente){
+					$tabla.='
+							<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-danger" onclick="return alertar1();">Solicitar Descuento</button>
+						</div>
 				</div>';
 				}elseif($rows['fechaDesdePromo'] > $hoy){
-					$tabla.='<div class="textContainer">
+					$tabla.='
 							<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-danger" onclick="return alertar2();">Solicitar Descuento</button>
-					</div>
+						</div>
 				</div>';
 				}else{
-					$tabla.='<div class="textContainer">
-							<form action="./php/cliente/saveSolicitudPromoCliente.php" method="POST">
+					$tabla.='
+							<form action="./php/cliente/saveSolicitudPromoCliente.php" method="POST" data-dias="'.htmlspecialchars(json_encode($numerosDias), ENT_QUOTES, 'UTF-8').'">
 								<input type="hidden" name="codPromo" value="'.htmlspecialchars($rows['codPromo']) .'">
 								<input type="hidden" name="codUsuario" value="'.htmlspecialchars($_SESSION['codUsuario']).'">
-								<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-success" onclick="return confirmar();">Solicitar Descuento</button>
+								<button type="submit" onclick="return validarDiasInlineFromElement(this);" name="botonAnashe" value="Solicitar Descuento" class="btn btn-success">Solicitar Descuento</button>
 							</form>
 						</div>
-					</div>';
+				</div>';
 				}
 			}
 		}else{
@@ -190,16 +197,18 @@
 				$palabraDias = array_map(fn($num) => $arrayDiasSemana[$num] ?? 'Desconocido', $numerosDias);
 				$tabla.=' 
 			<div class="promociones">
-				<div class="textContainer">
-					<h2> Local: '. htmlspecialchars($rows['nombreLocal']) .'	</h2>
-					<h4> Id de la promoción: ' . htmlspecialchars($rows['codPromo']) .'  </h4>
-					<p>	Descripción de Promoción: <b>'. htmlspecialchars($rows['textoPromo']) . '</b></p>
-					<p> Fecha Desde: <b> '. htmlspecialchars($rows['fechaDesdePromo']) .  '</b></p>
-					<p> Fecha Hasta: 	<b>'. htmlspecialchars($rows['fechaHastaPromo']) . ' </b></p>
-					<p> Días de la semana válidos: <b>' . htmlspecialchars(implode(', ', $palabraDias)) . '</b></p>
-					<p> Tipo de Cliente: <b>' . htmlspecialchars($rows['categoriaCliente']) . '</b></p>
+				<div class="textContainer-promo">
+					<h2>'. htmlspecialchars($rows['nombreLocal']) .'</h2>
+					<p class="promo-descripcion">'. htmlspecialchars($rows['textoPromo']) . '</p>
+					<div class="promo-meta">
+						<span><strong>Desde:</strong> '. htmlspecialchars($rows['fechaDesdePromo']) .'</span>
+						<span><strong>Hasta:</strong> '. htmlspecialchars($rows['fechaHastaPromo']) .'</span>
+						<span><strong>Días:</strong> ' . htmlspecialchars(implode(', ', $palabraDias)) . '</span>
+						<span><strong>Categoría:</strong> ' . htmlspecialchars($rows['categoriaCliente']) . '</span>
+						<span class="promo-id">ID: ' . htmlspecialchars($rows['codPromo']) .'</span>
+					</div>
 				</div>
-				<div class="textContainer">
+				<div class="textContainer-promo-buttons">
 					<form action="./php/admin/aprobarPromocion.php" method="POST">
 						<input type="hidden" name="codPromo" value="'.htmlspecialchars($rows['codPromo']) .'">
 						<button type="submit"  name="botonAnashe" value="APROBAR Solicitud" class="btn btn-success" onclick="return aprobar();">Aprobar Solicitud</button>
@@ -209,12 +218,12 @@
 						<input type="hidden" name="codPromo" value="'. htmlspecialchars($rows['codPromo']) .'">
 						<button type="submit"  name="botonAnashe" value="RECHAZAR Solicitud" class="btn btn-danger" onclick="return rechazar();">Rechazar Solicitud</button>
 					</form>
-				</div>
+					</div>
 		</div>';
 			}
-		}
-		$contador++;
-		$pag_final=$contador-1;
+			}
+			// Calcular pag_final en base a las filas realmente devueltas
+			$pag_final = $inicio + $filas_pagina;
 	}
 	
 	// Si no hay registros, mostrar un mensaje
@@ -278,5 +287,37 @@ function aprobar() {
 }
 function rechazar() {
     return confirm("¿Seguro que quieres rechazar esta solicitud de descuento?");
+}
+// Valida días permitidos antes de enviar el formulario (evita navegación durante el alert)
+// handler synchronous: recibe array de dias permitidos (numeros) y devuelve boolean
+function validarDiasInline(diasPermitidos) {
+	try {
+		const now = new Date();
+		const jsDay = now.getDay(); // 0=Sunday,1=Monday,...6=Saturday
+		const diaHoy = jsDay === 0 ? 7 : jsDay; // Convertir a 1-7 con Monday=1
+		if (!Array.isArray(diasPermitidos)) diasPermitidos = [diasPermitidos];
+		const dias = diasPermitidos.map(x => Number(x));
+		if (!dias.includes(diaHoy)) {
+			alert('La solicitud no está disponible este día de la semana');
+			return false;
+		}
+		// Si está permitido, pedir confirmación final (sin recarga durante el diálogo)
+		return confirm('¿Seguro que quieres solicitar este Descuento?');
+	} catch (e) {
+		// en caso de error, permitir el envío y dejar que el servidor valide
+		return true;
+	}
+}
+// Helper: lee el atributo data-dias del formulario y delega a validarDiasInline
+function validarDiasInlineFromElement(btn) {
+	try {
+		const form = btn.closest('form');
+		if (!form) return validarDiasInline(null);
+		const raw = form.dataset.dias || form.getAttribute('data-dias') || '';
+		const parsed = raw ? JSON.parse(raw) : null;
+		return validarDiasInline(parsed);
+	} catch (e) {
+		return validarDiasInline(null);
+	}
 }
 </script>

@@ -7,15 +7,20 @@
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
 	
 	$tabla="";
+	
+	// Verificar si el usuario está logueado y obtener su categoría
+	$categoriaCliente = isset($_SESSION['categoriaCliente']) ? $_SESSION['categoriaCliente'] : 'Inicial';
+	$tipoUsuario = isset($_SESSION['tipoUsuario']) ? $_SESSION['tipoUsuario'] : '';
+	
 	//Consultas de acuerdo a la categoria de cliente
-	if($_SESSION['categoriaCliente'] == "Medium"){
+	if($categoriaCliente == "Medium"){
 		$consulta_datos = "SELECT * FROM novedades 
 					WHERE (DATE ('$hoy') BETWEEN fechaDesdeNovedad AND fechaHastaNovedad) AND (tipoCliente = 'Inicial' OR tipoCliente = 'Medium')
 					ORDER BY fechaDesdeNovedad DESC, codNovedad DESC 
 					LIMIT $inicio, $registros";
 		$consulta_total = "SELECT COUNT(*) FROM novedades WHERE (DATE ('$hoy') BETWEEN fechaDesdeNovedad AND fechaHastaNovedad) AND (tipoCliente = 'Inicial' OR tipoCliente = 'Medium') ";
 
-	}elseif($_SESSION['categoriaCliente'] == "Inicial"){
+	}elseif($categoriaCliente == "Inicial"){
 		$consulta_datos = "SELECT * FROM novedades 
 					WHERE (DATE ('$hoy') BETWEEN fechaDesdeNovedad AND fechaHastaNovedad) AND tipoCliente = 'Inicial'
 					ORDER BY fechaDesdeNovedad DESC, codNovedad DESC 
@@ -39,26 +44,24 @@
 	if($total_registros>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
 		$pag_inicio=$inicio+1;
-		if($_SESSION['tipoUsuario'] == "Administrador"){
+		if($tipoUsuario == "Administrador"){
 			foreach($datos as $rows){ 
 				$codNovedad = $rows['codNovedad'];
-                $tabla.='<div class="locales">
-							<div class="textContainer">
-									<h1>	'. htmlspecialchars($rows['textoNovedad']) . '</h1>
-								<h4> Fecha desde novedad: </h4>
-									<p> '. htmlspecialchars($rows['fechaDesdeNovedad']) .  '</p>
-								<h4> Fecha hasta novedad: </h4>
-									<p>	'. htmlspecialchars($rows['fechaHastaNovedad']) . ' </p>
-								<h4> Tipo de cliente novedad: </h4>
-									<p>	'. htmlspecialchars($rows['tipoCliente']) .  '</p>
+                $tabla.='<div class="novedades">
+							<div class="textContainer-novedad">
+									<h2>'. htmlspecialchars($rows['textoNovedad']) . '</h2>
+									<div class="novedad-meta">
+										<span><strong>Desde:</strong> '. htmlspecialchars($rows['fechaDesdeNovedad']) .'</span>
+										<span><strong>Hasta:</strong> '. htmlspecialchars($rows['fechaHastaNovedad']) .'</span>
+										<span><strong>Tipo:</strong> '. htmlspecialchars($rows['tipoCliente']) .'</span>
+									</div>
 							</div>
 			
-							<div class="textContainer">
+							<div class="textContainer-novedad-buttons">
 								<form action="index.php?vista=novedadesUpdate" method="POST">
 									<input type="hidden" name="codNovedad" value="'.htmlspecialchars($codNovedad) .'">
 									<input type="submit" name="botonAnashe" class="btn btn-warning" value="Modificar Novedad">
 								</form>
-								<br>
 								<br>
 								<form action="./php/admin/eliminarNovedades.php" method="POST">
 									<input type="hidden" name="codNovedad" value="'.htmlspecialchars($codNovedad) .'">
@@ -73,15 +76,14 @@
 		}else{
 			foreach($datos as $rows){ 
 				$codNovedad = $rows['codNovedad'];
-                $tabla.='<div class="locales">
-							<div class="textContainer">
-									<h1>	'. htmlspecialchars($rows['textoNovedad']) . '</h1>
-								<h4> Fecha desde novedad: </h4>
-									<p> '. htmlspecialchars($rows['fechaDesdeNovedad']) .  '</p>
-								<h4> Fecha hasta novedad: </h4>
-									<p>	'. htmlspecialchars($rows['fechaHastaNovedad']) . ' </p>
-								<h4> Tipo de cliente novedad: </h4>
-									<p>	'. htmlspecialchars($rows['tipoCliente']) .  '</p>
+                $tabla.='<div class="novedades">
+							<div class="textContainer-novedad">
+									<h2>'. htmlspecialchars($rows['textoNovedad']) . '</h2>
+									<div class="novedad-meta">
+										<span><strong>Desde:</strong> '. htmlspecialchars($rows['fechaDesdeNovedad']) .'</span>
+										<span><strong>Hasta:</strong> '. htmlspecialchars($rows['fechaHastaNovedad']) .'</span>
+										<span><strong>Tipo:</strong> '. htmlspecialchars($rows['tipoCliente']) .'</span>
+									</div>
 							</div>
 						</div>';
 				$contador++;

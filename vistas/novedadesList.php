@@ -1,3 +1,11 @@
+<?php
+    // Verificar que el usuario esté logueado
+    if(!isset($_SESSION['codUsuario']) || $_SESSION['codUsuario']==""){
+        header("Location: index.php?vista=login");
+        exit();
+    }
+?>
+
 <div class="container-fluid p-0">
     <h1 class="title">Novedades</h1>
 </div>
