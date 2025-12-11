@@ -22,7 +22,7 @@
 
                         <!-- Identifica si enviamos el formulario -->
                         <?php
-                            if(isset($_POST['nombreUsuario']) && isset($_POST['claveUsuario'])){ //? isset identifica si la variable viene definida
+                            if(isset($_POST['nombreUsuario']) && isset($_POST['claveUsuario'])){ 
                                 // si esto sucede traemos el main con la conexion a la db (y mas funciones)
                                 require_once "./php/main.php";
                                 require_once "./php/loginUser.php";

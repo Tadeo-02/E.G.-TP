@@ -11,16 +11,51 @@
     $aprobar_promo->bind_param("sii",$estado,  $codCliente, $codPromo);
 
     if($aprobar_promo->execute()){
-        echo "Promo aprobada con éxito";}
+        echo "Promo aprobada con éxito";
+        
+        // Actualizar categoría del cliente basado en promociones usadas
+        actualizarCategoriaCliente($conexion, $codCliente);
+    }
     else{
         echo "Error al aprobar la promo";
     }
-    //Informo via mail
-    // require_once __DIR__ . "/../enviarMail.php"; // FUNCIONALIDAD DE EMAIL DESHABILITADA
 
     // Cerrar la conexión
     $aprobar_promo->close();
     $conexion->close();
+
+    /**
+     * Actualiza la categoría del cliente según la cantidad de promociones usadas
+     * Criterios:
+     * - Inicial: 0-4 promociones
+     * - Medium: 5-14 promociones
+     * - Premium: 15+ promociones
+     */
+    function actualizarCategoriaCliente($conexion, $codCliente) {
+        // Contar promociones aprobadas del cliente
+        $query = "SELECT COUNT(*) as total FROM uso_promociones WHERE codCliente = ? AND estado = 'Aprobada'";
+        $stmt = $conexion->prepare($query);
+        $stmt->bind_param("i", $codCliente);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        $row = $resultado->fetch_assoc();
+        $totalPromociones = $row['total'];
+        $stmt->close();
+        
+        // Determinar nueva categoría
+        $nuevaCategoria = 'Inicial';
+        if ($totalPromociones >= 15) {
+            $nuevaCategoria = 'Premium';
+        } elseif ($totalPromociones >= 5) {
+            $nuevaCategoria = 'Medium';
+        }
+        
+        // Actualizar categoría del cliente
+        $updateCategoria = $conexion->prepare("UPDATE usuarios SET categoriaCliente = ? WHERE codUsuario = ?");
+        $updateCategoria->bind_param("si", $nuevaCategoria, $codCliente);
+        $updateCategoria->execute();
+        $updateCategoria->close();
+    }
 
     if (isset($_SERVER['HTTP_REFERER'])) {
         // Redireccionar al usuario a la página anterior

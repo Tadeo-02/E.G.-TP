@@ -14,8 +14,4 @@ TODOS las tablas:
 Novedades:
 - Cambiar frontend
 
-CAMBIAR CONTRASEÑA:
-- Enviar mail de verificación con codigo
-
-
 
