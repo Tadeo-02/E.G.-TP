@@ -17,9 +17,6 @@
                             <button type="submit" class="btn btn-primary" value="Ingresar" href="">Confirmar</button>
                             <br>
                             <br>
-                            <a href="index.php?vista=changePassword">¿Has olvidado la contraseña?</a>
-                            <br>
-                            <br>
                             <a href="index.php?vista=signUp">Crear Cuenta</a>
                         </p>
 
