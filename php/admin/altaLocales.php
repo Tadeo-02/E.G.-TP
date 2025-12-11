@@ -8,11 +8,9 @@
     
     $nombreImagen = $_FILES['imagenLocal']['name']; // lo que guardamos en la DB es el nombre de la imagen, ya que despues para mostrarlas leemos la ruta donde se guardan las imagenes
     $tempname = $_FILES['imagenLocal']['tmp_name']; //esto lo que haces es verificar que el tipo de archivo sea correcto, es algo integrado de php
-    $carpeta = 'locales/' . $nombreImagen; //gurado donde voy a guardar la imagen que está subiendo el administrador desde su pc
+    $carpeta = 'locales/' . $nombreImagen; //guardo donde voy a guardar la imagen que está subiendo el administrador desde su pc
 
-    if(move_uploaded_file($tempname, $carpeta)){ //esto lo que hace es mover la imagen a la carpeta que le indiqué, donde vamos a guardar todas las imagenes de locales
-        echo "Imagen subida con éxito"; //este echo no es necesario
-    }
+    move_uploaded_file($tempname, $carpeta); //esto lo que hace es mover la imagen a la carpeta que le indiqué, donde vamos a guardar todas las imagenes de locales
 
     //Verificar campos obligatorios
     if ($nombreLocal == "" || $ubicacionLocal == "" || $rubroLocal == "" || $codUsuario == ""){
@@ -42,13 +40,7 @@
     }
 
     // Guardar Local
-    $guardarLocal = $conexion ->query("INSERT INTO locales (nombreLocal, ubicacionLocal, rubroLocal, codUsuario, imagenLocal) VALUES ('$nombreLocal', '$ubicacionLocal', '$rubroLocal', '$codUsuario', '$nombreImagen')");
-    
-    if(move_uploaded_file($tempname, $carpeta)){
-        echo "Imagen subida con éxito";
-    }else{
-        echo "Error al subir la imagen";
-    }
+    $guardarLocal = $conexion ->query("INSERT INTO locales (nombreLocal, ubicacionLocal, rubroLocal, codUsuario, imagenLocal, estadoLocal) VALUES ('$nombreLocal', '$ubicacionLocal', '$rubroLocal', '$codUsuario', '$nombreImagen', 'Activo')");
     
     //Cerrar conexion    
     mysqli_close($conexion);

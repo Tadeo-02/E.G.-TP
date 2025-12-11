@@ -8,11 +8,7 @@
 
     $denegar_cuenta = $conexion->prepare("UPDATE usuarios SET estadoCuenta = ? WHERE codUsuario = ?");
     $denegar_cuenta->bind_param("si",$nuevoEstado,  $codUsuario);
-    if($denegar_cuenta->execute()){
-        echo "Cuenta rechazada con éxito";}
-    else{
-        echo "Error al rechazar la cuenta";
-    }
+    $denegar_cuenta->execute();
 
     //Informo via mail
     // require_once __DIR__ . "/../enviarMail.php"; // FUNCIONALIDAD DE EMAIL DESHABILITADA

@@ -9,16 +9,10 @@
 
     $aprobar_promo = $conexion->prepare("UPDATE uso_promociones SET estado = ? WHERE codCliente = ? AND codPromo = ? LIMIT 1");
     $aprobar_promo->bind_param("sii",$estado,  $codCliente, $codPromo);
-
-    if($aprobar_promo->execute()){
-        echo "Promo aprobada con éxito";
-        
-        // Actualizar categoría del cliente basado en promociones usadas
-        actualizarCategoriaCliente($conexion, $codCliente);
-    }
-    else{
-        echo "Error al aprobar la promo";
-    }
+    $aprobar_promo->execute();
+    
+    // Actualizar categoría del cliente basado en promociones usadas
+    actualizarCategoriaCliente($conexion, $codCliente);
 
     // Cerrar la conexión
     $aprobar_promo->close();

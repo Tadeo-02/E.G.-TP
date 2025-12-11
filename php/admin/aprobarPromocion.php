@@ -8,24 +8,19 @@
     
     $aprobar_promo = $conexion->prepare("UPDATE promociones SET estadoPromo = ? WHERE codPromo = ?");
     $aprobar_promo->bind_param("si",$nuevoEstado,  $codPromo);
+    
     if($aprobar_promo->execute()){
-        echo "Promoción aprobada con éxito";}
-    else{
-        echo "Error al aprobar la promoción";
+        $_SESSION['mensaje'] = 'Promoción aprobada con éxito';
+    } else{
+        $_SESSION['mensaje'] = 'Error al aprobar la promoción';
     }
 
     // Cerrar la conexión
     $aprobar_promo->close();
     $conexion->close();
 
-    if (isset($_SERVER['HTTP_REFERER'])) {
-        // Redireccionar al usuario a la página anterior
-        header("Location: " . $_SERVER['HTTP_REFERER']);
-        exit();
-    } else {
-        // En caso de que no haya página anterior, redirigir a una página predeterminada
-        header("Location: index.php");
-        exit();
-    }
+    // Redireccionar a la lista de promociones
+    header("Location: ../../index.php?vista=promocionesList");
+    exit();
     
 ?>

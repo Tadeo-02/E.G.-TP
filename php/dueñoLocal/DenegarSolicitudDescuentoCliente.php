@@ -9,11 +9,7 @@
 
     $denegar_promo = $conexion->prepare("UPDATE uso_promociones SET estado = ? WHERE codCliente = ? AND codPromo = ?");
     $denegar_promo->bind_param("sii",$estado,  $codCliente, $codPromo);
-    if($denegar_promo->execute()){
-        echo "Promo rechazada con éxito";}
-    else{
-        echo "Error al rechazar la promo";
-    }
+    $denegar_promo->execute();
 
     //Informo via mail
     // require_once __DIR__ . "/../enviarMail.php"; // FUNCIONALIDAD DE EMAIL DESHABILITADA

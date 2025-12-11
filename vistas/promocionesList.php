@@ -5,6 +5,17 @@
 <div class="row g-0">
     <?php
         require_once(__DIR__ . '/../php/main.php');
+        
+        // Mostrar mensaje de éxito si existe
+        if (isset($_SESSION['mensaje'])) {
+            echo '<div class="container mt-3">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        ' . htmlspecialchars($_SESSION['mensaje']) . '
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                  </div>';
+            unset($_SESSION['mensaje']); // Eliminar el mensaje después de mostrarlo
+        }
     ?>
     <div class="container">
         <br>

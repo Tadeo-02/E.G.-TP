@@ -189,35 +189,28 @@
 				];
 				$palabraDias = array_map(fn($num) => $arrayDiasSemana[$num] ?? 'Desconocido', $numerosDias);
 				$tabla.=' 
-				<div class="promocionesAdmin">
-						<div class="textContainer locales col-12 col-md-4">
-							<h2> Local: '. htmlspecialchars($rows['nombreLocal']) .'	</h2>
-							<h4> Id de la promoción: ' . htmlspecialchars($rows['codPromo']) .'  </h4>
-							<p>	Descripción de Promoción: <b>'. htmlspecialchars($rows['textoPromo']) . '</b></p>
-							<p> Fecha Desde: <b> '. htmlspecialchars($rows['fechaDesdePromo']) .  '</b></p>
-							<p> Fecha Hasta: 	<b>'. htmlspecialchars($rows['fechaHastaPromo']) . ' </b></p>
-							<p> Días de la semana válidos: <b>' . htmlspecialchars(implode(', ', $palabraDias)) . '</b></p>
-							<p> Tipo de Cliente: <b>' . htmlspecialchars($rows['categoriaCliente']) . '</b></p>
-						</div>
-						<div class="textContainer">
-							<form action="./php/admin/aprobarPromocion.php" method="POST">
-								<input type="hidden" name="codPromo" value="'.htmlspecialchars($rows['codPromo']) .'">
-								<button type="submit"  name="botonAnashe" value="APROBAR Solicitud" class="btn btn-success" onclick="return aprobar();">APROBAR Solicitud</button>
-								<input type="hidden" name="asunto" value="Solicitud de descuento"> <br>
-								<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido ACEPTADA."> <br>
-								<button type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar Solicitud</button>
-							</form>
-							<br>
-							<br>
-							<form action="./php/admin/denegarPromocion.php" method="POST">
-								<input type="hidden" name="codPromo" value="'. htmlspecialchars($rows['codPromo']) .'">
-								<button type="submit"  name="botonAnashe" value="RECHAZAR Solicitud" class="btn btn-danger" onclick="return rechazar();">RECHAZAR Solicitud</button>
-								<input type="hidden" name="asunto" value="Solicitud de Descuento;o"> <br>
-								<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido RECHAZADA."> <br>
-								<button type="submit" name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger" onclick="return rechazar();">Denegar Solicitud</button>
-							</form>
-						</div>
-				</div>';
+			<div class="promociones">
+				<div class="textContainer">
+					<h2> Local: '. htmlspecialchars($rows['nombreLocal']) .'	</h2>
+					<h4> Id de la promoción: ' . htmlspecialchars($rows['codPromo']) .'  </h4>
+					<p>	Descripción de Promoción: <b>'. htmlspecialchars($rows['textoPromo']) . '</b></p>
+					<p> Fecha Desde: <b> '. htmlspecialchars($rows['fechaDesdePromo']) .  '</b></p>
+					<p> Fecha Hasta: 	<b>'. htmlspecialchars($rows['fechaHastaPromo']) . ' </b></p>
+					<p> Días de la semana válidos: <b>' . htmlspecialchars(implode(', ', $palabraDias)) . '</b></p>
+					<p> Tipo de Cliente: <b>' . htmlspecialchars($rows['categoriaCliente']) . '</b></p>
+				</div>
+				<div class="textContainer">
+					<form action="./php/admin/aprobarPromocion.php" method="POST">
+						<input type="hidden" name="codPromo" value="'.htmlspecialchars($rows['codPromo']) .'">
+						<button type="submit"  name="botonAnashe" value="APROBAR Solicitud" class="btn btn-success" onclick="return aprobar();">Aprobar Solicitud</button>
+					</form>
+					<br>
+					<form action="./php/admin/denegarPromocion.php" method="POST">
+						<input type="hidden" name="codPromo" value="'. htmlspecialchars($rows['codPromo']) .'">
+						<button type="submit"  name="botonAnashe" value="RECHAZAR Solicitud" class="btn btn-danger" onclick="return rechazar();">Rechazar Solicitud</button>
+					</form>
+				</div>
+		</div>';
 			}
 		}
 		$contador++;

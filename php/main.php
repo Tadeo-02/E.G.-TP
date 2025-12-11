@@ -20,6 +20,9 @@ function verificarDatos($filtro, $str){ //Filtro es la expresion regular y luego
 
 // Limpiar cadenas de texto 
 function limpiar_cadena ($cadena){
+    if($cadena === null || $cadena === '') {
+        return '';
+    }
     $cadena=trim($cadena);
     $cadena=stripslashes($cadena);
     $cadena=str_ireplace("<script>", "", $cadena);

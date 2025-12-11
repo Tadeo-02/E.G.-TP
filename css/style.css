@@ -15,42 +15,48 @@ body {
 }
 
 /* CARROUSEL */
-  .section-padding {
-    padding: 100px 0;
-  }
-  .carousel-item {
-    height: 100vh;
-    min-height: 300px;
-  }
-  .carousel-caption {
-    bottom: 220px;
-    z-index: 2;
-  }
-  .carousel-caption h5 {
-    font-size: 45px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-top: 25px;
-  }
-  .carousel-caption p {
-    width: 60%;
-    margin: auto;
-    font-size: 18px;
-    line-height: 1.9;
-  }
-  .carousel-inner:before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 1;
-  }
+.section-padding {
+  padding: 100px 0;
+}
+.carousel-item {
+  height: 100vh;
+  min-height: 300px;
+}
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.carousel-caption {
+  bottom: 220px;
+  z-index: 2;
+}
+.carousel-caption h5 {
+  font-size: 45px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 25px;
+}
+.carousel-caption p {
+  width: 60%;
+  margin: auto;
+  font-size: 18px;
+  line-height: 1.9;
+}
+.carousel-inner:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
 
 /* NAVBAR  */
-.navWidht{
+.navWidht {
   width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
@@ -234,8 +240,8 @@ body {
   flex: 1; /* Ambas columnas ocupan el mismo ancho */
 }
 
-@media (max-width: 750px){
-  .footerDiv{
+@media (max-width: 750px) {
+  .footerDiv {
     display: grid;
   }
 }
@@ -250,10 +256,10 @@ body {
   background-color: #ff00ff; /* Fondo para diferenciarlo visualmente */
   padding: 0; /* Ajusta el padding general */
   margin-bottom: 0;
-  border: 1px solid black;  
-
+  border: 1px solid black;
 }
-body, html {
+body,
+html {
   height: 100%; /* Asegura que el cuerpo ocupe toda la ventana */
   margin: 0;
   display: flex;
@@ -269,9 +275,7 @@ footer {
   bottom: 0;
   width: 100%;
   margin: 0;
-
 }
-
 
 /* Responsive */
 
@@ -316,7 +320,6 @@ footer {
   }
 }
 
-
 /* LISTADOS */
 table {
   border-collapse: collapse;
@@ -325,27 +328,24 @@ table {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
 .botonesTD {
-    padding: 5px;
-    vertical-align: top; 
+  padding: 5px;
+  vertical-align: top;
 }
 
 .formContainerSolicitud {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center; 
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
 }
 
 .formContainerSolicitud form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
 }
-
-
-
 
 table thead th {
   background-color: #ffca2c;
@@ -377,7 +377,7 @@ table td {
   vertical-align: middle;
 } */
 
-.linkTabla{
+.linkTabla {
   color: #000000;
   text-decoration: none;
 }
@@ -415,13 +415,13 @@ button.btn-danger:hover {
   background-color: #a71d2a;
 }
 
-.botonCrear{
+.botonCrear {
   display: flex;
   justify-content: right;
   width: 100%;
 }
 
-.botonNovedad{
+.botonNovedad {
   display: flex;
   justify-content: right;
   width: 25%;
@@ -435,17 +435,17 @@ button.btn-danger:hover {
 }
 
 @media only screen and (max-width: 768px) {
-  .botonCrear{
+  .botonCrear {
     justify-content: center;
   }
-  .botonNovedad{
+  .botonNovedad {
     width: 100%;
   }
 }
 
 /* Listado de Locales */
 
-.centered { 
+.centered {
   display: flex;
   justify-content: center;
 }
@@ -461,8 +461,8 @@ button.btn-danger:hover {
   background-color: white;
   border-radius: 25px;
   padding: 10px; /* Agrega espacio interno */
-  height: auto;  /* Se ajusta al contenido */
-  min-height: 200px; /* Opcional: altura mínima */  
+  height: auto; /* Se ajusta al contenido */
+  min-height: 200px; /* Opcional: altura mínima */
 }
 
 .imgContainer img {
@@ -498,23 +498,24 @@ button.btn-danger:hover {
   -webkit-line-clamp: 2; /* Number of lines to show */
   -webkit-box-orient: vertical; /* Vertical orientation */
   overflow: hidden; /* Hide any further overflow */
-
 }
-.textContainer h4, .textContainer p {
+.textContainer h4,
+.textContainer p {
   /* white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis;  */
   margin: 5px 0; /* Add some spacing back */
 }
-.parrafo p{
+.parrafo p {
   font-size: 25px;
 }
 @media (max-width: 768px) {
   .textContainer {
-      max-width: 90%; /* O un valor específico en píxeles */
+    max-width: 90%; /* O un valor específico en píxeles */
   }
 }
-@media (max-width: 768px) { /* Ajusta este valor según sea necesario */
+@media (max-width: 768px) {
+  /* Ajusta este valor según sea necesario */
   .locales {
     flex-direction: column; /* Apila los elementos en pantallas pequeñas */
     align-items: center; /* Centra los elementos */
@@ -540,12 +541,13 @@ button.btn-danger:hover {
   flex-direction: column; /* Apila verticalmente */
   gap: 10px;
   padding: 10px; /* Agrega espacio interno */
-  height: auto;  /* Se ajusta al contenido */
+  height: auto; /* Se ajusta al contenido */
   min-height: 200px; /* Opcional: altura mínima */
 }
 
 .promocionesAdmin {
   width: auto;
+  max-width: 100%;
   text-align: center;
   margin: 20px auto;
   border: #ffca2c solid 5px;
@@ -557,11 +559,14 @@ button.btn-danger:hover {
   flex-direction: row; /* Apila verticalmente */
   gap: 20px;
   padding: 10px; /* Agrega espacio interno */
-  height: auto;  /* Se ajusta al contenido */
+  height: auto; /* Se ajusta al contenido */
   min-height: 200px; /* Opcional: altura mínima */
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-@media (max-width: 768px) { /* Ajusta este valor según sea necesario */
+@media (max-width: 768px) {
+  /* Ajusta este valor según sea necesario */
   .promocionesAdmin {
     flex-direction: column; /* Apila los elementos en pantallas pequeñas */
     align-items: center; /* Centra los elementos */
@@ -573,14 +578,12 @@ button.btn-danger:hover {
   width: 100%;
 }
 
-
 @media only screen and (min-width: 400px) and (max-width: 900px) {
-  .promociones{
+  .promociones {
     width: 380px;
     height: 250px;
   }
 }
-
 
 /* Calendario */
 
@@ -595,8 +598,8 @@ button.btn-danger:hover {
   min-width: 200px;
   border: #ffca2c solid 5px;
 }
-.calendarContainer p{
-  font-weight: bold;  /* Negrita */
+.calendarContainer p {
+  font-weight: bold; /* Negrita */
   text-transform: uppercase;
 }
 input[type="date"] {
@@ -614,7 +617,7 @@ input[type="date"] {
   border-radius: 5px;
   cursor: pointer;
 }
-.calendarios{
+.calendarios {
   width: auto;
   display: flex;
   justify-content: space-around;
@@ -623,18 +626,18 @@ input[type="date"] {
   margin: 20px auto;
   border-radius: 25px;
   padding: 10px; /* Agrega espacio interno */
-  height: auto;  /* Se ajusta al contenido */
-  min-height: 200px; /* Opcional: altura mínima */ 
+  height: auto; /* Se ajusta al contenido */
+  min-height: 200px; /* Opcional: altura mínima */
   margin-left: 10%;
-  margin-right: 10%; 
+  margin-right: 10%;
 }
 
 @media only screen and (max-width: 900px) {
-  .calendarios{
+  .calendarios {
     margin-left: 0%;
-    margin-right: 0%; 
+    margin-right: 0%;
   }
-  .widht{
+  .widht {
     padding: 20px; /* Agrega espacio interno */
   }
 }
@@ -656,7 +659,8 @@ input[type="date"] {
 /* CARGAR PROMOCIONES */
 
 /* Ajustar la altura de la página considerando la navbar y el footer */
-body, html {
+body,
+html {
   height: 100vh; /* Asegura que todo encaje en la pantalla */
   display: flex;
   flex-direction: column;
@@ -681,7 +685,6 @@ body, html {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   max-height: 70vh; /* Limita la altura para evitar que se corte */
   overflow-y: auto; /* Permite desplazarse si es necesario */
-
 }
 
 /* Ajuste del selector múltiple */
@@ -699,39 +702,37 @@ select[multiple] {
 }
 
 /* Botones */
-.botonPromo, .btn-outline-primary {
+.botonPromo,
+.btn-outline-primary {
   width: 100%;
   padding: 8px;
   font-size: 14px;
   formorder-radius: 6px;
 }
 
-.botonCrearNovedad{
+.botonCrearNovedad {
   min-width: 340px;
   padding: 10px;
 }
 
 @media (max-width: 575px) {
-  .botonCrearNovedad{
-  min-width: 100%;
+  .botonCrearNovedad {
+    min-width: 100%;
   }
 }
-
 
 /* Mejorar la apariencia en pantallas pequeñas */
 @media (max-width: 600px) {
   .form-container {
-      width: 95%;
-      max-width: 400px;
-      padding: 10px;
+    width: 95%;
+    max-width: 400px;
+    padding: 10px;
   }
-  
 }
 
-.from{
+.from {
   width: auto;
 }
-
 
 /* LISTADOS */
 table {
@@ -742,34 +743,34 @@ table {
 }
 
 .botonesTD {
-    padding: 5px;
-    vertical-align: top; 
+  padding: 5px;
+  vertical-align: top;
 }
 
 .formContainerSolicitud {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center; 
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
 }
 .formContainerSolicitud form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
 }
 
-.wrapper{
+.wrapper {
   width: min(1000px, 100% - 3rem);
   margin-inline: auto;
   background-color: white;
 }
-.wrapperSolDesc{
-width: min(1400px, 100% - 3rem);
+.wrapperSolDesc {
+  width: min(1400px, 100% - 3rem);
 }
 
-.reporte{
+.reporte {
   font-size: 1rem;
   font-family: system-ui;
   line-height: 1.5;
@@ -782,16 +783,17 @@ width: min(1400px, 100% - 3rem);
   max-width: 100%;
 }
 
-.reporteHeading, .reporteContent{
+.reporteHeading,
+.reporteContent {
   padding: 1rem;
 }
 
-.reporteHeading{
+.reporteHeading {
   text-align: left;
   background: #bfbfbf;
 }
 
-.reporteRow:nth-of-type(2n){
+.reporteRow:nth-of-type(2n) {
   background-color: #eaeaea;
 }
 .reporteRow:hover {
@@ -799,67 +801,65 @@ width: min(1400px, 100% - 3rem);
 }
 
 @media (max-width: 1200px) {
-    .reporte{
-        font-size: 12px;
-    }
-    .reporteHeading, .reporteRow {
-        padding: 5px;
-    }
+  .reporte {
+    font-size: 12px;
+  }
+  .reporteHeading,
+  .reporteRow {
+    padding: 5px;
+  }
 }
 
 @media (min-width: 1201px) {
-    .reporte{
-        font-size: 14px;
-    }
-    .reporteHeading, .reporteRow {
-        padding: 10px;
-    }
-    .table-container {
-        padding: 0 15px; /* Para centrar */
-    }
+  .reporte {
+    font-size: 14px;
+  }
+  .reporteHeading,
+  .reporteRow {
+    padding: 10px;
+  }
+  .table-container {
+    padding: 0 15px; /* Para centrar */
+  }
 }
 
-
-@media (max-width: 1000px){
-  .reporteHeading{
+@media (max-width: 1000px) {
+  .reporteHeading {
     display: none;
   }
-  .reporteContent{
+  .reporteContent {
     display: grid;
     gap: 0.5rem;
     grid-template-columns: 15ch auto;
     padding: 0.5rem 1rem;
-  } 
-  .reporteContent:first-child{
+  }
+  .reporteContent:first-child {
     padding-top: 2rem;
   }
-  .reporteContent:last-child{
+  .reporteContent:last-child {
     padding-top: 2rem;
   }
-  .reporteContent::before{
+  .reporteContent::before {
     content: attr(data-cell) ": ";
     font-weight: 700;
     text-transform: capitalize;
   }
 }
 
-
-
-@media (max-width: 500px){
-  .reporte{
+@media (max-width: 500px) {
+  .reporte {
     font-size: 0.8rem; /* Reduce el tamaño de la fuente */
   }
   .formContainerSolicitud {
     display: grid;
   }
-  .reporteContent{
+  .reporteContent {
     word-wrap: break-word; /* Fuerza la división del texto */
     white-space: normal; /* Permite el salto de línea */
   }
-  .btnTabla{
+  .btnTabla {
     padding: 0.3em 0.5em;
     font-size: 0.9rem; /* Ajusta el tamaño de la fuente */
     white-space: nowrap; /* Evita que el texto se divida en varias líneas */
   }
 }
-

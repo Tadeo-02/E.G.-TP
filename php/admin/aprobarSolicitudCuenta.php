@@ -8,11 +8,7 @@
     
     $aprobar_cuenta = $conexion->prepare("UPDATE usuarios SET estadoCuenta = ? WHERE codUsuario = ?");
     $aprobar_cuenta->bind_param("si", $nuevoEstado, $codUsuario);
-    if($aprobar_cuenta->execute()){
-        echo "Cuenta aprobada con éxito";}
-    else{
-        echo "Error al aprobar la cuenta";
-    }
+    $aprobar_cuenta->execute();
 
     // require_once __DIR__ . "/../enviarMail.php"; // FUNCIONALIDAD DE EMAIL DESHABILITADA
 

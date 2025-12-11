@@ -91,7 +91,8 @@
                                     // Crear las opciones del desplegable
                                     foreach ($dueños as $row) {
                                         $codUsuario = htmlspecialchars($row['codUsuario']);
-                                        echo '<option value="' . $codUsuario . '">' . $codUsuario . '</option>';
+                                        $nombreUsuario = htmlspecialchars($row['nombreUsuario']);
+                                        echo '<option value="' . $codUsuario . '">' . $codUsuario . ' - ' . $nombreUsuario . '</option>';
                                     }
                                     ?>
                                 </select>

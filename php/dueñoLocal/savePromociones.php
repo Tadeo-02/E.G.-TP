@@ -43,21 +43,14 @@
     $guardar_usuario=conexion();
     $guardar_usuario=$guardar_usuario->query("INSERT INTO promociones(textoPromo, fechaDesdePromo, fechaHastaPromo, categoriaCliente,diasSemana, estadoPromo, codLocal) VALUES ('$textoPromo', '$fechaDesdePromo', '$fechaHastaPromo', '$categoriaCliente', '$diasSemanaJSON', 'Pendiente', $codLocal)");
 
-    echo '<div class="alert alert-success" role="alert">
-            Solicitud registrada con exito
-        </div>';
+    // Guardar mensaje en sesión para mostrarlo después de la redirección
+    $_SESSION['mensaje'] = 'Solicitud registrada con éxito';
 
     //Cerrar conexion    
     $guardar_promocion = null;
 
-    if (isset($_SERVER['HTTP_REFERER'])) {
-        // Redireccionar al usuario a la página anterior
-        header("Location: " . $_SERVER['HTTP_REFERER']);
-        exit();
-    } else {
-        // En caso de que no haya página anterior, redirigir a una página predeterminada
-        header("Location: index.php");
-        exit();
-    }
+    // Redireccionar a la lista de promociones
+    header("Location: ../../index.php?vista=promocionesList");
+    exit();
 
     ?>

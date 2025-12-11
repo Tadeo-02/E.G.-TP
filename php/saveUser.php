@@ -5,7 +5,7 @@
     $email = limpiar_cadena($_POST['nombreUsuario']);
     $clave_1 = limpiar_cadena($_POST['claveUsuario1']);
     $clave_2 = limpiar_cadena($_POST['claveUsuario2']);
-    $checkBox = limpiar_cadena($_POST['esDueño']);
+    $checkBox = isset($_POST['esDueño']) ? limpiar_cadena($_POST['esDueño']) : '';
 
     // Verificar campos Obligatorios
     if( $clave_1 == "" || $clave_2 == "" || $email == ""){
@@ -61,7 +61,7 @@
        $guardar_usuario = $guardar_usuario->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', 'Inicial', 'Cliente','Activa')");
     }
 
-    header("Location: index.php?vista=login");
+    header("Location: ../index.php?vista=login");
 
 
 ?>
