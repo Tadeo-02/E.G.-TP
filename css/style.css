@@ -777,6 +777,13 @@ button.btn-danger:hover {
   padding: 10px;
 }
 
+/* Constrain promotions cards and center them inside columns */
+.promociones {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media (max-width: 768px) {
   .promociones {
     width: 100%;

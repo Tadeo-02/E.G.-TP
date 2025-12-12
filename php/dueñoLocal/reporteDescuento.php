@@ -64,7 +64,7 @@
 		foreach($datos as $rows){ 
 			$codCliente = $rows['codCliente'];
 			$codPromo = $rows['codPromo'];
-            $consulta_contador = "SELECT COUNT(*) FROM uso_promociones WHERE estado = 'Aprobada' AND  codPromo = $codPromo";
+			$consulta_contador = "SELECT COUNT(*) FROM uso_promociones WHERE estado = 'Utilizado' AND  codPromo = $codPromo";
             $datosContador = mysqli_query($conexion, $consulta_contador);
             $fila = mysqli_fetch_row($datosContador);
 			$tabla.='<tr class="reporteRow">

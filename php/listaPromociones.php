@@ -169,10 +169,10 @@
 				</div>';
 				}else{
 					$tabla.='
-							<form action="./php/cliente/saveSolicitudPromoCliente.php" method="POST" data-dias="'.htmlspecialchars(json_encode($numerosDias), ENT_QUOTES, 'UTF-8').'">
+							<form action="./php/cliente/saveSolicitudPromoCliente.php" method="POST">
 								<input type="hidden" name="codPromo" value="'.htmlspecialchars($rows['codPromo']) .'">
 								<input type="hidden" name="codUsuario" value="'.htmlspecialchars($_SESSION['codUsuario']).'">
-								<button type="submit" onclick="return validarDiasInlineFromElement(this);" name="botonAnashe" value="Solicitar Descuento" class="btn btn-success">Solicitar Descuento</button>
+								<button type="submit" onclick="return confirm(\'¿Seguro que quieres solicitar este Descuento?\');" name="botonAnashe" value="Solicitar Descuento" class="btn btn-success">Solicitar Descuento</button>
 							</form>
 						</div>
 				</div>';

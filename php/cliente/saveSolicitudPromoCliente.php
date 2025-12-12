@@ -29,25 +29,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
         header('Location: ' . $redirect);
         exit();
     }
-    // Guardando datos
-    $guardar_promo=conexion();
-    $consulta_promo = "SELECT * FROM promociones WHERE codPromo = '$codPromo'";
-    $datos = mysqli_query($guardar_promo, $consulta_promo);
-
-    $fila = mysqli_fetch_assoc($datos);
-
-    $diasSemanaLimpios = preg_replace('/[^0-9,]/', '', $fila['diasSemana']); // Eliminar caracteres no deseados
-    $diasSemanaPermitidos = explode(',', $diasSemanaLimpios); // Convertir a array
-
-    if (!in_array($arrayDiasSemana[$diaDeLaSemana], $diasSemanaPermitidos)) {
-        // Usar mensaje en sesión y redirigir (evita output antes de header)
-        $_SESSION['mensaje'] = 'La solicitud no está disponible este día de la semana';
-        $redirect = $_SERVER['HTTP_REFERER'] ?? 'index.php';
-        header('Location: ' . $redirect);
-        exit();
-    }
-
-    $guardar_promo=$guardar_promo->query("INSERT INTO uso_promociones (codCliente, codPromo, fechaUsoPromo, estado) VALUES ('$codCliente', '$codPromo', '$hoy', 'Pendiente')");
+    // Guardando datos (se permite solicitar en cualquier día; validación de uso se aplica al utilizar)
+    $guardar_promo = conexion();
+    $guardar_promo = $guardar_promo->query("INSERT INTO uso_promociones (codCliente, codPromo, fechaUsoPromo, estado) VALUES ('$codCliente', '$codPromo', '$hoy', 'Pendiente')");
 
     $_SESSION['mensaje'] = 'Solicitud registrada con exito';
 

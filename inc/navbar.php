@@ -66,6 +66,9 @@
                         <a class="nav-link" href="index.php?vista=promocionesList">Descuentos</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="index.php?vista=misDescuentos">Mis Descuentos</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="index.php#about">MAPA DEL SITIO</a>
                     </li>
                     <li class="nav-item dropdown">
