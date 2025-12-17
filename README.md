@@ -23,6 +23,7 @@ docker-compose up -d
 ```
 
 Este comando iniciará tres servicios:
+
 - **Apache + PHP + MySQLi**: Servidor web de la aplicación
 - **MySQL**: Base de datos
 - **phpMyAdmin**: Interfaz web para administrar la base de datos
@@ -52,6 +53,34 @@ Para detener los contenedores:
 ```bash
 docker-compose down
 ```
+
+## Usuarios de Prueba
+
+Todos los usuarios tienen la contraseña: **12345678**
+
+### Administrador
+
+- **Email**: admin@gmail.com
+
+### Dueños de Local
+
+- **Email**: dueno1@gmail.com
+- **Email**: 2dueno@gmail.com
+
+### Clientes
+
+- **Email**: cliente1@gmail.com (Categoría: **Medium**)
+- **Email**: 2cliente@gmail.com (Categoría: **Inicial**)
+
+## Sistema de Categorías de Cliente
+
+Los clientes se categorizan automáticamente según la cantidad de descuentos utilizados:
+
+- **Inicial**: 0-4 descuentos utilizados
+- **Medium**: 5-14 descuentos utilizados
+- **Premium**: 15 o más descuentos utilizados
+
+La categoría se actualiza automáticamente al utilizar un descuento y determina qué tipo de novedades puede ver el cliente.
 
 ## Notas
 
