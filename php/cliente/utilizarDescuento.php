@@ -1,8 +1,8 @@
-
 <?php
 require_once "../main.php";
 
 if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_name("UNR");
     session_start();
 }
 

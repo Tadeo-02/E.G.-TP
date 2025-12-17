@@ -2,10 +2,10 @@
     require_once(__DIR__ . '/../php/main.php');
     if (session_status() !== PHP_SESSION_ACTIVE) session_start();
 
-    // Mostrar mensaje de éxito si existe
+    // Mostrar mensaje si existe
     if (isset($_SESSION['mensaje'])) {
-        echo '<div class="container mt-3">'
-            . '<div class="alert alert-success alert-dismissible fade show" role="alert">'
+        echo '<div class="container" style="margin-top: 80px; position: relative; z-index: 1000;">'
+            . '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
             . htmlspecialchars($_SESSION['mensaje'])
             . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
             . '</div>'

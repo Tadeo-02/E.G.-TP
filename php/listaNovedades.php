@@ -9,7 +9,7 @@
 	$tabla="";
 	
 	// Verificar si el usuario está logueado y obtener su categoría
-	$categoriaCliente = isset($_SESSION['categoriaCliente']) ? $_SESSION['categoriaCliente'] : 'Inicial';
+	$categoriaCliente = isset($_SESSION['categoriaCliente']) ? $_SESSION['categoriaCliente'] : null;
 	$tipoUsuario = isset($_SESSION['tipoUsuario']) ? $_SESSION['tipoUsuario'] : '';
 	
 	//Consultas de acuerdo a la categoria de cliente

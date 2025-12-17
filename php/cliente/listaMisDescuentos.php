@@ -30,7 +30,7 @@ $conexion = conexion();
         $ordenar_sql = 'up.fechaUsoPromo DESC';
     }
 
-    $consulta_datos = "SELECT up.codUsoPromociones, up.codPromo, up.fechaUsoPromo, up.estado, p.textoPromo, p.fechaDesdePromo, p.fechaHastaPromo, l.nombreLocal
+    $consulta_datos = "SELECT up.codUsoPromociones, up.codPromo, up.fechaUsoPromo, up.estado, p.textoPromo, p.fechaDesdePromo, p.fechaHastaPromo, p.diasSemana, l.nombreLocal
                         FROM uso_promociones up
                         INNER JOIN promociones p ON up.codPromo = p.codPromo
                         INNER JOIN locales l ON p.codLocal = l.codLocal
@@ -54,6 +54,19 @@ $Npaginas = ceil($total_registros / $registros);
         $hasta = htmlspecialchars($rows['fechaHastaPromo']);
         $nombreLocal = htmlspecialchars($rows['nombreLocal'] ?? '');
         $fechaSolicitud = htmlspecialchars($rows['fechaUsoPromo']);
+        $diasSemana = $rows['diasSemana'] ?? '';
+        
+        // Convertir días a formato legible
+        $diasMap = ['1' => 'Lun', '2' => 'Mar', '3' => 'Mié', '4' => 'Jue', '5' => 'Vie', '6' => 'Sáb', '7' => 'Dom'];
+        $diasLimpios = preg_replace('/[^0-9,]/', '', $diasSemana);
+        $diasArray = $diasLimpios !== '' ? explode(',', $diasLimpios) : [];
+        $diasTexto = [];
+        foreach ($diasArray as $dia) {
+            if (isset($diasMap[$dia])) {
+                $diasTexto[] = $diasMap[$dia];
+            }
+        }
+        $diasDisponibles = !empty($diasTexto) ? implode(', ', $diasTexto) : 'No especificado';
 
         $tabla .= '<div class="col-12 col-md-8 col-lg-8">';
         $tabla .= '<div class="promociones">';
@@ -65,6 +78,7 @@ $Npaginas = ceil($total_registros / $registros);
         $tabla .= '<span><strong>Válido desde:</strong> ' . $desde . '</span>';
         $tabla .= '<span><strong>Hasta:</strong> ' . $hasta . '</span>';
         $tabla .= '</div>';
+        $tabla .= '<p class="promo-descripcion"><strong>Días disponibles:</strong> ' . $diasDisponibles . '</p>';
         $tabla .= '</div>';
         $tabla .= '<div class="textContainer-promo-buttons">';
         $tabla .= '<form action="./php/cliente/utilizarDescuento.php" method="POST">';

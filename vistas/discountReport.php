@@ -15,7 +15,7 @@
                 <div class="container">
                     <!-- Filtro para ordenar -->
                     <?php
-                        $ordenar = isset($_GET['sortBy']) ? $_GET['sortBy'] : 'fechaUsoPromo';
+                        $ordenar = isset($_GET['sortBy']) ? $_GET['sortBy'] : 'promociones.codPromo';
 
                         if(!isset($_GET['page'])){
                             $pagina=1;

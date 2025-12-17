@@ -12,18 +12,22 @@
 	if($tipoUsuario == "Dueño"){
 		$condicionesW[] = "locales.codUsuario = $codDueño";
 	}
-	$condicionesW[] = "uso_promociones.estado = 'Aprobada'";
+	// Filtrar solo promociones con estado Activa
+	$condicionesW[] = "promociones.estadoPromo = 'Activa'";
 	$where = !empty($condicionesW) ? 'WHERE ' . implode(' AND ', $condicionesW) : '';
 
-	$innerjoin = "INNER JOIN uso_promociones ON promociones.codPromo = uso_promociones.codPromo  
-                   INNER JOIN locales ON locales.codLocal = promociones.codLocal";
+	$innerjoin = "INNER JOIN locales ON locales.codLocal = promociones.codLocal
+				  LEFT JOIN uso_promociones ON promociones.codPromo = uso_promociones.codPromo";
 	$select = isset($campos) ? $campos : '*';
 
 	// Construir consultas finales
-	$consulta_datos = "SELECT DISTINCT promociones.codPromo, $select 
+	$consulta_datos = "SELECT promociones.codPromo, promociones.textoPromo, promociones.categoriaCliente, 
+						promociones.fechaDesdePromo, promociones.fechaHastaPromo, promociones.diasSemana, 
+						promociones.codLocal, locales.nombreLocal, locales.codUsuario
 						FROM promociones 
 						$innerjoin
 						$where 
+						GROUP BY promociones.codPromo
 						ORDER BY $ordenar ASC 
 						LIMIT $inicio, $registros";
 
@@ -42,16 +46,13 @@
 					<table class="reporte">
 						<tr class="reporteRow">
 							<th class="reporteHeading">
-								<a class="linkTabla" href="index.php?vista=discountReport&sortBy=uso_promociones.fechaUsoPromo">Fecha Uso ↓</a>
-							</th>
-							<th class="reporteHeading">
-								<a class="linkTabla" href="index.php?vista=discountReport&sortBy=uso_promociones.codPromo">Código Promoción ↓</a>
+								<a class="linkTabla" href="index.php?vista=discountReport&sortBy=promociones.codPromo">Código Promoción ↓</a>
 							</th>
 							<th class="reporteHeading">
 								<a class="linkTabla" href="index.php?vista=discountReport&sortBy=promociones.textoPromo">Promoción ↓</a>
 							</th>
 							<th class="reporteHeading">
-								<a class="linkTabla" href="index.php?vista=discountReport&sortBy=locales.codLocal">Código Local ↓</a>
+								<a class="linkTabla" href="index.php?vista=discountReport&sortBy=promociones.codLocal">Código Local ↓</a>
 							</th>
 							<th class="reporteHeading">
 								<a class="linkTabla" href="index.php?vista=discountReport&sortBy=locales.nombreLocal">Local ↓</a>
@@ -62,13 +63,11 @@
 						</tr>
 		';
 		foreach($datos as $rows){ 
-			$codCliente = $rows['codCliente'];
 			$codPromo = $rows['codPromo'];
 			$consulta_contador = "SELECT COUNT(*) FROM uso_promociones WHERE estado = 'Utilizado' AND  codPromo = $codPromo";
             $datosContador = mysqli_query($conexion, $consulta_contador);
             $fila = mysqli_fetch_row($datosContador);
 			$tabla.='<tr class="reporteRow">
-						<td data-cell="fecha uso" class="reporteContent">'.$rows['fechaUsoPromo'].'</td>
 						<td data-cell="Código Promo" class="reporteContent">'.$rows['codPromo'].'</td>
 						<td data-cell="Promoción" class="reporteContent">'.$rows['textoPromo'].'</td>
 						<td data-cell="Código Local" class="reporteContent">'.$rows['codLocal'].'</td>
