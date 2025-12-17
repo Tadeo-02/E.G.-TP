@@ -14,8 +14,6 @@
         echo "Error al denegar la promoción";    
     }
 
-    // require_once __DIR__ . "/../enviarMail.php"; // FUNCIONALIDAD DE EMAIL DESHABILITADA
-
     // Cerrar la conexión
     $denegar_promo->close();
     $conexion->close();

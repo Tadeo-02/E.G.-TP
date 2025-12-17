@@ -10,9 +10,6 @@
     $denegar_cuenta->bind_param("si",$nuevoEstado,  $codUsuario);
     $denegar_cuenta->execute();
 
-    //Informo via mail
-    // require_once __DIR__ . "/../enviarMail.php"; // FUNCIONALIDAD DE EMAIL DESHABILITADA
-
     // Cerrar la conexión
     $denegar_cuenta->close();
     $conexion->close();
