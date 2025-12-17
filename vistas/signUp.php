@@ -1,5 +1,17 @@
 <section id="about" class="about">
 	<div class="container-fluid">
+		<?php
+		// Mostrar mensaje de error si existe
+		if (isset($_SESSION['mensaje'])) {
+			echo '<div class="container" style="margin-top: 80px; position: relative; z-index: 1000;">
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						' . htmlspecialchars($_SESSION['mensaje']) . '
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+				  </div>';
+			unset($_SESSION['mensaje']); // Eliminar el mensaje después de mostrarlo
+		}
+		?>
 		<div class="form-rest"></div> <!--se utiliza para mostrar el resultado dentro de este "form-rest"  -->
 			<div class="row">
 				<div class="col-12">

@@ -1,6 +1,12 @@
 <?php 
     require_once "main.php";
 
+    // Ensure session is started for flash messages with the same session name
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_name("UNR");
+        session_start();
+    }
+
     // Guardar datos de los inputs
     $email = limpiar_cadena($_POST['nombreUsuario']);
     $clave_1 = limpiar_cadena($_POST['claveUsuario1']);
@@ -9,33 +15,29 @@
 
     // Verificar campos Obligatorios
     if( $clave_1 == "" || $clave_2 == "" || $email == ""){
-        echo '<div class="alert alert-danger" role="alert">
-                Todos los campos obligatorios no han sido completados
-              </div>';
+        $_SESSION['mensaje'] = 'Todos los campos obligatorios no han sido completados';
+        header('Location: ../index.php?vista=signUp');
         exit();
     }
     
     if(verificarDatos("[a-zA-Z0-9$@.-]{7,100}", $clave_1) || verificarDatos("[a-zA-Z0-9$@.-]{7,100}", $clave_2)){
-        echo '<div class="alert alert-danger" role="alert">
-                La clave debe contener al menos 7 caracteres
-              </div>';
+        $_SESSION['mensaje'] = 'La clave debe contener al menos 7 caracteres';
+        header('Location: ../index.php?vista=signUp');
         exit();
     }
     
     // Verificar Email
     if($email != ""){
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            echo '<div class="alert alert-danger" role="alert">
-                    El email no es válido
-                  </div>';
+            $_SESSION['mensaje'] = 'El email no es válido';
+            header('Location: ../index.php?vista=signUp');
             exit();
         }else{
             $checkEmail = conexion();
             $checkEmail = $checkEmail->query("SELECT nombreUsuario FROM usuarios WHERE nombreUsuario = '$email'");
             if($checkEmail -> num_rows > 0){ 
-                echo '<div class="alert alert-danger" role="alert">
-                        El email ya está registrado
-                      </div>';
+                $_SESSION['mensaje'] = 'El email ya está registrado';
+                header('Location: ../index.php?vista=signUp');
                 exit();
             }
             $checkEmail = null;
@@ -44,9 +46,8 @@
 
     // Verficando claves
     if($clave_1 != $clave_2){
-        echo '<div class="alert alert-danger" role="alert">
-            Las claves que ha ingresado no coinciden
-            </div>';
+        $_SESSION['mensaje'] = 'Las claves que ha ingresado no coinciden';
+        header('Location: ../index.php?vista=signUp');
         exit();
     } 
     else {
