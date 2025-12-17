@@ -83,6 +83,9 @@ function actualizarCategoriaClienteUtilizados($conexion, $codCliente) {
     $updateCategoria->bind_param("si", $nuevaCategoria, $codCliente);
     $updateCategoria->execute();
     $updateCategoria->close();
+    
+    // Actualizar la variable de sesión con la nueva categoría
+    $_SESSION['categoriaCliente'] = $nuevaCategoria;
 }
 
 if ($codCliente) {
