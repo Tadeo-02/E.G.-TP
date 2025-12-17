@@ -1,4 +1,4 @@
-# E.G.-TP
+# Entornos Graficos - TP
 
 ## Requisitos Previos
 
