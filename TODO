@@ -1,4 +1,0 @@
-Agregar seccion de mis descuentos en la vista de clientes donde pueda utilizar las solicitudes de descuento aprobadas.
-Eliminar logica de calculo de descuentos de aprobar solicitud descuentos y ponerla en utilizar descuentos
-Eliminar filtro de dias en solicitar descuentos para permitir solicitar solo en ciertos dias y agregarlo en utilizar descuentos
-Cambiar reporte de utilizacion de descuentos parea que cuente los uso_promociones utilizados, no los aprobados
