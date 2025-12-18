@@ -1,4 +1,3 @@
-
 <section id="about" class="about">
 	<div class="container-fluid">
         
@@ -8,8 +7,8 @@
             
             // Mostrar mensaje de éxito si existe
             if (isset($_SESSION['mensaje'])) {
-                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                        ' . htmlspecialchars($_SESSION['mensaje']) . '
+                echo '<div class="alert alert-' . $_SESSION['mensaje']['tipo'] . ' alert-dismissible fade show" role="alert">
+                        ' . htmlspecialchars($_SESSION['mensaje']['texto']) . '
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>';
                 unset($_SESSION['mensaje']); // Eliminar el mensaje después de mostrarlo
@@ -162,4 +161,4 @@
         let seleccionadas = Array.from(select.selectedOptions).map(opt => opt.value);
         alert("Opciones seleccionadas: " + seleccionadas.join(", "));
     }
-</script>	
+</script>

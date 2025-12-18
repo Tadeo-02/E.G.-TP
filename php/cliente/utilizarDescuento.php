@@ -92,7 +92,12 @@ if ($codCliente) {
     actualizarCategoriaClienteUtilizados($conexion, $codCliente);
 }
 
-$_SESSION['mensaje'] = 'Descuento utilizado correctamente.';
+// Cambiar el mensaje de éxito para incluir el tipo 'success'
+$_SESSION['mensaje'] = [
+    'texto' => 'Descuento utilizado correctamente.',
+    'tipo' => 'success'
+];
+
 $redirect = $_SERVER['HTTP_REFERER'] ?? '../../index.php';
 header('Location: ' . $redirect);
 exit();

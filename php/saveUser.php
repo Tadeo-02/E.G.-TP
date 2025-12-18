@@ -7,6 +7,14 @@
         session_start();
     }
 
+    // Standardize session messages for alerts
+    if (isset($_SESSION['mensaje'])) {
+        $_SESSION['mensaje'] = [
+            'texto' => $_SESSION['mensaje'],
+            'tipo' => 'danger' // Default to danger for errors
+        ];
+    }
+
     // Guardar datos de los inputs
     $email = limpiar_cadena($_POST['nombreUsuario']);
     $clave_1 = limpiar_cadena($_POST['claveUsuario1']);
