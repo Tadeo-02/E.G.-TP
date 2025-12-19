@@ -7,7 +7,6 @@
 ?>
 
 <div class="container-fluid p-0">
-    <h1 class="title">Novedades</h1>
 </div>
 
 <div class="row g-0">

@@ -1,5 +1,4 @@
 <div class="container-fluid p-0">
-    <h1 class="title">Promociones</h1>
 </div>
 
 <div class="row g-0">

@@ -84,10 +84,10 @@ function paginador_tablas($pagina, $Npaginas, $url, $botones) {
     } else {
         $tabla .= '<li class="page-item">
                     <span class="d-none d-sm-block">
-                        <a class="page-link" href="' . $url . ($pagina - 1) . '" aria-label="Anterior">Anterior</a>
+                        <a class="page-link" href="' . $url . ($pagina - 1) . '" aria-label="Ir a la página anterior">Anterior</a>
                     </span>
                     <span class="d-block d-sm-none">
-                        <a class="page-link" href="' . $url . ($pagina - 1) . '" aria-label="Anterior"><</a>
+                        <a class="page-link" href="' . $url . ($pagina - 1) . '" aria-label="Ir a la página anterior"><</a>
                     </span>
                 </li>';
     }

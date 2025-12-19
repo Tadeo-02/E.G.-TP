@@ -29,6 +29,8 @@
         // <!-- NAVBAR -->
         include "./inc/navbar.php";
 
+        echo "<h1>Bienvenido a NovaShopping</h1>"; // Adding a unique h1 heading
+
         include "./vistas/".$_GET['vista'].".php";
 
         // <!-- FOOTER -->   

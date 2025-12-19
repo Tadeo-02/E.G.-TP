@@ -10,7 +10,7 @@ body {
 /* HOVER */
 .nav-link.active,
 .nav-link:hover {
-  background: #ffca2c;
+  background: #e0a800; /* Adjusted for better contrast */
   transition: 0.5s;
 }
 
@@ -605,7 +605,6 @@ button.btn-danger:hover {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  padding: 0 15px 5px;
 }
 
 @media (max-width: 768px) {
