@@ -17,7 +17,8 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label for="emailContacto" class="visually-hidden">Correo electrónico</label>
-                                <input id="emailContacto" class="form-control" placeholder="Ingrese su correo" required type="email">
+                                <input id="emailContacto" class="form-control" type="email" required aria-describedby="emailError">
+                                <span id="emailError" class="visually-hidden">Por favor, ingrese un correo válido con formato nombre@dominio.com</span>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -34,10 +35,10 @@
             <div class="col-md-6 p-4">
                 <div class="bg-light p-4 contactoBottom">
                   
-                    <h3><i class="fa-solid fa-map"></i> Dónde estamos</h3>
-                    <p><i class="fa-solid fa-map-pin"></i> Tero Volado 2530, Rosario, Santa Fe, Argentina</p>
-                    <p><i class="fa-solid fa-phone"></i> Telefeno: 341 0344 0555</p>
-                    <h3> <i class="fa-solid fa-clock"></i> Horarios </h3>
+                    <h3><i class="fa-solid fa-map" aria-hidden="true"></i> Dónde estamos</h3>
+                    <p><i class="fa-solid fa-map-pin" aria-hidden="true"></i> Tero Volado 2530, Rosario, Santa Fe</p>
+                    <p><i class="fa-solid fa-phone" aria-hidden="true"></i> Teléfono: 341 0344 0555</p>
+                    <h3><i class="fa-solid fa-clock" aria-hidden="true"></i> Horarios</h3>
                     <dl>
                         <dt>Locales:</dt>
                         <dd>Lunes a Domingo de 10hs a 21hs</dd>
@@ -57,7 +58,8 @@
                         <div class="input-group">
                             <form onsubmit="event.preventDefault(); alert('Funcionalidad deshabilitada.');">
                                 <label for="emailNewsletter" class="visually-hidden">Email para newsletter</label>
-                                <input id="emailNewsletter" type="email" class="form-control" placeholder="Ingrese su email" name="email" required>
+                                <input id="emailNewsletter" class="form-control" type="email" required aria-describedby="newsError">
+                                <span id="newsError" class="visually-hidden">Se requiere un correo electrónico para la suscripción</span>
                                 <br>
                                 <button class="btn btn-warning" type="submit" id="button-addon2">Suscribirse</button>
                             </form>
@@ -70,6 +72,6 @@
 
 <footer class="bg-dark p-2 text-center">
     <div class="container">
-        <p class="text" style="color: #ffca2c">Todos los derechos reservados</p>
+        <p class="text" style="color: #e0a800">Todos los derechos reservados</p>
     </div>
 </footer>
