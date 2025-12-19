@@ -14,7 +14,7 @@
                 El centro comercial Nova presenta una arquitectura moderna con tres niveles, iluminación LED decorativa y zonas verdes en la entrada principal.
             </p>
           <div class="carousel-caption">
-            <h1>EL SHOPPING QUE BUSCAS</h1>
+            <h2>EL SHOPPING QUE BUSCAS</h2>
                 <p>Diferentes eventos y actividades todos los meses</p>
                 <?php if(isset($_SESSION['codUsuario']) && $_SESSION['codUsuario']!=""){ ?>
                     <p><a href="index.php?vista=novedadesList&page=" class="btn btn-warning mt-3">Ver novedades del shopping</a></p>
