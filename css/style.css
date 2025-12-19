@@ -105,7 +105,7 @@ body {
   background: #fff;
 }
 .dropend .dropdown-toggle {
-  color: #ffca2c;
+  color: #d1a000;
   margin-left: 1em;
 }
 
@@ -348,7 +348,7 @@ table {
 }
 
 table thead th {
-  background-color: #ffca2c;
+  background-color: #d1a000;
   color: #000000;
   font-weight: bold;
   text-transform: uppercase;
@@ -452,7 +452,7 @@ button.btn-danger:hover {
 
 .locales {
   display: block;
-  border: #ffca2c solid 5px;
+  border: #d1a000 solid 5px;
   background-color: white;
   border-radius: 25px;
   height: auto;
@@ -464,7 +464,7 @@ button.btn-danger:hover {
   width: 100%;
   max-width: 800px;
   margin: 20px auto;
-  border: #ffca2c solid 3px;
+  border: #d1a000 solid 3px;
   background-color: white;
   border-radius: 15px;
   padding: 20px;
@@ -721,7 +721,7 @@ button.btn-danger:hover {
 
 .containerButton {
   max-width: 200px;
-  border: #ffca2c solid 5px;
+  border: #d1a000 solid 5px;
 }
 .textContainer h1 {
   word-wrap: break-word; /* Allows words to break */
@@ -766,7 +766,7 @@ button.btn-danger:hover {
   max-width: 100%;
   text-align: center;
   margin-bottom: 20px;
-  border: #ffca2c solid 5px;
+  border: #d1a000 solid 5px;
   background-color: white;
   border-radius: 25px;
   display: block;
@@ -795,7 +795,7 @@ button.btn-danger:hover {
   max-width: 100%;
   text-align: center;
   margin: 20px auto;
-  border: #ffca2c solid 5px;
+  border: #d1a000 solid 5px;
   background-color: white;
   border-radius: 25px;
   display: flex;
@@ -841,7 +841,7 @@ button.btn-danger:hover {
   width: 100%; /* Asegura que ocupe el ancho completo del contenedor */
   text-align: center;
   min-width: 200px;
-  border: #ffca2c solid 5px;
+  border: #d1a000 solid 5px;
 }
 .calendarContainer p {
   font-weight: bold; /* Negrita */
@@ -856,7 +856,7 @@ input[type="date"] {
 .calendarContainer button {
   margin-top: 10px;
   padding: 10px 15px;
-  background: #ffca2c;
+  background: #d1a000;
   color: black;
   border: black solid 3px;
   border-radius: 5px;
@@ -1031,7 +1031,7 @@ table {
   line-height: 1.5;
   width: 100%;
   border-collapse: collapse;
-  border: #ffca2c solid 5px;
+  border: #d1a000 solid 5px;
   border-radius: 25px;
   table-layout: auto;
   overflow-x: auto;

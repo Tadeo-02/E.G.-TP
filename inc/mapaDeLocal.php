@@ -3,7 +3,13 @@
               <div class="row">
                   <div class="col-lg-4 col-md-12 col-12">
                       <div class="about-img">
-                          <img src="img/about.jpg" alt="Mapa del centro comercial Nova mostrando la distribución de locales" class="img-fluid">
+                        <img src="img/about.jpg" 
+                                alt="Mapa de distribución de locales de Nova Shopping" 
+                                class="img-fluid"
+                                aria-describedby="desc-mapa">
+                            <p id="desc-mapa" class="visually-hidden">
+                                El mapa muestra la distribución de locales: Planta Baja para servicios, Primer Piso para indumentaria y Segundo Piso para cine y gastronomía.
+                            </p>
                       </div>
                   </div>
                   <div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">
