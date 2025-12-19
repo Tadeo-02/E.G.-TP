@@ -10,7 +10,7 @@
                       <div class="about-text">
                             <h2>MAPA DEL SITIO</h2>
                             <ul class="has-text-centered">
-                                <li><a class="nav-link" href="#">Inicio</a></li>
+                                <li><a class="nav-link" href="index.php?vista=home">Inicio</a></li>
                                 
                                 <?php
                                 if((!isset($_SESSION['codUsuario']) || $_SESSION['codUsuario']=="") || (!isset($_SESSION['nombreUsuario']) || $_SESSION['nombreUsuario']=="")){

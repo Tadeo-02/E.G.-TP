@@ -5,7 +5,7 @@
       <div class="row g-0 footerDiv">
             <!-- FORMULARIO BOTTOM -->
             <div class="col-md-6 p-4">
-                <h4>ESCRIBENOS</h4>
+                <h3>ESCRIBENOS</h3>
                 <form action="#" class="bg-light p-4 m-auto">
                     <div class="row">
                         <div class="col-md-12">
@@ -34,21 +34,25 @@
             <div class="col-md-6 p-4">
                 <div class="bg-light p-4 contactoBottom">
                   
-                    <h4><i class="fa-solid fa-map"></i> Dónde estamos</h4>
+                    <h3><i class="fa-solid fa-map"></i> Dónde estamos</h3>
                     <p><i class="fa-solid fa-map-pin"></i> Tero Volado 2530, Rosario, Santa Fe, Argentina</p>
                     <p><i class="fa-solid fa-phone"></i> Telefeno: 341 0344 0555</p>
-                    <h4> <i class="fa-solid fa-clock"></i> Horarios </h4>
-                    <ul>
-                        <li><p><b>Locales:</b> Lunes a Domngo de 10hs a 21hs</p></li>
-                        <li><p><b>Patio de Comidas:</b> Lunes a Domingo desde las 8hs hasta las 00hs</p></li>
-                        <li><p><b>Cine:</b> Martes a Domingo desde las 12hs hasta las 1hs</p></li>
-                    </ul>
+                    <h3> <i class="fa-solid fa-clock"></i> Horarios </h3>
+                    <dl>
+                        <dt>Locales:</dt>
+                        <dd>Lunes a Domingo de 10hs a 21hs</dd>
+                        <dt>Patio de Comidas:</dt>
+                        <dd>Lunes a Domingo desde las 8hs hasta las 00hs</dd>
+                        <dt>Cine:</dt>
+                        <dd>Martes a Domingo desde las 12hs hasta las 1hs</dd>
+                    </dl>
+
                 </div>
             </div>
             <!-- NEWSLETTER  -->
               <div class="col-md-6 p-4">
                 <div class="bg-light p-4 contactoBottom">
-                    <h4>NEWSLETTER</h4>
+                    <h3>NEWSLETTER</h3>
                     <p>Recibe las últimas noticias y ofertas especiales</p>
                     <div class="input-group">
                         <form onsubmit="event.preventDefault(); alert('Funcionalidad de newsletter deshabilitada.');">
