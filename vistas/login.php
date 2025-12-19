@@ -8,10 +8,10 @@
                         <br>
                         <h1>INICIO DE SESIÓN</h1>
                         <br>
-                        <label>Correo electrónico:</label>
-                        <input class="form-control" type="email" name="nombreUsuario" placeholder="alguien@ejemplo.com" maxlength="70" required>
-                        <label>Contraseña:</label>
-                        <input class="form-control" type="password" name="claveUsuario" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********" required>
+                        <label for="nombreUsuarioLogin">Correo electrónico:</label>
+                        <input id="nombreUsuarioLogin" class="form-control" type="email" name="nombreUsuario" placeholder="alguien@ejemplo.com" maxlength="70" required>
+                        <label for="claveUsuarioLogin">Contraseña:</label>
+                        <input id="claveUsuarioLogin" class="form-control" type="password" name="claveUsuario" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********" required>
                         <p class="has-text-centered">
                             <br>    
                             <button type="submit" class="btn btn-primary" value="Ingresar" href="">Confirmar</button>

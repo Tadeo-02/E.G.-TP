@@ -45,8 +45,8 @@
                             <!-- Local -->
                             <div class="mb-3">
                                 <br>
-                                <label class="form-label" style="color: black; text-align: left; display:block;">Local a modificar:</label>
-                                <select class="form-select" name="codLocal" required>
+                                <label for="codLocalDelete" class="form-label" style="color: black; text-align: left; display:block;">Local a modificar:</label>
+                                <select id="codLocalDelete" class="form-select" name="codLocal" required>
                                     <option value="" disabled selected>Seleccione una novedad</option>
                                     <?php
                                     // Crear las opciones del desplegable

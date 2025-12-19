@@ -36,8 +36,8 @@
                             <!-- Cod Novedad -->
                             <div class="mb-3">
                                 <br>
-                                <label class="form-label" style="color: black; text-align: left; display:block;">Novedad a modificar:</label>
-                                <select class="form-select" name="novedadModificada" required>
+                                <label for="novedadModificada" class="form-label" style="color: black; text-align: left; display:block;">Novedad a modificar:</label>
+                                <select id="novedadModificada" class="form-select" name="novedadModificada" required>
                                     <?php
                                         $codActual = isset($_POST['codNovedad']) ? $_POST['codNovedad'] : '';
                                         echo '<option value="'. $codActual .'">'.$codActual.'</option>';
@@ -47,28 +47,28 @@
 
                             <!-- Texto Novedad -->
                             <div class="mb-3">
-                                <label class="form-label" style="color: black; text-align: left; display:block;">Texto novedad</label>
-                                <textarea class="form-control" name="textoNovedad" rows="4" placeholder="Ingrese el texto de la novedad aquí..." maxlength="500" required></textarea>
+                                <label for="textoNovedadUpdate" class="form-label" style="color: black; text-align: left; display:block;">Texto novedad</label>
+                                <textarea id="textoNovedadUpdate" class="form-control" name="textoNovedad" rows="4" placeholder="Ingrese el texto de la novedad aquí..." maxlength="500" required></textarea>
                             </div>
 
                             <!-- Fechas Novedad -->
                             <div class="mb-3">
                                     <br>
-                                    <label class="form-label" style="color: black; text-align: left; display:block;">Fecha de inicio de la Novedad:</label>
-                                    <input class="form-control" type="date" name="fechaDesdeNovedad" required>
+                                    <label for="fechaDesdeNovedadUpdate" class="form-label" style="color: black; text-align: left; display:block;">Fecha de inicio de la Novedad:</label>
+                                    <input id="fechaDesdeNovedadUpdate" class="form-control" type="date" name="fechaDesdeNovedad" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <br>
-                                    <label class="form-label" style="color: black; text-align: left; display:block;">Fecha de fin de la Novedad:</label>
-                                    <input class="form-control" type="date" name="fechaHastaNovedad" required>
+                                    <label for="fechaHastaNovedadUpdate" class="form-label" style="color: black; text-align: left; display:block;">Fecha de fin de la Novedad:</label>
+                                    <input id="fechaHastaNovedadUpdate" class="form-control" type="date" name="fechaHastaNovedad" required>
                             </div>
 
                             <!-- Tipo de cliente -->
                             <div class="mb-3">
                                 <br>
-                                <label class="form-label">Tipo de Cliente</label>
-                                <select class="form-select" name="tipoCliente" required>
+                                <label for="tipoClienteUpdate" class="form-label">Tipo de Cliente</label>
+                                <select id="tipoClienteUpdate" class="form-select" name="tipoCliente" required>
                                     <option value="" disabled selected>Seleccione un nivel de Cliente</option>
                                     <option value="Inicial">Inicial</option>
                                     <option value="Medium">Medium</option>

@@ -10,20 +10,23 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <input class="form-control" placeholder="Ingrese su nombre" required="" type="text">
+                                <label for="nombreContacto" class="visually-hidden">Nombre</label>
+                                <input id="nombreContacto" class="form-control" placeholder="Ingrese su nombre" required="" type="text">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <input class="form-control" placeholder="Ingrese su dirección de correo electrónico" required="" type="email">
+                                <label for="emailContacto" class="visually-hidden">Correo electrónico</label>
+                                <input id="emailContacto" class="form-control" placeholder="Ingrese su dirección de correo electrónico" required="" type="email">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <textarea class="form-control" placeholder="Escriba aquí el mensaje" required="" rows="4"></textarea>
+                                <label for="mensajeContacto" class="visually-hidden">Mensaje</label>
+                                <textarea id="mensajeContacto" class="form-control" placeholder="Escriba aquí el mensaje" required="" rows="4"></textarea>
                             </div>
                         </div>
-                        <button class="btn btn-warning btn-lg btn-block mt-3" type="button">Enviar</button>
+                        <button class="btn btn-warning btn-lg btn-block mt-3" type="submit">Enviar</button>
                     </div>
                 </form>
             </div>            
@@ -49,7 +52,8 @@
                     <p>Recibe las últimas noticias y ofertas especiales</p>
                     <div class="input-group">
                         <form onsubmit="event.preventDefault(); alert('Funcionalidad de newsletter deshabilitada.');">
-                            <input type="text" class="form-control" placeholder="Ingrese su email" aria-label="Ingrese su email" aria-describedby="button-addon2" name="email">
+                            <label for="emailNewsletter" class="visually-hidden">Email para newsletter</label>
+                            <input id="emailNewsletter" type="email" class="form-control" placeholder="Ingrese su email" aria-label="Ingrese su email" aria-describedby="button-addon2" name="email">
                             <br>
                             <button class="btn btn-warning" type="submit" id="button-addon2">Suscribirse</button>
                         </form>

@@ -50,15 +50,15 @@
 
                             <!-- Nombre del Local -->
                             <div class="mb-3">
-                                <label class="form-label" style="color: black; text-align: left; display:block;">Nombre del local</label>
-                                <input class="form-control" type="text" name="nombreLocal" placeholder="Ingrese el nombre del local aquí..." maxlength="70" required>
+                                <label for="nombreLocal" class="form-label" style="color: black; text-align: left; display:block;">Nombre del local</label>
+                                <input id="nombreLocal" class="form-control" type="text" name="nombreLocal" placeholder="Ingrese el nombre del local aquí..." maxlength="70" required>
                             </div>
 
                             <!-- Rubro del Local -->
                             <div class="mb-3">
                                 <br>
-                                <label class="form-label" style="color: black; text-align: left; display:block;">Rubro de Local:</label>
-                                <select class="form-select" name="rubroLocal">
+                                <label for="rubroLocal" class="form-label" style="color: black; text-align: left; display:block;">Rubro de Local:</label>
+                                <select id="rubroLocal" class="form-select" name="rubroLocal">
                                     <option value="" disabled selected>Seleccione un Rubro</option>
                                     <?php
                                     // Crear las opciones del desplegable
@@ -73,8 +73,8 @@
                             <!-- Días de la promoción -->
                             <div class="mb-3">
                                 <br>
-                                <label class="form-label">Ubicación del Local</label>
-                                <select class="form-select" name="ubicacionLocal" required>
+                                <label for="ubicacionLocal" class="form-label">Ubicación del Local</label>
+                                <select id="ubicacionLocal" class="form-select" name="ubicacionLocal" required>
                                     <option value="" disabled selected>Seleccione el piso: </option>
                                     <option value="Planta Baja">Planta Baja</option>
                                     <option value="Piso 1">Piso 1</option>
@@ -84,8 +84,8 @@
 
                             <div class="mb-3">
                                 <br>
-                                <label class="form-label" style="color: black; text-align: left; display:block;">Dueño del Local:</label>
-                                <select class="form-select" name="codUsuario">
+                                <label for="codUsuario" class="form-label" style="color: black; text-align: left; display:block;">Dueño del Local:</label>
+                                <select id="codUsuario" class="form-select" name="codUsuario">
                                     <option value="" disabled selected>Seleccione el Dueño</option>
                                     <?php
                                     // Crear las opciones del desplegable
@@ -99,8 +99,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label" style="color: black; text-align: left; display:block;">Imagen del Local</label>
-                                <input class="form-control" type="file" name="imagenLocal" required>
+                                <label for="imagenLocal" class="form-label" style="color: black; text-align: left; display:block;">Imagen del Local</label>
+                                <input id="imagenLocal" class="form-control" type="file" name="imagenLocal" required>
                             </div>
 
                             <div class="text-center">

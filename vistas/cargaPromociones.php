@@ -56,8 +56,8 @@
                                 <!-- Local -->
                                 <div class="mb-3">
                                     <br>
-                                    <label class="form-label" style="color: black; text-align: left; display:block;">Local de la promoción:</label>
-                                    <select class="form-select" name="codLocal" required>
+                                    <label for="codLocal" class="form-label" style="color: black; text-align: left; display:block;">Local de la promoción:</label>
+                                    <select id="codLocal" class="form-select" name="codLocal" required>
                                         <option value="" disabled selected>Seleccione un local</option>
                                         <?php
                                         // Crear las opciones del desplegable
@@ -73,29 +73,29 @@
                                 <!-- Descripción -->
                                 <div class="mb-3">
                                     <br>
-                                    <label class="form-label" style="color: black; text-align: left; display:block;">Descripción de la promoción:</label>
-                                    <textarea class="form-control" name="textoPromo" rows="4" placeholder="Ingrese la descripción de la promoción aquí..." maxlength="500" required></textarea>
+                                    <label for="textoPromo" class="form-label" style="color: black; text-align: left; display:block;">Descripción de la promoción:</label>
+                                    <textarea id="textoPromo" class="form-control" name="textoPromo" rows="4" placeholder="Ingrese la descripción de la promoción aquí..." maxlength="500" required></textarea>
                                 </div>
 
                                 <!-- Fechas -->
                                 <div class="mb-3">
                                     <br>
-                                    <label class="form-label" style="color: black; text-align: left; display:block;">Fecha de inicio de la promoción:</label>
-                                    <input class="form-control" type="date" name="fechaDesdePromo" required>
+                                    <label for="fechaDesdePromo" class="form-label" style="color: black; text-align: left; display:block;">Fecha de inicio de la promoción:</label>
+                                    <input id="fechaDesdePromo" class="form-control" type="date" name="fechaDesdePromo" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <br>
-                                    <label class="form-label" style="color: black; text-align: left; display:block;">Fecha de fin de la promoción:</label>
-                                    <input class="form-control" type="date" name="fechaHastaPromo" required>
+                                    <label for="fechaHastaPromo" class="form-label" style="color: black; text-align: left; display:block;">Fecha de fin de la promoción:</label>
+                                    <input id="fechaHastaPromo" class="form-control" type="date" name="fechaHastaPromo" required>
                                 </div>
 
                                 <!-- Categoría del cliente -->
                                 <div class="mb-3">
                                     <br>
-                                    <label class="form-label" style="color: black; text-align: left; display:block;">Categoría del cliente válida para la promoción:</label>
+                                    <label for="categoriaCliente" class="form-label" style="color: black; text-align: left; display:block;">Categoría del cliente válida para la promoción:</label>
 
-                                    <select class="form-select" name="categoriaCliente" required>
+                                    <select id="categoriaCliente" class="form-select" name="categoriaCliente" required>
                                         <option value="" disabled selected>Seleccione una categoría</option>
                                         <option value="Inicial">Inicial</option>
                                         <option value="Medium">Medium</option>
@@ -106,7 +106,7 @@
                                 <!-- Días de la promoción -->
                                 <div class="mb-3">
                                     <br>
-                                    <label class="form-label" style="color: black; text-align: left; display:block;">Días en los que la promoción será válida: </label>
+                                    <label for="diasSemana" class="form-label" style="color: black; text-align: left; display:block;">Días en los que la promoción será válida: </label>
 
                                     <select class="form-select" multiple size="7" name="diasSemana[]" id="diasSemana" required>
                                         <option value="1">Lunes</option>

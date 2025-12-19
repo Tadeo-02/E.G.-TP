@@ -3,7 +3,7 @@
               <div class="row">
                   <div class="col-lg-4 col-md-12 col-12">
                       <div class="about-img">
-                          <img src="img/about.jpg" alt="" class="img-fluid">
+                          <img src="img/about.jpg" alt="Mapa del centro comercial Nova mostrando la distribución de locales" class="img-fluid">
                       </div>
                   </div>
                   <div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">

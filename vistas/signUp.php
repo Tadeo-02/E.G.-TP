@@ -21,13 +21,13 @@
                         <br>
                     	<h1>REGISTRO DE SESIÓN</h1>
                       	<br>
-						<label>Email</label>
-						<input class="form-control" type="email" name="nombreUsuario" placeholder="alguien@ejemplo.com" maxlength="70" required>
-						<label>Clave</label>
-						<input class="form-control" type="password" name="claveUsuario1" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********" required>
-						<label>Repetir clave</label>
-						<input class="form-control" type="password" name="claveUsuario2" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********" required>
-						<label>¿Es Dueño de Local?</label>
+						<label for="nombreUsuario">Email</label>
+						<input id="nombreUsuario" class="form-control" type="email" name="nombreUsuario" placeholder="alguien@ejemplo.com" maxlength="70" required>
+						<label for="claveUsuario1">Clave</label>
+						<input id="claveUsuario1" class="form-control" type="password" name="claveUsuario1" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********" required>
+						<label for="claveUsuario2">Repetir clave</label>
+						<input id="claveUsuario2" class="form-control" type="password" name="claveUsuario2" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********" required>
+						<label for="flexCheckDefault">¿Es Dueño de Local?</label>
 						<div class="form-check" style="display:flex ;justify-content: center; align-items: center;">
 						<input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="esDueño" >
 						</div>

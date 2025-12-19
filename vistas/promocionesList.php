@@ -61,7 +61,8 @@
                         <br>
                         <br>
                         <div class="">
-                            <select class="form-select" name="sortBy" aria-label="Seleccionar orden" onchange="this.form.submit()">
+                            <label for="sortByPromos" class="visually-hidden">Ordenar por</label>
+                            <select id="sortByPromos" class="form-select" name="sortBy" aria-label="Seleccionar orden" onchange="this.form.submit()">
                                 <option value="" disabled select <?php echo $sortActual == '' ? 'selected' : ''; ?>>Ordenar por</option>
                                 <option value="promociones.codLocal" <?php echo $sortActual == 'codLocal' ? 'selected' : ''; ?>>Local</option>
                                 <option value="categoriaCliente" <?php echo $sortActual == 'categoriaCliente' ? 'selected' : ''; ?>>Tipo cliente</option>

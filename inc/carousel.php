@@ -6,31 +6,31 @@
       </div>
       <div class="carousel-inner">
        <div class="carousel-item active">
-          <img src="img/home-1.jpg" class="d-block w-100" alt="...">
+          <img src="img/home-1.jpg" class="d-block w-100" alt="Vista del centro comercial Nova con eventos y actividades">
           <div class="carousel-caption">
             <h5>EL SHOPPING QUE BUSCAS</h5>
                 <p>Diferentes eventos y actividades todos los meses</p>
                 <?php if(isset($_SESSION['codUsuario']) && $_SESSION['codUsuario']!=""){ ?>
-                    <p><a href="index.php?vista=novedadesList&page=" class="btn btn-warning mt-3">Haz click aquí para ver las novedades del shopping</a></p>
+                    <p><a href="index.php?vista=novedadesList&page=" class="btn btn-warning mt-3">Ver novedades del shopping</a></p>
                 <?php } else { ?>
                     <p><a href="index.php?vista=login" class="btn btn-warning mt-3">Inicia sesión para ver las novedades</a></p>
                 <?php } ?>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="img/home-2.jpg" class="d-block w-100" alt="...">
+          <img src="img/home-2.jpg" class="d-block w-100" alt="Pasillo del shopping con variedad de locales comerciales">
           <div class="carousel-caption">
              <h5>VARIEDAD DE LOCALES A TU DISPOSICIÓN</h5>
              <p>Numerosos locales de todo tipo de rubro</p>
-             <p><a href="vistas/localsList.php?page=" class="btn btn-warning mt-3">Haz click aquí para ver los locales del shopping</a></p>
+             <p><a href="vistas/localsList.php?page=" class="btn btn-warning mt-3">Ver locales del shopping</a></p>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="img/home-3.jpg" class="d-block w-100" alt="...">
+          <img src="img/home-3.jpg" class="d-block w-100" alt="Área de entretenimiento del shopping con cine y patio de comidas">
           <div class="carousel-caption">
             <h5>CINE, PATIO DE COMIDAS Y MÁS</h5>
             <p>Variedad de promociones todas las semanas</p>
-            <p><a href="vistas/promocionesList.php?page=" class="btn btn-warning mt-3">Haz click aquí para ver las promociones del shopping</a></p>
+            <p><a href="vistas/promocionesList.php?page=" class="btn btn-warning mt-3">Ver promociones del shopping</a></p>
           </div>
         </div>
       </div>

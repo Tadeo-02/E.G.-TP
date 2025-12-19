@@ -48,8 +48,8 @@
                             <!-- Local -->
                             <div class="mb-3">
                                 <br>
-                                <label class="form-label" style="color: black; text-align: left; display:block;">Local a modificar:</label>
-                                <select class="form-select" name="localModificado" required>
+                                <label for="localModificado" class="form-label" style="color: black; text-align: left; display:block;">Local a modificar:</label>
+                                <select id="localModificado" class="form-select" name="localModificado" required>
                                     <?php
                                         echo '<option value="'. $codActual .'">'.$nombreActual.'</option>';
                                     ?>        
@@ -59,15 +59,15 @@
                             <!-- Nuevo Nombre -->
                             <div class="mb-3">
                                 <br>
-                                <label class="form-label">Nombre del local</label>
-                                <input class="form-control" type="text" name="nombreLocal" placeholder="Ingrese el nuevo nombre del local aquí..." maxlength="70" required>
+                                <label for="nombreLocal" class="form-label">Nombre del local</label>
+                                <input id="nombreLocal" class="form-control" type="text" name="nombreLocal" placeholder="Ingrese el nuevo nombre del local aquí..." maxlength="70" required>
                             </div>
 
                             <!-- Nuevo Rubro -->
                             <div class="mb-3">
                                 <br>
-                                <label class="form-label" style="color: black; text-align: left; display:block;">Rubro de Local:</label>
-                                <select class="form-select" name="rubroLocal" required>
+                                <label for="rubroLocal" class="form-label" style="color: black; text-align: left; display:block;">Rubro de Local:</label>
+                                <select id="rubroLocal" class="form-select" name="rubroLocal" required>
                                     <option value="" disabled selected>Seleccione un Rubro</option>
                                     <?php
                                     // Crear las opciones del desplegable
@@ -82,8 +82,8 @@
                             <!-- Ubicación del Local -->
                             <div class="mb-3">
                                 <br>
-                                <label class="form-label">Ubicación del Local:</label>
-                                <select class="form-select" name="ubicacionLocal" required>
+                                <label for="ubicacionLocal" class="form-label">Ubicación del Local:</label>
+                                <select id="ubicacionLocal" class="form-select" name="ubicacionLocal" required>
                                     <option value="" disabled selected>Seleccione el piso: </option>
                                     <option value="Planta Baja">Planta Baja</option>
                                     <option value="Piso 1">Piso 1</option>

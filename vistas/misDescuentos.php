@@ -40,7 +40,8 @@
     <div class="centered row mb-4">
         <form action="index.php" id="sortForm" method="get" class="col-lg-5 col-md-5 col-12 d-flex justify-content-center">
             <input type="hidden" name="vista" value="misDescuentos">
-            <select class="form-select" name="sortBy" aria-label="Seleccionar orden" onchange="this.form.submit()">
+            <label for="sortByDescuentos" class="visually-hidden">Ordenar por</label>
+            <select id="sortByDescuentos" class="form-select" name="sortBy" aria-label="Seleccionar orden" onchange="this.form.submit()">
                 <option value="" disabled <?php echo $ordenar == '' ? 'selected' : ''; ?>>Ordenar por</option>
                 <option value="up.fechaUsoPromo" <?php echo $ordenar == 'up.fechaUsoPromo' ? 'selected' : ''; ?>>Fecha solicitud</option>
                 <option value="l.nombreLocal" <?php echo $ordenar == 'l.nombreLocal' ? 'selected' : ''; ?>>Local</option>

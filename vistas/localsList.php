@@ -44,7 +44,8 @@
                     <input type="hidden" name="vista" value="localsList">
                     <div class="row mb-3">
                         <div class="col">
-                            <select class="form-select" name="sortBy" aria-label="Seleccionar orden" onchange="this.form.submit()">
+                            <label for="sortByLocales" class="visually-hidden">Ordenar por</label>
+                            <select id="sortByLocales" class="form-select" name="sortBy" aria-label="Seleccionar orden" onchange="this.form.submit()">
                                 <option value="" disabled select <?php echo $sortActual == '' ? 'selected' : ''; ?>>Ordenar por</option>
                                 <option value="nombreLocal" <?php echo $sortActual == 'nombreLocal' ? 'selected' : ''; ?>>Nombre</option>
                                 <option value="ubicacionLocal" <?php echo $sortActual == 'ubicacionLocal' ? 'selected' : ''; ?>>Ubicación</option>
@@ -53,7 +54,8 @@
                             </select>
                         </div>
                         <div class="col">    
-                            <select class="form-select" name="rubroLocal" aria-label="Seleccionar Rubro" onchange="this.form.submit()">
+                            <label for="rubroLocalFiltro" class="visually-hidden">Seleccionar rubro</label>
+                            <select id="rubroLocalFiltro" class="form-select" name="rubroLocal" aria-label="Seleccionar Rubro" onchange="this.form.submit()">
                                 <option value="" <?php echo $rubroActual == '' ? 'selected' : ''; ?>>Todos los rubros</option>
                                 <?php
                                 // Crear las opciones del desplegable
@@ -82,7 +84,9 @@
                     <form action="" method="POST" autocomplete="off">
                         <input type="hidden" name="modulo_buscador" value="locales">
                         <div class="input-group">
+                            <label for="txt_buscador" class="visually-hidden">Buscador de locales</label>
                             <input 
+                                id="txt_buscador"
                                 type="text" 
                                 name="txt_buscador" 
                                 class="form-control rounded-pill" 

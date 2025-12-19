@@ -35,28 +35,28 @@
             
                             <!-- Texto Novedad -->
                             <div class="mb-3">
-                                <label class="form-label" style="color: black; text-align: left; display:block;">Texto:</label>
-                                <textarea class="form-control" name="textoNovedad" rows="4" placeholder="Ingrese el texto de la novedad aquí..." maxlength="500" required></textarea>
+                                <label for="textoNovedad" class="form-label" style="color: black; text-align: left; display:block;">Texto:</label>
+                                <textarea id="textoNovedad" class="form-control" name="textoNovedad" rows="4" placeholder="Ingrese el texto de la novedad aquí..." maxlength="500" required></textarea>
                             </div>
 
                             <!-- Fechas Novedad -->
                             <div class="mb-3">
                                     <br>
-                                    <label class="form-label" style="color: black; text-align: left; display:block;">Fecha de inicio:</label>
-                                    <input class="form-control" type="date" name="fechaDesdeNovedad" required>
+                                    <label for="fechaDesdeNovedad" class="form-label" style="color: black; text-align: left; display:block;">Fecha de inicio:</label>
+                                    <input id="fechaDesdeNovedad" class="form-control" type="date" name="fechaDesdeNovedad" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <br>
-                                    <label class="form-label" style="color: black; text-align: left; display:block;">Fecha de fin:</label>
-                                    <input class="form-control" type="date" name="fechaHastaNovedad" required>
+                                    <label for="fechaHastaNovedad" class="form-label" style="color: black; text-align: left; display:block;">Fecha de fin:</label>
+                                    <input id="fechaHastaNovedad" class="form-control" type="date" name="fechaHastaNovedad" required>
                             </div>
 
                             <!-- Tipo de cliente -->
                             <div class="mb-3">
                                 <br>
-                                <label class="form-label">Tipo de Cliente</label>
-                                <select class="form-select" name="tipoCliente" required>
+                                <label for="tipoCliente" class="form-label">Tipo de Cliente</label>
+                                <select id="tipoCliente" class="form-select" name="tipoCliente" required>
                                     <option value="" disabled selected>Seleccione un nivel de Cliente</option>
                                     <option value="Inicial">Inicial</option>
                                     <option value="Medium">Medium</option>
