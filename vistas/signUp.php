@@ -27,13 +27,23 @@
 
 						<div class="mb-3">
 							<label for="claveUsuario1">Clave</label>
-							<input id="claveUsuario1" class="form-control" type="password" name="claveUsuario1" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********" required aria-describedby="passwordHelp">
+                            <div style="position: relative;">
+                                <input id="claveUsuario1" class="form-control" type="password" name="claveUsuario1" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********" required aria-describedby="passwordHelp" style="padding-right: 40px;">
+                                <button type="button" onclick="togglePasswordVisibility('claveUsuario1', 'toggleIcon1')" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); border: none; background: none; cursor: pointer; padding: 0; margin: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; outline: none;" aria-label="Mostrar u ocultar contraseña" tabindex="-1">
+                                    <i id="toggleIcon1" class="fas fa-eye" style="font-size: 16px; color: #6c757d; pointer-events: none;"></i>
+                                </button>
+                            </div>
 							<small id="passwordHelp" class="form-text text-muted" style="margin-top: 5px;">La contraseña debe tener al menos 7 caracteres.</small>
 						</div>
 
 						<div class="mb-3">
 							<label for="claveUsuario2">Repetir clave</label>
-							<input id="claveUsuario2" class="form-control" type="password" name="claveUsuario2" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********" required aria-describedby="repeatPasswordHelp">
+                            <div style="position: relative;">
+                                <input id="claveUsuario2" class="form-control" type="password" name="claveUsuario2" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********" required aria-describedby="repeatPasswordHelp" style="padding-right: 40px;">
+                                <button type="button" onclick="togglePasswordVisibility('claveUsuario2', 'toggleIcon2')" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); border: none; background: none; cursor: pointer; padding: 0; margin: 0; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; outline: none;" aria-label="Mostrar u ocultar contraseña" tabindex="-1">
+                                    <i id="toggleIcon2" class="fas fa-eye" style="font-size: 16px; color: #6c757d; pointer-events: none;"></i>
+                                </button>
+                            </div>
 							<small id="repeatPasswordHelp" class="form-text text-muted" style="margin-top: 5px;">Por favor, repite la contraseña para confirmar.</small>
 						</div>
 
@@ -50,7 +60,23 @@
 						</div>
 
 					</form>
-				</div>
+
+                    <script>
+                        function togglePasswordVisibility(inputId, iconId) {
+                            const input = document.getElementById(inputId);
+                            const icon = document.getElementById(iconId);
+                            
+                            if (input.type === 'password') {
+                                input.type = 'text';
+                                icon.classList.remove('fa-eye');
+                                icon.classList.add('fa-eye-slash');
+                            } else {
+                                input.type = 'password';
+                                icon.classList.remove('fa-eye-slash');
+                                icon.classList.add('fa-eye');
+                            }
+                        }
+                    </script>
 			</div>
 	</div>			
 </section>

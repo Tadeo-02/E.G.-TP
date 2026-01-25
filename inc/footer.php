@@ -23,7 +23,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label for="emailContacto" class="visually-hidden">Correo electrónico</label>
-                                <input id="emailContacto" class="form-control" placeholder="Ingrese su correo" type="email" required aria-describedby="emailError">
+                                <input id="emailContacto" class="form-control" placeholder="Ingrese su correo electrónico" type="email" required aria-describedby="emailError">
                                 <span id="emailError" class="visually-hidden">Por favor, ingrese un correo válido con formato nombre@dominio.com</span>
                             </div>
                         </div>
