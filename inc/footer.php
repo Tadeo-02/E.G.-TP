@@ -5,7 +5,7 @@
       <div class="row g-0 footerDiv">
             <!-- FORMULARIO BOTTOM -->
             <div class="col-md-6 p-4">
-                <h3>ESCRIBENOS</h3>
+                <h3>ESCRIBENOS</h3> 
                 <form action="#" class="bg-light p-4 m-auto">
                     <div class="row">
                         <div class="col-md-12">
@@ -16,9 +16,21 @@
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
+                                <label for="telefonoContacto" class="visually-hidden">Teléfono</label>
+                                <input id="telefonoContacto" class="form-control" placeholder="Ingrese su teléfono" type="tel" pattern="[0-9\s\-\+\(\)]+" title="Solo números, espacios, guiones, + y paréntesis">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
                                 <label for="emailContacto" class="visually-hidden">Correo electrónico</label>
-                                <input id="emailContacto" class="form-control" type="email" required aria-describedby="emailError">
+                                <input id="emailContacto" class="form-control" placeholder="Ingrese su correo" type="email" required aria-describedby="emailError">
                                 <span id="emailError" class="visually-hidden">Por favor, ingrese un correo válido con formato nombre@dominio.com</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label for="asuntoContacto" class="visually-hidden">Asunto</label>
+                                <input id="asuntoContacto" class="form-control" placeholder="Asunto" required type="text">
                             </div>
                         </div>
                         <div class="col-md-12">
