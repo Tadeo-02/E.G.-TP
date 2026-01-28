@@ -11,7 +11,7 @@
 3. [] Revisar funcionamiento y sentido del filtro por nombre, agregar paginación si es necesario.
 4. [] Mostrar promociones vencidas como no disponibles o no mostrarlas.
 5. [] Asegurar correcta visualización de símbolos en todos los navegadores.
-6. [] Agregar opción para visualizar contraseñas al ingresarlas.
+6. [X] Agregar opción para visualizar contraseñas al ingresarlas.
 7. [] Implementar confirmación de registro de cliente por correo electrónico.
 8. [] Validar filtros por fecha (no permitir años inválidos, máximo 4 caracteres).
 9. [] Corregir funcionamiento de los filtros de fecha.
