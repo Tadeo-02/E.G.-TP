@@ -9,7 +9,7 @@
        <div class="carousel-item active">
         <img src="img/home-1.jpg" class="d-block w-100" 
                 alt="Vista exterior de la fachada de Nova Shopping" 
-                aria-describedby="desc-detallada-1">
+                aria-describedby="Vista exterior de la fachada de Nova Shopping">
             <p id="desc-detallada-1" class="visually-hidden">
                 El centro comercial Nova presenta una arquitectura moderna con tres niveles, iluminación LED decorativa y zonas verdes en la entrada principal.
             </p>
@@ -26,7 +26,7 @@
         <div class="carousel-item">
           <img src="img/home-2.jpg" class="d-block w-100" 
                   alt="Pasillo principal con locales comerciales" 
-                  aria-describedby="desc-detallada-2">
+                  aria-describedby="Pasillo principal con locales comerciales">
               <p id="desc-detallada-2" class="visually-hidden">
                   El pasillo principal es amplio y luminoso, con pisos de porcelanato brillante y vitrinas modernas de tiendas de ropa y calzado.
               </p>
@@ -39,7 +39,7 @@
         <div class="carousel-item">
           <img src="img/home-3.jpg" class="d-block w-100" 
                   alt="Área de cine y patio de comidas" 
-                  aria-describedby="desc-detallada-3">
+                  aria-describedby="Área de cine y patio de comidas">
               <p id="desc-detallada-3" class="visually-hidden">
                   Vista del tercer nivel con complejo de cines, carteleras digitales y patio de comidas con diversas opciones gastronómicas.
               </p>
