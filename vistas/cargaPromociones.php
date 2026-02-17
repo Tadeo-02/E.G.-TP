@@ -2,22 +2,31 @@
 	<div class="container-fluid">
         
         <div class="form-rest"></div> <!--se utiliza para mostrar el resultado dentro de este "form-rest"  -->
-        <?php
-            require_once(__DIR__ . '/../php/main.php');
-            
-            // Mostrar mensaje de éxito si existe
-            if (isset($_SESSION['mensaje'])) {
-                echo '<div class="alert alert-' . $_SESSION['mensaje']['tipo'] . ' alert-dismissible fade show" role="alert">
-                        ' . htmlspecialchars($_SESSION['mensaje']['texto']) . '
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                      </div>';
-                unset($_SESSION['mensaje']); // Eliminar el mensaje después de mostrarlo
-            }
-        ?>
             <div class="row cargaPromociones">
                 <div class="col-12">
-                    <h1>CARGA DE PROMOCIONES</h1>
-                    <br>
+                    <!-- <h1>CARGA DE PROMOCIONES</h1> -->
+                    <br><br>
+
+                <?php
+                    require_once(__DIR__ . '/../php/main.php');
+                    
+                    // Iniciar sesión con el mismo nombre usado en la aplicación
+                    if (session_status() !== PHP_SESSION_ACTIVE) {
+                        session_name("UNR");
+                        session_start();
+                    }
+                    
+                    // Mostrar mensaje si existe
+                    if (isset($_SESSION['mensaje'])) {
+                        echo '<div class="container" style="margin-top: 80px; position: relative; z-index: 9999;">'
+                            . '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
+                            . htmlspecialchars($_SESSION['mensaje'])
+                            . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+                            . '</div>'
+                            . '</div>';
+                        unset($_SESSION['mensaje']);
+                    }
+                ?>
 <head>
     <style>
         body {
@@ -40,6 +49,7 @@
 
                     <div class="container">
                         <div class="form-container">
+                        
                             <h3 class="text-center mb-4">Solcitud de Promoción</h3>
                             <form action="php/dueñoLocal/savePromociones.php" method="POST" id="solicitudPromocionForm">
                             <?php

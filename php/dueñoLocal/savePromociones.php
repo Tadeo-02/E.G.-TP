@@ -1,5 +1,11 @@
 <?php
     require_once "../main.php";
+    
+    // Iniciar sesión con el mismo nombre usado en la aplicación
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_name("UNR");
+        session_start();
+    }
 
     // Guardar datos de los inputs
     $codLocal = limpiar_cadena($_POST['codLocal']);
@@ -11,12 +17,10 @@
 
     // Verificar campos Obligatorios
     if( $codLocal == "" || $textoPromo == "" || $fechaDesdePromo == "" || $fechaHastaPromo == "" || $categoriaCliente == "" || $diasSemana == ""){ 
-        echo '<div class="alert alert-danger" role="alert">
-                Todos los campos obligatorios no han sido completados
-              </div>';
+        $_SESSION['mensaje'] = 'Todos los campos obligatorios no han sido completados';
+        header('Location: ../../index.php?vista=cargaPromociones');
         exit();
     }
-
     if (isset($_POST['diasSemana'])) {
         $diasSemanaArray = $_POST['diasSemana']; // Captura los días como array
     } else {
@@ -26,16 +30,13 @@
     $diasSemanaJSON = json_encode($diasSemanaArray);
     // Verificacion de fecha
     if($fechaDesdePromo == $fechaHastaPromo){ 
-        echo '<div class="alert alert-danger" role="alert">
-                Las promociones no pueden comenzar y terminar el mismo día
-              </div>';
+        $_SESSION['mensaje'] = 'Las promociones no pueden comenzar y terminar el mismo día';
+        header('Location: ../../index.php?vista=cargaPromociones');
         exit();
     }
-    
     if($fechaDesdePromo > $fechaHastaPromo){ 
-        echo '<div class="alert alert-danger" role="alert">
-                La fecha de inicio de la prmocion no puede ser posterior a la fecha de fin de la promocion
-              </div>';
+        $_SESSION['mensaje'] = 'La fecha de inicio de la promoción no puede ser posterior a la fecha de fin de la promoción';
+        header('Location: ../../index.php?vista=cargaPromociones');
         exit();
     }
     
