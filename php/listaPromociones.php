@@ -166,8 +166,8 @@
 							<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-danger" onclick="return alertar1();">Solicitar Descuento</button>
 						</div>
 				</div>';
-				}elseif($rows['fechaDesdePromo'] > $hoy){
-					$tabla.='
+				}elseif($rows['fechaDesdePromo'] > $hoy || $rows['fechaHastaPromo'] < $hoy){
+						$tabla.='
 							<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-danger" onclick="return alertar2();">Solicitar Descuento</button>
 						</div>
 				</div>';
