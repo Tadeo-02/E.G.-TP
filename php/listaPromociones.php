@@ -27,6 +27,7 @@
 	promociones.codLocal, promociones.codPromo, promociones.textoPromo, promociones.categoriaCliente,
 	promociones.fechaDesdePromo, promociones.fechaHastaPromo, promociones.diasSemana";
 	$condicionesI[] = "INNER JOIN locales ON promociones.codLocal = locales.codLocal";
+
 	// Verificacion segun si es dueño o cliente/UNR
 	if ($tipoUsuario == 'Dueño') {
 		$condicionesW[] = "locales.codUsuario = $codUsuario";
@@ -35,12 +36,15 @@
 	if (!empty($localActual)) {
 		$condicionesW[] = "promociones.codLocal = $localActual"; // Indico de cual tabla es el codLocal
 	}
-	if (!empty($diaDesde)) {
-		$condicionesW[] = "'$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo"; // Indico fecha desde y hasta de la promo
+
+	if (!empty($diaDesde && !empty($diaHasta))) {
+		$condicionesW[] = "('$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo OR '$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo OR '$diaDesde' < fechaDesdePromo AND '$diaHasta' > fechaHastaPromo)";
+	} elseif (!empty($diaDesde)) {
+		$condicionesW[] = "'$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo OR '$diaDesde' < fechaDesdePromo";
+	} elseif (!empty($diaHasta)) {
+		$condicionesW[] = "'$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo OR '$diaHasta' > fechaHastaPromo";
 	}
-	if (!empty($diaHasta)) {
-		$condicionesW[] = "'$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo";
-	}
+
 	
 	// Convertir condiciones a una cadena SQL
 	if($tipoUsuario != 'Administrador') {
