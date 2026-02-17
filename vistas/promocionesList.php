@@ -49,11 +49,11 @@
                         <div class="calendarContainer">
                             <p>Selecciona una fecha</p>
                             <label for="diaDesde">Fecha Inicio:</label>
-                            <input type="date" id="diaDesde" name="diaDesde">
+                            <input type="date" id="diaDesde" name="diaDesde" min="2000-01-01" max="9999-12-31">
                             <br>
                             <br>
                             <label for="diaHasta">Fecha Fin:</label>
-                            <input type="date" id="diaHasta" name="diaHasta">
+                            <input type="date" id="diaHasta" name="diaHasta" min="2000-01-01" max="9999-12-31">
                             <br>
                             <button type="submit">Enviar</button>
                         </div>

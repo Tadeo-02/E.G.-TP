@@ -43,13 +43,13 @@
                             <div class="mb-3">
                                     <br>
                                     <label for="fechaDesdeNovedad" class="form-label" style="color: black; text-align: left; display:block;">Fecha de inicio:</label>
-                                    <input id="fechaDesdeNovedad" class="form-control" type="date" name="fechaDesdeNovedad" required>
+                                    <input id="fechaDesdeNovedad" class="form-control" type="date" name="fechaDesdeNovedad" min="2000-01-01" max="9999-12-31" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <br>
                                     <label for="fechaHastaNovedad" class="form-label" style="color: black; text-align: left; display:block;">Fecha de fin:</label>
-                                    <input id="fechaHastaNovedad" class="form-control" type="date" name="fechaHastaNovedad" required>
+                                    <input id="fechaHastaNovedad" class="form-control" type="date" name="fechaHastaNovedad" min="2000-01-01" max="9999-12-31" required>
                             </div>
 
                             <!-- Tipo de cliente -->

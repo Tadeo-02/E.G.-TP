@@ -81,13 +81,13 @@
                                 <div class="mb-3">
                                     <br>
                                     <label for="fechaDesdePromo" class="form-label" style="color: black; text-align: left; display:block;">Fecha de inicio de la promoción:</label>
-                                    <input id="fechaDesdePromo" class="form-control" type="date" name="fechaDesdePromo" required>
+                                    <input id="fechaDesdePromo" class="form-control" type="date" name="fechaDesdePromo" min="2000-01-01" max="9999-12-31" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <br>
                                     <label for="fechaHastaPromo" class="form-label" style="color: black; text-align: left; display:block;">Fecha de fin de la promoción:</label>
-                                    <input id="fechaHastaPromo" class="form-control" type="date" name="fechaHastaPromo" required>
+                                    <input id="fechaHastaPromo" class="form-control" type="date" name="fechaHastaPromo" min="2000-01-01" max="9999-12-31" required>
                                 </div>
 
                                 <!-- Categoría del cliente -->

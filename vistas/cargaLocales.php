@@ -70,7 +70,7 @@
                                 </select>
                             </div>
 
-                            <!-- Días de la promoción -->
+                            <!-- Ubicacion -->
                             <div class="mb-3">
                                 <br>
                                 <label for="ubicacionLocal" class="form-label">Ubicación del Local</label>
@@ -82,6 +82,7 @@
                                 </select>
                             </div>
 
+                            <!-- Dueño del Local -->
                             <div class="mb-3">
                                 <br>
                                 <label for="codUsuario" class="form-label" style="color: black; text-align: left; display:block;">Dueño del Local:</label>
@@ -98,6 +99,7 @@
                                 </select>
                             </div>
 
+                            <!-- Imagen del Local -->
                             <div class="mb-3">
                                 <label for="imagenLocal" class="form-label" style="color: black; text-align: left; display:block;">Imagen del Local</label>
                                 <input id="imagenLocal" class="form-control" type="file" name="imagenLocal" required>

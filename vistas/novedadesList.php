@@ -19,6 +19,7 @@
         <br>
         <h1 class="text-center" style="color: white"><b>NOVEDADES</b></h1>
         <br>
+        
         <!-- BOTON CREAR NOVEDADES, SOLO LO VE EL ADMIN -->
         <?php if (isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Administrador") { ?>
             <div class="col-lg-3 mb-3 botonCrearNovedad">
