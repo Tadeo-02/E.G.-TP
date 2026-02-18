@@ -37,6 +37,7 @@
 
             $tipoUsuario = isset($_SESSION['tipoUsuario']) ? $_SESSION['tipoUsuario'] : '';
             $sortActual = isset ($_GET['sortBy']) ? $_GET['sortBy'] : '';
+            $orderActual = isset($_GET['order']) ? $_GET['order'] : 'ASC';
         ?>
         <!-- Cambio de md de 10 a 4 para arrelgar muestro de promociones en pantallas chicas -->
         <div class="row calendarios">
@@ -46,6 +47,7 @@
 
                     <form action="index.php" method="get" id="sortForm">
                         <input type="hidden" name="vista" value="promocionesList">
+                        <input type="hidden" name="order" value="<?php echo htmlspecialchars($orderActual); ?>">
                         <div class="calendarContainer">
                             <p>Selecciona una fecha</p>
                             <label for="diaDesde">Fecha Inicio:</label>
@@ -61,14 +63,19 @@
                         <br>
                         <div class="">
                             <label for="sortByPromos" class="visually-hidden">Ordenar por</label>
-                            <select id="sortByPromos" class="form-select" name="sortBy" aria-label="Seleccionar orden" onchange="this.form.submit()">
-                                <option value="" disabled select <?php echo $sortActual == '' ? 'selected' : ''; ?>>Ordenar por</option>
-                                <option value="promociones.codLocal" <?php echo $sortActual == 'codLocal' ? 'selected' : ''; ?>>Local</option>
-                                <option value="categoriaCliente" <?php echo $sortActual == 'categoriaCliente' ? 'selected' : ''; ?>>Tipo cliente</option>
-                                <option value="fechaDesdePromo" <?php echo $sortActual == 'fechaDesdePromo' ? 'selected' : ''; ?>>Fecha inicio</option>
-                                <option value="fechaHastaPromo" <?php echo $sortActual == 'fechaHastaPromo' ? 'selected' : ''; ?>>Fecha fin</option>
-                                <option value="codPromo" <?php echo $sortActual == 'codPromo' ? 'selected' : ''; ?>>ID promoción</option>
-                            </select>
+                            <div class="input-group">
+                                <select id="sortByPromos" class="form-select" name="sortBy" aria-label="Seleccionar orden" onchange="this.form.submit()">
+                                    <option value="" disabled select <?php echo $sortActual == '' ? 'selected' : ''; ?>>Ordenar por</option>
+                                    <option value="promociones.codLocal" <?php echo $sortActual == 'codLocal' ? 'selected' : ''; ?>>Local</option>
+                                    <option value="categoriaCliente" <?php echo $sortActual == 'categoriaCliente' ? 'selected' : ''; ?>>Tipo cliente</option>
+                                    <option value="fechaDesdePromo" <?php echo $sortActual == 'fechaDesdePromo' ? 'selected' : ''; ?>>Fecha inicio</option>
+                                    <option value="fechaHastaPromo" <?php echo $sortActual == 'fechaHastaPromo' ? 'selected' : ''; ?>>Fecha fin</option>
+                                    <option value="codPromo" <?php echo $sortActual == 'codPromo' ? 'selected' : ''; ?>>ID promoción</option>
+                                </select>
+                                <button type="button" class="btn btn-outline-secondary" onclick="toggleOrder(this.form)" title="Cambiar orden: <?php echo $orderActual == 'ASC' ? 'Ascendente' : 'Descendente'; ?>">
+                                    <i class="fas fa-sort-amount-<?php echo $orderActual == 'ASC' ? 'down' : 'up'; ?>"></i>
+                                </button>
+                            </div>
                         </div>
                         <br>
                     </form>
@@ -93,6 +100,7 @@
                     $diaHasta = isset($_GET['diaHasta']) ? $_GET['diaHasta'] : '';
                     $localActual = isset($_GET['codLocal']) ? $_GET['codLocal'] : '';
                     $ordenar = isset($_GET['sortBy']) ? $_GET['sortBy'] : '';
+                    $orden = isset($_GET['order']) ? $_GET['order'] : 'ASC';
 
                     if(!isset($_GET['page'])){
                         $pagina=1;
@@ -104,7 +112,7 @@
                     };
                     $pagina=limpiar_cadena($pagina);
 
-                    $url="index.php?vista=promocionesList&diaDesde=$diaDesde&diaHasta=$diaHasta&codLocal=$localActual&sortBy=$ordenar&page=";
+                    $url="index.php?vista=promocionesList&diaDesde=$diaDesde&diaHasta=$diaHasta&codLocal=$localActual&sortBy=$ordenar&order=$orden&page=";
                     $registros=3;
 
                     require_once (__DIR__. '/../php/listaPromociones.php');
@@ -113,6 +121,13 @@
         </div>
     </div>
 </div>
+<script>
+function toggleOrder(form) {
+    const orderInput = form.querySelector('input[name="order"]');
+    orderInput.value = orderInput.value === 'ASC' ? 'DESC' : 'ASC';
+    form.submit();
+}
+</script>
 
 
 

@@ -58,13 +58,14 @@
 
 	$innerjoin = !empty($condicionesI) ? implode(' ', $condicionesI) : ''; 
 	$select = isset($campos) ? $campos : '*';
+	$orden = isset($orden) && strtoupper($orden) === 'DESC' ? 'DESC' : 'ASC';
 
 	// Construir consultas finales
 	$consulta_datos = "SELECT $select 
 						FROM promociones
 						$innerjoin
 						$where
-						ORDER BY $sort ASC
+						ORDER BY $sort $orden
 						LIMIT $inicio, $registros";
 
 	$consulta_total = "SELECT COUNT(*) FROM promociones 

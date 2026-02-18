@@ -21,8 +21,9 @@
 	}
 
 	$where = count($condiciones) > 0 ? 'WHERE ' . implode(' AND ', $condiciones) : '';
+	$orden = isset($orden) && strtoupper($orden) === 'DESC' ? 'DESC' : 'ASC';
 
-	$consulta_datos = "SELECT * FROM locales $where ORDER BY $ordenar ASC LIMIT $inicio, $registros";
+	$consulta_datos = "SELECT * FROM locales $where ORDER BY $ordenar $orden LIMIT $inicio, $registros";
 	$consulta_total = "SELECT COUNT(*) FROM locales $where";
 
 	$datos = mysqli_query($conexion, $consulta_datos);
