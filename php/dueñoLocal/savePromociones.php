@@ -41,14 +41,15 @@
     }
     
     // Guardando datos
-    $guardar_usuario=conexion();
-    $guardar_usuario=$guardar_usuario->query("INSERT INTO promociones(textoPromo, fechaDesdePromo, fechaHastaPromo, categoriaCliente,diasSemana, estadoPromo, codLocal) VALUES ('$textoPromo', '$fechaDesdePromo', '$fechaHastaPromo', '$categoriaCliente', '$diasSemanaJSON', 'Pendiente', $codLocal)");
+    $guardar_usuario = conexion();
+    $query = "INSERT INTO promociones(textoPromo, fechaDesdePromo, fechaHastaPromo, categoriaCliente, diasSemana, estadoPromo, codLocal) VALUES ('$textoPromo', '$fechaDesdePromo', '$fechaHastaPromo', '$categoriaCliente', '$diasSemanaJSON', 'Pendiente', $codLocal)";
+    $guardar_promocion = mysqli_query($guardar_usuario, $query);
 
     // Guardar mensaje en sesión para mostrarlo después de la redirección
     $_SESSION['mensaje'] = 'Solicitud registrada con éxito';
 
     //Cerrar conexion    
-    $guardar_promocion = null;
+    mysqli_close($guardar_usuario);
 
     // Redireccionar a la lista de promociones
     header("Location: ../../index.php?vista=promocionesList");
