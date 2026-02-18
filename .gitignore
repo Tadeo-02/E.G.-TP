@@ -2,8 +2,13 @@
 DB/
 !DB/.gitkeep
 
-# Archivos de PHPMailer (si quieres excluirlos)
-# php/phpmailer/
+# Dependencias de Composer (PHPMailer)
+vendor/
+composer.lock
+composer.phar
+
+# Configuración de correo con credenciales SMTP
+php/mailConfig.php
 
 # Archivos del sistema
 .DS_Store

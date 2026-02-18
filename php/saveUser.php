@@ -1,5 +1,6 @@
 <?php 
     require_once "main.php";
+    require_once __DIR__ . '/mailer.php';
 
     // Ensure session is started for flash messages with the same session name
     if (session_status() !== PHP_SESSION_ACTIVE) {
@@ -66,9 +67,14 @@
     $guardar_usuario = conexion();
     if($checkBox == 1){
         $guardar_usuario = $guardar_usuario->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', NULL, 'Dueño', 'Pendiente')");
+        $tipoUsuario = 'Dueño';
     }else{
        $guardar_usuario = $guardar_usuario->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', 'Inicial', 'Cliente','Activa')");
+       $tipoUsuario = 'Cliente';
     }
+
+    // Enviar correo de confirmación de registro
+    enviarConfirmacionRegistro($email, $tipoUsuario);
 
     header("Location: ../index.php?vista=login");
 

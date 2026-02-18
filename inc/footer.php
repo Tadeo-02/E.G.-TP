@@ -67,10 +67,11 @@
                     <div class="bg-light p-4 contactoBottom">
                         <h3>NEWSLETTER</h3>
                         <p>Recibe las últimas noticias y ofertas especiales</p>
+                        <div id="newsletterMsg"></div>
                         <div class="input-group">
-                            <form onsubmit="event.preventDefault(); alert('Funcionalidad deshabilitada.');">
+                            <form id="newsletterForm">
                                 <label for="emailNewsletter" class="visually-hidden">Email para newsletter</label>
-                                <input id="emailNewsletter" class="form-control" type="email" required aria-describedby="newsError">
+                                <input id="emailNewsletter" class="form-control" type="email" required aria-describedby="newsError" placeholder="tu-correo@ejemplo.com">
                                 <span id="newsError" class="visually-hidden">Se requiere un correo electrónico para la suscripción</span>
                                 <br>
                                 <button class="btn btn-warning" type="submit" id="button-addon2">Suscribirse</button>
@@ -87,3 +88,54 @@
         <p class="text" style="color: #e0a800">Todos los derechos reservados</p>
     </div>
 </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('newsletterForm');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const emailInput = document.getElementById('emailNewsletter');
+        const msgDiv = document.getElementById('newsletterMsg');
+        const btn = form.querySelector('button[type="submit"]');
+        const email = emailInput.value.trim();
+
+        if (!email) return;
+
+        // Deshabilitar botón mientras se envía
+        btn.disabled = true;
+        btn.textContent = 'Enviando...';
+        msgDiv.innerHTML = '';
+
+        const formData = new FormData();
+        formData.append('emailNewsletter', email);
+
+        fetch('php/newsletterSubscribe.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            const tipo = data.success ? 'success' : 'danger';
+            msgDiv.innerHTML = '<div class="alert alert-' + tipo + ' alert-dismissible fade show" role="alert">'
+                + data.message
+                + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+                + '</div>';
+            if (data.success) {
+                emailInput.value = '';
+            }
+        })
+        .catch(function() {
+            msgDiv.innerHTML = '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
+                + 'Error de conexión. Intenta de nuevo más tarde.'
+                + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+                + '</div>';
+        })
+        .finally(function() {
+            btn.disabled = false;
+            btn.textContent = 'Suscribirse';
+        });
+    });
+});
+</script>
