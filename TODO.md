@@ -21,7 +21,7 @@
 8. [x] Validar filtros por fecha (no permitir años inválidos, máximo 4 caracteres).
 9. [x] Corregir funcionamiento de los filtros de fecha.
 10. [X?] Evitar que clientes seleccionen promociones no disponibles.
-11. [] Evitar que un cliente solicite la misma promoción más de una vez.
+11. [x] Evitar que un cliente solicite la misma promoción más de una vez.
 12. [] Permitir a clientes ver y modificar su perfil en campos permitidos.
 13. [] Mejorar accesibilidad: navegación por teclado y lector de pantalla.
 14. [] Agregar nombres alternativos a imágenes para accesibilidad.
