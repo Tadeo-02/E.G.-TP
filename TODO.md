@@ -24,7 +24,7 @@
 11. [x] Evitar que un cliente solicite la misma promoción más de una vez.
 12. [] Permitir a clientes ver y modificar su perfil en campos permitidos.
 13. [] Mejorar accesibilidad: navegación por teclado y lector de pantalla.
-14. [] Agregar nombres alternativos a imágenes para accesibilidad.
+14. [x] Agregar nombres alternativos a imágenes para accesibilidad.
     - Las imagenes ya tienen el atributo ALT con una descripcion apropiada, no se si pifio la mina o quiere algo más
     - Actualice los atributos aria-describedby que no tenía un texto genérico hecho con IA con el mismo contenido que el ALT pero dudo q sea eso
 15. [] Proveer credenciales de prueba para dueños y administradores (no solamente en README).
