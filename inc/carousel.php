@@ -19,7 +19,7 @@
                 <?php if(isset($_SESSION['codUsuario']) && $_SESSION['codUsuario']!=""){ ?>
                     <p><a href="index.php?vista=novedadesList&page=" class="btn btn-warning mt-3">Ver novedades del shopping</a></p>
                 <?php } else { ?>
-                    <p><a href="" class="btn btn-warning mt-3">Inicia sesión para ver las novedades</a></p>
+                    <p><a href="index.php?vista=login" class="btn btn-warning mt-3">Inicia sesión para ver las novedades</a></p>
                 <?php } ?>
           </div>
         </div>

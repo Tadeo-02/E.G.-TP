@@ -22,10 +22,10 @@
                                 <?php
                                 if((!isset($_SESSION['codUsuario']) || $_SESSION['codUsuario']=="") || (!isset($_SESSION['nombreUsuario']) || $_SESSION['nombreUsuario']=="")){
                                     echo '<li class="nav-item">
-                                             <a class="nav-link" href="index.php?vista=localsList">LOCALES</a>
+                                             <a class="nav-link" href="index.php?vista=localsList">Locales</a>
                                         </li>  
                                         <li class="nav-item">
-                                            <a class="nav-link" href="index.php?vista=promocionesList">PROMOCIONES</a>
+                                            <a class="nav-link" href="index.php?vista=promocionesList">Promociones</a>
                                         </li>
                                         
                                         ';
@@ -50,7 +50,7 @@
                                     } else {
                                         if($_SESSION['tipoUsuario']=="Cliente") {
                                             echo '<li class="nav-item">
-                                                    <a class="nav-link" href="index.php?vista=localsList">LOCALES</a>
+                                                    <a class="nav-link" href="index.php?vista=localsList">Locales</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="index.php?vista=novedadesList">Novedades</a>

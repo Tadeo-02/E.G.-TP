@@ -114,10 +114,6 @@ body {
   background-color: black;
   color: #fff;
 }
-.dropdown .dropdown-menu {
-  display: none;
-}
-.dropdown:hover > .dropdown-menu,
 .dropend:hover > .dropdown-menu {
   display: block;
   margin-top: 0.125em;
