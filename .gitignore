@@ -2,8 +2,8 @@
 DB/
 !DB/.gitkeep
 
-# Archivos de PHPMailer (si quieres excluirlos)
-# php/phpmailer/
+# Configuración de correo con credenciales SMTP (contiene contraseñas)
+php/mailConfig.php
 
 # Archivos del sistema
 .DS_Store
