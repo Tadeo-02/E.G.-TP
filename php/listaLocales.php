@@ -46,7 +46,8 @@
 				<div class="locales">
 					<div class="imgContainer-local">
 						<img src="/php/admin/locales/' . $imagenLocal . '" 
-             					alt="Imagen de ' . htmlspecialchars($rows['nombreLocal']) . '">
+             					alt="Imagen de ' . htmlspecialchars($rows['nombreLocal']) . '"
+             					title="Imagen de ' . htmlspecialchars($rows['nombreLocal']) . '">
 					</div>
 					<div class="textContainer-local">
 						<h2>'. htmlspecialchars($rows['nombreLocal']) . '</h2>

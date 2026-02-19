@@ -4,9 +4,10 @@
                   <div class="col-lg-4 col-md-12 col-12">
                       <div class="about-img">
                         <img src="img/about.jpg" 
-                                alt="Mapa de distribución de locales de Nova Shopping" 
+                                alt="Fachada de Nova Shopping" 
                                 class="img-fluid"
-                                aria-describedby="Mapa de distribución de locales de Nova Shopping">
+                                title="Fachada de Nova Shopping"
+                                aria-describedby="Fachada de Nova Shopping">
                             <p id="desc-mapa" class="visually-hidden">
                                 El mapa muestra la distribución de locales: Planta Baja para servicios, Primer Piso para indumentaria y Segundo Piso para cine y gastronomía.
                             </p>
