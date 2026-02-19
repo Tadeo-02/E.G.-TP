@@ -1,19 +1,12 @@
 <?php 
     require_once "main.php";
     require_once __DIR__ . '/mailer.php';
+    require_once __DIR__ . '/mailConfig.php';
 
     // Ensure session is started for flash messages with the same session name
     if (session_status() !== PHP_SESSION_ACTIVE) {
         session_name("UNR");
         session_start();
-    }
-
-    // Standardize session messages for alerts
-    if (isset($_SESSION['mensaje'])) {
-        $_SESSION['mensaje'] = [
-            'texto' => $_SESSION['mensaje'],
-            'tipo' => 'danger' // Default to danger for errors
-        ];
     }
 
     // Guardar datos de los inputs
@@ -63,23 +56,38 @@
         $clave = password_hash($clave_1, PASSWORD_BCRYPT,["cost"=>10]); 
     }
 
-    // Guardando datos
-    $guardar_usuario = conexion();
+    // Guardando datos — cuenta con estado PendienteVerificacion
+    $conn = conexion();
     if($checkBox == 1){
-        $guardar_usuario = $guardar_usuario->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', NULL, 'Dueño', 'Pendiente')");
+        $conn->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', NULL, 'Dueño', 'PendienteVerificacion')");
         $tipoUsuario = 'Dueño';
     }else{
-       $guardar_usuario = $guardar_usuario->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', 'Inicial', 'Cliente','Activa')");
-       $tipoUsuario = 'Cliente';
+        $conn->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', 'Inicial', 'Cliente', 'PendienteVerificacion')");
+        $tipoUsuario = 'Cliente';
     }
 
-    // Enviar correo de confirmación de registro
-    enviarConfirmacionRegistro($email, $tipoUsuario);
+    // Obtener el ID del usuario recién creado
+    $codUsuario = $conn->insert_id;
 
+    // Generar token de verificación (64 caracteres hex = 32 bytes)
+    $token = bin2hex(random_bytes(32));
+    $expiracion = date('Y-m-d H:i:s', strtotime('+24 hours'));
+
+    // Guardar token en la BD
+    $stmtToken = $conn->prepare("INSERT INTO tokens_verificacion (codUsuario, token, tipo, expiracion) VALUES (?, ?, 'verificacion_email', ?)");
+    $stmtToken->bind_param("iss", $codUsuario, $token, $expiracion);
+    $stmtToken->execute();
+    $stmtToken->close();
+    $conn->close();
+
+    // Enviar correo con enlace de verificación
+    $enlaceVerificacion = APP_URL . '/index.php?vista=verificarEmail&token=' . $token;
+    enviarCorreoVerificacion($email, $tipoUsuario, $enlaceVerificacion);
+
+    $_SESSION['mensaje'] = [
+        'texto' => 'Registro exitoso. Revisá tu correo electrónico para verificar tu cuenta.',
+        'tipo' => 'success'
+    ];
     header("Location: ../index.php?vista=login");
-
-
+    exit();
 ?>
-
-
-
