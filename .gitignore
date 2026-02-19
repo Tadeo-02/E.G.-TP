@@ -2,12 +2,7 @@
 DB/
 !DB/.gitkeep
 
-# Dependencias de Composer (PHPMailer)
-vendor/
-composer.lock
-composer.phar
-
-# Configuración de correo con credenciales SMTP
+# Configuración de correo con credenciales SMTP (contiene contraseñas)
 php/mailConfig.php
 
 # Archivos del sistema

@@ -16,14 +16,4 @@ RUN echo '<Directory /var/www/html/>\n\
 RUN a2enconf docker-php
 
 RUN docker-php-ext-install mysqli
-
-# Instalar Composer para gestionar dependencias (PHPMailer)
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Copiar entrypoint que instala dependencias al iniciar
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
 EXPOSE 80
-
-ENTRYPOINT ["docker-entrypoint.sh"]
