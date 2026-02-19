@@ -1,29 +1,48 @@
+<?php
+require_once(__DIR__ . '/../php/main.php');
+
+// Iniciar sesión con el mismo nombre usado en la aplicación
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_name("UNR");
+    session_start();
+}
+
+// Mostrar mensaje si existe - EXACTAMENTE como en cargaPromociones.php
+if (isset($_SESSION['mensaje'])) {
+    $mensaje = $_SESSION['mensaje'];
+    
+    // Determinar color: verde para éxito, rojo para errores
+    if (strpos($mensaje, 'éxito') !== false || strpos($mensaje, 'registrada') !== false || strpos($mensaje, 'correctamente') !== false) {
+        echo '<div class="container" style="margin-top: 80px; position: relative; z-index: 9999;">'
+            . '<div class="alert alert-success alert-dismissible fade show" role="alert">'
+            . htmlspecialchars($mensaje)
+            . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+            . '</div>'
+            . '</div>';
+    } else {
+        echo '<div class="container" style="margin-top: 80px; position: relative; z-index: 9999;">'
+            . '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
+            . htmlspecialchars($mensaje)
+            . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+            . '</div>'
+            . '</div>';
+    }
+    unset($_SESSION['mensaje']); // Eliminar el mensaje después de mostrarlo
+}
+?>
+
 <div class="container-fluid p-0">
 </div>
 
 <div class="row g-0">
-    <?php
-        require_once(__DIR__ . '/../php/main.php');
-        
-        // Mostrar mensaje de éxito si existe
-        if (isset($_SESSION['mensaje'])) {
-            echo '<div class="container mt-3">
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        ' . htmlspecialchars($_SESSION['mensaje']) . '
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                  </div>';
-            unset($_SESSION['mensaje']); // Eliminar el mensaje después de mostrarlo
-        }
-    ?>
     <div class="container">
         <br>
         <br>
         <br>
         <h1 class="text-center" style="color: white"><b>PROMOCIONES</b></h1>
         <br>
+        
         <?php
-
             // Establecer conexión
             $conexion = conexion();
 

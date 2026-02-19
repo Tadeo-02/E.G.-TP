@@ -33,7 +33,6 @@
 <div class="container mt-3">
     <br>
     <br>
-    <br>
     <h1 class="text-center" style="color: white"><b>MIS DESCUENTOS</b></h1>
     <br>
 

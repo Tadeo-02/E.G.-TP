@@ -75,10 +75,10 @@ function paginador_tablas($pagina, $Npaginas, $url, $botones) {
     if ($pagina <= 1) {
         $tabla .= '<li class="page-item disabled">
                     <span class="d-none d-sm-block">
-                        <a class="page-link" href="#" aria-label="Anterior">Anterior</a>
+                        <a class="page-link" tabindex="-1" aria-disabled="true" aria-label="No hay página anterior">Anterior</a>
                     </span>
                     <span class="d-block d-sm-none">
-                        <a class="page-link" href="#" aria-label="Anterior"><</a>
+                        <a class="page-link" tabindex="-1" aria-disabled="true" aria-label="No hay página anterior"><</a>
                     </span>
                 </li>';
     } else {
@@ -146,19 +146,19 @@ function paginador_tablas($pagina, $Npaginas, $url, $botones) {
     if ($pagina == $Npaginas) {
         $tabla .= '<li class="page-item disabled">
                     <span class="d-none d-sm-block">
-                        <a class="page-link" href="#"  tabindex="-1">Siguiente</a>
+                        <a class="page-link" tabindex="-1" aria-disabled="true" aria-label="No hay página siguiente">Siguiente</a>
                     </span>
                     <span class="d-block d-sm-none">
-                        <a class="page-link" href="#"  tabindex="-1">></a>
+                        <a class="page-link" tabindex="-1" aria-disabled="true" aria-label="No hay página siguiente">></a>
                     </span>
                 </li>';
     } else {
         $tabla .= '<li class="page-item">
                     <span class="d-none d-sm-block">
-                        <a class="page-link" href="'. $url . ($pagina + 1) .'"  tabindex="-1">Siguiente</a>
+                        <a class="page-link" href="'. $url . ($pagina + 1) .'" aria-label="Ir a la página siguiente">Siguiente</a>
                     </span>
                     <span class="d-block d-sm-none">
-                        <a class="page-link" href="'. $url . ($pagina + 1) .'"  tabindex="-1">></a>
+                        <a class="page-link" href="'. $url . ($pagina + 1) .'" aria-label="Ir a la página siguiente">></a>
                     </span>
                 </li>';
     }

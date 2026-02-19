@@ -9,7 +9,7 @@
 
 </head>
 <body>         
-
+    
     <?php 
 
       // Si la variable tipo GET 'vista' no está definida o está vacía, le damos el valor "login", que sel mismo nombre que el archivo .php pero sin la extension
@@ -43,6 +43,7 @@
       
 
       ?>
+      
       <!-- <script>
         window.onpageshow = function(event) {
             if (event.persisted) {

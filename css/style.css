@@ -53,6 +53,7 @@ body {
   left: 0;
   background: rgba(0, 0, 0, 0.7);
   z-index: 1;
+  pointer-events: none;
 }
 
 /* NAVBAR  */
@@ -113,10 +114,6 @@ body {
   background-color: black;
   color: #fff;
 }
-.dropdown .dropdown-menu {
-  display: none;
-}
-.dropdown:hover > .dropdown-menu,
 .dropend:hover > .dropdown-menu {
   display: block;
   margin-top: 0.125em;
@@ -388,7 +385,9 @@ button {
   font-weight: 600;
   padding: 5px 10px;
   border-radius: 4px;
-  transition: background-color 0.3s, transform 0.2s;
+  transition:
+    background-color 0.3s,
+    transform 0.2s;
 }
 
 button:hover {

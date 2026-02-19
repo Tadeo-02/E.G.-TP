@@ -7,6 +7,7 @@
 			</script>";
 		unset($_SESSION['mensaje']); // Eliminar el mensaje después de mostrarlo
 	}
+
 	$conexion=conexion();
 
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
@@ -164,12 +165,18 @@
 					<div class="textContainer-promo-buttons">';
 				if($numeroCategoria > $numeroCliente){
 					$tabla.='
-							<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-danger" onclick="return alertar1();">Solicitar Descuento</button>
+						<form action="./php/cliente/mensajePromocion.php" method="POST">
+							<input type="hidden" name="tipoMensaje" value="nivelInsuficiente">
+							<button type="submit" name="botonAnashe" value="Solicitar Descuento" class="btn btn-danger">Solicitar Descuento</button>
+						</form>
 						</div>
 				</div>';
 				}elseif($rows['fechaDesdePromo'] > $hoy || $rows['fechaHastaPromo'] < $hoy){
 						$tabla.='
-							<button type="submit"  name="botonAnashe" value="Solicitar Descuento" class="btn btn-danger" onclick="return alertar2();">Solicitar Descuento</button>
+						<form action="./php/cliente/mensajePromocion.php" method="POST">
+							<input type="hidden" name="tipoMensaje" value="fueraPeriodo">
+							<button type="submit" name="botonAnashe" value="Solicitar Descuento" class="btn btn-danger">Solicitar Descuento</button>
+						</form>
 						</div>
 				</div>';
 				}else{
@@ -280,12 +287,6 @@
 <script>
 function confirmar() {
     return confirm("¿Seguro que quieres solicitar este Descuento?");
-}
-function alertar1() {
-    return confirm("Usted no puede acceder a esta promocion porque su nivel de usuario es menor al solicitado");
-}
-function alertar2() {
-    return confirm("Por favor, vuelva a intentarlo cuando el periodo de la promoción haya iniciado");
 }
 function aprobar() {
     return confirm("¿Seguro que quieres aprobar esta solicitud de descuento?");
