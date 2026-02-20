@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['usuario']) || $_SESSION['tipoUsuario'] !== 'Cliente') {
-    header("Location: index.php?vista=login");
+    header("Location: /index.php?vista=login");
     exit();
 }
 

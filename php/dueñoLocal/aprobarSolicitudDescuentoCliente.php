@@ -1,4 +1,5 @@
 <?php 
+    require_once "../verificarTipoUsuarioDueño.php";
     require_once "../main.php";
 
     // Now expect primary key codUsoPromociones

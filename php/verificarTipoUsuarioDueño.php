@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 if (!isset($_SESSION['usuario']) || $_SESSION['tipoUsuario'] !== 'Duenio') {
-    header("Location: index.php?vista=login");
+    header("Location: /index.php?vista=login");
     exit();
 }
 

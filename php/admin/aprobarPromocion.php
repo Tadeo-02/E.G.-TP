@@ -1,4 +1,5 @@
 <?php 
+    require_once "../verificarTipoUsuarioAdmin.php";
     require_once "../main.php";
 
     $codPromo = limpiar_cadena($_POST['codPromo']);

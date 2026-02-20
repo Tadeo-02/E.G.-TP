@@ -1,4 +1,5 @@
 <?php
+    require_once "../verificarTipoUsuarioAdmin.php";
     require_once "../main.php";
 
     $textoNovedad = limpiar_cadena($_POST['textoNovedad']);
