@@ -167,6 +167,22 @@ function enviarCorreoCambioEmail(string $emailNuevo, string $emailAnterior, stri
 }
 
 /**
+ * Envía un correo con enlace para restablecer la contraseña.
+ */
+function enviarCorreoResetPassword(string $emailDestinatario, string $enlaceReset): bool {
+    return enviarCorreoConEnlace($emailDestinatario, $enlaceReset, [
+        'asunto'        => 'Restablecé tu contraseña — NovaShopping',
+        'titulo'        => 'Restablecimiento de contraseña',
+        'descripcion'   => 'Recibimos una solicitud para restablecer la contraseña de tu cuenta en <strong>NovaShopping</strong>. Hacé clic en el siguiente botón para elegir una nueva contraseña:',
+        'textoBoton'    => 'Restablecer contraseña',
+        'colorBoton'    => '#dc3545',
+        'colorTextoBtn' => '#ffffff',
+        'expiracion'    => '1 hora',
+        'altBody'       => "Restablecé tu contraseña en NovaShopping\n\nHacé clic en este enlace para restablecer tu contraseña:\n$enlaceReset\n\nEste enlace expira en 1 hora.\n\nSi no solicitaste este cambio, ignorá este correo.",
+    ]);
+}
+
+/**
  * Envía un correo con enlace de verificación para suscripción al newsletter.
  */
 function enviarVerificacionNewsletter(string $emailDestinatario, string $enlaceVerificacion): bool {

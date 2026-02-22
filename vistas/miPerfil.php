@@ -109,8 +109,8 @@
                         $estado = htmlspecialchars($usuario['estadoCuenta']);
                         $badgeClass = 'bg-secondary';
                         if ($estado === 'Activa') $badgeClass = 'bg-success';
-                        elseif ($estado === 'PendienteVerificacion') $badgeClass = 'bg-warning text-dark';
-                        elseif ($estado === 'Pendiente') $badgeClass = 'bg-info text-dark';
+                        elseif ($estado === 'Pendiente') $badgeClass = 'bg-warning text-dark';
+                        elseif ($estado === 'PendienteAdmin') $badgeClass = 'bg-info text-dark';
                         echo '<span class="badge badge-estado ' . $badgeClass . '">' . $estado . '</span>';
                     ?>
                 </div>

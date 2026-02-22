@@ -46,11 +46,11 @@
                 }else{
                     header("Location: index.php?vista=home");
                 }
-            }   elseif ($checkUser['estadoCuenta'] == 'PendienteVerificacion'){
+            }   elseif ($checkUser['estadoCuenta'] == 'Pendiente'){
                     echo '<div class="alert alert-warning" role="alert">
                      Tu email aún no ha sido verificado. Revisá tu bandeja de entrada y hacé clic en el enlace de verificación.
                     </div>';
-            }  elseif ($checkUser['estadoCuenta'] == 'Pendiente'){
+            }  elseif ($checkUser['estadoCuenta'] == 'PendienteAdmin'){
                 echo "<script>alert('Su solicitud de cuenta de dueño de local se encuentra bajo revisión.');</script>";
             }  elseif ($checkUser['estadoCuenta'] == 'Baja'){
                 echo '<div class="alert alert-danger" role="alert">

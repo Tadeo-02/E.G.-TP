@@ -132,7 +132,7 @@ function verificarTokenEmail(string $token): array {
     }
 
     // Activar cuenta (solo Clientes se activan directo; Dueños pasan a Pendiente de aprobación)
-    if ($fila['estadoCuenta'] === 'PendienteVerificacion') {
+    if ($fila['estadoCuenta'] === 'Pendiente') {
         // Determinar el nuevo estado según tipo de usuario
         $stmtTipo = $conn->prepare("SELECT tipoUsuario FROM usuarios WHERE codUsuario = ?");
         $stmtTipo->bind_param("i", $fila['codUsuario']);
@@ -141,7 +141,7 @@ function verificarTokenEmail(string $token): array {
         $stmtTipo->close();
 
         if ($resTipo['tipoUsuario'] === 'Dueño') {
-            $nuevoEstado = 'Pendiente'; // Pendiente de aprobación admin
+            $nuevoEstado = 'PendienteAdmin'; // Pendiente de aprobación admin
         } else {
             $nuevoEstado = 'Activa';
         }
@@ -160,7 +160,7 @@ function verificarTokenEmail(string $token): array {
     
     $conn->close();
 
-    if (isset($nuevoEstado) && $nuevoEstado === 'Pendiente') {
+    if (isset($nuevoEstado) && $nuevoEstado === 'PendienteAdmin') {
         return ['exito' => true, 'mensaje' => '¡Email verificado! Tu cuenta de Dueño está pendiente de aprobación por un administrador.'];
     }
 

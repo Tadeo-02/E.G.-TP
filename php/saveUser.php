@@ -60,7 +60,7 @@
         $clave = password_hash($clave_1, PASSWORD_BCRYPT,["cost"=>10]); 
     }
 
-    // Guardando datos — cuenta con estado PendienteVerificacion
+    // Guardando datos — cuenta con estado Pendiente
     $conn = conexion();
 
     // Si existe una cuenta dada de baja con el mismo email, eliminarla antes de crear la nueva
@@ -70,10 +70,10 @@
     $stmtBaja->close();
 
     if($checkBox == 1){
-        $conn->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', NULL, 'Dueño', 'PendienteVerificacion')");
+        $conn->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', NULL, 'Dueño', 'Pendiente')");
         $tipoUsuario = 'Dueño';
     }else{
-        $conn->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', 'Inicial', 'Cliente', 'PendienteVerificacion')");
+        $conn->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', 'Inicial', 'Cliente', 'Pendiente')");
         $tipoUsuario = 'Cliente';
     }
 

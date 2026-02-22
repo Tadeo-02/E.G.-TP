@@ -137,6 +137,11 @@
                         <p style="margin-top: 15px;">
                             <a href="index.php?vista=signUp" aria-label="Crear una nueva cuenta">Crear Cuenta</a>
                         </p>
+                        <p style="margin-top: 5px;">
+                            <a href="index.php?vista=olvideMiClave" aria-label="Recuperar contraseña olvidada" class="text-muted">
+                                <i class="fas fa-lock"></i> ¿Olvidaste tu contraseña?
+                            </a>
+                        </p>
                     </div>
 
                     <?php

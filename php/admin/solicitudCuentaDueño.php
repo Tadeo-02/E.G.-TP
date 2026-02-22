@@ -11,8 +11,8 @@ $tabla = "";
 
 $codUsuario = $_SESSION['codUsuario'] ?? null; // Evita error si no está definido
 
-$consulta_datos = "SELECT * FROM usuarios WHERE estadoCuenta = 'Pendiente'";
-$consulta_total = "SELECT COUNT(*) FROM usuarios WHERE estadoCuenta = 'Pendiente'";
+$consulta_datos = "SELECT * FROM usuarios WHERE estadoCuenta = 'PendienteAdmin'";
+$consulta_total = "SELECT COUNT(*) FROM usuarios WHERE estadoCuenta = 'PendienteAdmin'";
 
 $datos = mysqli_query($conexion, $consulta_datos);
 $total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
