@@ -14,9 +14,15 @@ $resultado = verificarTokenEmail($token);
                 </div>
                 <h3 class="text-white mb-3">¡Verificación exitosa!</h3>
                 <p class="text-light"><?php echo htmlspecialchars($resultado['mensaje']); ?></p>
-                <a href="index.php?vista=login" class="btn btn-primary mt-3 rounded-pill px-4">
-                    Iniciar Sesión
-                </a>
+                <?php if (isset($resultado['tipo']) && $resultado['tipo'] === 'cambio_email'): ?>
+                    <a href="index.php?vista=miPerfil" class="btn btn-primary mt-3 rounded-pill px-4">
+                        Ir a Mi Perfil
+                    </a>
+                <?php else: ?>
+                    <a href="index.php?vista=login" class="btn btn-primary mt-3 rounded-pill px-4">
+                        Iniciar Sesión
+                    </a>
+                <?php endif; ?>
             <?php else: ?>
                 <div class="mb-4">
                     <i class="fas fa-times-circle text-danger" style="font-size: 4rem;"></i>

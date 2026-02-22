@@ -77,6 +77,7 @@
                             <li> <p class="dropdown-item"> ' .htmlspecialchars($_SESSION['tipoUsuario']).   ': '.htmlspecialchars($_SESSION['categoriaCliente']).'        </p> </li>
                             <li><p class="dropdown-item">       ' .htmlspecialchars($_SESSION['nombreUsuario']).   '       </p></li>
                             <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="index.php?vista=miPerfil"><i class="fas fa-user-cog"></i> Mi Perfil</a></li>
                             <li><a class="dropdown-item" href="index.php?vista=logout">SALIR</a></li>
                         </ul>
                     </li>';    

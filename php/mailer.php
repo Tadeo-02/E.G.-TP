@@ -138,6 +138,35 @@ function enviarCorreoVerificacion(string $emailDestinatario, string $tipoUsuario
 }
 
 /**
+ * Envía un correo de verificación para cambio de email.
+ */
+function enviarCorreoCambioEmail(string $emailNuevo, string $emailAnterior, string $enlaceVerificacion): bool {
+    $infoExtra = '
+                <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                    <tr>
+                        <td style="padding: 8px 12px; border: 1px solid #dee2e6; background-color: #e9ecef; font-weight: bold; color: #495057;">Email anterior</td>
+                        <td style="padding: 8px 12px; border: 1px solid #dee2e6; color: #495057;">' . htmlspecialchars($emailAnterior) . '</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px 12px; border: 1px solid #dee2e6; background-color: #e9ecef; font-weight: bold; color: #495057;">Nuevo email</td>
+                        <td style="padding: 8px 12px; border: 1px solid #dee2e6; color: #495057;">' . htmlspecialchars($emailNuevo) . '</td>
+                    </tr>
+                </table>';
+
+    return enviarCorreoConEnlace($emailNuevo, $enlaceVerificacion, [
+        'asunto'        => 'Confirmá tu nuevo email — NovaShopping',
+        'titulo'        => 'Cambio de dirección de email',
+        'descripcion'   => 'Recibimos una solicitud para cambiar el email de tu cuenta en <strong>NovaShopping</strong>. Para confirmar el cambio, hacé clic en el siguiente botón:',
+        'textoBoton'    => 'Confirmar nuevo email',
+        'colorBoton'    => '#0d6efd',
+        'colorTextoBtn' => '#ffffff',
+        'expiracion'    => '24 horas',
+        'infoExtra'     => $infoExtra,
+        'altBody'       => "Confirmá tu nuevo email en NovaShopping\n\nHacé clic en este enlace para confirmar el cambio:\n$enlaceVerificacion\n\nEste enlace expira en 24 horas.\n\nEmail anterior: $emailAnterior\nNuevo email: $emailNuevo",
+    ]);
+}
+
+/**
  * Envía un correo con enlace de verificación para suscripción al newsletter.
  */
 function enviarVerificacionNewsletter(string $emailDestinatario, string $enlaceVerificacion): bool {
