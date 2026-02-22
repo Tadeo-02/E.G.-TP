@@ -65,6 +65,24 @@
 
 <section id="about" class="about">
     <div class="container-fluid">
+        <?php
+        // Mostrar mensajes flash (ej: cuenta dada de baja)
+        if (isset($_SESSION['mensaje'])) {
+            $tipoMsg = 'info';
+            $textoMsg = $_SESSION['mensaje'];
+            if (is_array($_SESSION['mensaje'])) {
+                $tipoMsg = $_SESSION['mensaje']['tipo'] ?? 'info';
+                $textoMsg = $_SESSION['mensaje']['texto'] ?? '';
+            }
+            echo '<div class="container" style="margin-top: 90px; position: relative; z-index: 1000;">
+                    <div class="alert alert-' . htmlspecialchars($tipoMsg) . ' alert-dismissible fade show" role="alert">
+                        ' . htmlspecialchars($textoMsg) . '
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                    </div>
+                  </div>';
+            unset($_SESSION['mensaje']);
+        }
+        ?>
         <div class="row ">
             <div class="col-12">
                 <form action="" method="POST" class="form" autocomplete="on" style="padding: 20px;">

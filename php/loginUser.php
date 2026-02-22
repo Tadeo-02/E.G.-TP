@@ -52,6 +52,10 @@
                     </div>';
             }  elseif ($checkUser['estadoCuenta'] == 'Pendiente'){
                 echo "<script>alert('Su solicitud de cuenta de dueño de local se encuentra bajo revisión.');</script>";
+            }  elseif ($checkUser['estadoCuenta'] == 'Baja'){
+                echo '<div class="alert alert-danger" role="alert">
+                    Esta cuenta ha sido dada de baja. Podés registrarte nuevamente con el mismo email.
+                    </div>';
             }
              else{
                 echo "<script>alert('Su solicitud de cuenta de dueño de local ha sido rechazda. Por favor, contacte a un administrador.');</script>";

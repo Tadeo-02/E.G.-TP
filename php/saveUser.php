@@ -36,11 +36,15 @@
             exit();
         }else{
             $checkEmail = conexion();
-            $checkEmail = $checkEmail->query("SELECT nombreUsuario FROM usuarios WHERE nombreUsuario = '$email'");
-            if($checkEmail -> num_rows > 0){ 
-                $_SESSION['mensaje'] = 'El email ya está registrado';
-                header('Location: ../index.php?vista=signUp');
-                exit();
+            $checkEmail = $checkEmail->query("SELECT nombreUsuario, estadoCuenta FROM usuarios WHERE nombreUsuario = '$email'");
+            if($checkEmail -> num_rows > 0){
+                $cuentaExistente = $checkEmail->fetch_assoc();
+                if($cuentaExistente['estadoCuenta'] !== 'Baja'){
+                    $_SESSION['mensaje'] = 'El email ya está registrado';
+                    header('Location: ../index.php?vista=signUp');
+                    exit();
+                }
+                // Si la cuenta está dada de baja, permitir reutilizar el email
             }
             $checkEmail = null;
         }
@@ -58,6 +62,13 @@
 
     // Guardando datos — cuenta con estado PendienteVerificacion
     $conn = conexion();
+
+    // Si existe una cuenta dada de baja con el mismo email, eliminarla antes de crear la nueva
+    $stmtBaja = $conn->prepare("DELETE FROM usuarios WHERE nombreUsuario = ? AND estadoCuenta = 'Baja'");
+    $stmtBaja->bind_param("s", $email);
+    $stmtBaja->execute();
+    $stmtBaja->close();
+
     if($checkBox == 1){
         $conn->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', NULL, 'Dueño', 'PendienteVerificacion')");
         $tipoUsuario = 'Dueño';

@@ -70,17 +70,20 @@ if ($accion === 'cambiarEmail') {
         exit();
     }
 
-    // Verificar que el nuevo email no esté en uso
-    $stmtCheck = $conexion->prepare("SELECT codUsuario FROM usuarios WHERE nombreUsuario = ?");
+    // Verificar que el nuevo email no esté en uso por una cuenta activa
+    $stmtCheck = $conexion->prepare("SELECT codUsuario, estadoCuenta FROM usuarios WHERE nombreUsuario = ?");
     $stmtCheck->bind_param("s", $emailNuevo);
     $stmtCheck->execute();
     $resCheck = $stmtCheck->get_result();
     if ($resCheck->num_rows > 0) {
-        $stmtCheck->close();
-        $conexion->close();
-        $_SESSION['perfil_mensaje'] = ['texto' => 'El email ingresado ya está registrado por otro usuario.', 'tipo' => 'danger'];
-        header("Location: ../../index.php?vista=miPerfil");
-        exit();
+        $cuentaExistente = $resCheck->fetch_assoc();
+        if ($cuentaExistente['estadoCuenta'] !== 'Baja') {
+            $stmtCheck->close();
+            $conexion->close();
+            $_SESSION['perfil_mensaje'] = ['texto' => 'El email ingresado ya está registrado por otro usuario.', 'tipo' => 'danger'];
+            header("Location: ../../index.php?vista=miPerfil");
+            exit();
+        }
     }
     $stmtCheck->close();
 
@@ -165,6 +168,58 @@ if ($accion === 'cambiarClave') {
 
     $_SESSION['perfil_mensaje'] = ['texto' => '¡Contraseña actualizada exitosamente!', 'tipo' => 'success'];
     header("Location: ../../index.php?vista=miPerfil");
+    exit();
+}
+
+// =============================================
+// ACCIÓN: Dar de baja la cuenta
+// =============================================
+if ($accion === 'darDeBaja') {
+    $claveBaja = $_POST['claveBaja'] ?? '';
+
+    // Validar campo obligatorio
+    if ($claveBaja == '') {
+        $_SESSION['perfil_mensaje'] = ['texto' => 'Debés ingresar tu contraseña para confirmar la baja.', 'tipo' => 'danger'];
+        header("Location: ../../index.php?vista=miPerfil");
+        exit();
+    }
+
+    $conexion = conexion();
+
+    // Verificar contraseña actual
+    $stmt = $conexion->prepare("SELECT claveUsuario FROM usuarios WHERE codUsuario = ?");
+    $stmt->bind_param("i", $_SESSION['codUsuario']);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    $user = $res->fetch_assoc();
+    $stmt->close();
+
+    if (!$user || !password_verify($claveBaja, $user['claveUsuario'])) {
+        $conexion->close();
+        $_SESSION['perfil_mensaje'] = ['texto' => 'La contraseña ingresada es incorrecta.', 'tipo' => 'danger'];
+        header("Location: ../../index.php?vista=miPerfil");
+        exit();
+    }
+
+    // Cambiar estado de la cuenta a 'Baja'
+    $stmtUpdate = $conexion->prepare("UPDATE usuarios SET estadoCuenta = 'Baja' WHERE codUsuario = ?");
+    $stmtUpdate->bind_param("i", $_SESSION['codUsuario']);
+    $stmtUpdate->execute();
+    $stmtUpdate->close();
+    $conexion->close();
+
+    // Destruir sesión y redirigir al login
+    session_unset();
+    session_destroy();
+
+    // Reiniciar sesión para mostrar mensaje flash
+    session_name("UNR");
+    session_start();
+    $_SESSION['mensaje'] = [
+        'texto' => 'Tu cuenta ha sido dada de baja exitosamente.',
+        'tipo' => 'info'
+    ];
+    header("Location: ../../index.php?vista=login");
     exit();
 }
 

@@ -185,9 +185,50 @@
                     <button type="submit" class="btn btn-warning"><i class="fas fa-key"></i> Cambiar contraseña</button>
                 </form>
             </div>
+
+            <!-- Sección: Dar de baja la cuenta -->
+            <div class="profile-section">
+                <h4 class="text-danger"><i class="fas fa-user-slash"></i> Dar de baja mi cuenta</h4>
+                <p class="text-muted">Esta acción desactivará tu cuenta. Ya no podrás iniciar sesión. Tu email quedará disponible para registrar una nueva cuenta.</p>
+                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalDarDeBaja">
+                    <i class="fas fa-exclamation-triangle"></i> Dar de baja mi cuenta
+                </button>
+            </div>
         </div>
     </div>
 </section>
+
+<!-- Modal de confirmación para dar de baja -->
+<div class="modal fade" id="modalDarDeBaja" tabindex="-1" aria-labelledby="modalDarDeBajaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="modalDarDeBajaLabel"><i class="fas fa-exclamation-triangle"></i> Confirmar baja de cuenta</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <form action="php/cliente/updateProfile.php" method="POST">
+                <input type="hidden" name="accion" value="darDeBaja">
+                <div class="modal-body">
+                    <p><strong>¿Estás seguro de que querés dar de baja tu cuenta?</strong></p>
+                    <p class="text-muted">Esta acción cambiará el estado de tu cuenta a <em>Baja</em> y se cerrará tu sesión. No podrás volver a iniciar sesión con esta cuenta.</p>
+                    <div class="mb-3">
+                        <label for="claveBaja" class="form-label">Ingresá tu contraseña para confirmar:</label>
+                        <div class="profile-input-wrapper">
+                            <input type="password" class="form-control" id="claveBaja" name="claveBaja" placeholder="********" maxlength="100" required style="padding-right: 40px;">
+                            <button type="button" onclick="togglePasswordVisibility('claveBaja', 'iconClaveBaja')" class="eye-btn-profile" aria-label="Mostrar u ocultar contraseña" tabindex="-1">
+                                <i id="iconClaveBaja" class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger"><i class="fas fa-user-slash"></i> Confirmar baja</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script>
     function togglePasswordVisibility(inputId, iconId) {
