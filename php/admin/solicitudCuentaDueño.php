@@ -25,7 +25,7 @@ if ($total_registros >= 1 && $pagina <= $Npaginas) {
 	foreach ($datos as $rows) {
 		$codUsuario = $rows['codUsuario'];
 		$nombreUsuario = $rows['nombreUsuario'];
-		$tabla .= '<div class="wrapper">
+		$tabla .= '<div class="wrapper wrapperSolicitudCuenta">
 					<table class="reporte">
 						<tr class="reporteRow">
 							<th class="reporteHeading">
@@ -35,21 +35,21 @@ if ($total_registros >= 1 && $pagina <= $Npaginas) {
 						</tr>
 						<tr class="reporteRow">
 							<td data-cell="Cuenta" class="reporteContent">' . htmlspecialchars($nombreUsuario) . '</td>
-							<td data-cell="Aceptar/Rechazar" class="botonesTD reporteContent" style="width: 25%;">
+							<td data-cell="" class="botonesTD reporteContent">
 								<div class="formContainerSolicitud">
 									<form action="./php/admin/aprobarSolicitudCuenta.php" method="POST">
 										<input type="hidden" name="codUsuario" value="' . htmlspecialchars($codUsuario) . '">
-										<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
-										<input type="hidden" name="asunto" value="Solicitud cuenta de due&ntilde;o"> <br>
-										<input type="hidden" name="mensaje" value="Su solicitud de cuenta ha sido ACEPTADA."> <br>
-										<button type="submit" name="botonAnashe" class="btn btn-success btnTabla" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar Solicitud</button>
+										<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '">
+										<input type="hidden" name="asunto" value="Solicitud cuenta de due&ntilde;o">
+										<input type="hidden" name="mensaje" value="Su solicitud de cuenta ha sido ACEPTADA.">
+										<button type="submit" name="botonAnashe" class="btn btn-success btnTabla" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar</button>
 									</form>
 									<form action="./php/admin/denegarSolicitudCuenta.php" method="POST">
 										<input type="hidden" name="codUsuario" value="' . htmlspecialchars($codUsuario) . '">
-										<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
-										<input type="hidden" name="asunto" value="Solicitud cuenta de due&ntilde;o"> <br>
-										<input type="hidden" name="mensaje" value="Su solicitud de cuenta ha sido RECHAZADA."> <br>
-										<button type="submit" name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger btnTabla" onclick="return rechazar();">Denegar Solicitud</button>
+										<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '">
+										<input type="hidden" name="asunto" value="Solicitud cuenta de due&ntilde;o">
+										<input type="hidden" name="mensaje" value="Su solicitud de cuenta ha sido RECHAZADA.">
+										<button type="submit" name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger btnTabla" onclick="return rechazar();">Denegar</button>
 									</form>
 								</div>
 							</td>

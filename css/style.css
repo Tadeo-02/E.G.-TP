@@ -321,7 +321,7 @@ footer {
 table {
   border-collapse: collapse;
   font-size: 16px;
-  min-width: 100%;
+  width: 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
 .botonesTD {
@@ -992,7 +992,7 @@ select[multiple] {
 table {
   border-collapse: collapse;
   font-size: 16px;
-  min-width: 100%;
+  width: 100%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
 
@@ -1019,9 +1019,16 @@ table {
   width: min(1000px, 100% - 3rem);
   margin-inline: auto;
   background-color: white;
+  overflow-x: auto;
+  box-sizing: border-box;
 }
 .wrapperSolDesc {
   width: min(1400px, 100% - 3rem);
+}
+
+.wrapperSolicitudCuenta {
+  width: min(600px, 100% - 2rem);
+  margin-bottom: 1rem;
 }
 
 .reporte {
@@ -1081,11 +1088,17 @@ table {
   .reporteHeading {
     display: none;
   }
+  .reporteRow {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
   .reporteContent {
     display: grid;
     gap: 0.5rem;
-    grid-template-columns: 15ch auto;
+    grid-template-columns: minmax(10ch, auto) 1fr;
     padding: 0.5rem 1rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .reporteContent:first-child {
     padding-top: 2rem;
@@ -1098,22 +1111,87 @@ table {
     font-weight: 700;
     text-transform: capitalize;
   }
+  .botonesTD {
+    width: auto !important;
+    grid-template-columns: 1fr;
+  }
+  .botonesTD::before {
+    content: attr(data-cell) ": ";
+    margin-bottom: 0.3rem;
+  }
+  .formContainerSolicitud {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .formContainerSolicitud form {
+    width: 100%;
+  }
+  .formContainerSolicitud .btn {
+    width: 100%;
+  }
+
+  /* Solicitudes de cuenta de dueño: una sola columna en móvil */
+  .wrapperSolicitudCuenta .reporteRow {
+    display: flex;
+    flex-direction: column;
+  }
+  .wrapperSolicitudCuenta .reporteContent {
+    display: block;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    padding: 0.5rem 1rem;
+  }
+  .wrapperSolicitudCuenta .reporteContent::before {
+    content: none;
+  }
+  .wrapperSolicitudCuenta .botonesTD {
+    width: 100% !important;
+  }
+  .wrapperSolicitudCuenta .formContainerSolicitud {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .wrapperSolicitudCuenta .formContainerSolicitud .btn {
+    width: 100%;
+  }
 }
 
 @media (max-width: 500px) {
   .reporte {
-    font-size: 0.8rem; /* Reduce el tamaño de la fuente */
-  }
-  .formContainerSolicitud {
-    display: grid;
+    font-size: 0.8rem;
   }
   .reporteContent {
-    word-wrap: break-word; /* Fuerza la división del texto */
-    white-space: normal; /* Permite el salto de línea */
+    grid-template-columns: 1fr;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+  .reporteContent::before {
+    margin-bottom: 0.2rem;
+  }
+  .formContainerSolicitud {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
   }
   .btnTabla {
     padding: 0.3em 0.5em;
-    font-size: 0.9rem; /* Ajusta el tamaño de la fuente */
-    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    font-size: 0.9rem;
+    width: 100%;
+  }
+
+  /* Solicitudes de cuenta de dueño */
+  .wrapperSolicitudCuenta .reporteContent {
+    display: block;
+    word-break: break-all;
+    overflow-wrap: break-word;
+  }
+  .wrapperSolicitudCuenta .reporteContent::before {
+    content: none;
+  }
+  .wrapperSolicitudCuenta .formContainerSolicitud {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
