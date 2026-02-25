@@ -22,27 +22,27 @@ $Npaginas = ceil($total_registros / $registros);
 if ($total_registros >= 1 && $pagina <= $Npaginas) {
 	$contador = $inicio + 1;
 	$pag_inicio = $inicio + 1;
+	$tabla .= '<div class="wrapper wrapperSolicitudCuenta">
+				<table class="reporte">
+					<tr class="reporteRow">
+						<th class="reporteHeading" style="width: 30%;">
+							Cuenta
+						</th>
+						<th class="reporteHeading" style="width: 25%;">
+							Nombre y Apellido
+						</th>
+						<th class="reporteHeading" style="width: 20%;">
+							CUIT
+						</th>
+						<th class="reporteHeading" style="width: 25%;"></th>
+					</tr>';
 	foreach ($datos as $rows) {
 		$codUsuario = $rows['codUsuario'];
 		$nombreUsuario = $rows['nombreUsuario'];
 		$nombrePersona = htmlspecialchars($rows['nombrePersona'] ?? '');
 		$apellidoPersona = htmlspecialchars($rows['apellidoPersona'] ?? '');
 		$cuitDueno = htmlspecialchars($rows['cuitDueno'] ?? '');
-		$tabla .= '<div class="wrapper wrapperSolicitudCuenta">
-					<table class="reporte">
-						<tr class="reporteRow">
-							<th class="reporteHeading">
-								Cuenta
-							</th>
-							<th class="reporteHeading">
-								Nombre y Apellido
-							</th>
-							<th class="reporteHeading">
-								CUIT
-							</th>
-							<th class="reporteHeading"></th>
-						</tr>
-						<tr class="reporteRow">
+		$tabla .= '		<tr class="reporteRow">
 							<td data-cell="Cuenta" class="reporteContent">' . htmlspecialchars($nombreUsuario) . '</td>
 							<td data-cell="Nombre y Apellido" class="reporteContent">' . $nombrePersona . ' ' . $apellidoPersona . '</td>
 							<td data-cell="CUIT" class="reporteContent">' . ($cuitDueno !== '' ? $cuitDueno : '<em>No proporcionado</em>') . '</td>
@@ -64,35 +64,29 @@ if ($total_registros >= 1 && $pagina <= $Npaginas) {
 									</form>
 								</div>
 							</td>
-						</tr>
-					</table>
-				</div>';
+						</tr>';
 
 		$contador++;
 	}
 	$pag_final = $contador - 1;
+	$tabla .= '</table>
+			</div>';
 } else {
 	// Si no hay registros, mostrar un mensaje
 	if ($total_registros >= 1) {
-		$tabla .= ' <table>
+		$tabla .= '<table>
 				<tr class="has-text-centered" >
 					<td>
-						<a href="' . $url . '1" class="button is-link is-rounded is-small mt-4 mb-4		Haga clic acá para recargar el listado
-                    </
-				</tr>
-			';
-	} else {
-		$tabla .= '
-				<tr class="has-text-centered" >
-					<td>
-						<p class="centered" style="color: red">	No hay solicitudes de cuenta de dueño pendientes </p>
+						<a href="' . $url . '1" class="button is-link is-rounded is-small mt-4 mb-4">Haga clic acá para recargar el listado</a>
 					</td>
 				</tr>
+			</table>';
+	} else {
+		$tabla .= '
+				<p class="centered" style="color: red">No hay solicitudes de cuenta de dueño pendientes</p>
 			';
 	}
 }
-
-$tabla .= '</tbody></table>';
 //Paginador
 if ($total_registros > 0 && $pagina <= $Npaginas) {
 	$tabla .= '<p style="text-align: center; color: white;">

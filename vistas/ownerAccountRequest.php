@@ -5,7 +5,7 @@
     <?php
         require_once(__DIR__ . '/../php/main.php');
     ?>
-    <div class="container">
+    <div class="container-fluid">
         <br>
         <br>
         <br>

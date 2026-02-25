@@ -1031,8 +1031,9 @@ table {
 }
 
 .wrapperSolicitudCuenta {
-  width: min(600px, 100% - 2rem);
+  width: min(1200px, 100% - 3rem);
   margin-bottom: 1rem;
+  overflow-x: hidden;
 }
 
 .reporte {
@@ -1046,6 +1047,12 @@ table {
   table-layout: auto;
   overflow-x: auto;
   max-width: 100%;
+}
+
+.wrapperSolicitudCuenta .reporte {
+  table-layout: fixed;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .reporteHeading,
