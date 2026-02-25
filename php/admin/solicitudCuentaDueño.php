@@ -25,16 +25,27 @@ if ($total_registros >= 1 && $pagina <= $Npaginas) {
 	foreach ($datos as $rows) {
 		$codUsuario = $rows['codUsuario'];
 		$nombreUsuario = $rows['nombreUsuario'];
+		$nombrePersona = htmlspecialchars($rows['nombrePersona'] ?? '');
+		$apellidoPersona = htmlspecialchars($rows['apellidoPersona'] ?? '');
+		$cuitDueno = htmlspecialchars($rows['cuitDueno'] ?? '');
 		$tabla .= '<div class="wrapper wrapperSolicitudCuenta">
 					<table class="reporte">
 						<tr class="reporteRow">
 							<th class="reporteHeading">
 								Cuenta
 							</th>
+							<th class="reporteHeading">
+								Nombre y Apellido
+							</th>
+							<th class="reporteHeading">
+								CUIT
+							</th>
 							<th class="reporteHeading"></th>
 						</tr>
 						<tr class="reporteRow">
 							<td data-cell="Cuenta" class="reporteContent">' . htmlspecialchars($nombreUsuario) . '</td>
+							<td data-cell="Nombre y Apellido" class="reporteContent">' . $nombrePersona . ' ' . $apellidoPersona . '</td>
+							<td data-cell="CUIT" class="reporteContent">' . ($cuitDueno !== '' ? $cuitDueno : '<em>No proporcionado</em>') . '</td>
 							<td data-cell="" class="botonesTD reporteContent">
 								<div class="formContainerSolicitud">
 									<form action="./php/admin/aprobarSolicitudCuenta.php" method="POST">

@@ -9,7 +9,7 @@
 
     // Obtener datos actuales del usuario
     $conexion = conexion();
-    $stmt = $conexion->prepare("SELECT nombreUsuario, categoriaCliente, estadoCuenta FROM usuarios WHERE codUsuario = ?");
+    $stmt = $conexion->prepare("SELECT nombreUsuario, nombrePersona, apellidoPersona, categoriaCliente, estadoCuenta FROM usuarios WHERE codUsuario = ?");
     $stmt->bind_param("i", $_SESSION['codUsuario']);
     $stmt->execute();
     $resultado = $stmt->get_result();
@@ -121,6 +121,23 @@
                 <div class="field-value">
                     <?php echo htmlspecialchars($usuario['categoriaCliente'] ?? 'N/A'); ?>
                 </div>
+            </div>
+
+            <!-- Sección: Nombre y Apellido -->
+            <div class="profile-section">
+                <h4><i class="fas fa-id-card"></i> Nombre y Apellido</h4>
+                <form action="php/cliente/updateProfile.php" method="POST" autocomplete="off">
+                    <input type="hidden" name="accion" value="cambiarNombreApellido">
+                    <div class="mb-3">
+                        <label for="nombrePersona" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombrePersona" name="nombrePersona" value="<?php echo htmlspecialchars($usuario['nombrePersona'] ?? ''); ?>" maxlength="50" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellidoPersona" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" id="apellidoPersona" name="apellidoPersona" value="<?php echo htmlspecialchars($usuario['apellidoPersona'] ?? ''); ?>" maxlength="50" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Actualizar nombre</button>
+                </form>
             </div>
 
             <!-- Sección: Cambiar Email -->

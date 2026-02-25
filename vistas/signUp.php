@@ -30,10 +30,15 @@
         height: 50px;
         box-sizing: border-box !important; /* Includes padding in the width calculation */
         
-        /* Padding for text (left) and icon (right) */
+        /* Padding for text */
         padding-left: 20px; 
-        padding-right: 45px; 
+        padding-right: 20px; 
         text-align: center;
+    }
+
+    /* Extra padding when there's an eye button next to the input */
+    .password-padding {
+        padding-right: 45px !important;
     }
 
     .custom-dark-input:focus {
@@ -80,20 +85,36 @@
 		<div class="form-rest"></div> <!--se utiliza para mostrar el resultado dentro de este "form-rest"  -->
 			<div class="row">
 				<div class="col-12">
-					<form action="php/saveUser.php" method="POST" class="form" autocomplete="off" style="padding: 20px;">
+					<form action="php/saveUser.php" method="POST" class="form" autocomplete="off" style="padding: 20px; padding-top: 100px; padding-bottom: 60px; justify-content: flex-start; min-height: auto; height: auto;">
 						<h1>Bienvenido a NovaShopping</h1>
-						<h2>Formulario de Registro</h2>
+						<!-- <h2>Formulario de Registro</h2> -->
+
+						<div class="mb-3">
+							<label for="nombrePersona">Nombre</label>
+							<div class="input-wrapper">
+								<input id="nombrePersona" class="form-control custom-dark-input" type="text" name="nombrePersona" placeholder="Juan" maxlength="50" required>
+							</div>
+						</div>
+
+						<div class="mb-3">
+							<label for="apellidoPersona">Apellido</label>
+							<div class="input-wrapper">
+								<input id="apellidoPersona" class="form-control custom-dark-input" type="text" name="apellidoPersona" placeholder="Pérez" maxlength="50" required>
+							</div>
+						</div>
 
 						<div class="mb-3">
 							<label for="nombreUsuario">Email</label>
-							<input id="nombreUsuario" class="form-control" type="email" name="nombreUsuario" placeholder="alguien@ejemplo.com" maxlength="70" required aria-describedby="emailHelp">
+							<div class="input-wrapper">
+								<input id="nombreUsuario" class="form-control custom-dark-input" type="email" name="nombreUsuario" placeholder="alguien@ejemplo.com" maxlength="70" required aria-describedby="emailHelp">
+							</div>
 							<small id="emailHelp" class="form-text text-muted" style="margin-top: 5px;">Por favor, introduce un correo válido.</small>
 						</div>
 
 						<div class="mb-3">
 							<label for="claveUsuario1">Clave</label>
                             <div class="input-wrapper">
-                                <input id="claveUsuario1"  class="form-control custom-dark-input password-padding" type="password" name="claveUsuario1" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********" required aria-describedby="passwordHelp" style="padding-right: 40px;">
+                                <input id="claveUsuario1"  class="form-control custom-dark-input password-padding" type="password" name="claveUsuario1" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********" required aria-describedby="passwordHelp">
                                  <button 
                                 type="button" 
                                 onclick="togglePasswordVisibility('claveUsuario1', 'toggleIconLogin')" 
@@ -109,7 +130,7 @@
 						<div class="mb-3">
 							<label for="claveUsuario2">Repetir clave</label>
                             <div class="input-wrapper">
-                                <input id="claveUsuario2"  class="form-control custom-dark-input password-padding" type="password" name="claveUsuario2" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********" required aria-describedby="repeatPasswordHelp" style="padding-right: 40px;">
+                                <input id="claveUsuario2"  class="form-control custom-dark-input password-padding" type="password" name="claveUsuario2" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********" required aria-describedby="repeatPasswordHelp">
                                  <button 
                                 type="button" 
                                 onclick="togglePasswordVisibility('claveUsuario2', 'toggleIconLogin')" 
@@ -122,8 +143,15 @@
 							<small id="repeatPasswordHelp" class="form-text text-muted" style="margin-top: 5px;">Por favor, repite la contraseña para confirmar.</small>
 						</div>
 
-						<div class="form-check mb-3 d-flex justify-content-center align-items-center">
-							<input class="form-check-input me-2" type="checkbox" value="1" id="flexCheckDefault" name="esDueño">
+                        <div class="mb-3" id="cuitField" style="display: none;">
+							<label for="cuitDueno">CUIT</label>
+							<div class="input-wrapper">
+								<input id="cuitDueno" class="form-control custom-dark-input" type="text" name="cuitDueno" placeholder="20-12345678-9" maxlength="13" pattern="[0-9\-]{11,13}">
+							</div>
+						</div>
+
+                        <div class="form-check mb-3 d-flex justify-content-center align-items-center">
+							<input class="form-check-input me-2" type="checkbox" value="1" id="flexCheckDefault" name="esDueño" onchange="toggleCuitField()">
 							<label for="flexCheckDefault" class="form-check-label">¿Es Dueño de Local?</label>
 						</div>
 
@@ -137,6 +165,17 @@
 					</form>
 
                    <script>
+                    function toggleCuitField() {
+                        const checkbox = document.getElementById('flexCheckDefault');
+                        const cuitField = document.getElementById('cuitField');
+                        const cuitInput = document.getElementById('cuitDueno');
+                        cuitField.style.display = checkbox.checked ? 'block' : 'none';
+                        cuitInput.required = checkbox.checked;
+                        if (!checkbox.checked) {
+                            document.getElementById('cuitDueno').value = '';
+                        }
+                    }
+
                     function togglePasswordVisibility(inputId, iconId) {
                         const input = document.getElementById(inputId);
                         const icon = document.getElementById(iconId);
@@ -153,5 +192,6 @@
                     }
                 </script>
 			</div>
+		</div>
 	</div>			
 </section>

@@ -25,6 +25,33 @@ if (!isset($_SESSION['codUsuario']) || $_SESSION['codUsuario'] == "" || $_SESSIO
 $accion = isset($_POST['accion']) ? $_POST['accion'] : '';
 
 // =============================================
+// ACCIÓN: Cambiar Nombre y Apellido
+// =============================================
+if ($accion === 'cambiarNombreApellido') {
+    $nombrePersona = limpiar_cadena($_POST['nombrePersona'] ?? '');
+    $apellidoPersona = limpiar_cadena($_POST['apellidoPersona'] ?? '');
+
+    // Validar campos obligatorios
+    if ($nombrePersona == '' || $apellidoPersona == '') {
+        $_SESSION['perfil_mensaje'] = ['texto' => 'El nombre y apellido son obligatorios.', 'tipo' => 'danger'];
+        header("Location: ../../index.php?vista=miPerfil");
+        exit();
+    }
+
+    $conexion = conexion();
+
+    $stmtUpdate = $conexion->prepare("UPDATE usuarios SET nombrePersona = ?, apellidoPersona = ? WHERE codUsuario = ?");
+    $stmtUpdate->bind_param("ssi", $nombrePersona, $apellidoPersona, $_SESSION['codUsuario']);
+    $stmtUpdate->execute();
+    $stmtUpdate->close();
+    $conexion->close();
+
+    $_SESSION['perfil_mensaje'] = ['texto' => '¡Nombre y apellido actualizados exitosamente!', 'tipo' => 'success'];
+    header("Location: ../../index.php?vista=miPerfil");
+    exit();
+}
+
+// =============================================
 // ACCIÓN: Cambiar Email
 // =============================================
 if ($accion === 'cambiarEmail') {

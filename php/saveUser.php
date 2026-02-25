@@ -14,10 +14,20 @@
     $clave_1 = limpiar_cadena($_POST['claveUsuario1']);
     $clave_2 = limpiar_cadena($_POST['claveUsuario2']);
     $checkBox = isset($_POST['esDueño']) ? limpiar_cadena($_POST['esDueño']) : '';
+    $nombrePersona = limpiar_cadena($_POST['nombrePersona'] ?? '');
+    $apellidoPersona = limpiar_cadena($_POST['apellidoPersona'] ?? '');
+    $cuitDueno = isset($_POST['cuitDueno']) ? limpiar_cadena($_POST['cuitDueno']) : '';
 
     // Verificar campos Obligatorios
-    if( $clave_1 == "" || $clave_2 == "" || $email == ""){
+    if( $clave_1 == "" || $clave_2 == "" || $email == "" || $nombrePersona == "" || $apellidoPersona == ""){
         $_SESSION['mensaje'] = 'Todos los campos obligatorios no han sido completados';
+        header('Location: ../index.php?vista=signUp');
+        exit();
+    }
+
+    // Verificar CUIT obligatorio para dueños
+    if($checkBox == 1 && $cuitDueno == ""){
+        $_SESSION['mensaje'] = 'El CUIT es obligatorio para dueños de local';
         header('Location: ../index.php?vista=signUp');
         exit();
     }
@@ -70,10 +80,16 @@
     $stmtBaja->close();
 
     if($checkBox == 1){
-        $conn->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', NULL, 'Dueño', 'Pendiente')");
+        $stmt = $conn->prepare("INSERT INTO usuarios(claveUsuario, nombreUsuario, nombrePersona, apellidoPersona, cuitDueno, categoriaCliente, tipoUsuario, estadoCuenta) VALUES(?, ?, ?, ?, ?, NULL, 'Dueño', 'Pendiente')");
+        $stmt->bind_param("sssss", $clave, $email, $nombrePersona, $apellidoPersona, $cuitDueno);
+        $stmt->execute();
+        $stmt->close();
         $tipoUsuario = 'Dueño';
     }else{
-        $conn->query("INSERT INTO usuarios(claveUsuario, nombreUsuario, categoriaCliente, tipoUsuario, estadoCuenta) VALUES('$clave', '$email', 'Inicial', 'Cliente', 'Pendiente')");
+        $stmt = $conn->prepare("INSERT INTO usuarios(claveUsuario, nombreUsuario, nombrePersona, apellidoPersona, categoriaCliente, tipoUsuario, estadoCuenta) VALUES(?, ?, ?, ?, 'Inicial', 'Cliente', 'Pendiente')");
+        $stmt->bind_param("ssss", $clave, $email, $nombrePersona, $apellidoPersona);
+        $stmt->execute();
+        $stmt->close();
         $tipoUsuario = 'Cliente';
     }
 

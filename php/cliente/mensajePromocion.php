@@ -11,7 +11,7 @@ $tipoMensaje = limpiar_cadena($_POST['tipoMensaje'] ?? '');
 
 switch($tipoMensaje) {
     case 'nivelInsuficiente':
-        $_SESSION['mensaje'] = 'Usted no puede acceder a esta promoción porque su nivel de usuario es menor al solicitado';
+        $_SESSION['mensaje'] = 'Usted no puede acceder a esta promoción porque su categoria de usuario es menor al solicitado';
         break;
     case 'fueraPeriodo':
         $_SESSION['mensaje'] = 'Por favor, vuelva a intentarlo cuando el periodo de la promoción haya iniciado';
