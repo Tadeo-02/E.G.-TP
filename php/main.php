@@ -6,6 +6,7 @@ function conexion(){
     //? CONEXION LOCAL
     //$link = mysqli_connect("localhost", "root") or die("Problemas de conexion a la base de datos");
     mysqli_select_db($link, "tp entornos");
+    mysqli_set_charset($link, "utf8mb4");
     return $link;
 }
 
