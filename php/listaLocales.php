@@ -64,7 +64,7 @@
 							<form action="index.php" method="GET">
 								<input type="hidden" name="vista" value="promocionesList">
 								<input type="hidden" name="codLocal" value="'.htmlspecialchars($codLocal) .'">
-								<button type="submit" id="botonAnashe" class="btn btn-primary">Ver Promociones</button>
+								<button type="submit" id="botonAnashe" class="btn btn-primary" aria-label="Ver promociones de '. htmlspecialchars($nombreLocal) .'">Ver Promociones</button>
 							</form>
                 		</div>
 					</div>
@@ -75,12 +75,12 @@
 							<form action="index.php?vista=localsUpdate" method="POST">
 								<input type="hidden" name="nombreLocal" value="'. htmlspecialchars($nombreLocal) .'">
 								<input type="hidden" name="codLocal" value="'. htmlspecialchars($codLocal) .'">
-								<input type="submit" name="botonAnashe" class="btn btn-warning" value="Modificar Local">
+								<input type="submit" name="botonAnashe" class="btn btn-warning" value="Modificar Local" aria-label="Modificar local '. htmlspecialchars($nombreLocal) .'">
 							</form>
 							<form action="./php/admin/eliminarLocales.php" method="POST">
 								<input type="hidden" name="codLocal" value="'.htmlspecialchars($codLocal) .'">
 								<input type="hidden" name="dato" value="valor">
-								<button type="submit"  name="botonAnashe" value="Eliminar Local" class="btn btn-danger" onclick="return confirmar();">Eliminar Local</button>
+								<button type="submit" class="btn btn-danger" aria-label="Eliminar local <?php echo htmlspecialchars($nombreLocal); ?>" onclick="return confirmar();"> Eliminar Local </button>
 							</form>
 						</div>
 					</div>

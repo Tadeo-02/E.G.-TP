@@ -28,6 +28,6 @@
 11. [x] Evitar que un cliente solicite la misma promoción más de una vez.
 12. [x] Permitir a clientes ver y modificar su perfil en campos permitidos.
 13.1 [x] Mejorar accesibilidad: navegación por teclado.
-13.2 [] Mejorar accesibilidad: lector de pantalla.
+13.2 [x] Mejorar accesibilidad: lector de pantalla.
 13. [x] Agregar nombres alternativos a imágenes para accesibilidad.
-14. [] Proveer credenciales de prueba para dueños y administradores (no solamente en README).
+14. [x] Proveer credenciales de prueba para dueños y administradores (no solamente en README).
