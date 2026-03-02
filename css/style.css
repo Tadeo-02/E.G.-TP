@@ -48,6 +48,17 @@ body {
   font-size: 18px;
   line-height: 1.9;
 }
+.carousel-caption .btn:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(255, 193, 7, 0.6);
+}
+.carousel-control-prev:focus-visible,
+.carousel-control-next:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -3px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+}
 .carousel-inner:before {
   content: "";
   position: absolute;
