@@ -7,6 +7,10 @@ body {
   background: #191919;
 }
 
+#main-content:focus {
+  outline: none;
+}
+
 /* HOVER */
 .nav-link.active,
 .nav-link:hover {
