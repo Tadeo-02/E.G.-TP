@@ -84,8 +84,8 @@
 			$tabla.=' <table>
 				<tr class="has-text-centered" >
 					<td>
-						<a href="'.$url.'1" class="button is-link is-rounded is-small mt-4 mb-4		Haga clic acá para recargar el listado
-                    </
+						<a href="'.$url.'1" class="button is-link is-rounded is-small mt-4 mb-4">Haga clic acá para recargar el listado</a>
+                    </td>
 				</tr>
 			';
 		}else{
