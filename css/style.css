@@ -11,6 +11,12 @@ body {
   outline: none;
 }
 
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
 /* HOVER */
 .nav-link.active,
 .nav-link:hover {

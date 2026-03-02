@@ -27,6 +27,8 @@
                 $orderActual = isset($_GET['order']) ? $_GET['order'] : 'ASC';
             ?>
 
+            <fieldset>
+            <legend class="visually-hidden">Filtros de locales</legend>
             <div class="centered row mb-4">
 
                 <?php if (isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Administrador") { ?>
@@ -45,16 +47,15 @@
                     <input type="hidden" name="order" value="<?php echo htmlspecialchars($orderActual); ?>">
                     <div class="row mb-3">
                         <div class="col">
-                            <label for="sortByLocales" class="visually-hidden">Ordenar por</label>
+                            <label for="sortByLocales" class="visually-hidden">Seleccionar orden listado</label>
                             <div class="input-group">
-                                <select id="sortByLocales" class="form-select" name="sortBy" aria-label="Seleccionar orden" onchange="this.form.submit()">
-                                    <option value="" disabled select <?php echo $sortActual == '' ? 'selected' : ''; ?>>Ordenar por</option>
+                                <select id="sortByLocales" class="form-select" name="sortBy" onchange="this.form.submit()">
                                     <option value="nombreLocal" <?php echo $sortActual == 'nombreLocal' ? 'selected' : ''; ?>>Nombre</option>
                                     <option value="ubicacionLocal" <?php echo $sortActual == 'ubicacionLocal' ? 'selected' : ''; ?>>Ubicación</option>
                                     <option value="codLocal" <?php echo $sortActual == 'codLocal' ? 'selected' : ''; ?>>Codigo de local</option>
                                     <option value="rubroLocal" <?php echo $sortActual == 'rubroLocal' ? 'selected' : ''; ?>>Rubro</option>
                                 </select>
-                                <button type="button" class="btn btn-outline-secondary" onclick="toggleOrder(this.form)" title="Cambiar orden: <?php echo $orderActual == 'ASC' ? 'Ascendente' : 'Descendente'; ?>">
+                                <button type="button" class="btn btn-outline-secondary" onclick="toggleOrder(this.form)" aria-label="Cambiar orden a <?php echo $orderActual == 'ASC' ? 'descendente' : 'ascendente'; ?>">
                                     <i class="fas fa-sort-amount-<?php echo $orderActual == 'ASC' ? 'down' : 'up'; ?>"></i>
                                 </button>
                             </div>
@@ -106,6 +107,7 @@
 
                 </div>
             </div>
+            </fieldset>
         </div>
 
         <div class="container">

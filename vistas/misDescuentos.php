@@ -37,6 +37,8 @@
     <h1 class="text-center" style="color: white"><b>MIS DESCUENTOS</b></h1>
     <br>
 
+    <fieldset>
+    <legend class="visually-hidden">Filtros de mis descuentos</legend>
     <div class="centered row mb-4">
         <form action="index.php" id="sortForm" method="get" class="col-lg-5 col-md-5 col-12 d-flex justify-content-center">
             <input type="hidden" name="vista" value="misDescuentos">
@@ -55,6 +57,7 @@
             </button>
         </form>
     </div>
+    </fieldset>
 
     <?php
         require_once (__DIR__. '/../php/cliente/listaMisDescuentos.php');

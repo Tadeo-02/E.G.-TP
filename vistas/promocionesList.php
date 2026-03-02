@@ -62,7 +62,8 @@ if (isset($_SESSION['mensaje'])) {
         <div class="row calendarios">
             
             <!-- Formulario con un desplegable -->
-            <div class="columnaFiltro1 col-lg-4 col-md-4 col-12">
+            <fieldset class="columnaFiltro1 col-lg-4 col-md-4 col-12">
+            <legend class="visually-hidden">Filtros de promociones</legend>
 
                     <form action="index.php" method="get" id="sortForm">
                         <input type="hidden" name="vista" value="promocionesList">
@@ -109,7 +110,7 @@ if (isset($_SESSION['mensaje'])) {
                         ';     
                 }
                 ?>
-            </div>
+            </fieldset>
             <div class="columnaFiltro2 col-lg-7 col-md-7 col-12">
                 <?php
                     // Cerrar la conexión
