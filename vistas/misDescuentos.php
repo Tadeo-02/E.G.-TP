@@ -52,8 +52,8 @@
                 <option value="p.fechaDesdePromo" <?php echo $ordenar == 'p.fechaDesdePromo' ? 'selected' : ''; ?>>Válido desde</option>
                 <option value="p.fechaHastaPromo" <?php echo $ordenar == 'p.fechaHastaPromo' ? 'selected' : ''; ?>>Válido hasta</option>
             </select>
-            <button type="button" class="btn btn-outline-secondary" onclick="toggleOrder(this.form)" title="Cambiar orden: <?php echo $orderActual == 'ASC' ? 'Ascendente' : 'Descendente'; ?>">
-                <i class="fas fa-sort-amount-<?php echo $orderActual == 'ASC' ? 'down' : 'up'; ?>"></i>
+            <button type="button" class="btn btn-outline-secondary" onclick="toggleOrder(this.form)" aria-label="Cambiar orden a <?php echo $orderActual == 'ASC' ? 'descendente' : 'ascendente'; ?>" title="Cambiar orden: <?php echo $orderActual == 'ASC' ? 'Ascendente' : 'Descendente'; ?>">
+                <i class="fas fa-sort-amount-<?php echo $orderActual == 'ASC' ? 'down' : 'up'; ?>" aria-hidden="true"></i>
             </button>
         </form>
     </div>

@@ -68,7 +68,7 @@ function renombrar_fotos($nombre){
 // Funcion paginador de tablas
 function paginador_tablas($pagina, $Npaginas, $url, $botones) {
     $tabla = '
-                <nav aria-label="Page navigation example">
+                <nav aria-label="Paginación de resultados">
                 <ul class="pagination justify-content-center">';
 
     // Botón "Anterior"

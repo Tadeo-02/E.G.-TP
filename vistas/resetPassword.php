@@ -141,8 +141,7 @@ if (!empty($token) && strlen($token) === 64) {
                                 type="button"
                                 onclick="togglePasswordVisibility('claveNueva1', 'iconClave1')"
                                 class="eye-btn"
-                                aria-label="Mostrar u ocultar contraseña"
-                                tabindex="-1">
+                                aria-label="Mostrar u ocultar contraseña">
                                 <i id="iconClave1" class="fas fa-eye" style="font-size: 1.2rem;"></i>
                             </button>
                         </div>
@@ -167,8 +166,7 @@ if (!empty($token) && strlen($token) === 64) {
                                 type="button"
                                 onclick="togglePasswordVisibility('claveNueva2', 'iconClave2')"
                                 class="eye-btn"
-                                aria-label="Mostrar u ocultar contraseña"
-                                tabindex="-1">
+                                aria-label="Mostrar u ocultar contraseña">
                                 <i id="iconClave2" class="fas fa-eye" style="font-size: 1.2rem;"></i>
                             </button>
                         </div>

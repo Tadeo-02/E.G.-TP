@@ -157,7 +157,7 @@
                         <label for="claveConfirmEmail" class="form-label">Contraseña actual (para confirmar)</label>
                         <div class="profile-input-wrapper">
                             <input type="password" class="form-control" id="claveConfirmEmail" name="claveConfirmEmail" placeholder="********" maxlength="100" required style="padding-right: 40px;">
-                            <button type="button" onclick="togglePasswordVisibility('claveConfirmEmail', 'iconConfirmEmail')" class="eye-btn-profile" aria-label="Mostrar u ocultar contraseña" tabindex="-1">
+                            <button type="button" onclick="togglePasswordVisibility('claveConfirmEmail', 'iconConfirmEmail')" class="eye-btn-profile" aria-label="Mostrar u ocultar contraseña">
                                 <i id="iconConfirmEmail" class="fas fa-eye"></i>
                             </button>
                         </div>
@@ -175,7 +175,7 @@
                         <label for="claveActual" class="form-label">Contraseña actual</label>
                         <div class="profile-input-wrapper">
                             <input type="password" class="form-control" id="claveActual" name="claveActual" placeholder="********" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" required style="padding-right: 40px;">
-                            <button type="button" onclick="togglePasswordVisibility('claveActual', 'iconClaveActual')" class="eye-btn-profile" aria-label="Mostrar u ocultar contraseña" tabindex="-1">
+                            <button type="button" onclick="togglePasswordVisibility('claveActual', 'iconClaveActual')" class="eye-btn-profile" aria-label="Mostrar u ocultar contraseña">
                                 <i id="iconClaveActual" class="fas fa-eye"></i>
                             </button>
                         </div>
@@ -184,7 +184,7 @@
                         <label for="claveNueva1" class="form-label">Nueva contraseña</label>
                         <div class="profile-input-wrapper">
                             <input type="password" class="form-control" id="claveNueva1" name="claveNueva1" placeholder="********" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" required style="padding-right: 40px;">
-                            <button type="button" onclick="togglePasswordVisibility('claveNueva1', 'iconClaveNueva1')" class="eye-btn-profile" aria-label="Mostrar u ocultar contraseña" tabindex="-1">
+                            <button type="button" onclick="togglePasswordVisibility('claveNueva1', 'iconClaveNueva1')" class="eye-btn-profile" aria-label="Mostrar u ocultar contraseña">
                                 <i id="iconClaveNueva1" class="fas fa-eye"></i>
                             </button>
                         </div>
@@ -194,7 +194,7 @@
                         <label for="claveNueva2" class="form-label">Repetir nueva contraseña</label>
                         <div class="profile-input-wrapper">
                             <input type="password" class="form-control" id="claveNueva2" name="claveNueva2" placeholder="********" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" required style="padding-right: 40px;">
-                            <button type="button" onclick="togglePasswordVisibility('claveNueva2', 'iconClaveNueva2')" class="eye-btn-profile" aria-label="Mostrar u ocultar contraseña" tabindex="-1">
+                            <button type="button" onclick="togglePasswordVisibility('claveNueva2', 'iconClaveNueva2')" class="eye-btn-profile" aria-label="Mostrar u ocultar contraseña">
                                 <i id="iconClaveNueva2" class="fas fa-eye"></i>
                             </button>
                         </div>
@@ -232,7 +232,7 @@
                         <label for="claveBaja" class="form-label">Ingresá tu contraseña para confirmar:</label>
                         <div class="profile-input-wrapper">
                             <input type="password" class="form-control" id="claveBaja" name="claveBaja" placeholder="********" maxlength="100" required style="padding-right: 40px;">
-                            <button type="button" onclick="togglePasswordVisibility('claveBaja', 'iconClaveBaja')" class="eye-btn-profile" aria-label="Mostrar u ocultar contraseña" tabindex="-1">
+                            <button type="button" onclick="togglePasswordVisibility('claveBaja', 'iconClaveBaja')" class="eye-btn-profile" aria-label="Mostrar u ocultar contraseña">
                                 <i id="iconClaveBaja" class="fas fa-eye"></i>
                             </button>
                         </div>

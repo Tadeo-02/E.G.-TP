@@ -123,8 +123,7 @@
                                 type="button" 
                                 onclick="togglePasswordVisibility('claveUsuarioLogin', 'toggleIconLogin')" 
                                 class="eye-btn"
-                                aria-label="Mostrar u ocultar contraseña" 
-                                tabindex="-1">
+                                aria-label="Mostrar u ocultar contraseña">
                                 <i id="toggleIconLogin" class="fas fa-eye" style="font-size: 1.2rem;"></i>
                             </button>
                         </div>

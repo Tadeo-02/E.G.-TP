@@ -74,7 +74,7 @@ if (isset($_SESSION['mensaje'])) {
                             <input type="date" id="diaDesde" name="diaDesde" min="2000-01-01" max="9999-12-31">
                             <br>
                             <br>
-                            <label for="diaHasta">Fecha Fin:</label>
+                            <label for="diaHasta">Fecha Final: </label>
                             <input type="date" id="diaHasta" name="diaHasta" min="2000-01-01" max="9999-12-31">
                             <br>
                             <button type="submit">Enviar</button>
@@ -92,8 +92,8 @@ if (isset($_SESSION['mensaje'])) {
                                     <option value="fechaHastaPromo" <?php echo $sortActual == 'fechaHastaPromo' ? 'selected' : ''; ?>>Fecha fin</option>
                                     <option value="codPromo" <?php echo $sortActual == 'codPromo' ? 'selected' : ''; ?>>ID promoción</option>
                                 </select>
-                                <button type="button" class="btn btn-outline-secondary" onclick="toggleOrder(this.form)" title="Cambiar orden: <?php echo $orderActual == 'ASC' ? 'Ascendente' : 'Descendente'; ?>">
-                                    <i class="fas fa-sort-amount-<?php echo $orderActual == 'ASC' ? 'down' : 'up'; ?>"></i>
+                                <button type="button" class="btn btn-outline-secondary" onclick="toggleOrder(this.form)" aria-label="Cambiar orden a <?php echo $orderActual == 'ASC' ? 'descendente' : 'ascendente'; ?>" title="Cambiar orden: <?php echo $orderActual == 'ASC' ? 'Ascendente' : 'Descendente'; ?>">
+                                    <i class="fas fa-sort-amount-<?php echo $orderActual == 'ASC' ? 'down' : 'up'; ?>" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>

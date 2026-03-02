@@ -119,8 +119,7 @@
                                 type="button" 
                                 onclick="togglePasswordVisibility('claveUsuario1', 'toggleIconLogin')" 
                                 class="eye-btn"
-                                aria-label="Mostrar u ocultar contraseña" 
-                                tabindex="-1">
+                                aria-label="Mostrar u ocultar contraseña">
                                 <i id="toggleIconLogin" class="fas fa-eye" style="font-size: 1.2rem;"></i>
                             </button>
                             </div>
@@ -135,8 +134,7 @@
                                 type="button" 
                                 onclick="togglePasswordVisibility('claveUsuario2', 'toggleIconLogin')" 
                                 class="eye-btn"
-                                aria-label="Mostrar u ocultar contraseña" 
-                                tabindex="-1">
+                                aria-label="Mostrar u ocultar contraseña">
                                 <i id="toggleIconLogin" class="fas fa-eye" style="font-size: 1.2rem;"></i>
                             </button>
                             </div>
