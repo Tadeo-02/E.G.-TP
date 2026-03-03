@@ -1,42 +1,45 @@
 <!-- FOOTER-->
 <section id="contact" class="contact section-padding bg-light">
+    <h2 class="visually-hidden">Contacto</h2>
     <div class="container-fluid p-0">
         
       <div class="row g-0 footerDiv">
             <!-- FORMULARIO BOTTOM -->
             <div class="col-md-6 p-4">
-                <h3>ESCRIBENOS</h3> 
-                <form action="#" class="bg-light p-4 m-auto">
+                <h3>Escríbenos</h3> 
+                <form action="#" class="bg-light p-4 m-auto needs-validation" novalidate>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="nombreContacto" class="visually-hidden">Nombre</label>
-                                <input id="nombreContacto" class="form-control" placeholder="Ingrese su nombre" required type="text">
+                                <label for="nombreContacto" class="form-label">Nombre</label>
+                                <input id="nombreContacto" class="form-control" type="text" placeholder="Juan Pérez" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="telefonoContacto" class="visually-hidden">Teléfono</label>
-                                <input id="telefonoContacto" class="form-control" placeholder="Ingrese su teléfono" type="tel" pattern="[0-9\s\-\+\(\)]+" title="Solo números, espacios, guiones, + y paréntesis">
+                                <label for="telefonoContacto" class="form-label">Teléfono</label>
+                                <input id="telefonoContacto" class="form-control" placeholder="+54 341 123 4567" type="tel" pattern="[0-9\s\-\+\(\)]+" title="Solo números, espacios, guiones, + y paréntesis">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="emailContacto" class="visually-hidden">Correo electrónico</label>
-                                <input id="emailContacto" class="form-control" placeholder="Ingrese su correo electrónico" type="email" required aria-describedby="emailError">
-                                <span id="emailError" class="visually-hidden">Por favor, ingrese un correo válido con formato nombre@dominio.com</span>
+                                <label for="emailContacto" class="form-label">Correo electrónico</label>
+                                <input id="emailContacto" class="form-control" placeholder="tu-correo@ejemplo.com" type="email" required aria-describedby="emailError">
+                                <div class="invalid-feedback">
+                                    Ingrese un correo válido con formato nombre@dominio.com
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="asuntoContacto" class="visually-hidden">Asunto</label>
-                                <input id="asuntoContacto" class="form-control" placeholder="Asunto" required type="text">
+                                <label for="asuntoContacto" class="form-label">Asunto</label>
+                                <input id="asuntoContacto" class="form-control" placeholder="Motivo de su consulta" required type="text">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="mensajeContacto" class="visually-hidden">Mensaje</label>
-                                <textarea id="mensajeContacto" class="form-control" placeholder="Escriba aquí" required rows="4"></textarea>
+                                <label for="mensajeContacto" class="form-label">Mensaje</label>
+                                <textarea id="mensajeContacto" class="form-control" placeholder="Escriba aquí su consulta o comentario..." required rows="4"></textarea>
                             </div>
                         </div>
                         <button class="btn btn-warning btn-lg btn-block mt-3" type="submit">Enviar</button> 
@@ -47,10 +50,22 @@
             <div class="col-md-6 p-4">
                 <div class="bg-light p-4 contactoBottom">
                   
-                    <h3><i class="fa-solid fa-map" aria-hidden="true"></i> Dónde estamos</h3>
-                    <p><i class="fa-solid fa-map-pin" aria-hidden="true"></i> Tero Volado 2530, Rosario, Santa Fe</p>
-                    <p><i class="fa-solid fa-phone" aria-hidden="true"></i> Teléfono: 341 0344 0555</p>
-                    <h3><i class="fa-solid fa-clock" aria-hidden="true"></i> Horarios</h3>
+                    <h3>
+                        <i class="fa-solid fa-map" aria-hidden="true"></i>
+                        <span>Dónde estamos</span>
+                    </h3>
+                    <p>
+                        <i class="fa-solid fa-map-pin" aria-hidden="true"></i> 
+                        <span>Tero Volado 2530, Rosario, Santa Fe</span>
+                    </p>
+                    <p>
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                        <span>Teléfono: 341 0344 0555</span>
+                    </p>
+                    <h3>
+                        <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                        <span>Horarios</span>
+                    </h3>
                     <dl>
                         <dt>Locales:</dt>
                         <dd>Lunes a Domingo de 10hs a 21hs</dd>
@@ -67,17 +82,24 @@
                     <div class="bg-light p-4 contactoBottom">
                         <h3>NEWSLETTER</h3>
                         <p>Recibe las últimas noticias y ofertas especiales</p>
-                        <div id="newsletterMsg"></div>
-                        <div class="input-group">
-                            <form id="newsletterForm">
-                                <label for="emailNewsletter" class="visually-hidden">Email para newsletter</label>
-                                <input id="emailNewsletter" class="form-control" type="email" required aria-describedby="newsError" placeholder="tu-correo@ejemplo.com">
-                                <span id="newsError" class="visually-hidden">Se requiere un correo electrónico para la suscripción</span>
-                                <br>
-                                <button class="btn btn-warning" type="submit" id="button-addon2">Suscribirse</button>
-                            </form>
-                        </div>
-                    </div>
+                        <div id="newsletterMsg" tabindex="-1"></div>
+                        <form id="newsletterForm" class="needs-validation" novalidate>
+                            <div class="mb-3">
+                                <label for="emailNewsletter" class="form-label">Correo electrónico</label>
+                                <input id="emailNewsletter"
+                                    class="form-control"
+                                    type="email"
+                                    required
+                                    placeholder="tu-correo@ejemplo.com">
+                                <div class="invalid-feedback">
+                                    Se requiere un correo electrónico válido.
+                                </div>
+                            </div>
+
+                            <button class="btn btn-warning" type="submit">
+                                Suscribirse
+                            </button>
+                        </form>
                 </div>
         </div>            
     </div>
@@ -120,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const tipo = data.success ? 'success' : 'danger';
             msgDiv.innerHTML = '<div class="alert alert-' + tipo + ' alert-dismissible fade show" role="alert">'
                 + data.message
-                + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+                + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar mensaje"></button>'
                 + '</div>';
             if (data.success) {
                 emailInput.value = '';
@@ -129,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(function() {
             msgDiv.innerHTML = '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
                 + 'Error de conexión. Intenta de nuevo más tarde.'
-                + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+                + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar mensaje"></button>'
                 + '</div>';
         })
         .finally(function() {

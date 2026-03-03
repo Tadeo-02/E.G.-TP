@@ -9,7 +9,11 @@
 
 </head>
 <body>         
-    
+
+    <a href="#main-content" class="visually-hidden-focusable">
+        Saltar al contenido principal
+    </a>
+
     <?php 
 
       // Si la variable tipo GET 'vista' no está definida o está vacía, le damos el valor "login", que sel mismo nombre que el archivo .php pero sin la extension
