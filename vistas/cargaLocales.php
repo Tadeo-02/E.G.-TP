@@ -1,8 +1,5 @@
 <section id="about" class="about">
 	<div class="container-fluid">
-    
-	<!-- SE MUESTRA EL RESULTADO DEL FORM CON ESTE DIV "form-rest" -->
-        <div class="form-rest"></div>
             <?php
                 require_once(__DIR__ . '/../php/main.php');
             ?>

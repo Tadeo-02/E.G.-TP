@@ -1,7 +1,5 @@
 <section id="about" class="about">
 	<div class="container-fluid">
-        
-        <div class="form-rest"></div> <!--se utiliza para mostrar el resultado dentro de este "form-rest"  -->
             <div class="row cargaPromociones">
                 <div class="col-12">
                     <!-- <h1>CARGA DE PROMOCIONES</h1> -->

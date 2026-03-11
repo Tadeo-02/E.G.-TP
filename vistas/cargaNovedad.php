@@ -1,7 +1,5 @@
 <section id="about" class="about">
 	<div class="container-fluid">
-    
-        <div class="form-rest"></div>
             <?php
                 require_once(__DIR__ . '/../php/main.php');
             ?>

@@ -82,7 +82,6 @@
 			unset($_SESSION['mensaje']); // Eliminar el mensaje después de mostrarlo
 		}
 		?>
-		<div class="form-rest"></div> <!--se utiliza para mostrar el resultado dentro de este "form-rest"  -->
 			<div class="row">
 				<div class="col-12">
 					<form action="php/saveUser.php" method="POST" class="form" autocomplete="off" style="padding: 20px; padding-top: 100px; padding-bottom: 60px; justify-content: flex-start; min-height: auto; height: auto;">
