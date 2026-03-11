@@ -1,95 +1,11 @@
 <?php
-/**
- * Vista para restablecer la contraseña
- * 
- * Accedida desde el enlace enviado por email.
- * Valida el token y muestra el formulario para ingresar nueva contraseña.
- */
-require_once __DIR__ . '/../php/main.php';
+require_once __DIR__ . '/../php/validarResetToken.php';
 
 $token = isset($_GET['token']) ? $_GET['token'] : '';
-$tokenValido = false;
-$mensajeError = '';
-
-// Validar token
-if (!empty($token) && strlen($token) === 64) {
-    $conexion = conexion();
-    $stmt = $conexion->prepare("SELECT tv.codUsuario, tv.expiracion, u.nombreUsuario 
-                                FROM tokens_verificacion tv 
-                                INNER JOIN usuarios u ON tv.codUsuario = u.codUsuario 
-                                WHERE tv.token = ? AND tv.tipo = 'reset_password'");
-    $stmt->bind_param("s", $token);
-    $stmt->execute();
-    $res = $stmt->get_result();
-
-    if ($res->num_rows > 0) {
-        $fila = $res->fetch_assoc();
-        if (strtotime($fila['expiracion']) >= time()) {
-            $tokenValido = true;
-        } else {
-            $mensajeError = 'El enlace de restablecimiento ha expirado. Solicitá uno nuevo.';
-            // Eliminar token expirado
-            $stmtDel = $conexion->prepare("DELETE FROM tokens_verificacion WHERE token = ?");
-            $stmtDel->bind_param("s", $token);
-            $stmtDel->execute();
-            $stmtDel->close();
-        }
-    } else {
-        $mensajeError = 'El enlace de restablecimiento no es válido o ya fue utilizado.';
-    }
-    $stmt->close();
-    $conexion->close();
-} else {
-    $mensajeError = 'Enlace de restablecimiento inválido.';
-}
+$resultado = validarResetToken($token);
+$tokenValido = $resultado['valido'];
+$mensajeError = $resultado['mensaje'] ?? '';
 ?>
-
-<style>
-    .input-wrapper {
-        position: relative;
-        width: 200px;
-        max-width: 100%;
-        height: 50px;
-        margin: 0 auto;
-        z-index: 1;
-        transition: width 0.4s ease-in-out;
-    }
-    .input-wrapper:focus-within {
-        width: 350px;
-    }
-    .custom-dark-input {
-        background-color: #212529 !important;
-        color: white !important;
-        border: 1px solid #0d6efd;
-        border-radius: 50px !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        height: 50px;
-        box-sizing: border-box !important;
-        padding-left: 20px;
-        padding-right: 45px;
-        text-align: center;
-    }
-    .custom-dark-input:focus {
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-        outline: none;
-    }
-    .eye-btn {
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        border: none;
-        background: none;
-        cursor: pointer;
-        z-index: 10;
-        color: #6c757d;
-        display: flex;
-        align-items: center;
-        height: 24px;
-        width: 35px;
-    }
-</style>
 
 <?php if ($tokenValido): ?>
 
@@ -118,7 +34,7 @@ if (!empty($token) && strlen($token) === 64) {
                 <form action="php/procesarResetPassword.php" method="POST" class="form" autocomplete="off" style="padding: 20px;">
                     <h1 class="text-center" style="margin-bottom: 15px;">Restablecer contraseña</h1>
                     <p class="text-center text-muted" style="margin-bottom: 30px;">
-                        Ingresá tu nueva contraseña para la cuenta <strong><?php echo htmlspecialchars($fila['nombreUsuario']); ?></strong>.
+                        Ingresá tu nueva contraseña para la cuenta <strong><?php echo htmlspecialchars($resultado['nombreUsuario']); ?></strong>.
                     </p>
 
                     <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">

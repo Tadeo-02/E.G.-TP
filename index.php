@@ -27,6 +27,9 @@
         // <!-- NAVBAR -->
         include "./inc/navbar.php";
 
+        ?>
+        <br><br><br>
+        <?php
         echo '<main id="main-content" tabindex="-1">';
         include "./vistas/".$_GET['vista'].".php";
         echo '</main>';
