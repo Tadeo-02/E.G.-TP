@@ -1,10 +1,4 @@
 <?php
-/**
- * Módulo de envío de correos - PHPMailer
- * 
- * Funciones reutilizables para enviar correos electrónicos
- * desde distintas partes de la aplicación.
- */
 
 require_once __DIR__ . '/PHPMailer/src/Exception.php';
 require_once __DIR__ . '/PHPMailer/src/PHPMailer.php';

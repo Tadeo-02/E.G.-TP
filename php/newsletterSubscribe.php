@@ -1,11 +1,4 @@
 <?php
-/**
- * Procesa la suscripción al newsletter.
- * Recibe el email por POST (AJAX), guarda en BD con estado pendiente,
- * genera token de verificación y envía correo con enlace de confirmación.
- * Responde en JSON para ser consumido por el frontend.
- */
-
 header('Content-Type: application/json; charset=UTF-8');
 
 

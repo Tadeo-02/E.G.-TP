@@ -1,10 +1,4 @@
 <?php
-/**
- * Procesar restablecimiento de contraseña
- * 
- * Recibe el token y la nueva contraseña, valida todo
- * y actualiza la contraseña del usuario.
- */
 require_once __DIR__ . '/main.php';
 
 // Iniciar sesión para mensajes flash

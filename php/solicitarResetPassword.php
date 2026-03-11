@@ -1,10 +1,5 @@
 <?php
-/**
- * Solicitar restablecimiento de contraseña
- * 
- * Recibe el email, valida que exista una cuenta activa,
- * genera un token y envía el correo con el enlace de reset.
- */
+
 require_once __DIR__ . '/main.php';
 require_once __DIR__ . '/mailer.php';
 require_once __DIR__ . '/mailConfig.php';
