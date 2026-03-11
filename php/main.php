@@ -1,6 +1,10 @@
 <?php
 // conexion a la base de datos
 function conexion(){ 
+    // $link = mysqli_connect("sql113.infinityfree.com", "if0_40715710", "novaEGTP2024", "if0_40715710_tp_entornos");
+	// if (!$link) {
+    // 	die("Error de conexión: " . mysqli_connect_error());
+	// }
     $link = mysqli_connect("mysql", "root", "pw") or die("Problemas de conexion a la base de datos");
     mysqli_select_db($link, "tp entornos");
     mysqli_set_charset($link, "utf8mb4");
