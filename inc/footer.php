@@ -25,7 +25,7 @@
                             <div class="mb-3">
                                 <label for="emailContacto" class="form-label">Correo electrónico</label>
                                 <input id="emailContacto" class="form-control" placeholder="tu-correo@ejemplo.com" type="email" required aria-describedby="emailError">
-                                <div class="invalid-feedback">
+                                <div id="emailError" class="invalid-feedback">
                                     Ingrese un correo válido con formato nombre@dominio.com
                                 </div>
                             </div>

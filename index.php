@@ -40,19 +40,9 @@
       } else {
         include "vistas/404.php";
       }
-      
 
       ?>
-      
-      <!-- <script>
-        window.onpageshow = function(event) {
-            if (event.persisted) {
-                window.location.reload();
-            }
-        };
-      </script> -->
- </script>
-  </body>
+      </body>
 </html>
 
 
