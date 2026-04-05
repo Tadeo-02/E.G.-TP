@@ -44,7 +44,7 @@
             <input type="hidden" name="vista" value="misDescuentos">
             <input type="hidden" name="order" value="<?php echo htmlspecialchars($orderActual); ?>">
             <label for="sortByDescuentos" class="visually-hidden">Ordenar por</label>
-            <select id="sortByDescuentos" class="form-select" name="sortBy" aria-label="Seleccionar orden" onchange="this.form.submit()">
+            <select id="sortByDescuentos" class="form-select" name="sortBy" aria-label="Seleccionar orden" aria-describedby="sortDescuentosHelp">
                 <option value="" disabled <?php echo $ordenar == '' ? 'selected' : ''; ?>>Ordenar por</option>
                 <option value="up.fechaUsoPromo" <?php echo $ordenar == 'up.fechaUsoPromo' ? 'selected' : ''; ?>>Fecha solicitud</option>
                 <option value="l.nombreLocal" <?php echo $ordenar == 'l.nombreLocal' ? 'selected' : ''; ?>>Local</option>
@@ -55,6 +55,8 @@
             <button type="button" class="btn btn-outline-secondary" onclick="toggleOrder(this.form)" aria-label="Cambiar orden a <?php echo $orderActual == 'ASC' ? 'descendente' : 'ascendente'; ?>" title="Cambiar orden: <?php echo $orderActual == 'ASC' ? 'Ascendente' : 'Descendente'; ?>">
                 <i class="fas fa-sort-amount-<?php echo $orderActual == 'ASC' ? 'down' : 'up'; ?>" aria-hidden="true"></i>
             </button>
+            <button type="submit" class="btn btn-primary ms-2" id="applySortDescuentos">Aplicar</button>
+            <small id="sortDescuentosHelp" class="visually-hidden">Presione Aplicar para aplicar el orden seleccionado.</small>
         </form>
     </div>
     </fieldset>
@@ -66,7 +68,13 @@
 <script>
 function toggleOrder(form) {
     const orderInput = form.querySelector('input[name="order"]');
-    orderInput.value = orderInput.value === 'ASC' ? 'DESC' : 'ASC';
-    form.submit();
+    const icon = form.querySelector('i[class*="fa-sort-amount-"]');
+    const current = orderInput.value === 'ASC' ? 'ASC' : 'DESC';
+    const newVal = current === 'ASC' ? 'DESC' : 'ASC';
+    orderInput.value = newVal;
+    if (icon) {
+        icon.classList.remove('fa-sort-amount-down','fa-sort-amount-up');
+        icon.classList.add('fa-sort-amount-' + (newVal === 'ASC' ? 'down' : 'up'));
+    }
 }
 </script>

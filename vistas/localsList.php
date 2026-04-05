@@ -39,49 +39,20 @@
                             </div>
                         </form>
                     </div>
-                <?php } ?>
-
-                <!-- Formularios con desplegable -->
-                <form action="index.php" method="get" id="rubroForm" class="col-lg-5 col-md-5">
-                    <input type="hidden" name="vista" value="localsList">
-                    <input type="hidden" name="order" value="<?php echo htmlspecialchars($orderActual); ?>">
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label for="sortByLocales" class="visually-hidden">Seleccionar orden listado</label>
-                            <div class="input-group">
-                                <select id="sortByLocales" class="form-select" name="sortBy" onchange="this.form.submit()">
-                                    <option value="nombreLocal" <?php echo $sortActual == 'nombreLocal' ? 'selected' : ''; ?>>Nombre</option>
-                                    <option value="ubicacionLocal" <?php echo $sortActual == 'ubicacionLocal' ? 'selected' : ''; ?>>Ubicación</option>
-                                    <option value="codLocal" <?php echo $sortActual == 'codLocal' ? 'selected' : ''; ?>>Codigo de local</option>
-                                    <option value="rubroLocal" <?php echo $sortActual == 'rubroLocal' ? 'selected' : ''; ?>>Rubro</option>
-                                </select>
-                                <button type="button" class="btn btn-outline-secondary" onclick="toggleOrder(this.form)" aria-label="Cambiar orden a <?php echo $orderActual == 'ASC' ? 'descendente' : 'ascendente'; ?>">
-                                    <i class="fas fa-sort-amount-<?php echo $orderActual == 'ASC' ? 'down' : 'up'; ?>"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col">    
-                            <label for="rubroLocalFiltro" class="visually-hidden">Seleccionar rubro</label>
-                            <select id="rubroLocalFiltro" class="form-select" name="rubroLocal" aria-label="Seleccionar Rubro" onchange="this.form.submit()">
-                                <option value="" <?php echo $rubroActual == '' ? 'selected' : ''; ?>>Todos los rubros</option>
-                                <?php
-                                // Crear las opciones del desplegable
-                                foreach ($rubros as $row) {
-                                    $nombreRubro = htmlspecialchars($row['nombreRubro']);
-                                    $selected = $rubroActual == $nombreRubro ? 'selected' : '';
-                                        echo '<option value="' . $nombreRubro . '" ' . $selected . '>' . $nombreRubro . '</option>';
-                                    }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-                </form>
-
-                <?php
+                <?php } 
+                
                     // Cerrar la conexión
                     mysqli_close($conexion);
 
-                    if(isset($_POST['modulo_buscador'])) {
+                    // Procesar búsqueda: soportar tanto POST (formulario buscador) como
+                    // GET cuando el usuario hace click en "Aplicar" y copiamos el texto
+                    if (isset($_POST['modulo_buscador']) || isset($_GET['modulo_buscador'])) {
+                        if (!isset($_POST['modulo_buscador']) && isset($_GET['modulo_buscador'])) {
+                            $_POST['modulo_buscador'] = $_GET['modulo_buscador'];
+                            if (isset($_GET['txt_buscador'])) {
+                                $_POST['txt_buscador'] = $_GET['txt_buscador'];
+                            }
+                        }
                         require_once (__DIR__ . '/../php/buscador.php');
                     }
                     
@@ -106,6 +77,44 @@
                     </form>
 
                 </div>
+
+                <!-- Formularios con desplegable -->
+                <form action="index.php" method="get" id="rubroForm" class="col-lg-5 col-md-5">
+                    <input type="hidden" name="vista" value="localsList">
+                    <input type="hidden" name="order" value="<?php echo htmlspecialchars($orderActual); ?>">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="sortByLocales" class="visually-hidden">Seleccionar orden listado</label>
+                            <div class="input-group">
+                                <select id="sortByLocales" class="form-select" name="sortBy">
+                                    <option value="nombreLocal" <?php echo $sortActual == 'nombreLocal' ? 'selected' : ''; ?>>Nombre</option>
+                                    <option value="ubicacionLocal" <?php echo $sortActual == 'ubicacionLocal' ? 'selected' : ''; ?>>Ubicación</option>
+                                    <option value="codLocal" <?php echo $sortActual == 'codLocal' ? 'selected' : ''; ?>>Codigo de local</option>
+                                    <option value="rubroLocal" <?php echo $sortActual == 'rubroLocal' ? 'selected' : ''; ?>>Rubro</option>
+                                </select>
+                                <button type="button" class="btn btn-outline-secondary" onclick="toggleOrder(this.form)" aria-label="Cambiar orden">
+                                    <i id="orderIcon" class="fas fa-sort-amount-<?php echo $orderActual == 'ASC' ? 'down' : 'up'; ?>"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-center">    
+                            <label for="rubroLocalFiltro" class="visually-hidden">Seleccionar rubro</label>
+                            <select id="rubroLocalFiltro" class="form-select me-2 flex-grow-1" name="rubroLocal" aria-label="Seleccionar Rubro">
+                                <option value="" <?php echo $rubroActual == '' ? 'selected' : ''; ?>>Todos los rubros</option>
+                                <?php
+                                // Crear las opciones del desplegable
+                                foreach ($rubros as $row) {
+                                    $nombreRubro = htmlspecialchars($row['nombreRubro']);
+                                    $selected = $rubroActual == $nombreRubro ? 'selected' : '';
+                                        echo '<option value="' . $nombreRubro . '" ' . $selected . '>' . $nombreRubro . '</option>';
+                                    }
+                                ?>
+                            </select>
+                            <button type="submit" class="btn btn-primary" id="applyFiltersBtn">Aplicar</button>
+                        </div>
+                    </div>
+                </form>
+
             </div>
             </fieldset>
         </div>
@@ -137,9 +146,43 @@
             <script>
             function toggleOrder(form) {
                 const orderInput = form.querySelector('input[name="order"]');
-                orderInput.value = orderInput.value === 'ASC' ? 'DESC' : 'ASC';
-                form.submit();
+                const icon = document.getElementById('orderIcon');
+                const current = orderInput.value === 'ASC' ? 'ASC' : 'DESC';
+                const newVal = current === 'ASC' ? 'DESC' : 'ASC';
+                orderInput.value = newVal;
+                if (icon) {
+                    icon.classList.remove('fa-sort-amount-down','fa-sort-amount-up');
+                    icon.classList.add('fa-sort-amount-' + (newVal === 'ASC' ? 'down' : 'up'));
+                }
             }
+            </script>
+            <script>
+            // Copiar el valor del buscador al formulario de filtros cuando se hace submit (Aplicar)
+            document.addEventListener('DOMContentLoaded', function() {
+                const rubroForm = document.getElementById('rubroForm');
+                const searchInput = document.getElementById('txt_buscador');
+                if (rubroForm && searchInput) {
+                    rubroForm.addEventListener('submit', function() {
+                        let hiddenTxt = rubroForm.querySelector('input[name="txt_buscador"]');
+                        if (!hiddenTxt) {
+                            hiddenTxt = document.createElement('input');
+                            hiddenTxt.type = 'hidden';
+                            hiddenTxt.name = 'txt_buscador';
+                            rubroForm.appendChild(hiddenTxt);
+                        }
+                        hiddenTxt.value = searchInput.value;
+
+                        let modHidden = rubroForm.querySelector('input[name="modulo_buscador"]');
+                        if (!modHidden) {
+                            modHidden = document.createElement('input');
+                            modHidden.type = 'hidden';
+                            modHidden.name = 'modulo_buscador';
+                            rubroForm.appendChild(modHidden);
+                        }
+                        modHidden.value = 'locales';
+                    });
+                }
+            });
             </script>
             </div>
         </div>

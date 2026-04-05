@@ -81,10 +81,10 @@ if (isset($_SESSION['mensaje'])) {
                         </div>
                         <br>
                         <br>
-                        <div class="">
+                            <div class="">
                             <label for="sortByPromos" class="visually-hidden">Ordenar por</label>
                             <div class="input-group">
-                                <select id="sortByPromos" class="form-select" name="sortBy" aria-label="Seleccionar orden" onchange="this.form.submit()">
+                                <select id="sortByPromos" class="form-select" name="sortBy" aria-label="Seleccionar orden" aria-describedby="sortPromosHelp">
                                     <option value="" disabled select <?php echo $sortActual == '' ? 'selected' : ''; ?>>Ordenar por</option>
                                     <option value="promociones.codLocal" <?php echo $sortActual == 'codLocal' ? 'selected' : ''; ?>>Local</option>
                                     <option value="categoriaCliente" <?php echo $sortActual == 'categoriaCliente' ? 'selected' : ''; ?>>Tipo cliente</option>
@@ -95,7 +95,9 @@ if (isset($_SESSION['mensaje'])) {
                                 <button type="button" class="btn btn-outline-secondary" onclick="toggleOrder(this.form)" aria-label="Cambiar orden a <?php echo $orderActual == 'ASC' ? 'descendente' : 'ascendente'; ?>" title="Cambiar orden: <?php echo $orderActual == 'ASC' ? 'Ascendente' : 'Descendente'; ?>">
                                     <i class="fas fa-sort-amount-<?php echo $orderActual == 'ASC' ? 'down' : 'up'; ?>" aria-hidden="true"></i>
                                 </button>
+                                <button type="submit" class="btn btn-primary ms-2" id="applySortPromos">Aplicar</button>
                             </div>
+                            <small id="sortPromosHelp" class="visually-hidden">Presione Aplicar para aplicar el orden seleccionado.</small>
                         </div>
                         <br>
                     </form>
@@ -144,8 +146,14 @@ if (isset($_SESSION['mensaje'])) {
 <script>
 function toggleOrder(form) {
     const orderInput = form.querySelector('input[name="order"]');
-    orderInput.value = orderInput.value === 'ASC' ? 'DESC' : 'ASC';
-    form.submit();
+    const icon = form.querySelector('i[class*="fa-sort-amount-"]');
+    const current = orderInput.value === 'ASC' ? 'ASC' : 'DESC';
+    const newVal = current === 'ASC' ? 'DESC' : 'ASC';
+    orderInput.value = newVal;
+    if (icon) {
+        icon.classList.remove('fa-sort-amount-down','fa-sort-amount-up');
+        icon.classList.add('fa-sort-amount-' + (newVal === 'ASC' ? 'down' : 'up'));
+    }
 }
 </script>
 
