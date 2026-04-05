@@ -10,6 +10,10 @@ body {
   flex-direction: column;
 }
 
+:root {
+  --navbar-height: 56px;
+}
+
 #main-content:focus {
   outline: 3px solid #ffc107;
   outline-offset: 2px;
@@ -51,7 +55,7 @@ fieldset {
   padding: 100px 0;
 }
 .carousel-item {
-  height: 100vh;
+  height: calc(100vh - var(--navbar-height));
   min-height: 300px;
 }
 .carousel-item img {
@@ -61,8 +65,9 @@ fieldset {
   object-position: center;
 }
 .carousel-caption {
-  bottom: 220px;
-  z-index: 2;
+  /* Position caption responsively: min 80px, prefer viewport-based, max 220px */
+  bottom: clamp(80px, 18vh, 220px);
+  z-index: 1100; /* Above fixed navbar (Bootstrap fixed-top ~1030) */
 }
 .carousel-caption h5 {
   font-size: 45px;
@@ -304,6 +309,7 @@ fieldset {
 }
 
 main {
+  padding-top: var(--navbar-height);
   flex: 1; /* Toma el espacio restante entre el header y el footer */
 }
 
@@ -318,7 +324,7 @@ footer {
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .carousel-caption {
-    bottom: 370px;
+    bottom: clamp(80px, 20vh, 370px);
   }
   .carousel-caption p {
     width: 100%;
@@ -335,7 +341,7 @@ footer {
     text-align: center;
   }
   .carousel-caption {
-    bottom: 125px;
+    bottom: clamp(60px, 18vh, 125px);
   }
   .carousel-caption h5 {
     font-size: 17px;
