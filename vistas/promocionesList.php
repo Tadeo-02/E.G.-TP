@@ -71,11 +71,11 @@ if (isset($_SESSION['mensaje'])) {
                         <div class="calendarContainer">
                             <p>Selecciona una fecha</p>
                             <label for="diaDesde">Fecha Inicio:</label>
-                            <input type="date" id="diaDesde" name="diaDesde" min="2000-01-01" max="9999-12-31">
+                            <input type="date" id="diaDesde" name="diaDesde" min="2000-01-01" max="2099-12-31">
                             <br>
                             <br>
                             <label for="diaHasta">Fecha Final: </label>
-                            <input type="date" id="diaHasta" name="diaHasta" min="2000-01-01" max="9999-12-31">
+                            <input type="date" id="diaHasta" name="diaHasta" min="2000-01-01" max="2099-12-31">
                             <br>
                             <button type="submit">Enviar</button>
                         </div>
@@ -85,7 +85,7 @@ if (isset($_SESSION['mensaje'])) {
                             <label for="sortByPromos" class="visually-hidden">Ordenar por</label>
                             <div class="input-group">
                                 <select id="sortByPromos" class="form-select" name="sortBy" aria-label="Seleccionar orden" aria-describedby="sortPromosHelp">
-                                    <option value="" disabled select <?php echo $sortActual == '' ? 'selected' : ''; ?>>Ordenar por</option>
+                                    <option value="" disabled <?php echo $sortActual == '' ? 'selected' : ''; ?>>Ordenar por</option>
                                     <option value="promociones.codLocal" <?php echo $sortActual == 'codLocal' ? 'selected' : ''; ?>>Local</option>
                                     <option value="categoriaCliente" <?php echo $sortActual == 'categoriaCliente' ? 'selected' : ''; ?>>Tipo cliente</option>
                                     <option value="fechaDesdePromo" <?php echo $sortActual == 'fechaDesdePromo' ? 'selected' : ''; ?>>Fecha inicio</option>
