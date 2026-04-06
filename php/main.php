@@ -77,19 +77,19 @@ function paginador_tablas($pagina, $Npaginas, $url, $botones) {
     if ($pagina <= 1) {
         $tabla .= '<li class="page-item disabled">
                     <span class="d-none d-sm-block">
-                        <a class="page-link" tabindex="-1" aria-disabled="true" aria-label="No hay página anterior">Anterior</a>
+                        <a class="page-link" tabindex="-1" aria-disabled="true">Anterior</a>
                     </span>
                     <span class="d-block d-sm-none">
-                        <a class="page-link" tabindex="-1" aria-disabled="true" aria-label="No hay página anterior"><</a>
+                        <a class="page-link" tabindex="-1" aria-disabled="true"><</a>
                     </span>
                 </li>';
     } else {
         $tabla .= '<li class="page-item">
                     <span class="d-none d-sm-block">
-                        <a class="page-link" href="' . $url . ($pagina - 1) . '" aria-label="Ir a la página anterior">Anterior</a>
+                        <a class="page-link" href="' . $url . ($pagina - 1) . '">Anterior</a>
                     </span>
                     <span class="d-block d-sm-none">
-                        <a class="page-link" href="' . $url . ($pagina - 1) . '" aria-label="Ir a la página anterior"><</a>
+                        <a class="page-link" href="' . $url . ($pagina - 1) . '"><</a>
                     </span>
                 </li>';
     }
@@ -148,19 +148,19 @@ function paginador_tablas($pagina, $Npaginas, $url, $botones) {
     if ($pagina == $Npaginas) {
         $tabla .= '<li class="page-item disabled">
                     <span class="d-none d-sm-block">
-                        <a class="page-link" tabindex="-1" aria-disabled="true" aria-label="No hay página siguiente">Siguiente</a>
+                        <a class="page-link" tabindex="-1" aria-disabled="true">Siguiente</a>
                     </span>
                     <span class="d-block d-sm-none">
-                        <a class="page-link" tabindex="-1" aria-disabled="true" aria-label="No hay página siguiente">></a>
+                        <a class="page-link" tabindex="-1" aria-disabled="true">></a>
                     </span>
                 </li>';
     } else {
         $tabla .= '<li class="page-item">
                     <span class="d-none d-sm-block">
-                        <a class="page-link" href="'. $url . ($pagina + 1) .'" aria-label="Ir a la página siguiente">Siguiente</a>
+                        <a class="page-link" href="'. $url . ($pagina + 1) .'">Siguiente</a>
                     </span>
                     <span class="d-block d-sm-none">
-                        <a class="page-link" href="'. $url . ($pagina + 1) .'" aria-label="Ir a la página siguiente">></a>
+                        <a class="page-link" href="'. $url . ($pagina + 1) .'">></a>
                     </span>
                 </li>';
     }

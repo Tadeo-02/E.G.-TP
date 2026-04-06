@@ -79,7 +79,7 @@
                             <i class="fas fa-paper-plane"></i> Enviar enlace de recuperación
                         </button>
                         <p style="margin-top: 15px;">
-                            <a href="index.php?vista=login" aria-label="Volver al inicio de sesión">
+                            <a href="index.php?vista=login">
                                 <i class="fas fa-arrow-left"></i> Volver a Iniciar Sesión
                             </a>
                         </p>

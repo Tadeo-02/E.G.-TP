@@ -25,7 +25,7 @@
             <div class="col-lg-3 mb-3 botonCrearNovedad">
                 <form action="index.php?vista=cargaNovedad" method="POST">
                     <div class="">
-                        <input type="submit" name="" class="btn btn-success crear" value="Crear Novedad"> 
+                            <input type="submit" class="btn btn-success crear" value="Crear Novedad"> 
                     </div>
                 </form>
         </div>

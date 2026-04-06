@@ -154,9 +154,9 @@
 
 						<div class="text-center">
 							<button type="submit" class="btn btn-primary" value="Ingresar" href="login.php">Registrar</button>
-							<p style="margin-top: 15px;">
-								<a href="index.php?vista=login" aria-label="Inicia sesión en tu cuenta">¿Ya tienes una cuenta? Inicia sesión</a>
-							</p>
+                            <p style="margin-top: 15px;">
+                                <a href="index.php?vista=login">¿Ya tienes una cuenta? Inicia sesión</a>
+                            </p>
 						</div>
 
 					</form>

@@ -106,7 +106,7 @@ if (isset($_SESSION['mensaje'])) {
                 if($tipoUsuario == "Dueño"){
                     echo '<form action="index.php?vista=cargaPromociones" method="POST">
                             <div class="botonCrear">
-                                <input type="submit" name="" class="btn btn-success crear" value="Crear Promoción">
+                                <input type="submit" class="btn btn-success crear" value="Crear Promoción">
                             </div>
                         </form>
                         ';     

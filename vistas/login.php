@@ -85,7 +85,7 @@
         ?>
         <div class="row ">
             <div class="col-12">
-                <form action="" method="POST" class="form" autocomplete="on" style="padding: 20px;">
+                <form method="POST" class="form" autocomplete="on" style="padding: 20px;">
                     <h1 class="text-center" style="margin-bottom: 30px;">INICIO DE SESIÓN</h1>
 
                     <div class="mb-3 text-center">
@@ -134,10 +134,10 @@
                     <div class="text-center" style="margin-top: 30px;">
                         <button type="submit" class="btn btn-primary" value="Ingresar" href="">Confirmar</button>
                         <p style="margin-top: 15px;">
-                            <a href="index.php?vista=signUp" aria-label="Crear una nueva cuenta">Crear Cuenta</a>
+                            <a href="index.php?vista=signUp">Crear Cuenta</a>
                         </p>
                         <p style="margin-top: 5px;">
-                            <a href="index.php?vista=olvideMiClave" aria-label="Recuperar contraseña olvidada" class="text-muted">
+                            <a href="index.php?vista=olvideMiClave" class="text-muted">
                                 <i class="fas fa-lock"></i> ¿Olvidaste tu contraseña?
                             </a>
                         </p>

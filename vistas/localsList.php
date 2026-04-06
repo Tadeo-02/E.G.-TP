@@ -35,7 +35,7 @@
                     <div class="col-lg-3 col-md-3 col-12 mb-3">
                         <form action="index.php?vista=cargaLocales" method="POST">
                             <div class="botonCrear">
-                                <input type="submit" name="" class="btn btn-success crear" value="Crear Local">
+                                <input type="submit" class="btn btn-success crear" value="Crear Local">
                             </div>
                         </form>
                     </div>
@@ -59,7 +59,7 @@
                 ?>
                 
                 <div class="col-lg-3 col-md-3">
-                    <form action="" method="POST" autocomplete="off">
+                    <form method="POST" autocomplete="off">
                         <input type="hidden" name="modulo_buscador" value="locales">
                         <div class="input-group">
                             <label for="txt_buscador" class="visually-hidden">Buscador de locales</label>
