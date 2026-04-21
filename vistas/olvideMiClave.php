@@ -1,35 +1,3 @@
-<style>
-    .input-wrapper {
-        position: relative;
-        width: 200px;
-        max-width: 100%;
-        height: 50px;
-        margin: 0 auto;
-        z-index: 1;
-        transition: width 0.4s ease-in-out;
-    }
-    .input-wrapper:focus-within {
-        width: 350px;
-    }
-    .custom-dark-input {
-        background-color: #212529 !important;
-        color: white !important;
-        border: 1px solid #0d6efd;
-        border-radius: 50px !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        height: 50px;
-        box-sizing: border-box !important;
-        padding-left: 20px;
-        padding-right: 45px;
-        text-align: center;
-    }
-    .custom-dark-input:focus {
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-        outline: none;
-    }
-</style>
-
 <section id="about" class="about">
     <div class="container-fluid">
         <?php

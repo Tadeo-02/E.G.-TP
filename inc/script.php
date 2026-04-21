@@ -9,9 +9,15 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     var main = document.getElementById('main-content');
-    if (main) {
-      main.focus({ preventScroll: false });
+    if (main && window.location.hash === '#main-content') {
+      main.focus({ preventScroll: true });
     }
+
+    window.addEventListener('hashchange', function() {
+      if (main && window.location.hash === '#main-content') {
+        main.focus({ preventScroll: true });
+      }
+    });
 
     // Initial set and subsequent recalculations
     setNavbarHeightVar();

@@ -32,7 +32,7 @@
 						LIMIT $inicio, $registros";
 
 	$consulta_total = "SELECT COUNT(DISTINCT promociones.codPromo) FROM promociones 
-						$innerjoin 
+						$innerjoin  
 						$where";
                         
 	$datos = mysqli_query($conexion, $consulta_datos);
@@ -170,61 +170,6 @@
 
 	// Llama a la función ResponsiveCellHeaders para una tabla con el ID "Books"
 	ResponsiveCellHeaders("Books");
-
-	// Función para agregar roles ARIA a tablas, filas, celdas y encabezados para mejorar la accesibilidad
-	function AddTableARIA() {
-	try {
-		// Obtiene todos los elementos de tabla en el documento
-		var allTables = document.querySelectorAll('table');
-		// Agrega el rol "table" a todos los elementos de tabla
-		for (var i = 0; i < allTables.length; i++) {
-		allTables[i].setAttribute('role','table');
-		}
-
-		// Obtiene todos los grupos de filas (<thead>, <tbody>, <tfoot>)
-		var allRowGroups = document.querySelectorAll('thead, tbody, tfoot');
-		// Agrega el rol "rowgroup" a estos elementos
-		for (var i = 0; i < allRowGroups.length; i++) {
-		allRowGroups[i].setAttribute('role','rowgroup');
-		}
-
-		// Obtiene todas las filas de la tabla (<tr>)
-		var allRows = document.querySelectorAll('tr');
-		// Agrega el rol "row" a cada fila de la tabla
-		for (var i = 0; i < allRows.length; i++) {
-		allRows[i].setAttribute('role','row');
-		}
-
-		// Obtiene todas las celdas de la tabla (<td>)
-		var allCells = document.querySelectorAll('td');
-		// Agrega el rol "cell" a cada celda de la tabla
-		for (var i = 0; i < allCells.length; i++) {
-		allCells[i].setAttribute('role','cell');
-		}
-
-		// Obtiene todos los encabezados de la tabla (<th>)
-		var allHeaders = document.querySelectorAll('th');
-		// Agrega el rol "columnheader" a cada encabezado de columna
-		for (var i = 0; i < allHeaders.length; i++) {
-		allHeaders[i].setAttribute('role','columnheader');
-		}
-
-		// Maneja específicamente los encabezados de filas (<th> con scope="row")
-		var allRowHeaders = document.querySelectorAll('th[scope=row]');
-		// Agrega el rol "rowheader" a estos elementos
-		for (var i = 0; i < allRowHeaders.length; i++) {
-		allRowHeaders[i].setAttribute('role','rowheader');
-		}
-
-		// Nota: No se agrega el rol de caption ya que no es un rol ARIA reconocido
-	} catch (e) {
-		// Registra cualquier error en la consola
-		console.log("AddTableARIA(): " + e);
-	}
-	}
-
-	// Llama a la función AddTableARIA para aplicar roles ARIA a todas las tablas en el documento
-	AddTableARIA();
 
 </script>
 

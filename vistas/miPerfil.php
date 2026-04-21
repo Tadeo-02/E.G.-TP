@@ -18,64 +18,6 @@
     $conexion->close();
 ?>
 
-<style>
-    .profile-card {
-        max-width: 600px;
-        margin: 100px auto 40px auto;
-        padding: 30px;
-        background-color: #fff;
-        border-radius: 12px;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-    }
-    .profile-card h2 {
-        text-align: center;
-        margin-bottom: 25px;
-        color: #212529;
-    }
-    .profile-field {
-        margin-bottom: 20px;
-    }
-    .profile-field label {
-        font-weight: bold;
-        color: #495057;
-        display: block;
-        margin-bottom: 5px;
-    }
-    .profile-field .field-value {
-        background-color: #e9ecef;
-        padding: 10px 15px;
-        border-radius: 6px;
-        color: #495057;
-    }
-    .profile-section {
-        border-top: 1px solid #dee2e6;
-        padding-top: 20px;
-        margin-top: 20px;
-    }
-    .profile-section h4 {
-        color: #212529;
-        margin-bottom: 15px;
-    }
-    /* Password input wrapper for eye toggle */
-    .profile-input-wrapper {
-        position: relative;
-    }
-    .profile-input-wrapper .eye-btn-profile {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        border: none;
-        background: none;
-        cursor: pointer;
-        color: #6c757d;
-        z-index: 10;
-    }
-    .badge-estado {
-        font-size: 0.9rem;
-    }
-</style>
-
 <section id="about" class="about">
     <div class="container-fluid">
 
@@ -103,20 +45,6 @@
 
             <!-- Datos de solo lectura -->
             <div class="profile-field">
-                <label>Estado de la cuenta</label>
-                <div class="field-value">
-                    <?php
-                        $estado = htmlspecialchars($usuario['estadoCuenta']);
-                        $badgeClass = 'bg-secondary';
-                        if ($estado === 'Activa') $badgeClass = 'bg-success';
-                        elseif ($estado === 'Pendiente') $badgeClass = 'bg-warning text-dark';
-                        elseif ($estado === 'PendienteAdmin') $badgeClass = 'bg-info text-dark';
-                        echo '<span class="badge badge-estado ' . $badgeClass . '">' . $estado . '</span>';
-                    ?>
-                </div>
-            </div>
-
-            <div class="profile-field">
                 <label>Categoría de cliente</label>
                 <div class="field-value">
                     <?php echo htmlspecialchars($usuario['categoriaCliente'] ?? 'N/A'); ?>
@@ -125,7 +53,7 @@
 
             <!-- Sección: Nombre y Apellido -->
             <div class="profile-section">
-                <h4><i class="fas fa-id-card"></i> Nombre y Apellido</h4>
+                <h3><i class="fas fa-id-card"></i> Nombre y Apellido</h3>
                 <form action="php/cliente/updateProfile.php" method="POST" autocomplete="off">
                     <input type="hidden" name="accion" value="cambiarNombreApellido">
                     <div class="mb-3">
@@ -142,7 +70,7 @@
 
             <!-- Sección: Cambiar Email -->
             <div class="profile-section">
-                <h4><i class="fas fa-envelope"></i> Correo electrónico</h4>
+                <h3><i class="fas fa-envelope"></i> Correo electrónico</h3>
                 <form action="php/cliente/updateProfile.php" method="POST" autocomplete="off">
                     <input type="hidden" name="accion" value="cambiarEmail">
                     <div class="mb-3">
@@ -168,7 +96,7 @@
 
             <!-- Sección: Cambiar Contraseña -->
             <div class="profile-section">
-                <h4><i class="fas fa-lock"></i> Cambiar contraseña</h4>
+                <h3><i class="fas fa-lock"></i> Cambiar contraseña</h3>
                 <form action="php/cliente/updateProfile.php" method="POST" autocomplete="off">
                     <input type="hidden" name="accion" value="cambiarClave">
                     <div class="mb-3">
@@ -205,7 +133,7 @@
 
             <!-- Sección: Dar de baja la cuenta -->
             <div class="profile-section">
-                <h4 class="text-danger"><i class="fas fa-user-slash"></i> Dar de baja mi cuenta</h4>
+                <h3 class="text-danger"><i class="fas fa-user-slash"></i> Dar de baja mi cuenta</h3>
                 <p class="text-muted">Esta acción desactivará tu cuenta. Ya no podrás iniciar sesión. Tu email quedará disponible para registrar una nueva cuenta.</p>
                 <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalDarDeBaja">
                     <i class="fas fa-exclamation-triangle"></i> Dar de baja mi cuenta
@@ -216,11 +144,11 @@
 </section>
 
 <!-- Modal de confirmación para dar de baja -->
-<div class="modal fade" id="modalDarDeBaja" tabindex="-1" aria-labelledby="modalDarDeBajaLabel" aria-hidden="true">
+<div class="modal fade" id="modalDarDeBaja" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="modalDarDeBajaLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title" id="modalDarDeBajaLabel"><i class="fas fa-exclamation-triangle"></i> Confirmar baja de cuenta</h5>
+                <h4 class="modal-title" id="modalDarDeBajaLabel"><i class="fas fa-exclamation-triangle"></i> Confirmar baja de cuenta</h4>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
             </div>
             <form action="php/cliente/updateProfile.php" method="POST">
