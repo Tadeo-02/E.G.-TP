@@ -4,32 +4,14 @@
                 require_once(__DIR__ . '/../php/main.php');
             ?>
         <div class="row cargaPromociones">
-            <div class="col-12">                    
-                <h1>CARGA DE LOCALES</h1>
-                <br>
-<head>
-<style>
-    body {
-        background-color: #f8f9fa;
-    }
-    .form-container {
-        max-width: 600px;
-        margin: 30px auto;
-        padding: 20px;
-        background: #fff;
-        border-radius: 10px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    select[multiple] {
-        height: auto;
-    }
-</style>
-</head>
+            <div class="col-12">
+                <br>                 
+                <h1 class="text-center" style="color: white">CARGA DE LOCALES</h1>
 <!-- Form con para cargar Local -->
 
                 <div class="container">
-                    <div class="form-container">
-                        <h3 class="text-center mb-4">Formulario de Local</h3>
+                    <div class="form-container form-container-locales">
+                        <h2 class="text-center mb-4 h3">Formulario de Local</h2>
                         <form action="php/admin/altaLocales.php" method="POST" autocomplete="off" enctype="multipart/form-data">
                             <?php
                                 // Establecer conexión

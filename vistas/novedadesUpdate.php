@@ -4,31 +4,14 @@
                 require_once(__DIR__ . '/../php/main.php');
             ?>
             <div class="row cargaPromociones">
-                <div class="col-12">                    
-                    <h1>CARGA DE NOVEDADES</h1>
-                    <br>
-<head>
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .form-container {
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        select[multiple] {
-            height: auto;
-        }
-    </style>
-</head>
+                <div class="col-12">  
+                    <br>                 
+                    <h1 class="text-center" style="color: white">CARGA DE NOVEDADES</h1>
+                    
 
                 <div class="container">
-                    <div class="form-container">
-                        <h3 class="text-center mb-4">Formulario de Novedad</h3>
+                        <div class="form-container form-container-locales">
+                            <h2 class="text-center mb-4 h3">Formulario de Novedad</h2>
                         <form action="php/admin/editarNovedades.php" method="POST" autocomplete="off" >
 
                             <!-- Cod Novedad -->
@@ -38,7 +21,11 @@
                                 <select id="novedadModificada" class="form-select" name="novedadModificada" required>
                                     <?php
                                         $codActual = isset($_POST['codNovedad']) ? $_POST['codNovedad'] : '';
-                                        echo '<option value="'. $codActual .'">'.$codActual.'</option>';
+                                            $placeholderSelected = $codActual === '' ? ' selected' : '';
+                                            echo '<option value="" disabled' . $placeholderSelected . '>Seleccione una novedad</option>';
+                                            if ($codActual !== '') {
+                                                echo '<option value="' . $codActual . '" selected>' . $codActual . '</option>';
+                                            }
                                     ?>
                                 </select>
                             </div>

@@ -199,6 +199,7 @@ fieldset {
 .about {
   background-color: #191919;
 }
+
 .form {
   width: 100%;
   background: #191919;
@@ -976,6 +977,12 @@ input[type="date"] {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   max-height: 70vh; /* Limita la altura para evitar que se corte */
   overflow-y: auto; /* Permite desplazarse si es necesario */
+}
+
+.form-container-locales {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
 }
 
 /* Ajuste del selector múltiple */

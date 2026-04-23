@@ -5,30 +5,12 @@
             ?>
             <div class="row cargaPromociones">
                 <div class="col-12">
-                    <h1>CARGA DE LOCALES</h1>
                     <br>
-<head>
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .form-container {
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        select[multiple] {
-            height: auto;
-        }
-    </style>
-</head>
+                    <h1 class="text-center" style="color: white">MODIFICACIÓN DE LOCALES</h1>
 
                 <div class="container">
-                    <div class="form-container">
-                        <h3 class="text-center mb-4">Formulario de Modificacion del Local</h3>
+                    <div class="form-container form-container-locales">
+                        <h2 class="text-center mb-4 h3">Formulario de Modificacion del Local</h2>
                         <form action="php/admin/editarLocales.php" method="POST" id="solicitudPromocionForm">
                             <?php
                                 // Establecer conexión
@@ -49,7 +31,11 @@
                                 <label for="localModificado" class="form-label" style="color: black; text-align: left; display:block;">Local a modificar:</label>
                                 <select id="localModificado" class="form-select" name="localModificado" required>
                                     <?php
-                                        echo '<option value="'. $codActual .'">'.$nombreActual.'</option>';
+                                        $placeholderSelected = $codActual === '' ? ' selected' : '';
+                                        echo '<option value="" disabled' . $placeholderSelected . '>Seleccione un local</option>';
+                                        if ($codActual !== '') {
+                                            echo '<option value="' . $codActual . '" selected>' . $nombreActual . '</option>';
+                                        }
                                     ?>        
                                 </select>
                             </div>

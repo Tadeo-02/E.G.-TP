@@ -2,8 +2,9 @@
 	<div class="container-fluid">
             <div class="row cargaPromociones">
                 <div class="col-12">
-                    <!-- <h1>CARGA DE PROMOCIONES</h1> -->
-                    <br><br>
+                    <br>
+                    <h1 class="text-center" style="color: white">CARGA DE PROMOCIONES</h1>
+                    
 
                 <?php
                     require_once(__DIR__ . '/../php/main.php');
@@ -25,30 +26,13 @@
                         unset($_SESSION['mensaje']);
                     }
                 ?>
-<head>
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .form-container {
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        select[multiple] {
-            height: auto;
-        }
-    </style>
-</head>
-<!-- Form con para cargar promocion -->
+
 
                     <div class="container">
-                        <div class="form-container">
-                        
-                            <h3 class="text-center mb-4">Solcitud de Promoción</h3>
+                        <div class="form-container form-container-locales">
+                            
+                            <!-- Form con para cargar promocion -->
+                            <h2 class="text-center mb-4 h3">Solcitud de Promoción</h2>
                             <form action="php/dueñoLocal/savePromociones.php" method="POST" id="solicitudPromocionForm">
                             <?php
                                 // Establecer conexión
@@ -146,27 +130,32 @@
 	</div>		
 
 </section>
+
 <!-- Selector de los días con JS -->
 <script>
-    new MultiSelectTag('diasSemana', {
-    rounded: true,    
-    shadow: true,      
-    placeholder: 'Search',  
-    tagColor: {
-        textColor: '#000000',
-        borderColor: '#ffca2c',
-        bgColor: '#ffca2c',
-    },
-    onChange: function(values) {
-        console.log(values)
-    }
-})
-</script>
+    (function() {
+        var originalCreateElement = document.createElement;
+        document.createElement = function(tagName, options) {
+            if (String(tagName).toLowerCase() === "inputbody") {
+                return originalCreateElement.call(this, "div", options);
+            }
+            return originalCreateElement.call(this, tagName, options);
+        };
+    })();
 
-<script>
-    function mostrarSeleccion() {
-        let select = document.getElementById("miSelect");
-        let seleccionadas = Array.from(select.selectedOptions).map(opt => opt.value);
-        alert("Opciones seleccionadas: " + seleccionadas.join(", "));
+    if (typeof MultiSelectTag !== "undefined") {
+        new MultiSelectTag("diasSemana", {
+            rounded: true,
+            shadow: true,
+            placeholder: "Search",
+            tagColor: {
+                textColor: "#000000",
+                borderColor: "#ffca2c",
+                bgColor: "#ffca2c"
+            },
+            onChange: function(values) {
+                console.log(values);
+            }
+        });
     }
 </script>
