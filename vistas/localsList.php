@@ -5,14 +5,12 @@
     <?php
         require_once(__DIR__ . '/../php/main.php');
     ?>
-    <div class="container widht">
+    <div class="container widht list-page">
         <br>
         <br>
         <br>
         <h1 class="text-center" style="color: white"><b>LOCALES</b></h1>
         <br>
-        <div class="col md-6 lg-6">
-
             <?php
                 // Establecer conexión
                 $conexion = conexion();
@@ -27,20 +25,18 @@
                 $orderActual = isset($_GET['order']) ? $_GET['order'] : 'ASC';
             ?>
 
-            <fieldset>
-            <legend class="visually-hidden">Filtros de locales</legend>
-            <div class="centered row mb-4">
-
+        <div class="row g-4">
+            <aside class="col-lg-3 col-md-4 mb-4 mb-md-0">
                 <?php if (isset($_SESSION['tipoUsuario']) && $_SESSION['tipoUsuario'] == "Administrador") { ?>
-                    <div class="col-lg-3 col-md-3 col-12 mb-3">
-                        <form action="index.php?vista=cargaLocales" method="POST">
+                    <div class="filters-side-action">
+                        <form action="index.php?vista=cargaLocales" method="post">
                             <div class="botonCrear">
                                 <input type="submit" class="btn btn-success crear" value="Crear Local">
                             </div>
                         </form>
                     </div>
-                <?php } 
-                
+                <?php }
+
                     // Cerrar la conexión
                     mysqli_close($conexion);
 
@@ -55,36 +51,32 @@
                         }
                         require_once (__DIR__ . '/../php/buscador.php');
                     }
-                    
                 ?>
-                
-                <div class="col-lg-3 col-md-3">
-                    <form method="POST" autocomplete="off">
+
+                <section class="filters-panel" aria-labelledby="filters-title">
+                    <h2 id="filters-title" class="filters-title">Filtros</h2>
+
+                    <form action="index.php?vista=localsList" method="post" autocomplete="off" class="filters-group">
                         <input type="hidden" name="modulo_buscador" value="locales">
-                        <div class="input-group">
-                            <label for="txt_buscador" class="visually-hidden">Buscador de locales</label>
-                            <input 
-                                id="txt_buscador"
-                                type="text" 
-                                name="txt_buscador" 
-                                class="form-control rounded-pill" 
-                                placeholder="¿Qué local estas buscando?" 
-                                pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,30}"
-                                maxlength="30"
-                                value="<?php echo isset($_SESSION['busquedaLocal']) ? htmlspecialchars($_SESSION['busquedaLocal']) : ''; ?>"
-                                >
-                        </div>
+                        <label for="txt_buscador" class="form-label">Buscador de locales</label>
+                        <input
+                            id="txt_buscador"
+                            type="text"
+                            name="txt_buscador"
+                            class="form-control"
+                            placeholder="¿Qué local estas buscando?"
+                            pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{1,30}"
+                            maxlength="30"
+                            value="<?php echo isset($_SESSION['busquedaLocal']) ? htmlspecialchars($_SESSION['busquedaLocal']) : ''; ?>"
+                        >
+                        <button type="submit" class="btn btn-primary w-100" aria-label="Buscar locales">Buscar</button>
                     </form>
 
-                </div>
-
-                <!-- Formularios con desplegable -->
-                <form action="index.php" method="get" id="rubroForm" class="col-lg-5 col-md-5">
-                    <input type="hidden" name="vista" value="localsList">
-                    <input type="hidden" name="order" value="<?php echo htmlspecialchars($orderActual); ?>">
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label for="sortByLocales" class="visually-hidden">Seleccionar orden listado</label>
+                    <form action="index.php" method="get" id="rubroForm" class="filters-group">
+                        <input type="hidden" name="vista" value="localsList">
+                        <input type="hidden" name="order" value="<?php echo htmlspecialchars($orderActual); ?>">
+                        <div class="filters-field">
+                            <label for="sortByLocales" class="form-label">Ordenar por</label>
                             <div class="input-group">
                                 <select id="sortByLocales" class="form-select" name="sortBy">
                                     <option value="nombreLocal" <?php echo $sortActual == 'nombreLocal' ? 'selected' : ''; ?>>Nombre</option>
@@ -92,14 +84,14 @@
                                     <option value="codLocal" <?php echo $sortActual == 'codLocal' ? 'selected' : ''; ?>>Codigo de local</option>
                                     <option value="rubroLocal" <?php echo $sortActual == 'rubroLocal' ? 'selected' : ''; ?>>Rubro</option>
                                 </select>
-                                <button type="button" class="btn btn-outline-secondary" onclick="toggleOrder(this.form)" aria-label="Cambiar orden">
+                                <button type="button" class="btn btn-outline-secondary order-toggle" onclick="toggleOrder(this.form)" aria-label="Cambiar orden">
                                     <i id="orderIcon" class="fas fa-sort-amount-<?php echo $orderActual == 'ASC' ? 'down' : 'up'; ?>"></i>
                                 </button>
                             </div>
                         </div>
-                        <div class="col d-flex align-items-center">    
-                            <label for="rubroLocalFiltro" class="visually-hidden">Seleccionar rubro</label>
-                            <select id="rubroLocalFiltro" class="form-select me-2 flex-grow-1" name="rubroLocal" aria-label="Seleccionar Rubro">
+                        <div class="filters-field">
+                            <label for="rubroLocalFiltro" class="form-label">Rubro</label>
+                            <select id="rubroLocalFiltro" class="form-select" name="rubroLocal">
                                 <option value="" <?php echo $rubroActual == '' ? 'selected' : ''; ?>>Todos los rubros</option>
                                 <?php
                                 // Crear las opciones del desplegable
@@ -110,17 +102,14 @@
                                     }
                                 ?>
                             </select>
-                            <button type="submit" class="btn btn-primary" id="applyFiltersBtn">Aplicar</button>
                         </div>
-                    </div>
-                </form>
+                        <button type="submit" class="btn btn-primary w-100" id="applyFiltersBtn">Aplicar filtros</button>
+                    </form>
+                </section>
+            </aside>
 
-            </div>
-            </fieldset>
-        </div>
-
-        <div class="container">
-            <div class="row g-4">
+            <section class="col-lg-9 col-md-8">
+                <div class="row g-4">
             <!-- Filtro para ordenar -->
             <?php
                 $rubroLocal = (isset($_GET['rubroLocal'])) ? $_GET['rubroLocal'] : '';
@@ -184,7 +173,8 @@
                 }
             });
             </script>
-            </div>
+                </div>
+            </section>
         </div>
     </div>
 </div>
