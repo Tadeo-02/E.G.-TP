@@ -571,6 +571,16 @@ button.btn-danger:hover {
 .filters-panel .input-group .btn {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+  min-height: 34px;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filters-panel .input-group {
+  align-items: stretch;
 }
 
 .filters-panel .btn-search {
@@ -620,6 +630,7 @@ button.btn-danger:hover {
 .list-page {
   padding-left: clamp(16px, 3vw, 32px);
   padding-right: clamp(16px, 3vw, 32px);
+  padding-bottom: 32px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -970,11 +981,11 @@ button.btn-danger:hover {
   padding: 10px;
 }
 
-/* Constrain promotions cards and center them inside columns */
+/* Ensure promotions fill the list column */
 .promociones {
-  max-width: 760px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 @media (max-width: 768px) {
