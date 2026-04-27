@@ -4,6 +4,7 @@
                 <div class="col-12">
                     <br>
                     <h1 class="text-center" style="color: white">CARGA DE PROMOCIONES</h1>
+                    
 
                 <?php
                     require_once(__DIR__ . '/../php/main.php');
@@ -26,29 +27,27 @@
                     }
                 ?>
 
+
                     <div class="container">
                         <div class="form-container form-container-locales">
                             
                             <!-- Form con para cargar promocion -->
+                            <h2 class="text-center mb-4 h3">Solcitud de Promoción</h2>
+                            <form action="php/dueñoLocal/savePromociones.php" method="POST" id="solicitudPromocionForm">
                             <?php
-                                $promocionesAction = 'php/' . rawurlencode('dueñoLocal') . '/savePromociones.php';
+                                // Establecer conexión
+                                $conexion = conexion();
+
+                                // Consulta para obtener los rubros
+                                $codUsuarioActual = $_SESSION['codUsuario'];
+                                $consulta_filtro = "SELECT * FROM locales WHERE codUsuario = $codUsuarioActual";
+
+                                $locales = mysqli_query($conexion, $consulta_filtro);
                             ?>
-                            <h2 id="solicitud-promocion-titulo" class="text-center mb-2 h3">Solicitud de Promoción</h2>
-                            <p id="solicitud-promocion-ayuda" class="text-center text-muted mb-4">Complete el formulario para solicitar una promoción para uno de sus locales.</p>
-                            <form action="<?php echo htmlspecialchars($promocionesAction, ENT_QUOTES, 'UTF-8'); ?>" method="post" id="solicitudPromocionForm" aria-labelledby="solicitud-promocion-titulo" aria-describedby="solicitud-promocion-ayuda">
-                                <?php
-                                    // Establecer conexión
-                                    $conexion = conexion();
-
-                                    // Consulta para obtener los rubros
-                                    $codUsuarioActual = $_SESSION['codUsuario'];
-                                    $consulta_filtro = "SELECT * FROM locales WHERE codUsuario = $codUsuarioActual";
-
-                                    $locales = mysqli_query($conexion, $consulta_filtro);
-                                ?>
 
                                 <!-- Local -->
                                 <div class="mb-3">
+                                    <br>
                                     <label for="codLocal" class="form-label" style="color: black; text-align: left; display:block;">Local de la promoción:</label>
                                     <select id="codLocal" class="form-select" name="codLocal" required>
                                         <option value="" disabled selected>Seleccione un local</option>
@@ -65,23 +64,27 @@
 
                                 <!-- Descripción -->
                                 <div class="mb-3">
+                                    <br>
                                     <label for="textoPromo" class="form-label" style="color: black; text-align: left; display:block;">Descripción de la promoción:</label>
                                     <textarea id="textoPromo" class="form-control" name="textoPromo" rows="4" placeholder="Ingrese la descripción de la promoción aquí..." maxlength="500" required></textarea>
                                 </div>
 
                                 <!-- Fechas -->
                                 <div class="mb-3">
+                                    <br>
                                     <label for="fechaDesdePromo" class="form-label" style="color: black; text-align: left; display:block;">Fecha de inicio de la promoción:</label>
                                     <input id="fechaDesdePromo" class="form-control" type="date" name="fechaDesdePromo" min="2000-01-01" max="2099-12-31" required>
                                 </div>
 
                                 <div class="mb-3">
+                                    <br>
                                     <label for="fechaHastaPromo" class="form-label" style="color: black; text-align: left; display:block;">Fecha de fin de la promoción:</label>
                                     <input id="fechaHastaPromo" class="form-control" type="date" name="fechaHastaPromo" min="2000-01-01" max="2099-12-31" required>
                                 </div>
 
                                 <!-- Categoría del cliente -->
                                 <div class="mb-3">
+                                    <br>
                                     <label for="categoriaCliente" class="form-label" style="color: black; text-align: left; display:block;">Categoría del cliente válida para la promoción:</label>
 
                                     <select id="categoriaCliente" class="form-select" name="categoriaCliente" required>
@@ -94,6 +97,7 @@
 
                                 <!-- Días de la promoción -->
                                 <div class="mb-3">
+                                    <br>
                                     <label for="diasSemana" class="form-label" style="color: black; text-align: left; display:block;">Días en los que la promoción será válida: </label>
 
                                     <select class="form-select" multiple size="7" name="diasSemana[]" id="diasSemana" required>
