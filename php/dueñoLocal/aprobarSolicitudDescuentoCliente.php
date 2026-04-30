@@ -19,9 +19,15 @@
 
     $aprobar_promo = $conexion->prepare("UPDATE uso_promociones SET estado = ? WHERE codUsoPromociones = ? LIMIT 1");
     $aprobar_promo->bind_param("si", $estado, $codUso);
-    $aprobar_promo->execute();
-
-    $_SESSION['mensaje'] = ['texto' => 'Solicitud de descuento aprobada con éxito', 'tipo' => 'success'];
+    try {
+        if ($aprobar_promo->execute()) {
+            $_SESSION['mensaje'] = ['texto' => 'Solicitud de descuento aprobada con éxito', 'tipo' => 'success'];
+        } else {
+            $_SESSION['mensaje'] = ['texto' => 'Error al aprobar la solicitud. Intente de nuevo.', 'tipo' => 'danger'];
+        }
+    } catch (mysqli_sql_exception $e) {
+        $_SESSION['mensaje'] = ['texto' => 'Ocurrió un error en la base de datos al aprobar la solicitud.', 'tipo' => 'danger'];
+    }
 
     // Cerrar la conexión
     $aprobar_promo->close();
