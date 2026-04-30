@@ -1,10 +1,33 @@
 <?php 
-    require_once "../verificarTipoUsuarioAdmin.php";
+    session_name("UNR");
+    session_start();
+
+    if (!isset($_SESSION['codUsuario']) || $_SESSION['codUsuario'] == "" || ($_SESSION['tipoUsuario'] !== 'Administrador' && $_SESSION['tipoUsuario'] !== 'Dueño')) {
+        header("Location: /index.php?vista=login");
+        exit();
+    }
+
     require_once "../main.php";
 
     $codLocal = limpiar_cadena($_POST['codLocal']);  
 
     $conexion = conexion();
+
+    if ($_SESSION['tipoUsuario'] === 'Dueño') {
+        $check_owner = $conexion->prepare("SELECT codUsuario FROM locales WHERE codLocal = ?");
+        $check_owner->bind_param("i", $codLocal);
+        $check_owner->execute();
+        $result = $check_owner->get_result();
+        $local_data = $result->fetch_assoc();
+        $check_owner->close();
+
+        if (!$local_data || (string)$local_data['codUsuario'] !== (string)$_SESSION['codUsuario']) {
+            $_SESSION['mensaje'] = ['texto' => 'No tienes permisos para eliminar este local.', 'tipo' => 'danger'];
+            $conexion->close();
+            header("Location: ../../index.php?vista=localsList");
+            exit();
+        }
+    }
     
     $eliminar_local = $conexion->prepare("DELETE FROM locales WHERE codLocal = ?");
     $eliminar_local->bind_param("i", $codLocal);

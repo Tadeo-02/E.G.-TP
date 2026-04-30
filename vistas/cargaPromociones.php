@@ -107,19 +107,40 @@
                                 </div>
 
                                 <!-- Días de la promoción -->
-                                <div class="mb-3">
+                                <div class="mb-3" style="text-align: left;">
                                     <br>
-                                    <label for="diasSemana" class="form-label" style="color: black; text-align: left; display:block;">Días en los que la promoción será válida: </label>
+                                    <label class="form-label" style="color: black; display:block;">Días en los que la promoción será válida:</label>
 
-                                    <select class="form-select" multiple size="7" name="diasSemana[]" id="diasSemana" required>
-                                        <option value="1">Lunes</option>
-                                        <option value="2">Martes</option>
-                                        <option value="3">Miércoles</option>
-                                        <option value="4">Jueves</option>
-                                        <option value="5">Viernes</option>
-                                        <option value="6">Sábado</option>
-                                        <option value="7">Domingo</option>
-                                    </select>
+                                    <div class="d-flex flex-wrap gap-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="diasSemana[]" id="dia1" value="1">
+                                            <label class="form-check-label" for="dia1" style="color: black;">Lunes</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="diasSemana[]" id="dia2" value="2">
+                                            <label class="form-check-label" for="dia2" style="color: black;">Martes</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="diasSemana[]" id="dia3" value="3">
+                                            <label class="form-check-label" for="dia3" style="color: black;">Miércoles</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="diasSemana[]" id="dia4" value="4">
+                                            <label class="form-check-label" for="dia4" style="color: black;">Jueves</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="diasSemana[]" id="dia5" value="5">
+                                            <label class="form-check-label" for="dia5" style="color: black;">Viernes</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="diasSemana[]" id="dia6" value="6">
+                                            <label class="form-check-label" for="dia6" style="color: black;">Sábado</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="diasSemana[]" id="dia7" value="7">
+                                            <label class="form-check-label" for="dia7" style="color: black;">Domingo</label>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="text-center">
@@ -142,31 +163,13 @@
 
 </section>
 
-<!-- Selector de los días con JS -->
+<!-- Validación de checkboxes -->
 <script>
-    (function() {
-        var originalCreateElement = document.createElement;
-        document.createElement = function(tagName, options) {
-            if (String(tagName).toLowerCase() === "inputbody") {
-                return originalCreateElement.call(this, "div", options);
-            }
-            return originalCreateElement.call(this, tagName, options);
-        };
-    })();
-
-    if (typeof MultiSelectTag !== "undefined") {
-        new MultiSelectTag("diasSemana", {
-            rounded: true,
-            shadow: true,
-            placeholder: "Search",
-            tagColor: {
-                textColor: "#000000",
-                borderColor: "#ffca2c",
-                bgColor: "#ffca2c"
-            },
-            onChange: function(values) {
-                console.log(values);
-            }
-        });
-    }
+    document.getElementById('solicitudPromocionForm').addEventListener('submit', function(e) {
+        var checkboxes = document.querySelectorAll('input[name="diasSemana[]"]:checked');
+        if (checkboxes.length === 0) {
+            e.preventDefault();
+            alert('Por favor, seleccione al menos un día para la promoción.');
+        }
+    });
 </script>
