@@ -2,6 +2,21 @@
 	<div class="container-fluid">
             <?php
                 require_once(__DIR__ . '/../php/main.php');
+                if (isset($_SESSION['mensaje'])) {
+                    $tipoMsg = 'info';
+                    $textoMsg = '';
+                    if (is_array($_SESSION['mensaje'])) {
+                        $tipoMsg = $_SESSION['mensaje']['tipo'] ?? 'info';
+                        $textoMsg = $_SESSION['mensaje']['texto'] ?? '';
+                    } else {
+                        $textoMsg = $_SESSION['mensaje'];
+                    }
+                    echo '<div class="alert alert-' . htmlspecialchars($tipoMsg) . ' alert-dismissible fade show text-center" role="alert" style="margin-top: 20px;">
+                            ' . htmlspecialchars($textoMsg) . '
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>';
+                    unset($_SESSION['mensaje']); // Eliminar el mensaje después de mostrarlo
+                }
             ?>
             <div class="row cargaPromociones">
                 <div class="col-12">  

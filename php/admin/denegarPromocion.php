@@ -10,9 +10,10 @@
     $denegar_promo = $conexion->prepare("UPDATE promociones SET estadoPromo = ? WHERE codPromo = ?");
     $denegar_promo->bind_param("si",$nuevoEstado,  $codPromo);
     if($denegar_promo->execute()){
-        echo "Promoción denegada con éxito";}
+        $_SESSION['mensaje'] = ['texto' => 'Promoción denegada con éxito', 'tipo' => 'success'];
+    }
     else{
-        echo "Error al denegar la promoción";    
+        $_SESSION['mensaje'] = ['texto' => 'Error al denegar la promoción', 'tipo' => 'danger'];
     }
 
     // Cerrar la conexión

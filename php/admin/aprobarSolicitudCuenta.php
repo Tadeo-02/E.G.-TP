@@ -11,6 +11,8 @@
     $aprobar_cuenta->bind_param("si", $nuevoEstado, $codUsuario);
     $aprobar_cuenta->execute();
 
+    $_SESSION['mensaje'] = ['texto' => 'Solicitud de cuenta aprobada con éxito', 'tipo' => 'success'];
+
     // Cerrar la conexión
     $aprobar_cuenta->close();
     $conexion->close();

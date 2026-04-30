@@ -18,6 +18,23 @@
         <br>
         <br>
         <h1 class="text-center" style="color: white"><b>NOVEDADES</b></h1>
+        <?php
+                if (isset($_SESSION['mensaje'])) {
+                    $tipoMsg = 'info';
+                    $textoMsg = '';
+                    if (is_array($_SESSION['mensaje'])) {
+                        $tipoMsg = $_SESSION['mensaje']['tipo'] ?? 'info';
+                        $textoMsg = $_SESSION['mensaje']['texto'] ?? '';
+                    } else {
+                        $textoMsg = $_SESSION['mensaje'];
+                    }
+                    echo '<div class="alert alert-' . htmlspecialchars($tipoMsg) . ' alert-dismissible fade show text-center" role="alert" style="margin-top: 20px;">
+                            ' . htmlspecialchars($textoMsg) . '
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>';
+                    unset($_SESSION['mensaje']); // Eliminar el mensaje después de mostrarlo
+                }
+        ?>
         <br>
         
         <!-- BOTON CREAR NOVEDADES, SOLO LO VE EL ADMIN -->

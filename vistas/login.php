@@ -4,10 +4,12 @@
         // Mostrar mensajes flash (ej: cuenta dada de baja)
         if (isset($_SESSION['mensaje'])) {
             $tipoMsg = 'info';
-            $textoMsg = $_SESSION['mensaje'];
+            $textoMsg = '';
             if (is_array($_SESSION['mensaje'])) {
                 $tipoMsg = $_SESSION['mensaje']['tipo'] ?? 'info';
                 $textoMsg = $_SESSION['mensaje']['texto'] ?? '';
+            } else {
+                $textoMsg = $_SESSION['mensaje'];
             }
             echo '<div class="container" style="margin-top: 90px; position: relative; z-index: 1000;">
                     <div class="alert alert-' . htmlspecialchars($tipoMsg) . ' alert-dismissible fade show" role="alert">

@@ -9,33 +9,26 @@
 
     //Verificar campos obligatorios
     if ($localModificado == "" || $nombreLocal == '' || $ubicacionLocal == '' || $rubroLocal == ''){
-        echo '<div class="alert alert-danger" role="alert">
-                Todos los campos obligatorios no han sido completados
-              </div>';
+        $_SESSION['mensaje'] = ['texto' => 'Todos los campos obligatorios no han sido completados', 'tipo' => 'danger'];
+        if(isset($_SERVER['HTTP_REFERER'])) { header("Location: " . $_SERVER['HTTP_REFERER']); } else { header("Location: index.php"); }
         exit();
     }
     
     $conexion = conexion();
 
-    //Verificar si el local ya existe
-    $validarNombre = $conexion ->query ("SELECT nombreLocal  FROM locales WHERE nombreLocal='$nombreLocal' "); 
+    //Verificar si el local ya existe (sólo si no es el mismo local)
+    $validarNombre = $conexion ->query ("SELECT nombreLocal FROM locales WHERE nombreLocal='$nombreLocal' AND codLocal != '$localModificado'"); 
     if (($validarNombre->num_rows) > 0 ) { //todo BOCA
-        echo '<div class="alert al  ert-danger" role="alert">
-                El nombre del Local ya existe
-                </div>';
-        exit();
-    }
-
-    $validarUbiacion = $conexion ->query ("SELECT ubicacionLocal FROM locales WHERE  ubicacionLocal='$ubicacionLocal'");
-    if(($validarUbiacion->num_rows) > 0){
-        echo '<div class="alert alert-danger" role="alert">
-            La ubicacion del local está ocupada
-                </div>';
+        $_SESSION['mensaje'] = ['texto' => 'El nombre del Local ya existe', 'tipo' => 'danger'];
+        mysqli_close($conexion);
+        if(isset($_SERVER['HTTP_REFERER'])) { header("Location: " . $_SERVER['HTTP_REFERER']); } else { header("Location: index.php"); }
         exit();
     }
 
     // Guardar Local
     $guardarLocal = $conexion ->query("UPDATE locales SET nombreLocal = '$nombreLocal', ubicacionLocal = '$ubicacionLocal', rubroLocal = '$rubroLocal' WHERE codLocal = '$localModificado';");
+
+    $_SESSION['mensaje'] = ['texto' => 'Local actualizado con éxito', 'tipo' => 'success'];
 
     //Cerrar conexion    
     mysqli_close($conexion);

@@ -10,9 +10,8 @@
 
     //Verificar campos obligatorios
     if ($novedadModificada  == "" || $textoNovedad == "" || $fechaDesdeNovedad == "" || $fechaHastaNovedad == "" || $tipoCliente == ""){
-        echo '<div class="alert alert-danger" role="alert">
-                Todos los campos obligatorios no han sido completados
-              </div>';
+        $_SESSION['mensaje'] = ['texto' => 'Todos los campos obligatorios no han sido completados', 'tipo' => 'danger'];
+        if(isset($_SERVER['HTTP_REFERER'])) { header("Location: " . $_SERVER['HTTP_REFERER']); } else { header("Location: index.php"); }
         exit();
     }
     
@@ -20,21 +19,23 @@
 
     // Verificar si la fecha de inicio es menor a la fecha de fin
     if($fechaDesdeNovedad == $fechaHastaNovedad){ //? Revisar si es necesario
-        echo '<div class="alert alert-danger" role="alert">
-                Las promociones no pueden comenzar y terminar el mismo día
-              </div>';
+        $_SESSION['mensaje'] = ['texto' => 'Las novedades no pueden comenzar y terminar el mismo día', 'tipo' => 'danger'];
+        mysqli_close($conexion);
+        if(isset($_SERVER['HTTP_REFERER'])) { header("Location: " . $_SERVER['HTTP_REFERER']); } else { header("Location: index.php"); }
         exit();
     }
     
     if($fechaDesdeNovedad > $fechaHastaNovedad){ //? Revisar si es necesario
-        echo '<div class="alert alert-danger" role="alert">
-                La fecha de inicio de la prmocion no puede ser posterior a la fecha de fin de la promocion
-              </div>';
+        $_SESSION['mensaje'] = ['texto' => 'La fecha de inicio de la novedad no puede ser posterior a la fecha de fin', 'tipo' => 'danger'];
+        mysqli_close($conexion);
+        if(isset($_SERVER['HTTP_REFERER'])) { header("Location: " . $_SERVER['HTTP_REFERER']); } else { header("Location: index.php"); }
         exit();
     }
 
     // Guardar Local
     $guardarNovedad = $conexion ->query("UPDATE novedades SET textoNovedad = '$textoNovedad', fechaDesdeNovedad = '$fechaDesdeNovedad', fechaHastaNovedad = '$fechaHastaNovedad', tipoCliente = '$tipoCliente' WHERE codNovedad = '$novedadModificada';");
+
+    $_SESSION['mensaje'] = ['texto' => 'Novedad actualizada con éxito', 'tipo' => 'success'];
 
     //Cerrar conexion    
     mysqli_close($conexion);

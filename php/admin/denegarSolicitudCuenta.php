@@ -11,6 +11,8 @@
     $denegar_cuenta->bind_param("si",$nuevoEstado,  $codUsuario);
     $denegar_cuenta->execute();
 
+    $_SESSION['mensaje'] = ['texto' => 'Solicitud de cuenta denegada con éxito', 'tipo' => 'success'];
+
     // Cerrar la conexión
     $denegar_cuenta->close();
     $conexion->close();

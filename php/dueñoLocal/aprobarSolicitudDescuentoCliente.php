@@ -21,6 +21,8 @@
     $aprobar_promo->bind_param("si", $estado, $codUso);
     $aprobar_promo->execute();
 
+    $_SESSION['mensaje'] = ['texto' => 'Solicitud de descuento aprobada con éxito', 'tipo' => 'success'];
+
     // Cerrar la conexión
     $aprobar_promo->close();
     $conexion->close();

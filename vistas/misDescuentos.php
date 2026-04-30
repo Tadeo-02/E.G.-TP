@@ -4,9 +4,20 @@
 
     // Mostrar mensaje si existe
     if (isset($_SESSION['mensaje'])) {
+        $tipoMsg = 'danger';
+        $textoMsg = '';
+        if (is_array($_SESSION['mensaje'])) {
+            $tipoMsg = $_SESSION['mensaje']['tipo'] ?? 'danger';
+            $textoMsg = $_SESSION['mensaje']['texto'] ?? '';
+        } else {
+            $textoMsg = $_SESSION['mensaje'];
+            if (strpos($textoMsg, 'éxito') !== false || strpos($textoMsg, 'registrada') !== false || strpos($textoMsg, 'correctamente') !== false) {
+                $tipoMsg = 'success';
+            }
+        }
         echo '<div class="container" style="margin-top: 80px; position: relative; z-index: 1000;">'
-            . '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
-            . htmlspecialchars($_SESSION['mensaje'])
+            . '<div class="alert alert-' . htmlspecialchars($tipoMsg) . ' alert-dismissible fade show" role="alert">'
+            . htmlspecialchars($textoMsg)
             . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
             . '</div>'
             . '</div>';

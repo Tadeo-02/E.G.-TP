@@ -14,5 +14,7 @@
     $eliminar_local->close();
     $conexion->close();
 
+    $_SESSION['mensaje'] = ['texto' => 'Local eliminado con éxito', 'tipo' => 'success'];
+
     header("Location: ../../index.php?vista=localsList");
 ?>

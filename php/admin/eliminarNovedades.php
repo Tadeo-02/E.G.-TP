@@ -14,5 +14,7 @@
     $eliminar_novedad->close();
     $conexion->close();
 
+    $_SESSION['mensaje'] = ['texto' => 'Novedad eliminada con éxito', 'tipo' => 'success'];
+
     header("Location: ../../index.php?vista=novedadesList");
 ?>

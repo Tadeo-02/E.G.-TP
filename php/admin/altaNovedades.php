@@ -9,9 +9,8 @@
 
     //Verificar campos obligatorios
     if ($textoNovedad == "" || $fechaDesdeNovedad == "" || $fechaHastaNovedad == "" || $tipoCliente == ""){
-        echo '<div class="alert alert-danger" role="alert">
-                Todos los campos obligatorios no han sido completados
-              </div>';
+        $_SESSION['mensaje'] = ['texto' => 'Todos los campos obligatorios no han sido completados', 'tipo' => 'danger'];
+        if(isset($_SERVER['HTTP_REFERER'])) { header("Location: " . $_SERVER['HTTP_REFERER']); } else { header("Location: index.php"); }
         exit();
     }
     
@@ -20,24 +19,24 @@
     //Verificar si la novedad ya existe
     $validarNombre = $conexion ->query ("SELECT textoNovedad  FROM novedades WHERE textoNovedad='$textoNovedad' "); 
     if (($validarNombre->num_rows) > 0 ) {
-        echo '<div class="alert al  ert-danger" role="alert">
-                El nombre del Local ya existe
-                </div>';
+        $_SESSION['mensaje'] = ['texto' => 'El texto de la Novedad ya existe', 'tipo' => 'danger'];
+        mysqli_close($conexion);
+        if(isset($_SERVER['HTTP_REFERER'])) { header("Location: " . $_SERVER['HTTP_REFERER']); } else { header("Location: index.php"); }
         exit();
     }
 
     // Verificar si la fecha de inicio es menor a la fecha de fin
     if($fechaDesdeNovedad == $fechaHastaNovedad){ //? Revisar si es necesario
-        echo '<div class="alert alert-danger" role="alert">
-                Las promociones no pueden comenzar y terminar el mismo día
-              </div>';
+        $_SESSION['mensaje'] = ['texto' => 'Las novedades no pueden comenzar y terminar el mismo día', 'tipo' => 'danger'];
+        mysqli_close($conexion);
+        if(isset($_SERVER['HTTP_REFERER'])) { header("Location: " . $_SERVER['HTTP_REFERER']); } else { header("Location: index.php"); }
         exit();
     }
     
     if($fechaDesdeNovedad > $fechaHastaNovedad){ //? Revisar si es necesario
-        echo '<div class="alert alert-danger" role="alert">
-                La fecha de inicio de la prmocion no puede ser posterior a la fecha de fin de la promocion
-              </div>';
+        $_SESSION['mensaje'] = ['texto' => 'La fecha de inicio de la novedad no puede ser posterior a la fecha de fin', 'tipo' => 'danger'];
+        mysqli_close($conexion);
+        if(isset($_SERVER['HTTP_REFERER'])) { header("Location: " . $_SERVER['HTTP_REFERER']); } else { header("Location: index.php"); }
         exit();
     }
 
@@ -45,6 +44,8 @@
 
     // Guardar Local
     $guardarNovedad = $conexion ->query("INSERT INTO novedades (textoNovedad, fechaDesdeNovedad, fechaHastaNovedad, tipoCliente) VALUES ('$textoNovedad', '$fechaDesdeNovedad', '$fechaHastaNovedad', '$tipoCliente')");
+
+    $_SESSION['mensaje'] = ['texto' => 'Novedad registrada con éxito', 'tipo' => 'success'];
 
     //Cerrar conexion    
     mysqli_close($conexion);

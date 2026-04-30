@@ -11,6 +11,8 @@
     $denegar_promo->bind_param("si", $estado, $codUso);
     $denegar_promo->execute();
 
+    $_SESSION['mensaje'] = ['texto' => 'Solicitud de descuento denegada con éxito', 'tipo' => 'success'];
+
     // Cerrar la conexión
     $denegar_promo->close();
     $conexion->close();

@@ -11,9 +11,9 @@
     $aprobar_promo->bind_param("si",$nuevoEstado,  $codPromo);
     
     if($aprobar_promo->execute()){
-        $_SESSION['mensaje'] = 'Promoción aprobada con éxito';
+        $_SESSION['mensaje'] = ['texto' => 'Promoción aprobada con éxito', 'tipo' => 'success'];
     } else{
-        $_SESSION['mensaje'] = 'Error al aprobar la promoción';
+        $_SESSION['mensaje'] = ['texto' => 'Error al aprobar la promoción', 'tipo' => 'danger'];
     }
 
     // Cerrar la conexión

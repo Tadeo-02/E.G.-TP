@@ -10,23 +10,28 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 // Mostrar mensaje si existe - EXACTAMENTE como en cargaPromociones.php
 if (isset($_SESSION['mensaje'])) {
     $mensaje = $_SESSION['mensaje'];
-    
-    // Determinar color: verde para éxito, rojo para errores
-    if (strpos($mensaje, 'éxito') !== false || strpos($mensaje, 'registrada') !== false || strpos($mensaje, 'correctamente') !== false) {
-        echo '<div class="container" style="margin-top: 80px; position: relative; z-index: 9999;">'
-            . '<div class="alert alert-success alert-dismissible fade show" role="alert">'
-            . htmlspecialchars($mensaje)
-            . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
-            . '</div>'
-            . '</div>';
+    $tipoMsg = 'info';
+    $textoMsg = '';
+
+    if (is_array($mensaje)) {
+        $tipoMsg = $mensaje['tipo'] ?? 'info';
+        $textoMsg = $mensaje['texto'] ?? '';
     } else {
-        echo '<div class="container" style="margin-top: 80px; position: relative; z-index: 9999;">'
-            . '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
-            . htmlspecialchars($mensaje)
-            . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
-            . '</div>'
-            . '</div>';
+        $textoMsg = $mensaje;
+        if (strpos($textoMsg, 'éxito') !== false || strpos($textoMsg, 'registrada') !== false || strpos($textoMsg, 'correctamente') !== false) {
+            $tipoMsg = 'success';
+        } else {
+            $tipoMsg = 'danger';
+        }
     }
+
+    echo '<div class="container" style="margin-top: 80px; position: relative; z-index: 9999;">'
+        . '<div class="alert alert-' . htmlspecialchars($tipoMsg) . ' alert-dismissible fade show" role="alert">'
+        . htmlspecialchars($textoMsg)
+        . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>'
+        . '</div>'
+        . '</div>';
+
     unset($_SESSION['mensaje']); // Eliminar el mensaje después de mostrarlo
 }
 ?>
