@@ -25,12 +25,12 @@
 - [ ] **Ejecutar `composer install`** para generar `vendor/` y el autoloader
 - [ ] **Probar cada flujo que envía correos**:
 
-| Flujo | Archivo | Función |
-|---|---|---|
-| Registro de usuario | `php/saveUser.php` | `enviarCorreoVerificacion()` |
-| Cambio de email | `php/cliente/updateProfile.php` | `enviarCorreoCambioEmail()` |
-| Reset de contraseña | `php/solicitarResetPassword.php` | `enviarCorreoResetPassword()` |
-| Newsletter | `php/newsletterSubscribe.php` | `enviarVerificacionNewsletter()` |
+| Flujo               | Archivo                          | Función                          |
+| ------------------- | -------------------------------- | -------------------------------- |
+| Registro de usuario | `php/saveUser.php`               | `enviarCorreoVerificacion()`     |
+| Cambio de email     | `php/cliente/updateProfile.php`  | `enviarCorreoCambioEmail()`      |
+| Reset de contraseña | `php/solicitarResetPassword.php` | `enviarCorreoResetPassword()`    |
+| Newsletter          | `php/newsletterSubscribe.php`    | `enviarVerificacionNewsletter()` |
 
 ## Si algo falla
 
@@ -41,5 +41,5 @@
 
 ## Obsoleto
 
-- `php/mailConfig.php` — ya no se usa, reemplazado por `.env` + `php/config.php`
+- `php/mailConfig.php` — eliminado; la configuración ahora vive en `.env` + `php/config.php`
 - `php/PHPMailer/` — se puede eliminar (ya no se utiliza), pero no molesta si queda

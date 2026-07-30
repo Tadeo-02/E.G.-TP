@@ -36,10 +36,9 @@ $res = $stmt->get_result();
 if ($res->num_rows === 0) {
     $stmt->close();
     $conexion->close();
-    // Mensaje genérico por seguridad (no revelar si el email existe)
     $_SESSION['mensaje'] = [
-        'texto' => 'Si el correo está registrado, recibirás un enlace para restablecer tu contraseña.',
-        'tipo' => 'success'
+        'texto' => 'No encontramos una cuenta activa con ese correo.',
+        'tipo' => 'danger'
     ];
     header("Location: ../index.php?vista=olvideMiClave");
     exit();
@@ -52,8 +51,8 @@ $stmt->close();
 if ($usuario['estadoCuenta'] !== 'Activa') {
     $conexion->close();
     $_SESSION['mensaje'] = [
-        'texto' => 'Si el correo está registrado, recibirás un enlace para restablecer tu contraseña.',
-        'tipo' => 'success'
+        'texto' => 'No encontramos una cuenta activa con ese correo.',
+        'tipo' => 'danger'
     ];
     header("Location: ../index.php?vista=olvideMiClave");
     exit();
@@ -74,14 +73,29 @@ $stmtToken = $conexion->prepare("INSERT INTO tokens_verificacion (codUsuario, to
 $stmtToken->bind_param("iss", $usuario['codUsuario'], $token, $expiracion);
 $stmtToken->execute();
 $stmtToken->close();
-$conexion->close();
 
 // Enviar correo con enlace de restablecimiento
+// En producción, APP_URL debe apuntar al dominio real del sitio, no a phpMyAdmin ni al puerto de la BD.
 $enlaceReset = APP_URL . '/index.php?vista=resetPassword&token=' . $token;
-enviarCorreoResetPassword($email, $enlaceReset);
+if (!enviarCorreoResetPassword($email, $enlaceReset)) {
+    $stmtDel = $conexion->prepare("DELETE FROM tokens_verificacion WHERE token = ?");
+    $stmtDel->bind_param("s", $token);
+    $stmtDel->execute();
+    $stmtDel->close();
+    $conexion->close();
+
+    $_SESSION['mensaje'] = [
+        'texto' => 'No se pudo enviar el correo. Intentá de nuevo más tarde.',
+        'tipo' => 'danger'
+    ];
+    header("Location: ../index.php?vista=olvideMiClave");
+    exit();
+}
+
+$conexion->close();
 
 $_SESSION['mensaje'] = [
-    'texto' => 'Si el correo está registrado, recibirás un enlace para restablecer tu contraseña. Revisá tu bandeja de entrada.',
+    'texto' => 'Se envió un correo para restablecer tu contraseña. Revisá tu bandeja de entrada.',
     'tipo' => 'success'
 ];
 header("Location: ../index.php?vista=olvideMiClave");

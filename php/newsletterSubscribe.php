@@ -76,13 +76,14 @@ $stmtToken->close();
 $conn->close();
 
 // Enviar correo con enlace de verificación
+// En producción, APP_URL debe apuntar al dominio real del sitio, no a phpMyAdmin ni al puerto de la BD.
 $enlaceVerificacion = APP_URL . '/index.php?vista=verificarNewsletter&token=' . $token;
 
 if (enviarVerificacionNewsletter($email, $enlaceVerificacion)) {
     $response['success'] = true;
     $response['message'] = '¡Revisá tu correo! Te enviamos un enlace para confirmar tu suscripción.';
 } else {
-    $response['message'] = 'No se pudo enviar el correo de verificación. Intentá de nuevo más tarde.';
+    $response['message'] = 'No se pudo enviar el correo. Intentá de nuevo más tarde.';
     http_response_code(500);
 }
 

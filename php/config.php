@@ -33,10 +33,18 @@ function _cargar_env(string $ruta): void {
         $clave = trim(substr($linea, 0, $pos));
         $valor = trim(substr($linea, $pos + 1));
 
-        if (strlen($valor) >= 2 &&
-            (($valor[0] === '"' && $valor[-1] === '"') ||
-             ($valor[0] === "'" && $valor[-1] === "'"))) {
-            $valor = substr($valor, 1, -1);
+        if ($valor !== '' && ($valor[0] === '"' || $valor[0] === "'")) {
+            $comilla = $valor[0];
+            $cierre = strrpos($valor, $comilla);
+
+            if ($cierre !== false && $cierre > 0) {
+                $valor = substr($valor, 1, $cierre - 1);
+            }
+        } else {
+            $partes = preg_split('/\s+#/', $valor, 2);
+            if ($partes !== false) {
+                $valor = trim($partes[0]);
+            }
         }
 
         putenv("$clave=$valor");

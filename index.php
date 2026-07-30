@@ -4,7 +4,13 @@
 <html lang="es">
 <head>
 <?php 
-      include "./inc/head.php";  
+      include "./inc/head.php";
+
+      require_once __DIR__ . '/vendor/autoload.php';
+
+      $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+      $dotenv->load();
+
     ?> 
 
 </head>

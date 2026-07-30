@@ -3,11 +3,25 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/config.php';
 
-use Resend\Resend;
+function registrarUltimoErrorCorreo(?string $mensaje): void {
+    $GLOBALS['ultimoErrorCorreo'] = $mensaje ?? '';
+}
 
 function enviarCorreoConEnlace(string $emailDestinatario, string $enlaceVerificacion, array $config): bool {
     try {
-        $resend = Resend::client(RESEND_API_KEY);
+        registrarUltimoErrorCorreo(null);
+		$apiKey = defined('RESEND_API_KEY') ? RESEND_API_KEY : (getenv('RESEND_API_KEY') ?: '');
+
+		if ($apiKey === '') {
+			throw new RuntimeException('RESEND_API_KEY no está configurado.');
+		}
+
+		$resend = Resend::client($apiKey);
+        $remitente = defined('MAIL_FROM') ? MAIL_FROM : (getenv('MAIL_FROM') ?: '');
+
+        if ($remitente === '') {
+            throw new RuntimeException('MAIL_FROM no está configurado.');
+        }
 
         $cuerpo = '
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; overflow: hidden;">
@@ -45,7 +59,7 @@ function enviarCorreoConEnlace(string $emailDestinatario, string $enlaceVerifica
         </div>';
 
         $resend->emails->send([
-            'from'    => MAIL_FROM,
+            'from'    => $remitente,
             'to'      => [$emailDestinatario],
             'subject' => $config['asunto'],
             'html'    => $cuerpo,
@@ -54,6 +68,7 @@ function enviarCorreoConEnlace(string $emailDestinatario, string $enlaceVerifica
 
         return true;
     } catch (\Exception $e) {
+        registrarUltimoErrorCorreo($e->getMessage());
         error_log("Error al enviar correo a $emailDestinatario: " . $e->getMessage());
         return false;
     }

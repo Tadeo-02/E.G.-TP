@@ -104,11 +104,31 @@
     $stmtToken->bind_param("iss", $codUsuario, $token, $expiracion);
     $stmtToken->execute();
     $stmtToken->close();
-    $conn->close();
 
     // Enviar correo con enlace de verificación
+    // En producción, APP_URL debe apuntar al dominio real del sitio, no a phpMyAdmin ni al puerto de la BD.
     $enlaceVerificacion = APP_URL . '/index.php?vista=verificarEmail&token=' . $token;
-    enviarCorreoVerificacion($email, $tipoUsuario, $enlaceVerificacion);
+    if (!enviarCorreoVerificacion($email, $tipoUsuario, $enlaceVerificacion)) {
+        $stmtDelToken = $conn->prepare("DELETE FROM tokens_verificacion WHERE token = ?");
+        $stmtDelToken->bind_param("s", $token);
+        $stmtDelToken->execute();
+        $stmtDelToken->close();
+
+        $stmtDelUsuario = $conn->prepare("DELETE FROM usuarios WHERE codUsuario = ?");
+        $stmtDelUsuario->bind_param("i", $codUsuario);
+        $stmtDelUsuario->execute();
+        $stmtDelUsuario->close();
+        $conn->close();
+
+        $_SESSION['mensaje'] = [
+            'texto' => 'No se pudo enviar el correo. Intentá de nuevo más tarde.',
+            'tipo' => 'danger'
+        ];
+        header('Location: ../index.php?vista=signUp');
+        exit();
+    }
+
+    $conn->close();
 
     $_SESSION['mensaje'] = [
         'texto' => 'Registro exitoso. Revisá tu correo electrónico para verificar tu cuenta.',

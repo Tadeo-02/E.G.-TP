@@ -1,6 +1,8 @@
 <section id="about" class="about">
 	<div class="container-fluid">
+
 		<?php
+			
 		// Mostrar mensaje de error si existe
 		if (isset($_SESSION['mensaje'])) {
 			$tipoMsg = 'danger';

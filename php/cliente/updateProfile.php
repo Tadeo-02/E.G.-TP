@@ -122,11 +122,25 @@ if ($accion === 'cambiarEmail') {
     $stmtToken->bind_param("isss", $_SESSION['codUsuario'], $token, $expiracion, $emailNuevo);
     $stmtToken->execute();
     $stmtToken->close();
-    $conexion->close();
 
     // Enviar correo de verificación al nuevo email
     $enlaceVerificacion = APP_URL . '/index.php?vista=verificarEmail&token=' . $token . '&tipo=cambio_email';
-    enviarCorreoCambioEmail($emailNuevo, $user['nombreUsuario'], $enlaceVerificacion);
+    if (!enviarCorreoCambioEmail($emailNuevo, $user['nombreUsuario'], $enlaceVerificacion)) {
+        $stmtDel = $conexion->prepare("DELETE FROM tokens_verificacion WHERE token = ?");
+        $stmtDel->bind_param("s", $token);
+        $stmtDel->execute();
+        $stmtDel->close();
+        $conexion->close();
+
+        $_SESSION['perfil_mensaje'] = [
+            'texto' => 'No se pudo enviar el correo. Intentá de nuevo más tarde.',
+            'tipo' => 'danger'
+        ];
+        header("Location: ../../index.php?vista=miPerfil");
+        exit();
+    }
+
+    $conexion->close();
 
     $_SESSION['perfil_mensaje'] = [
         'texto' => 'Se envió un correo de verificación a ' . htmlspecialchars($emailNuevo) . '. Revisá tu bandeja de entrada para confirmar el cambio.',
