@@ -30,13 +30,13 @@
 
     $diasSemanaJSON = json_encode($diasSemanaArray);
     // Verificacion de fecha
-    if($fechaDesdePromo == $fechaHastaPromo){ 
-        $_SESSION['mensaje'] = 'Las promociones no pueden comenzar y terminar el mismo día';
+    if($fechaDesdePromo < date('Y-m-d')){ 
+        $_SESSION['mensaje'] = 'La fecha de inicio no puede ser anterior a hoy';
         header('Location: ../../index.php?vista=cargaPromociones');
         exit();
     }
-    if($fechaDesdePromo > $fechaHastaPromo){ 
-        $_SESSION['mensaje'] = 'La fecha de inicio de la promoción no puede ser posterior a la fecha de fin de la promoción';
+    if($fechaDesdePromo >= $fechaHastaPromo){ 
+        $_SESSION['mensaje'] = 'La fecha de fin debe ser posterior a la fecha de inicio';
         header('Location: ../../index.php?vista=cargaPromociones');
         exit();
     }

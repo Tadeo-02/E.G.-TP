@@ -6,7 +6,7 @@ function conexion(){
     // 	die("Error de conexión: " . mysqli_connect_error());
 	// }
     $link = mysqli_connect("mysql", "root", "pw") or die("Problemas de conexion a la base de datos");
-    mysqli_select_db($link, "tp entornos");
+    mysqli_select_db($link, "tp_entornos");
     mysqli_set_charset($link, "utf8mb4");
     return $link;
 }

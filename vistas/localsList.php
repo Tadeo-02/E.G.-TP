@@ -70,6 +70,29 @@
                     }
                 ?>
 
+                <div class="sort-panel">
+                    <h3 class="sort-title" id="sort-title-locales">Ordenar</h3>
+                    <form action="index.php" method="get" id="sortFormLocales" class="sort-form">
+                        <input type="hidden" name="vista" value="localsList">
+                        <input type="hidden" name="order" value="<?php echo htmlspecialchars($orderActual); ?>">
+                        <div class="filters-field">
+                            <label for="sortByLocales" class="form-label">Ordenar por</label>
+                            <div class="input-group">
+                                <select id="sortByLocales" class="form-select" name="sortBy">
+                                    <option value="nombreLocal" <?php echo $sortActual == 'nombreLocal' ? 'selected' : ''; ?>>Nombre</option>
+                                    <option value="ubicacionLocal" <?php echo $sortActual == 'ubicacionLocal' ? 'selected' : ''; ?>>Ubicación</option>
+                                    <option value="codLocal" <?php echo $sortActual == 'codLocal' ? 'selected' : ''; ?>>Codigo de local</option>
+                                    <option value="rubroLocal" <?php echo $sortActual == 'rubroLocal' ? 'selected' : ''; ?>>Rubro</option>
+                                </select>
+                                <button type="button" class="btn btn-outline-secondary order-toggle" onclick="toggleOrder(this.form)" aria-label="Cambiar orden">
+                                    <i id="orderIcon" class="fas fa-sort-amount-<?php echo $orderActual == 'ASC' ? 'down' : 'up'; ?>"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Aplicar orden</button>
+                    </form>
+                </div>
+
                 <section class="filters-panel" aria-labelledby="filters-title">
                     <h2 id="filters-title" class="filters-title">Filtros</h2>
 
@@ -91,21 +114,6 @@
 
                     <form action="index.php" method="get" id="rubroForm" class="filters-group">
                         <input type="hidden" name="vista" value="localsList">
-                        <input type="hidden" name="order" value="<?php echo htmlspecialchars($orderActual); ?>">
-                        <div class="filters-field">
-                            <label for="sortByLocales" class="form-label">Ordenar por</label>
-                            <div class="input-group">
-                                <select id="sortByLocales" class="form-select" name="sortBy">
-                                    <option value="nombreLocal" <?php echo $sortActual == 'nombreLocal' ? 'selected' : ''; ?>>Nombre</option>
-                                    <option value="ubicacionLocal" <?php echo $sortActual == 'ubicacionLocal' ? 'selected' : ''; ?>>Ubicación</option>
-                                    <option value="codLocal" <?php echo $sortActual == 'codLocal' ? 'selected' : ''; ?>>Codigo de local</option>
-                                    <option value="rubroLocal" <?php echo $sortActual == 'rubroLocal' ? 'selected' : ''; ?>>Rubro</option>
-                                </select>
-                                <button type="button" class="btn btn-outline-secondary order-toggle" onclick="toggleOrder(this.form)" aria-label="Cambiar orden">
-                                    <i id="orderIcon" class="fas fa-sort-amount-<?php echo $orderActual == 'ASC' ? 'down' : 'up'; ?>"></i>
-                                </button>
-                            </div>
-                        </div>
                         <div class="filters-field">
                             <label for="rubroLocalFiltro" class="form-label">Rubro</label>
                             <select id="rubroLocalFiltro" class="form-select" name="rubroLocal">

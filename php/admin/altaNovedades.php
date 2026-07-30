@@ -25,16 +25,17 @@
         exit();
     }
 
-    // Verificar si la fecha de inicio es menor a la fecha de fin
-    if($fechaDesdeNovedad == $fechaHastaNovedad){ //? Revisar si es necesario
-        $_SESSION['mensaje'] = ['texto' => 'Las novedades no pueden comenzar y terminar el mismo día', 'tipo' => 'danger'];
+    // Verificar que la fecha de inicio no sea anterior a hoy
+    if($fechaDesdeNovedad < date('Y-m-d')){
+        $_SESSION['mensaje'] = ['texto' => 'La fecha de inicio no puede ser anterior a hoy', 'tipo' => 'danger'];
         mysqli_close($conexion);
         if(isset($_SERVER['HTTP_REFERER'])) { header("Location: " . $_SERVER['HTTP_REFERER']); } else { header("Location: index.php"); }
         exit();
     }
-    
-    if($fechaDesdeNovedad > $fechaHastaNovedad){ //? Revisar si es necesario
-        $_SESSION['mensaje'] = ['texto' => 'La fecha de inicio de la novedad no puede ser posterior a la fecha de fin', 'tipo' => 'danger'];
+
+    // Verificar que la fecha de fin sea posterior a la fecha de inicio
+    if($fechaDesdeNovedad >= $fechaHastaNovedad){
+        $_SESSION['mensaje'] = ['texto' => 'La fecha de fin debe ser posterior a la fecha de inicio', 'tipo' => 'danger'];
         mysqli_close($conexion);
         if(isset($_SERVER['HTTP_REFERER'])) { header("Location: " . $_SERVER['HTTP_REFERER']); } else { header("Location: index.php"); }
         exit();
@@ -61,43 +62,3 @@
     }
     
 ?>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-     // //Arma la instrucción SQL y luego la ejecuta   
-    // $validarDatos = "SELECT Count(*) as canti FROM locales WHERE nombreLocal=? AND ubicacionLocal=?";
-    
-  
-    // $resultado = mysqli_query($link, $validarDatos) or die(mysqli_error($link));
-    // $cantLocales = mysqli_fetch_assoc($resultado);
-    // $stmt = mysqli_prepare($link, $validarDatos);
-    // mysqli_stmt_bind_param($stmt, "ss", $nombreLocal, $ubicacionLocal);
-    // mysqli_stmt_execute($stmt);
-    // mysqli_stmt_bind_result($stmt, $vCantLocales);
-    // mysqli_stmt_fetch($stmt);
-    // mysqli_stmt_close($stmt);
-
-    // if ($cantLocales['canti'] != 0) {
-    //     echo ("El local ya existe<br>");
-
-    // } 
-    // else {
-    //     $link = $guardar_usuario->query("INSERT INTO locales (nombreLocal, ubicacionLocal, rubroLocal, codUsuario) VALUES ('$nombreLocal', '$ubicacionLocal', '$rubroLocal', '$codUsuario')");
-    //     echo ("El local fue registrado con éxito. <br>");
-
-    //     // Liberar conjunto de resultados
-    //     mysqli_free_result($vResultado);
-    // }
-    // // Cerrar la conexion
-    // mysqli_close($guardar_usuario);

@@ -26,7 +26,7 @@
                 <div class="container">
                     <div class="form-container form-container-locales">
                         <h2 class="text-center mb-4 h3">Formulario de Novedad</h2>
-                        <form action="php/admin/altaNovedades.php" method="POST" autocomplete="off" >
+                        <form id="cargaNovedadForm" action="php/admin/altaNovedades.php" method="POST" autocomplete="off">
             
                             <!-- Texto Novedad -->
                             <div class="mb-3">
@@ -38,13 +38,13 @@
                             <div class="mb-3">
                                     <br>
                                     <label for="fechaDesdeNovedad" class="form-label" style="color: black; text-align: left; display:block;">Fecha de inicio:</label>
-                                    <input id="fechaDesdeNovedad" class="form-control" type="date" name="fechaDesdeNovedad" min="2000-01-01" max="2099-12-31" required>
+                                    <input id="fechaDesdeNovedad" class="form-control" type="date" name="fechaDesdeNovedad" min="<?php echo date('Y-m-d'); ?>" max="2099-12-31" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <br>
                                     <label for="fechaHastaNovedad" class="form-label" style="color: black; text-align: left; display:block;">Fecha de fin:</label>
-                                    <input id="fechaHastaNovedad" class="form-control" type="date" name="fechaHastaNovedad" min="2000-01-01" max="2099-12-31" required>
+                                    <input id="fechaHastaNovedad" class="form-control" type="date" name="fechaHastaNovedad" min="<?php echo date('Y-m-d'); ?>" max="2099-12-31" required>
                             </div>
 
                             <!-- Tipo de cliente -->
@@ -68,5 +68,27 @@
             </div>
         </div>
 	</div>		
+
+<!-- Validación del formulario -->
+<script>
+    document.querySelector('#cargaNovedadForm').addEventListener('submit', function(e) {
+        const fechaDesde = document.getElementById('fechaDesdeNovedad').value;
+        const fechaHasta = document.getElementById('fechaHastaNovedad').value;
+        const hoy = new Date().toISOString().split('T')[0];
+        let errores = [];
+
+        if (fechaDesde < hoy) {
+            errores.push('La fecha de inicio no puede ser anterior a hoy.');
+        }
+        if (fechaHasta <= fechaDesde) {
+            errores.push('La fecha de fin debe ser posterior a la fecha de inicio.');
+        }
+
+        if (errores.length > 0) {
+            e.preventDefault();
+            alert(errores.join('\n'));
+        }
+    });
+</script>
 
 </section>

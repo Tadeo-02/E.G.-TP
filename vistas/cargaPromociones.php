@@ -84,13 +84,13 @@
                                 <div class="mb-3">
                                     <br>
                                     <label for="fechaDesdePromo" class="form-label" style="color: black; text-align: left; display:block;">Fecha de inicio de la promoción:</label>
-                                    <input id="fechaDesdePromo" class="form-control" type="date" name="fechaDesdePromo" min="2000-01-01" max="2099-12-31" required>
+                                    <input id="fechaDesdePromo" class="form-control" type="date" name="fechaDesdePromo" min="<?php echo date('Y-m-d'); ?>" max="2099-12-31" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <br>
                                     <label for="fechaHastaPromo" class="form-label" style="color: black; text-align: left; display:block;">Fecha de fin de la promoción:</label>
-                                    <input id="fechaHastaPromo" class="form-control" type="date" name="fechaHastaPromo" min="2000-01-01" max="2099-12-31" required>
+                                    <input id="fechaHastaPromo" class="form-control" type="date" name="fechaHastaPromo" min="<?php echo date('Y-m-d'); ?>" max="2099-12-31" required>
                                 </div>
 
                                 <!-- Categoría del cliente -->
@@ -163,13 +163,29 @@
 
 </section>
 
-<!-- Validación de checkboxes -->
+<!-- Validación del formulario -->
 <script>
     document.getElementById('solicitudPromocionForm').addEventListener('submit', function(e) {
+        const fechaDesde = document.getElementById('fechaDesdePromo').value;
+        const fechaHasta = document.getElementById('fechaHastaPromo').value;
+        const hoy = new Date().toISOString().split('T')[0];
+        let errores = [];
+
+        if (fechaDesde < hoy) {
+            errores.push('La fecha de inicio no puede ser anterior a hoy.');
+        }
+        if (fechaHasta <= fechaDesde) {
+            errores.push('La fecha de fin debe ser posterior a la fecha de inicio.');
+        }
+
         var checkboxes = document.querySelectorAll('input[name="diasSemana[]"]:checked');
         if (checkboxes.length === 0) {
+            errores.push('Seleccione al menos un día para la promoción.');
+        }
+
+        if (errores.length > 0) {
             e.preventDefault();
-            alert('Por favor, seleccione al menos un día para la promoción.');
+            alert(errores.join('\n'));
         }
     });
 </script>

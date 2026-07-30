@@ -76,23 +76,11 @@ if (isset($_SESSION['mensaje'])) {
                     </div>
                 <?php } ?>
 
-                <section class="filters-panel" aria-labelledby="filters-title-promos">
-                    <h2 id="filters-title-promos" class="filters-title">Filtros</h2>
-
-                    <form action="index.php" method="get" id="promoFiltersForm" class="filters-group">
+                <div class="sort-panel">
+                    <h3 class="sort-title" id="sort-title-promos">Ordenar</h3>
+                    <form action="index.php" method="get" id="sortFormPromos" class="sort-form">
                         <input type="hidden" name="vista" value="promocionesList">
                         <input type="hidden" name="order" value="<?php echo htmlspecialchars($orderActual); ?>">
-                        <?php if ($localActual !== '') { ?>
-                            <input type="hidden" name="codLocal" value="<?php echo htmlspecialchars($localActual); ?>">
-                        <?php } ?>
-                        <div class="filters-field">
-                            <label for="diaDesde" class="form-label">Fecha inicio</label>
-                            <input type="date" id="diaDesde" name="diaDesde" class="form-control" min="2000-01-01" max="2099-12-31" value="<?php echo htmlspecialchars($diaDesdeActual); ?>">
-                        </div>
-                        <div class="filters-field">
-                            <label for="diaHasta" class="form-label">Fecha final</label>
-                            <input type="date" id="diaHasta" name="diaHasta" class="form-control" min="2000-01-01" max="2099-12-31" value="<?php echo htmlspecialchars($diaHastaActual); ?>">
-                        </div>
                         <div class="filters-field">
                             <label for="sortByPromos" class="form-label">Ordenar por</label>
                             <div class="input-group">
@@ -109,6 +97,26 @@ if (isset($_SESSION['mensaje'])) {
                                 </button>
                             </div>
                             <small id="sortPromosHelp" class="visually-hidden">Presione Aplicar para aplicar el orden seleccionado.</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Aplicar orden</button>
+                    </form>
+                </div>
+
+                <section class="filters-panel" aria-labelledby="filters-title-promos">
+                    <h2 id="filters-title-promos" class="filters-title">Filtros</h2>
+
+                    <form action="index.php" method="get" id="promoFiltersForm" class="filters-group">
+                        <input type="hidden" name="vista" value="promocionesList">
+                        <?php if ($localActual !== '') { ?>
+                            <input type="hidden" name="codLocal" value="<?php echo htmlspecialchars($localActual); ?>">
+                        <?php } ?>
+                        <div class="filters-field">
+                            <label for="diaDesde" class="form-label">Fecha inicio</label>
+                            <input type="date" id="diaDesde" name="diaDesde" class="form-control" min="2000-01-01" max="2099-12-31" value="<?php echo htmlspecialchars($diaDesdeActual); ?>">
+                        </div>
+                        <div class="filters-field">
+                            <label for="diaHasta" class="form-label">Fecha final</label>
+                            <input type="date" id="diaHasta" name="diaHasta" class="form-control" min="2000-01-01" max="2099-12-31" value="<?php echo htmlspecialchars($diaHastaActual); ?>">
                         </div>
                         <button type="submit" class="btn btn-primary w-100" id="applySortPromos">Aplicar filtros</button>
                     </form>
