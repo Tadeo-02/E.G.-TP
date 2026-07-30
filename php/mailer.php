@@ -1,64 +1,15 @@
 <?php
 
-require_once __DIR__ . '/PHPMailer/src/Exception.php';
-require_once __DIR__ . '/PHPMailer/src/PHPMailer.php';
-require_once __DIR__ . '/PHPMailer/src/SMTP.php';
-require_once __DIR__ . '/mailConfig.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/config.php';
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+use Resend\Resend;
 
-/**
- * Crea y configura una instancia de PHPMailer con las credenciales SMTP.
- * 
- * @return PHPMailer instancia configurada
- */
-function crearMailer(): PHPMailer {
-    $mail = new PHPMailer(true);
-
-    // Configuración del servidor
-    $mail->isSMTP();
-    $mail->Host       = MAIL_HOST;
-    $mail->SMTPAuth   = true;
-    $mail->Username   = MAIL_USERNAME;
-    $mail->Password   = MAIL_PASSWORD;
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port       = MAIL_PORT;
-
-    // Configuración del remitente
-    $mail->setFrom(MAIL_FROM_ADDRESS, MAIL_FROM_NAME);
-    $mail->CharSet = 'UTF-8';
-
-    return $mail;
-}
-
-/**
- * Función genérica para enviar correos con enlace de verificación.
- * Reutilizada por enviarCorreoVerificacion() y enviarVerificacionNewsletter().
- * 
- * @param string $emailDestinatario correo del destinatario
- * @param string $enlaceVerificacion URL completa con el token
- * @param array  $config configuración del correo:
- *   - 'asunto'       : asunto del email
- *   - 'titulo'       : título h2 del cuerpo
- *   - 'descripcion'  : párrafo descriptivo
- *   - 'textoBoton'   : texto del botón CTA
- *   - 'colorBoton'   : color de fondo del botón (hex)
- *   - 'colorTextoBtn': color del texto del botón (hex)
- *   - 'expiracion'   : texto de expiración (ej: "24 horas")
- *   - 'infoExtra'    : HTML adicional entre botón y aviso (opcional)
- *   - 'altBody'      : texto plano alternativo
- * @return bool true si se envió correctamente
- */
 function enviarCorreoConEnlace(string $emailDestinatario, string $enlaceVerificacion, array $config): bool {
     try {
-        $mail = crearMailer();
-        $mail->addAddress($emailDestinatario);
-        $mail->isHTML(true);
+        $resend = Resend::client(RESEND_API_KEY);
 
-        $mail->Subject = $config['asunto'];
-        $mail->Body    = '
+        $cuerpo = '
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; overflow: hidden;">
             <div style="background-color: #212529; padding: 20px; text-align: center;">
                 <h1 style="color: #e0a800; margin: 0; font-size: 24px;">NovaShopping</h1>
@@ -92,19 +43,22 @@ function enviarCorreoConEnlace(string $emailDestinatario, string $enlaceVerifica
                 <p style="color: #e0a800; margin: 0; font-size: 12px;">NovaShopping — Todos los derechos reservados</p>
             </div>
         </div>';
-        $mail->AltBody = $config['altBody'];
 
-        $mail->send();
+        $resend->emails->send([
+            'from'    => MAIL_FROM,
+            'to'      => [$emailDestinatario],
+            'subject' => $config['asunto'],
+            'html'    => $cuerpo,
+            'text'    => $config['altBody'],
+        ]);
+
         return true;
-    } catch (Exception $e) {
-        error_log("Error al enviar correo de verificación a $emailDestinatario: " . $e->getMessage());
+    } catch (\Exception $e) {
+        error_log("Error al enviar correo a $emailDestinatario: " . $e->getMessage());
         return false;
     }
 }
 
-/**
- * Envía un correo con enlace de verificación de email (registro de cuenta).
- */
 function enviarCorreoVerificacion(string $emailDestinatario, string $tipoUsuario, string $enlaceVerificacion): bool {
     $infoExtra = '
                 <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
@@ -131,9 +85,6 @@ function enviarCorreoVerificacion(string $emailDestinatario, string $tipoUsuario
     ]);
 }
 
-/**
- * Envía un correo de verificación para cambio de email.
- */
 function enviarCorreoCambioEmail(string $emailNuevo, string $emailAnterior, string $enlaceVerificacion): bool {
     $infoExtra = '
                 <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
@@ -160,9 +111,6 @@ function enviarCorreoCambioEmail(string $emailNuevo, string $emailAnterior, stri
     ]);
 }
 
-/**
- * Envía un correo con enlace para restablecer la contraseña.
- */
 function enviarCorreoResetPassword(string $emailDestinatario, string $enlaceReset): bool {
     return enviarCorreoConEnlace($emailDestinatario, $enlaceReset, [
         'asunto'        => 'Restablecé tu contraseña — NovaShopping',
@@ -176,9 +124,6 @@ function enviarCorreoResetPassword(string $emailDestinatario, string $enlaceRese
     ]);
 }
 
-/**
- * Envía un correo con enlace de verificación para suscripción al newsletter.
- */
 function enviarVerificacionNewsletter(string $emailDestinatario, string $enlaceVerificacion): bool {
     return enviarCorreoConEnlace($emailDestinatario, $enlaceVerificacion, [
         'asunto'        => 'Confirmá tu suscripción al Newsletter — NovaShopping',
@@ -191,4 +136,3 @@ function enviarVerificacionNewsletter(string $emailDestinatario, string $enlaceV
         'altBody'       => "Confirmá tu suscripción al Newsletter de NovaShopping\n\nHacé clic en este enlace para confirmar:\n$enlaceVerificacion\n\nEste enlace expira en 48 horas.\n\nSi no solicitaste esta suscripción, ignorá este correo.",
     ]);
 }
-?>

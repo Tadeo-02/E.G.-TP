@@ -8,7 +8,6 @@
  */
 require_once __DIR__ . '/../main.php';
 require_once __DIR__ . '/../mailer.php';
-require_once __DIR__ . '/../mailConfig.php';
 
 // Iniciar sesión
 if (session_status() !== PHP_SESSION_ACTIVE) {

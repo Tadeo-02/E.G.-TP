@@ -1,7 +1,6 @@
 <?php 
     require_once "main.php";
     require_once __DIR__ . '/mailer.php';
-    require_once __DIR__ . '/mailConfig.php';
 
     // Ensure session is started for flash messages with the same session name
     if (session_status() !== PHP_SESSION_ACTIVE) {

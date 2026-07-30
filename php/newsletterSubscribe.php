@@ -4,7 +4,6 @@ header('Content-Type: application/json; charset=UTF-8');
 
 require_once __DIR__ . '/main.php';
 require_once __DIR__ . '/mailer.php';
-require_once __DIR__ . '/mailConfig.php';
 
 $response = ['success' => false, 'message' => ''];
 
