@@ -20,7 +20,5 @@ switch($tipoMensaje) {
         $_SESSION['mensaje'] = 'Acción no válida';
 }
 
-$redirect = $_SERVER['HTTP_REFERER'] ?? '../../index.php?vista=promocionesList';
-header('Location: ' . $redirect);
-exit();
+redirigirSeguro($_SERVER['HTTP_REFERER'] ?? '', '../../index.php?vista=promocionesList');
 ?>

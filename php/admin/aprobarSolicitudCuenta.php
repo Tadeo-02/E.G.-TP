@@ -17,14 +17,6 @@
     $aprobar_cuenta->close();
     $conexion->close();
 
-    if (isset($_SERVER['HTTP_REFERER'])) {
-        // Redireccionar al usuario a la página anterior
-        header("Location: " . $_SERVER['HTTP_REFERER']);
-        exit();
-    } else {
-        // En caso de que no haya página anterior, redirigir a una página predeterminada
-        header("Location: index.php");
-        exit();
-    }
+    redirigirSeguro($_SERVER['HTTP_REFERER'] ?? '', 'index.php');
 
 ?>

@@ -9,8 +9,13 @@
 	//Armar consulta
 	$campos="uso_promociones.codUsoPromociones, uso_promociones.codCliente, uso_promociones.codPromo, uso_promociones.fechaUsoPromo, uso_promociones.estado, promociones.codLocal, promociones.codPromo, promociones.textoPromo, promociones.categoriaCliente, promociones.fechaDesdePromo, promociones.fechaHastaPromo, promociones.diasSemana, locales.codLocal, locales.codUsuario, locales.nombreLocal";
 
+	$condicionesW = [];
+	$tipos = '';
+	$parametros = [];
 	if($tipoUsuario == "Dueño"){
-		$condicionesW[] = "locales.codUsuario = $codDueño";
+		$condicionesW[] = "locales.codUsuario = ?";
+		$tipos .= 's';
+		$parametros[] = $codDueño;
 	}
 	// Filtrar solo promociones con estado Activa
 	$condicionesW[] = "promociones.estadoPromo = 'Activa'";
@@ -34,9 +39,22 @@
 	$consulta_total = "SELECT COUNT(DISTINCT promociones.codPromo) FROM promociones 
 						$innerjoin  
 						$where";
-                        
-	$datos = mysqli_query($conexion, $consulta_datos);
-	$total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
+
+	$stmtDatos = $conexion->prepare($consulta_datos);
+	if (!empty($parametros)) {
+		$stmtDatos->bind_param($tipos, ...$parametros);
+	}
+	$stmtDatos->execute();
+	$datos = $stmtDatos->get_result();
+	$stmtDatos->close();
+
+	$stmtTotal = $conexion->prepare($consulta_total);
+	if (!empty($parametros)) {
+		$stmtTotal->bind_param($tipos, ...$parametros);
+	}
+	$stmtTotal->execute();
+	$total_registros = $stmtTotal->get_result()->fetch_row()[0];
+	$stmtTotal->close();
 	$Npaginas = ceil($total_registros / $registros);
 	//Mostrar Reporte
 	if($total_registros>=1 && $pagina<=$Npaginas){
@@ -64,9 +82,13 @@
 		';
 		foreach($datos as $rows){ 
 			$codPromo = $rows['codPromo'];
-			$consulta_contador = "SELECT COUNT(*) FROM uso_promociones WHERE estado = 'Utilizado' AND  codPromo = $codPromo";
-            $datosContador = mysqli_query($conexion, $consulta_contador);
-            $fila = mysqli_fetch_row($datosContador);
+			$stmtCont = $conexion->prepare("SELECT COUNT(*) FROM uso_promociones WHERE estado = 'Utilizado' AND codPromo = ?");
+			$stmtCont->bind_param("s", $codPromo);
+			$stmtCont->execute();
+			$stmtCont->bind_result($count);
+			$stmtCont->fetch();
+			$fila = [$count];
+			$stmtCont->close();
 			$tabla.='<tr class="reporteRow">
 						<td data-cell="Código Promo" class="reporteContent">'.$rows['codPromo'].'</td>
 						<td data-cell="Promoción" class="reporteContent">'.$rows['textoPromo'].'</td>

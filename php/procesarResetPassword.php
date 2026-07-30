@@ -26,7 +26,7 @@ if (strlen($token) !== 64) {
 }
 
 // Validar formato de nueva clave
-if (verificarDatos("[a-zA-Z0-9\$@.-]{7,100}", $claveNueva1)) {
+if (verificarDatos("[a-zA-Z0-9\$@.\-]{7,100}", $claveNueva1)) {
     $_SESSION['mensaje'] = ['texto' => 'La contraseña debe tener al menos 7 caracteres.', 'tipo' => 'danger'];
     header("Location: ../index.php?vista=resetPassword&token=" . urlencode($token));
     exit();

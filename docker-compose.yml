@@ -7,14 +7,14 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ".:/var/www/html"
+      - ".:/var/www/html:z"
     networks:
       - app-network
 
   mysql:
     image: mysql
     volumes:
-      - "./DB:/var/lib/mysql"
+      - "./DB:/var/lib/mysql:z"
     environment:
       MYSQL_ROOT_PASSWORD: pw
     networks:

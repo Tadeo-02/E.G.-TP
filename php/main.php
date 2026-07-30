@@ -1,12 +1,8 @@
 <?php
 // conexion a la base de datos
 function conexion(){ 
-    // $link = mysqli_connect("sql113.infinityfree.com", "if0_40715710", "novaEGTP2024", "if0_40715710_tp_entornos");
-	// if (!$link) {
-    // 	die("Error de conexión: " . mysqli_connect_error());
-	// }
     $link = mysqli_connect("mysql", "root", "pw") or die("Problemas de conexion a la base de datos");
-    mysqli_select_db($link, "tp entornos");
+    mysqli_select_db($link, "tp_entornos");
     mysqli_set_charset($link, "utf8mb4");
     return $link;
 }
@@ -52,6 +48,22 @@ function limpiar_cadena ($cadena){
     $cadena=trim($cadena);
     $cadena=stripslashes($cadena);
     return $cadena;
+}
+
+// Redireccion segura validando que sea al mismo host
+function redirigirSeguro($url, $fallback = 'index.php') {
+    if ($url === '' || $url === null) {
+        header("Location: $fallback");
+        exit();
+    }
+    $hostPropio = $_SERVER['HTTP_HOST'] ?? '';
+    $componentes = parse_url($url);
+    if (isset($componentes['host']) && $componentes['host'] !== $hostPropio) {
+        header("Location: $fallback");
+        exit();
+    }
+    header("Location: $url");
+    exit();
 }
 
 // Funcion renombrar fotos

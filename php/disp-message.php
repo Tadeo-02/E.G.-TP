@@ -8,7 +8,7 @@
     if(isset($_GET['message'])) {
         $message = $_GET['message'];
 
-        echo "<p>" . $message . "</p>";
+        echo "<p>" . htmlspecialchars($message, ENT_QUOTES, 'UTF-8') . "</p>";
     } else {
         echo "<p>No message provided.</p>";
     }

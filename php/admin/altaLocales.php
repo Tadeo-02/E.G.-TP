@@ -16,37 +16,34 @@
     //Verificar campos obligatorios
     if ($nombreLocal == "" || $ubicacionLocal == "" || $rubroLocal == "" || $codUsuario == ""){
         $_SESSION['mensaje'] = ['texto' => 'Todos los campos obligatorios no han sido completados', 'tipo' => 'danger'];
-        if(isset($_SERVER['HTTP_REFERER'])) { header("Location: " . $_SERVER['HTTP_REFERER']); } else { header("Location: index.php"); }
-        exit();
+        redirigirSeguro($_SERVER['HTTP_REFERER'] ?? '', 'index.php');
     }
     
     $conexion = conexion();
 
     //Verificar si el local ya existe
-    $validarNombre = $conexion ->query ("SELECT nombreLocal  FROM locales WHERE nombreLocal='$nombreLocal' "); 
+    $stmt = $conexion->prepare("SELECT nombreLocal FROM locales WHERE nombreLocal = ?");
+    $stmt->bind_param("s", $nombreLocal);
+    $stmt->execute();
+    $validarNombre = $stmt->get_result();
+    $stmt->close();
     if (($validarNombre->num_rows) > 0 ) {
         $_SESSION['mensaje'] = ['texto' => 'El nombre del Local ya existe', 'tipo' => 'danger'];
         mysqli_close($conexion);
-        if(isset($_SERVER['HTTP_REFERER'])) { header("Location: " . $_SERVER['HTTP_REFERER']); } else { header("Location: index.php"); }
-        exit();
+        redirigirSeguro($_SERVER['HTTP_REFERER'] ?? '', 'index.php');
     }
 
     // Guardar Local
-    $guardarLocal = $conexion ->query("INSERT INTO locales (nombreLocal, ubicacionLocal, rubroLocal, codUsuario, imagenLocal, estadoLocal) VALUES ('$nombreLocal', '$ubicacionLocal', '$rubroLocal', '$codUsuario', '$nombreImagen', 'Activo')");
+    $stmt = $conexion->prepare("INSERT INTO locales (nombreLocal, ubicacionLocal, rubroLocal, codUsuario, imagenLocal, estadoLocal) VALUES (?, ?, ?, ?, ?, 'Activo')");
+    $stmt->bind_param("sssis", $nombreLocal, $ubicacionLocal, $rubroLocal, $codUsuario, $nombreImagen);
+    $stmt->execute();
+    $stmt->close();
     
     $_SESSION['mensaje'] = ['texto' => 'Local registrado con éxito', 'tipo' => 'success'];
     
     //Cerrar conexion    
     mysqli_close($conexion);
 
-    if (isset($_SERVER['HTTP_REFERER'])) {
-        // Redireccionar al usuario a la página anterior
-        header("Location: " . $_SERVER['HTTP_REFERER']);
-        exit();
-    } else {
-        // En caso de que no haya página anterior, redirigir a una página predeterminada
-        header("Location: index.php");
-        exit();
-    }
+    redirigirSeguro($_SERVER['HTTP_REFERER'] ?? '', 'index.php');
     
 ?>

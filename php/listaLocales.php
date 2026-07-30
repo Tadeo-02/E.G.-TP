@@ -10,14 +10,22 @@
 	
 	// Definimos los datos a consultar
 	$condiciones = [];
+	$tipos = '';
+	$parametros = [];
 	if ($tipoUsuario == "Dueño") {
-		$condiciones[] = "codUsuario = '$codDueño'";
+		$condiciones[] = "codUsuario = ?";
+		$tipos .= 'i';
+		$parametros[] = $codDueño;
 	}
 	if (!empty($busqueda)) {
-		$condiciones[] = "nombreLocal LIKE '%$busqueda%'";
+		$condiciones[] = "nombreLocal LIKE ?";
+		$tipos .= 's';
+		$parametros[] = '%' . $busqueda . '%';
 	}
 	if (!empty($rubroLocal)) {
-		$condiciones[] = "rubroLocal = '$rubroLocal'";
+		$condiciones[] = "rubroLocal = ?";
+		$tipos .= 's';
+		$parametros[] = $rubroLocal;
 	}
 
 	$where = count($condiciones) > 0 ? 'WHERE ' . implode(' AND ', $condiciones) : '';
@@ -26,9 +34,21 @@
 	$consulta_datos = "SELECT * FROM locales $where ORDER BY $ordenar $orden LIMIT $inicio, $registros";
 	$consulta_total = "SELECT COUNT(*) FROM locales $where";
 
-	$datos = mysqli_query($conexion, $consulta_datos);
+	$stmtDatos = $conexion->prepare($consulta_datos);
+	if (!empty($parametros)) {
+		$stmtDatos->bind_param($tipos, ...$parametros);
+	}
+	$stmtDatos->execute();
+	$datos = $stmtDatos->get_result();
+	$stmtDatos->close();
 
-	$total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
+	$stmtTotal = $conexion->prepare($consulta_total);
+	if (!empty($parametros)) {
+		$stmtTotal->bind_param($tipos, ...$parametros);
+	}
+	$stmtTotal->execute();
+	$total_registros = $stmtTotal->get_result()->fetch_row()[0];
+	$stmtTotal->close();
 	$Npaginas = ceil($total_registros / $registros);
 
 	if($total_registros>=1 && $pagina<=$Npaginas){

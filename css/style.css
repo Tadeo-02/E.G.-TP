@@ -516,7 +516,8 @@ button.btn-danger:hover {
   gap: 6px;
 }
 
-.filters-panel .form-label {
+.filters-panel .form-label,
+.sort-panel .form-label {
   color: #f5f5f5;
   font-weight: 600;
   margin-bottom: 0;
@@ -524,11 +525,15 @@ button.btn-danger:hover {
 
 .filters-panel .btn,
 .filters-panel .form-control,
-.filters-panel .form-select {
+.filters-panel .form-select,
+.sort-panel .btn,
+.sort-panel .form-control,
+.sort-panel .form-select {
   border-radius: 999px;
 }
 
-.filters-panel .btn {
+.filters-panel .btn,
+.sort-panel .btn {
   font-size: 0.9rem;
   font-weight: 600;
   padding: 4px 12px;
@@ -536,7 +541,9 @@ button.btn-danger:hover {
 }
 
 .filters-panel .form-control,
-.filters-panel .form-select {
+.filters-panel .form-select,
+.sort-panel .form-control,
+.sort-panel .form-select {
   background-color: #f7f7f7;
   border: 1px solid #d1a000;
   color: #222;
@@ -545,30 +552,38 @@ button.btn-danger:hover {
   padding: 6px 10px;
 }
 
-.filters-panel .form-control::placeholder {
+.filters-panel .form-control::placeholder,
+.sort-panel .form-control::placeholder {
   color: #6b6b6b;
 }
 
 .filters-panel .form-control:focus,
-.filters-panel .form-select:focus {
+.filters-panel .form-select:focus,
+.sort-panel .form-control:focus,
+.sort-panel .form-select:focus {
   border-color: #f0c75e;
   box-shadow: 0 0 0 0.2rem rgba(209, 160, 0, 0.2);
 }
 
 .filters-panel .btn:focus-visible,
 .filters-panel .form-control:focus-visible,
-.filters-panel .form-select:focus-visible {
+.filters-panel .form-select:focus-visible,
+.sort-panel .btn:focus-visible,
+.sort-panel .form-control:focus-visible,
+.sort-panel .form-select:focus-visible {
   outline: 3px solid #ffffff;
   outline-offset: 2px;
   box-shadow: 0 0 0 4px rgba(209, 160, 0, 0.35);
 }
 
-.filters-panel .input-group .form-select {
+.filters-panel .input-group .form-select,
+.sort-panel .input-group .form-select {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.filters-panel .input-group .btn {
+.filters-panel .input-group .btn,
+.sort-panel .input-group .btn {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   min-height: 34px;
@@ -579,7 +594,8 @@ button.btn-danger:hover {
   justify-content: center;
 }
 
-.filters-panel .input-group {
+.filters-panel .input-group,
+.sort-panel .input-group {
   align-items: stretch;
 }
 
@@ -602,13 +618,15 @@ button.btn-danger:hover {
   justify-content: stretch;
 }
 
-.filters-panel .order-toggle {
+.filters-panel .order-toggle,
+.sort-panel .order-toggle {
   min-width: 40px;
   border-color: #d1a000;
   color: #f0c75e;
 }
 
-.filters-panel .order-toggle:hover {
+.filters-panel .order-toggle:hover,
+.sort-panel .order-toggle:hover {
   background-color: rgba(209, 160, 0, 0.15);
   color: #f7d27a;
 }
@@ -622,8 +640,37 @@ button.btn-danger:hover {
   font-size: 0.9rem;
 }
 
-.filters-panel button:hover {
+.filters-panel button:hover,
+.sort-panel button:hover {
   transform: none;
+}
+
+/* Panel de ordenar (fuera de filtros) */
+.sort-panel {
+  background: linear-gradient(180deg, #1d1d1d 0%, #141414 100%);
+  border: 1px solid #d1a000;
+  border-radius: 16px;
+  padding: 16px;
+  color: #f7f4e8;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  margin-bottom: 12px;
+}
+
+.sort-title {
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f0c75e;
+  margin-bottom: 12px;
+}
+
+.sort-form {
+  display: grid;
+  gap: 6px;
+}
+
+.sort-form .btn {
+  margin-top: 4px;
 }
 
 /* Listados con sidebar */

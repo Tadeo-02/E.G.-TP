@@ -30,21 +30,23 @@
 
     $diasSemanaJSON = json_encode($diasSemanaArray);
     // Verificacion de fecha
-    if($fechaDesdePromo == $fechaHastaPromo){ 
-        $_SESSION['mensaje'] = 'Las promociones no pueden comenzar y terminar el mismo día';
+    if($fechaDesdePromo < date('Y-m-d')){ 
+        $_SESSION['mensaje'] = 'La fecha de inicio no puede ser anterior a hoy';
         header('Location: ../../index.php?vista=cargaPromociones');
         exit();
     }
-    if($fechaDesdePromo > $fechaHastaPromo){ 
-        $_SESSION['mensaje'] = 'La fecha de inicio de la promoción no puede ser posterior a la fecha de fin de la promoción';
+    if($fechaDesdePromo >= $fechaHastaPromo){ 
+        $_SESSION['mensaje'] = 'La fecha de fin debe ser posterior a la fecha de inicio';
         header('Location: ../../index.php?vista=cargaPromociones');
         exit();
     }
     
     // Guardando datos
     $guardar_usuario = conexion();
-    $query = "INSERT INTO promociones(textoPromo, fechaDesdePromo, fechaHastaPromo, categoriaCliente, diasSemana, estadoPromo, codLocal) VALUES ('$textoPromo', '$fechaDesdePromo', '$fechaHastaPromo', '$categoriaCliente', '$diasSemanaJSON', 'Pendiente', $codLocal)";
-    $guardar_promocion = mysqli_query($guardar_usuario, $query);
+    $stmt = $guardar_usuario->prepare("INSERT INTO promociones(textoPromo, fechaDesdePromo, fechaHastaPromo, categoriaCliente, diasSemana, estadoPromo, codLocal) VALUES (?, ?, ?, ?, ?, 'Pendiente', ?)");
+    $stmt->bind_param("sssssi", $textoPromo, $fechaDesdePromo, $fechaHastaPromo, $categoriaCliente, $diasSemanaJSON, $codLocal);
+    $stmt->execute();
+    $stmt->close();
 
     // Guardar mensaje en sesión para mostrarlo después de la redirección
     $_SESSION['mensaje'] = 'Solicitud registrada con éxito';
