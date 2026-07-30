@@ -31,7 +31,7 @@
         exit();
     }
     
-    if(verificarDatos("[a-zA-Z0-9$@.-]{7,100}", $clave_1) || verificarDatos("[a-zA-Z0-9$@.-]{7,100}", $clave_2)){
+    if(verificarDatos("[a-zA-Z0-9\$@.\-]{7,100}", $clave_1) || verificarDatos("[a-zA-Z0-9\$@.\-]{7,100}", $clave_2)){
         $_SESSION['mensaje'] = 'La clave debe contener al menos 7 caracteres';
         header('Location: ../index.php?vista=signUp');
         exit();
@@ -44,18 +44,23 @@
             header('Location: ../index.php?vista=signUp');
             exit();
         }else{
-            $checkEmail = conexion();
-            $checkEmail = $checkEmail->query("SELECT nombreUsuario, estadoCuenta FROM usuarios WHERE nombreUsuario = '$email'");
-            if($checkEmail -> num_rows > 0){
-                $cuentaExistente = $checkEmail->fetch_assoc();
+            $connCheck = conexion();
+            $stmtCheck = $connCheck->prepare("SELECT nombreUsuario, estadoCuenta FROM usuarios WHERE nombreUsuario = ?");
+            $stmtCheck->bind_param("s", $email);
+            $stmtCheck->execute();
+            $resultCheck = $stmtCheck->get_result();
+            if($resultCheck->num_rows > 0){
+                $cuentaExistente = $resultCheck->fetch_assoc();
                 if($cuentaExistente['estadoCuenta'] !== 'Baja'){
                     $_SESSION['mensaje'] = 'El email ya está registrado';
+                    $stmtCheck->close();
+                    $connCheck->close();
                     header('Location: ../index.php?vista=signUp');
                     exit();
                 }
-                // Si la cuenta está dada de baja, permitir reutilizar el email
             }
-            $checkEmail = null;
+            $stmtCheck->close();
+            $connCheck->close();
         }
     }
 

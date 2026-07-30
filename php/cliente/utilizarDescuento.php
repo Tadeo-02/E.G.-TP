@@ -11,9 +11,7 @@ $conexion = conexion();
 
 if (!$codUso) {
     $_SESSION['mensaje'] = 'Parámetros inválidos.';
-    $redirect = $_SERVER['HTTP_REFERER'] ?? '../../index.php';
-    header('Location: ' . $redirect);
-    exit();
+    redirigirSeguro($_SERVER['HTTP_REFERER'] ?? '', '../../index.php');
 }
 
 // Obtener uso
@@ -26,9 +24,7 @@ $stmt->close();
 
 if (!$uso) {
     $_SESSION['mensaje'] = 'Uso de promoción no encontrado.';
-    $redirect = $_SERVER['HTTP_REFERER'] ?? '../../index.php';
-    header('Location: ' . $redirect);
-    exit();
+    redirigirSeguro($_SERVER['HTTP_REFERER'] ?? '', '../../index.php');
 }
 
 $codPromo = $uso['codPromo'];
@@ -50,9 +46,7 @@ $hoyNumero = (int) date('N'); // 1 (Mon) .. 7 (Sun)
 
 if (!in_array((string)$hoyNumero, array_map('strval', $diasSemanaPermitidos))) {
     $_SESSION['mensaje'] = 'La utilización del descuento no está disponible este día de la semana';
-    $redirect = $_SERVER['HTTP_REFERER'] ?? '../../index.php';
-    header('Location: ' . $redirect);
-    exit();
+    redirigirSeguro($_SERVER['HTTP_REFERER'] ?? '', '../../index.php');
 }
 
 // Marcar como utilizado
@@ -98,8 +92,6 @@ $_SESSION['mensaje'] = [
     'tipo' => 'success'
 ];
 
-$redirect = $_SERVER['HTTP_REFERER'] ?? '../../index.php';
-header('Location: ' . $redirect);
-exit();
+redirigirSeguro($_SERVER['HTTP_REFERER'] ?? '', '../../index.php');
 
 ?>

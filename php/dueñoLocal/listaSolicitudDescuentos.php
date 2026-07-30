@@ -8,15 +8,20 @@
 	$codDueño = isset($_SESSION['codUsuario']) ? $_SESSION['codUsuario'] : '';
 	//Armar consulta
 	$campos="uso_promociones.codUsoPromociones, uso_promociones.codCliente, uso_promociones.codPromo, uso_promociones.fechaUsoPromo, uso_promociones.estado, promociones.codLocal, promociones.codPromo, promociones.textoPromo, promociones.categoriaCliente, promociones.fechaDesdePromo, promociones.fechaHastaPromo, promociones.diasSemana, usuarios.nombreUsuario, usuarios.codUsuario, usuarios.categoriaCliente, locales.codLocal, locales.codUsuario, locales.nombreLocal";
-	$condicionesI[] = "INNER JOIN promociones ON promociones.codPromo = uso_promociones.codPromo 
+	$condicionesI = ["INNER JOIN promociones ON promociones.codPromo = uso_promociones.codPromo 
                    INNER JOIN usuarios ON uso_promociones.codCliente = usuarios.codUsuario 
-                   INNER JOIN locales ON locales.codLocal = promociones.codLocal";
+                   INNER JOIN locales ON locales.codLocal = promociones.codLocal"];
 
-	$condicionesW[] = "locales.codUsuario = $codDueño"; // Indico de cual tabla es el codLocal
-	$condicionesW[] = "uso_promociones.estado = 'Pendiente'"; // Indico de cual tabla es el codLocal
+	$condicionesW = [];
+	$tipos = '';
+	$parametros = [];
+	$condicionesW[] = "locales.codUsuario = ?";
+	$tipos .= 's';
+	$parametros[] = $codDueño;
+	$condicionesW[] = "uso_promociones.estado = 'Pendiente'";
 	$where = !empty($condicionesW) ? 'WHERE ' . implode(' AND ', $condicionesW) : '';
 
-	$innerjoin = !empty($condicionesI) ? implode(' ', $condicionesI) : ''; // No poner 'INNER JOIN' directamente aca
+	$innerjoin = !empty($condicionesI) ? implode(' ', $condicionesI) : '';
 	$select = isset($campos) ? $campos : '*';
 
 	// Construir consultas finales
@@ -31,8 +36,21 @@
 						$innerjoin 
 						$where";
 
-	$datos = mysqli_query($conexion, $consulta_datos);
-	$total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
+	$stmtDatos = $conexion->prepare($consulta_datos);
+	if (!empty($parametros)) {
+		$stmtDatos->bind_param($tipos, ...$parametros);
+	}
+	$stmtDatos->execute();
+	$datos = $stmtDatos->get_result();
+	$stmtDatos->close();
+
+	$stmtTotal = $conexion->prepare($consulta_total);
+	if (!empty($parametros)) {
+		$stmtTotal->bind_param($tipos, ...$parametros);
+	}
+	$stmtTotal->execute();
+	$total_registros = $stmtTotal->get_result()->fetch_row()[0];
+	$stmtTotal->close();
 	$Npaginas = ceil($total_registros / $registros);
 	//Mostrar solicitud de Descuentos
 	if($total_registros>=1 && $pagina<=$Npaginas){
@@ -68,9 +86,13 @@
 			$codUso = $rows['codUsoPromociones'];
 			$codCliente = $rows['codCliente'];
 			$codPromo = $rows['codPromo'];
-            $consulta_contador = "SELECT COUNT(*) FROM uso_promociones WHERE estado = 'Aprobada' AND  codPromo = $codPromo";
-            $datosContador = mysqli_query($conexion, $consulta_contador);
-            $fila = mysqli_fetch_row($datosContador);
+			$stmtCont = $conexion->prepare("SELECT COUNT(*) FROM uso_promociones WHERE estado = 'Aprobada' AND codPromo = ?");
+			$stmtCont->bind_param("s", $codPromo);
+			$stmtCont->execute();
+			$stmtCont->bind_result($count);
+			$stmtCont->fetch();
+			$fila = [$count];
+			$stmtCont->close();
 			$nombreUsuario = $rows['nombreUsuario'];
 			$codUsuario = $rows['codUsuario'];
 			$nombreLocal = $rows['nombreLocal'];
@@ -158,65 +180,3 @@
 </script>
 
 
-
-<!-- <div class="wrapper">
-	<table class="reporte">
-		<caption>
-			Usos de descuentos
-		</caption>
-		<tr class="reporteRow">
-			<th class="reporteHeading">
-				<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=uso_promociones.fechaUsoPromo">Fecha solicitud</a>
-			</th>
-			<th class="reporteHeading">
-				<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=uso_promociones.codCliente">Cod Cliente</a>
-			</th>
-			<th class="reporteHeading">
-				<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=usuarios.nombreUsuario">Mail Cliente</a>	
-			</th>
-			<th class="reporteHeading">
-				<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=uso_promociones.codPromo">Código Promoción</a>
-			</th>
-			<th class="reporteHeading">
-				<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=promociones.textoPromo">Promoción</a>
-			</th>
-			<th class="reporteHeading">
-				<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=locales.codLocal">Código Local</a>
-			</th>
-			<th class="reporteHeading">
-				<a class="linkTabla" href="index.php?vista=discountRequest&sortBy=locales.nombreLocal">Local</a>
-			</th>
-			<th class="reporteHeading"></th>
-		</tr>
-		<tr class="reporteRow">
-			<td data-cell="Fecha Uso" class="reporteContent">'.htmlspecialchars($rows['fechaUsoPromo']).'</td>
-			<td data-cell="Código Cliente" class="reporteContent">'. htmlspecialchars($rows['codCliente']) . '</td>
-			<td data-cell="Promoción" class="reporteContent">'.htmlspecialchars($rows['nombreUsuario']).'</td>
-			<td data-cell="Código Promo" class="reporteContent">'. htmlspecialchars($rows['codPromo']) .'</td>
-			<td data-cell="Texto Promo" class="reporteContent">'. htmlspecialchars($rows['textoPromo']) .'</td>
-			<td data-cell="Código Local" class="reporteContent">'. htmlspecialchars($rows['codLocal']) .'</td>
-			<td data-cell="Nombre Local" class="reporteContent">'. htmlspecialchars($rows['nombreLocal']) .'</td>
-			<td data-cell="Aceptar/Rechazar" class="botonesTD reporteContent" style="width: 25%;">
-				<div class="formContainerSolicitud">							
-					<form action="./php/dueñoLocal/aprobarSolicitudDescuentoCliente.php" method="POST">
-						<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
-						<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
-						<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
-						<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
-						<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido ACEPTADA."> <br>
-						<button type="submit" name="botonAnashe" class="btn btn-success" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar Solicitud</button>
-					</form>							
-					<form action="./php/dueñoLocal/denegarSolicitudDescuentoCliente.php" method="POST">
-						<input type="hidden" name="codCliente" value="'.htmlspecialchars($codCliente) .'">
-						<input type="hidden" name="codPromo" value="'.htmlspecialchars($codPromo) .'">
-						<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
-						<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
-						<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido RECHAZADA."> <br>
-						<button type="submit" name="botonAnashe" value="Denegar Solicitud" class="btn btn-danger" onclick="return rechazar();">Denegar Solicitud</button>
-					</form>
-				</div>
-			</td>
-		</tr>
-		
-	</table>
-</div> -->

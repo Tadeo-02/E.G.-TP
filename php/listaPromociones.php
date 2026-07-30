@@ -19,11 +19,12 @@
 	// Agregar condiciones según los filtros seleccionados
 
 	$sort = $ordenar != '' ? $ordenar : 'fechaDesdePromo';
-	$codUsuario = $_SESSION['codUsuario'] ?? null; // Evita error si no está definido
+	$codUsuario = $_SESSION['codUsuario'] ?? null;
 	$condicionesI = [];
-	$condicionesw = [];
+	$condicionesW = [];
+	$tipos = '';
+	$parametros = [];
 
-	//if (!empty($tipoUsuario) && $codUsuario) { //agrega consulta de nombre local
 	$campos="  locales.codLocal, locales.codUsuario, locales.nombreLocal, 
 	promociones.codLocal, promociones.codPromo, promociones.textoPromo, promociones.categoriaCliente,
 	promociones.fechaDesdePromo, promociones.fechaHastaPromo, promociones.diasSemana";
@@ -31,28 +32,41 @@
 
 	// Verificacion segun si es dueño o cliente/UNR
 	if ($tipoUsuario == 'Dueño') {
-		$condicionesW[] = "locales.codUsuario = $codUsuario";
+		$condicionesW[] = "locales.codUsuario = ?";
+		$tipos .= 's';
+		$parametros[] = $codUsuario;
 	}
-	//} 
 	if (!empty($localActual)) {
-		$condicionesW[] = "promociones.codLocal = $localActual"; // Indico de cual tabla es el codLocal
+		$condicionesW[] = "promociones.codLocal = ?";
+		$tipos .= 's';
+		$parametros[] = $localActual;
 	}
 
-	if (!empty($diaDesde && !empty($diaHasta))) {
-		$condicionesW[] = "('$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo OR '$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo OR '$diaDesde' < fechaDesdePromo AND '$diaHasta' > fechaHastaPromo)";
+	if (!empty($diaDesde) && !empty($diaHasta)) {
+		$condicionesW[] = "(? BETWEEN fechaDesdePromo AND fechaHastaPromo OR ? BETWEEN fechaDesdePromo AND fechaHastaPromo OR ? < fechaDesdePromo AND ? > fechaHastaPromo)";
+		$tipos .= 'ssss';
+		$parametros[] = $diaDesde;
+		$parametros[] = $diaHasta;
+		$parametros[] = $diaDesde;
+		$parametros[] = $diaHasta;
 	} elseif (!empty($diaDesde)) {
-		$condicionesW[] = "'$diaDesde' BETWEEN fechaDesdePromo AND fechaHastaPromo OR '$diaDesde' < fechaDesdePromo";
+		$condicionesW[] = "(? BETWEEN fechaDesdePromo AND fechaHastaPromo OR ? < fechaDesdePromo)";
+		$tipos .= 'ss';
+		$parametros[] = $diaDesde;
+		$parametros[] = $diaDesde;
 	} elseif (!empty($diaHasta)) {
-		$condicionesW[] = "'$diaHasta' BETWEEN fechaDesdePromo AND fechaHastaPromo OR '$diaHasta' > fechaHastaPromo";
+		$condicionesW[] = "(? BETWEEN fechaDesdePromo AND fechaHastaPromo OR ? > fechaHastaPromo)";
+		$tipos .= 'ss';
+		$parametros[] = $diaHasta;
+		$parametros[] = $diaHasta;
 	}
 
-	
 	// Convertir condiciones a una cadena SQL
 	if($tipoUsuario != 'Administrador') {
-		$condicionesW[] = 'estadoPromo = "Activa"'; // Evitar error de SQL si no hay condiciones
+		$condicionesW[] = 'estadoPromo = "Activa"';
 	}
 	else {
-		$condicionesW[] = 'estadoPromo = "Pendiente"'; // Evitar error de SQL si no hay condiciones
+		$condicionesW[] = 'estadoPromo = "Pendiente"';
 	}
 	
 	$where = !empty($condicionesW) ? 'WHERE ' . implode(' AND ', $condicionesW) : '';
@@ -73,9 +87,21 @@
 						$innerjoin 
 						$where";
 
-	$datos = mysqli_query($conexion, $consulta_datos);
+	$stmtDatos = $conexion->prepare($consulta_datos);
+	if (!empty($parametros)) {
+		$stmtDatos->bind_param($tipos, ...$parametros);
+	}
+	$stmtDatos->execute();
+	$datos = $stmtDatos->get_result();
+	$stmtDatos->close();
 
-	$total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
+	$stmtTotal = $conexion->prepare($consulta_total);
+	if (!empty($parametros)) {
+		$stmtTotal->bind_param($tipos, ...$parametros);
+	}
+	$stmtTotal->execute();
+	$total_registros = $stmtTotal->get_result()->fetch_row()[0];
+	$stmtTotal->close();
     
 	$Npaginas = ceil($total_registros / $registros);
 

@@ -14,28 +14,28 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 
 // Verificar que el cliente no haya solicitado la misma promoción antes (pendiente o aprobada)
 $conexion = conexion();
-$query_verificar = "SELECT * FROM uso_promociones WHERE codCliente = '$codCliente' AND codPromo = '$codPromo' AND estado IN ('Pendiente', 'Aprobada')";
-$verificar_solicitud = mysqli_query($conexion, $query_verificar);
+$stmtVerif = $conexion->prepare("SELECT * FROM uso_promociones WHERE codCliente = ? AND codPromo = ? AND estado IN ('Pendiente', 'Aprobada')");
+$stmtVerif->bind_param("ss", $codCliente, $codPromo);
+$stmtVerif->execute();
+$verificar_solicitud = $stmtVerif->get_result();
+$stmtVerif->close();
 
 if (mysqli_num_rows($verificar_solicitud) > 0) {
-    // mysqli_close($conexion);
     $_SESSION['mensaje'] = 'Ya has solicitado esta promoción anteriormente';
-    $redirect = $_SERVER['HTTP_REFERER'] ?? 'index.php';
-    header('Location: ' . $redirect);
-    exit();
+    redirigirSeguro($_SERVER['HTTP_REFERER'] ?? '', 'index.php');
 }
 
 // Verificar campos Obligatorios
 if( $codCliente == "" || $codPromo == "" ){ 
     mysqli_close($conexion);
     $_SESSION['mensaje'] = 'Todos los campos obligatorios no han sido completados';
-    $redirect = $_SERVER['HTTP_REFERER'] ?? 'index.php';
-    header('Location: ' . $redirect);
-    exit();
+    redirigirSeguro($_SERVER['HTTP_REFERER'] ?? '', 'index.php');
 }
 // Guardando datos (se permite solicitar en cualquier día; validación de uso se aplica al utilizar)
-$query_insert = "INSERT INTO uso_promociones (codCliente, codPromo, fechaUsoPromo, estado) VALUES ('$codCliente', '$codPromo', '$hoy', 'Pendiente')";
-$guardar_promo = mysqli_query($conexion, $query_insert);
+$stmtInsert = $conexion->prepare("INSERT INTO uso_promociones (codCliente, codPromo, fechaUsoPromo, estado) VALUES (?, ?, ?, 'Pendiente')");
+$stmtInsert->bind_param("sss", $codCliente, $codPromo, $hoy);
+$guardar_promo = $stmtInsert->execute();
+$stmtInsert->close();
 
 if ($guardar_promo) {
     $_SESSION['mensaje'] = 'Solicitud registrada con exito';
@@ -46,44 +46,4 @@ if ($guardar_promo) {
 //Cerrar conexion    
 mysqli_close($conexion);
 
-$redirect = $_SERVER['HTTP_REFERER'] ?? 'index.php';
-header('Location: ' . $redirect);
-exit();
-
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+redirigirSeguro($_SERVER['HTTP_REFERER'] ?? '', 'index.php');

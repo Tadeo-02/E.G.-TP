@@ -13,7 +13,7 @@
         exit();
     }
 
-    if(verificarDatos("[a-zA-Z0-9$@.-]{7,100}", $password)){
+    if(verificarDatos("[a-zA-Z0-9\$@.\-]{7,100}", $password)){
         echo '<div class="alert alert-danger" role="alert">
             La contraseña no cumple con el formato requerido
             </div>';
@@ -24,9 +24,10 @@
     // Conexion a la DB
     $conexion = conexion();
 
-    $consulta_usuario = "SELECT * FROM usuarios WHERE nombreUsuario = '$email'";
-
-    $checkUser = mysqli_query($conexion, $consulta_usuario);
+    $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE nombreUsuario = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $checkUser = $stmt->get_result();
 
     if($checkUser -> num_rows==1){ 
 
@@ -46,6 +47,7 @@
                 }else{
                     header("Location: index.php?vista=home");
                 }
+                exit();
             }   elseif ($checkUser['estadoCuenta'] == 'Pendiente'){
                     echo '<div class="alert alert-warning" role="alert">
                      Tu email aún no ha sido verificado. Revisá tu bandeja de entrada y hacé clic en el enlace de verificación.

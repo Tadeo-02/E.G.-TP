@@ -5,6 +5,8 @@
 	$hoy = date("Y-m-d");
 
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
+	$inicio = intval($inicio);
+	$registros = intval($registros);
 	
 	$tabla="";
 	
@@ -14,31 +16,48 @@
 	
 	//Consultas de acuerdo a la categoria de cliente
 	if($categoriaCliente == "Medium"){
-		$consulta_datos = "SELECT * FROM novedades 
-					WHERE (DATE ('$hoy') BETWEEN fechaDesdeNovedad AND fechaHastaNovedad) AND (tipoCliente = 'Inicial' OR tipoCliente = 'Medium')
-					ORDER BY fechaDesdeNovedad DESC, codNovedad DESC 
-					LIMIT $inicio, $registros";
-		$consulta_total = "SELECT COUNT(*) FROM novedades WHERE (DATE ('$hoy') BETWEEN fechaDesdeNovedad AND fechaHastaNovedad) AND (tipoCliente = 'Inicial' OR tipoCliente = 'Medium') ";
+		$stmt_datos = $conexion->prepare("SELECT * FROM novedades WHERE (? BETWEEN fechaDesdeNovedad AND fechaHastaNovedad) AND (tipoCliente = ? OR tipoCliente = ?) ORDER BY fechaDesdeNovedad DESC, codNovedad DESC LIMIT ?, ?");
+		$inicial = 'Inicial';
+		$medium = 'Medium';
+		$stmt_datos->bind_param("sssii", $hoy, $inicial, $medium, $inicio, $registros);
+		$stmt_datos->execute();
+		$datos = $stmt_datos->get_result();
+		$stmt_datos->close();
+
+		$stmt_total = $conexion->prepare("SELECT COUNT(*) FROM novedades WHERE (? BETWEEN fechaDesdeNovedad AND fechaHastaNovedad) AND (tipoCliente = ? OR tipoCliente = ?)");
+		$stmt_total->bind_param("sss", $hoy, $inicial, $medium);
+		$stmt_total->execute();
+		$total_registros = $stmt_total->get_result()->fetch_row()[0];
+		$stmt_total->close();
 
 	}elseif($categoriaCliente == "Inicial"){
-		$consulta_datos = "SELECT * FROM novedades 
-					WHERE (DATE ('$hoy') BETWEEN fechaDesdeNovedad AND fechaHastaNovedad) AND tipoCliente = 'Inicial'
-					ORDER BY fechaDesdeNovedad DESC, codNovedad DESC 
-					LIMIT $inicio, $registros";
-		$consulta_total = "SELECT COUNT(*) FROM novedades WHERE (DATE ('$hoy') BETWEEN fechaDesdeNovedad AND fechaHastaNovedad) AND tipoCliente = 'Inicial' ";
+		$stmt_datos = $conexion->prepare("SELECT * FROM novedades WHERE (? BETWEEN fechaDesdeNovedad AND fechaHastaNovedad) AND tipoCliente = ? ORDER BY fechaDesdeNovedad DESC, codNovedad DESC LIMIT ?, ?");
+		$inicial = 'Inicial';
+		$stmt_datos->bind_param("ssii", $hoy, $inicial, $inicio, $registros);
+		$stmt_datos->execute();
+		$datos = $stmt_datos->get_result();
+		$stmt_datos->close();
+
+		$stmt_total = $conexion->prepare("SELECT COUNT(*) FROM novedades WHERE (? BETWEEN fechaDesdeNovedad AND fechaHastaNovedad) AND tipoCliente = ?");
+		$stmt_total->bind_param("ss", $hoy, $inicial);
+		$stmt_total->execute();
+		$total_registros = $stmt_total->get_result()->fetch_row()[0];
+		$stmt_total->close();
 
 	}else{
-		$consulta_datos = "SELECT * FROM novedades 
-                   WHERE DATE('$hoy') BETWEEN fechaDesdeNovedad AND fechaHastaNovedad 
-                   ORDER BY fechaDesdeNovedad DESC, codNovedad DESC 
-                   LIMIT $inicio, $registros";
-		$consulta_total = "SELECT COUNT(*) FROM novedades WHERE DATE('$hoy') BETWEEN fechaDesdeNovedad AND fechaHastaNovedad ";
+		$stmt_datos = $conexion->prepare("SELECT * FROM novedades WHERE ? BETWEEN fechaDesdeNovedad AND fechaHastaNovedad ORDER BY fechaDesdeNovedad DESC, codNovedad DESC LIMIT ?, ?");
+		$stmt_datos->bind_param("sii", $hoy, $inicio, $registros);
+		$stmt_datos->execute();
+		$datos = $stmt_datos->get_result();
+		$stmt_datos->close();
+
+		$stmt_total = $conexion->prepare("SELECT COUNT(*) FROM novedades WHERE ? BETWEEN fechaDesdeNovedad AND fechaHastaNovedad");
+		$stmt_total->bind_param("s", $hoy);
+		$stmt_total->execute();
+		$total_registros = $stmt_total->get_result()->fetch_row()[0];
+		$stmt_total->close();
 
 	}
-	
-	$datos = mysqli_query($conexion, $consulta_datos);
-
-	$total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
 	$Npaginas = ceil($total_registros / $registros);
 
 	if($total_registros>=1 && $pagina<=$Npaginas){

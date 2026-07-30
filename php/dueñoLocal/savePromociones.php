@@ -43,8 +43,10 @@
     
     // Guardando datos
     $guardar_usuario = conexion();
-    $query = "INSERT INTO promociones(textoPromo, fechaDesdePromo, fechaHastaPromo, categoriaCliente, diasSemana, estadoPromo, codLocal) VALUES ('$textoPromo', '$fechaDesdePromo', '$fechaHastaPromo', '$categoriaCliente', '$diasSemanaJSON', 'Pendiente', $codLocal)";
-    $guardar_promocion = mysqli_query($guardar_usuario, $query);
+    $stmt = $guardar_usuario->prepare("INSERT INTO promociones(textoPromo, fechaDesdePromo, fechaHastaPromo, categoriaCliente, diasSemana, estadoPromo, codLocal) VALUES (?, ?, ?, ?, ?, 'Pendiente', ?)");
+    $stmt->bind_param("sssssi", $textoPromo, $fechaDesdePromo, $fechaHastaPromo, $categoriaCliente, $diasSemanaJSON, $codLocal);
+    $stmt->execute();
+    $stmt->close();
 
     // Guardar mensaje en sesión para mostrarlo después de la redirección
     $_SESSION['mensaje'] = 'Solicitud registrada con éxito';

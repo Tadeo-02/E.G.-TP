@@ -28,14 +28,23 @@ $conexion = conexion();
                         FROM uso_promociones up
                         INNER JOIN promociones p ON up.codPromo = p.codPromo
                         INNER JOIN locales l ON p.codLocal = l.codLocal
-                        WHERE up.codCliente = $codCliente AND (up.estado = 'Aprobada' OR up.estado = 'Pendiente')
+                        WHERE up.codCliente = ? AND (up.estado = 'Aprobada' OR up.estado = 'Pendiente')
                         ORDER BY " . $ordenar_sql . "
                         LIMIT $inicio, $registros";
 
-$consulta_total = "SELECT COUNT(*) FROM uso_promociones up WHERE up.codCliente = $codCliente AND (up.estado = 'Aprobada' OR up.estado = 'Pendiente')";
+$consulta_total = "SELECT COUNT(*) FROM uso_promociones up WHERE up.codCliente = ? AND (up.estado = 'Aprobada' OR up.estado = 'Pendiente')";
 
-$datos = mysqli_query($conexion, $consulta_datos);
-$total_registros = mysqli_fetch_array(mysqli_query($conexion, $consulta_total))[0];
+$stmtDatos = $conexion->prepare($consulta_datos);
+$stmtDatos->bind_param("s", $codCliente);
+$stmtDatos->execute();
+$datos = $stmtDatos->get_result();
+$stmtDatos->close();
+
+$stmtTotal = $conexion->prepare($consulta_total);
+$stmtTotal->bind_param("s", $codCliente);
+$stmtTotal->execute();
+$total_registros = $stmtTotal->get_result()->fetch_row()[0];
+$stmtTotal->close();
 $Npaginas = ceil($total_registros / $registros);
 
     if ($total_registros >= 1) {
