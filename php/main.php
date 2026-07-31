@@ -1,8 +1,11 @@
 <?php
+
+require_once __DIR__ . '/config.php';
+
 // conexion a la base de datos
 function conexion(){ 
-    $link = mysqli_connect("mysql", "root", "pw") or die("Problemas de conexion a la base de datos");
-    mysqli_select_db($link, "tp_entornos");
+    $link = mysqli_connect(DB_HOST, DB_USER, DB_PASS) or die("Problemas de conexion a la base de datos: " . mysqli_connect_error());
+    mysqli_select_db($link, DB_NAME);
     mysqli_set_charset($link, "utf8mb4");
     return $link;
 }
