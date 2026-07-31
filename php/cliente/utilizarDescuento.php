@@ -73,6 +73,14 @@ function actualizarCategoriaClienteUtilizados($conexion, $codCliente) {
         $nuevaCategoria = 'Medium';
     }
 
+    $consultaCategoria = $conexion->prepare("SELECT categoriaCliente FROM usuarios WHERE codUsuario = ? LIMIT 1");
+    $consultaCategoria->bind_param("i", $codCliente);
+    $consultaCategoria->execute();
+    $resultadoCategoria = $consultaCategoria->get_result();
+    $rowCategoria = $resultadoCategoria->fetch_assoc();
+    $categoriaActual = $rowCategoria['categoriaCliente'] ?? '';
+    $consultaCategoria->close();
+
     $updateCategoria = $conexion->prepare("UPDATE usuarios SET categoriaCliente = ? WHERE codUsuario = ?");
     $updateCategoria->bind_param("si", $nuevaCategoria, $codCliente);
     $updateCategoria->execute();
@@ -80,15 +88,18 @@ function actualizarCategoriaClienteUtilizados($conexion, $codCliente) {
     
     // Actualizar la variable de sesión con la nueva categoría
     $_SESSION['categoriaCliente'] = $nuevaCategoria;
+
+    return $categoriaActual !== $nuevaCategoria;
 }
 
+$categoriaSubio = false;
 if ($codCliente) {
-    actualizarCategoriaClienteUtilizados($conexion, $codCliente);
+    $categoriaSubio = actualizarCategoriaClienteUtilizados($conexion, $codCliente);
 }
 
 // Cambiar el mensaje de éxito para incluir el tipo 'success'
 $_SESSION['mensaje'] = [
-    'texto' => 'Descuento utilizado correctamente.',
+    'texto' => 'Descuento utilizado correctamente.' . ($categoriaSubio ? ' ¡Felicitaciones por subir de categoría!' : ''),
     'tipo' => 'success'
 ];
 
