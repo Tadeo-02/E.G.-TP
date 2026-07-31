@@ -152,7 +152,7 @@
 
                 $pagina=limpiar_cadena($pagina);
                 $url="index.php?vista=localsList&rubroLocal=$rubroLocal&sortBy=$ordenar&order=$orden&page=";
-                $registros = 10;
+                $registros = 4;
                 $busqueda = (isset( $_SESSION['busquedaLocal'])) ? $_SESSION['busquedaLocal'] : '';
 
                 require_once (__DIR__. '/../php/listaLocales.php');

@@ -4,8 +4,8 @@ require_once __DIR__ . '/config.php';
 
 // conexion a la base de datos
 function conexion(){ 
-    $link = mysqli_connect(defined('DB_HOST') ? DB_HOST : "mysql", defined('DB_USER') ? DB_USER : "root", defined('DB_PASS') ? DB_PASS : "pw") or die("Problemas de conexion a la base de datos: " . mysqli_connect_error());
-    mysqli_select_db($link, defined('DB_NAME') ? DB_NAME : "tp entornos");
+    $link = mysqli_connect('DB_HOST', 'DB_USER', 'DB_PASS') or die("Problemas de conexion a la base de datos");
+    mysqli_select_db($link, 'DB_NAME');
     mysqli_set_charset($link, "utf8mb4");
     return $link;
 }

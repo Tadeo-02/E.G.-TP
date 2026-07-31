@@ -61,7 +61,7 @@
 
                 $pagina=limpiar_cadena($pagina);
                 $url="index.php?vista=novedadesList&page=";
-                $registros = 1;
+                $registros = 3;
 
                 require_once (__DIR__. '/../php/listaNovedades.php');
             ?>
