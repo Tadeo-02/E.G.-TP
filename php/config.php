@@ -1,6 +1,7 @@
 <?php
 
-if (defined('APP_URL') && defined('RESEND_API_KEY') && defined('MAIL_FROM')) {
+if (defined('APP_URL') && defined('RESEND_API_KEY') && defined('MAIL_FROM') &&
+    defined('DB_HOST') && defined('DB_USER') && defined('DB_PASS') && defined('DB_NAME')) {
     return;
 }
 
@@ -74,4 +75,28 @@ if (!defined('MAIL_FROM')) {
     $from = getenv('MAIL_FROM');
     if ($from === false) { $from = $_ENV['MAIL_FROM'] ?? ''; }
     define('MAIL_FROM', $from);
+}
+
+if (!defined('DB_HOST')) {
+    $dbHost = getenv('DB_HOST');
+    if ($dbHost === false) { $dbHost = $_ENV['DB_HOST'] ?? 'mysql'; }
+    define('DB_HOST', $dbHost);
+}
+
+if (!defined('DB_USER')) {
+    $dbUser = getenv('DB_USER');
+    if ($dbUser === false) { $dbUser = $_ENV['DB_USER'] ?? 'root'; }
+    define('DB_USER', $dbUser);
+}
+
+if (!defined('DB_PASS')) {
+    $dbPass = getenv('DB_PASS');
+    if ($dbPass === false) { $dbPass = $_ENV['DB_PASS'] ?? 'pw'; }
+    define('DB_PASS', $dbPass);
+}
+
+if (!defined('DB_NAME')) {
+    $dbName = getenv('DB_NAME');
+    if ($dbName === false) { $dbName = $_ENV['DB_NAME'] ?? 'tp_entornos'; }
+    define('DB_NAME', $dbName);
 }
