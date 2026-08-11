@@ -1,5 +1,5 @@
 <?php
-    require_once "../verificarTipoUsuarioDueño.php";
+    require_once "../verificarTipoUsuarioDueno.php";
     require_once "../main.php";
     
     // Iniciar sesión con el mismo nombre usado en la aplicación

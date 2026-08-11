@@ -30,7 +30,7 @@
                         $url="index.php?vista=discountRequest&sortBy=$ordenar&page="; 
                         $registros=9;
 
-                        require_once (__DIR__. '/../php/dueñoLocal/listaSolicitudDescuentos.php');
+                        require_once (__DIR__. '/../php/duenoLocal/listaSolicitudDescuentos.php');
 
                     ?>
                 </div>

@@ -106,14 +106,14 @@
 						<td data-cell="Nombre Local" class="reporteContent">'. htmlspecialchars($rows['nombreLocal']) .'</td>
 						<td data-cell="Aceptar/Rechazar" class="botonesTD reporteContent" style="width: 25%;">
 							<div class="formContainerSolicitud">							
-								<form action="./php/dueñoLocal/aprobarSolicitudDescuentoCliente.php" method="POST">
+								<form action="./php/duenoLocal/aprobarSolicitudDescuentoCliente.php" method="POST">
 									<input type="hidden" name="codUsoPromociones" value="'.htmlspecialchars($codUso) .'">
 									<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
 									<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>
 									<input type="hidden" name="mensaje" value="Su solicitud de descuento ha sido ACEPTADA."> <br>
 									<button type="submit" name="botonAnashe" class="btn btn-success btnTabla" value="Aceptar Solicitud" onclick="return confirmar();">Aceptar</button>
 								</form>							
-								<form action="./php/dueñoLocal/denegarSolicitudDescuentoCliente.php" method="POST">
+								<form action="./php/duenoLocal/denegarSolicitudDescuentoCliente.php" method="POST">
 									<input type="hidden" name="codUsoPromociones" value="'.htmlspecialchars($codUso) .'">
 									<input type="hidden" name="email" value="' . htmlspecialchars($nombreUsuario) . '"> <br>
 									<input type="hidden" name="asunto" value="Solicitud de Descuento NOVA SHOPPING"> <br>

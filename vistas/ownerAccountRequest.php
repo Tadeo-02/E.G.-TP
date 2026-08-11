@@ -29,7 +29,7 @@
                 $url="index.php?vista=ownerAccountRequest&page=";
                 $registros = 10;
 
-                require_once (__DIR__. '/../php/admin/solicitudCuentaDueño.php');
+                require_once (__DIR__. '/../php/admin/solicitudCuentaDueno.php');
 
             ?>
         </div>
