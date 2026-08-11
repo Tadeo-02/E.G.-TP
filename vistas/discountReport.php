@@ -29,7 +29,7 @@
                         $url="index.php?vista=discountReport&sortBy=$ordenar&page="; 
                         $registros=15;
 
-                        require_once (__DIR__. '/../php/dueñoLocal/reporteDescuento.php');
+                        require_once (__DIR__. '/../php/duenoLocal/reporteDescuento.php');
 
                     ?>
                 </div>

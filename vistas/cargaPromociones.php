@@ -44,7 +44,7 @@
                             
                             <!-- Form con para cargar promocion -->
                             <h2 class="text-center mb-4 h3">Solcitud de Promoción</h2>
-                            <form action="php/dueñoLocal/savePromociones.php" method="POST" id="solicitudPromocionForm">
+                            <form action="php/duenoLocal/savePromociones.php" method="POST" id="solicitudPromocionForm">
                             <?php
                                 // Establecer conexión
                                 $conexion = conexion();

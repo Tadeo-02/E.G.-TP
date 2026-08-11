@@ -1,5 +1,5 @@
 <?php 
-    require_once "../verificarTipoUsuarioDueño.php";
+    require_once "../verificarTipoUsuarioDueno.php";
     require_once "../main.php";
 
     $codUso = limpiar_cadena($_POST['codUsoPromociones']);
