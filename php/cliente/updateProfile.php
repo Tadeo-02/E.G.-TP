@@ -10,10 +10,7 @@ require_once __DIR__ . '/../main.php';
 require_once __DIR__ . '/../mailer.php';
 
 // Iniciar sesión
-if (session_status() !== PHP_SESSION_ACTIVE) {
-    session_name("UNR");
-    session_start();
-}
+iniciarSesion();
 
 // Verificar que sea un cliente logueado
 if (!isset($_SESSION['codUsuario']) || $_SESSION['codUsuario'] == "" || $_SESSION['tipoUsuario'] !== 'Cliente') {
@@ -253,8 +250,7 @@ if ($accion === 'darDeBaja') {
     session_destroy();
 
     // Reiniciar sesión para mostrar mensaje flash
-    session_name("UNR");
-    session_start();
+    iniciarSesion();
     $_SESSION['mensaje'] = [
         'texto' => 'Tu cuenta ha sido dada de baja exitosamente.',
         'tipo' => 'info'

@@ -1,6 +1,6 @@
 <?php
-session_name("UNR");
-session_start();
+require_once __DIR__ . '/main.php';
+iniciarSesion();
 if (!isset($_SESSION['codUsuario']) || $_SESSION['codUsuario'] == "" || $_SESSION['tipoUsuario'] !== 'Administrador') {
     header("Location: /index.php?vista=login");
     exit();

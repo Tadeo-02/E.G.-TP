@@ -1,7 +1,7 @@
 <?php
+require_once __DIR__ . '/main.php';
 ob_start();
-session_name("UNR");
-session_start();
+iniciarSesion();
 if (!isset($_SESSION['codUsuario']) || $_SESSION['codUsuario'] == "" || $_SESSION['tipoUsuario'] !== 'Dueño') {
     header("Location: /index.php?vista=login");
     exit();

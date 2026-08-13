@@ -1,6 +1,6 @@
 <?php
     require_once(__DIR__ . '/../php/main.php');
-    if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+    iniciarSesion();
 
     // Mostrar mensaje si existe
     if (isset($_SESSION['mensaje'])) {

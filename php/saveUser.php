@@ -3,10 +3,7 @@
     require_once __DIR__ . '/mailer.php';
 
     // Ensure session is started for flash messages with the same session name
-    if (session_status() !== PHP_SESSION_ACTIVE) {
-        session_name("UNR");
-        session_start();
-    }
+    iniciarSesion();
 
     // Guardar datos de los inputs
     $email = limpiar_cadena($_POST['nombreUsuario']);

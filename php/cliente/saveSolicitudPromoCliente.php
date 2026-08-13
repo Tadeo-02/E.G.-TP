@@ -2,10 +2,7 @@
 require_once "../main.php";
 
 // Ensure session is started for flash messages
-if (session_status() !== PHP_SESSION_ACTIVE) {
-    session_name("UNR");
-    session_start();
-}
+iniciarSesion();
 
 // Guardar datos de los inputs
  $codCliente = limpiar_cadena($_POST['codUsuario'] ?? '');

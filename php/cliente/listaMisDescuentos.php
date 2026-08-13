@@ -4,7 +4,7 @@ require_once __DIR__ . '/../main.php';
 // Pagination and inputs expected from the including view
 $inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
 
-if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+iniciarSesion();
 $codCliente = $_SESSION['codUsuario'] ?? null;
 
 $tabla = '';

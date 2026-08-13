@@ -2,10 +2,7 @@
 require_once(__DIR__ . '/../php/main.php');
 
 // Iniciar sesión con el mismo nombre usado en la aplicación
-if (session_status() !== PHP_SESSION_ACTIVE) {
-    session_name("UNR");
-    session_start();
-}
+iniciarSesion();
 
 // Mostrar mensaje si existe - EXACTAMENTE como en cargaPromociones.php
 if (isset($_SESSION['mensaje'])) {

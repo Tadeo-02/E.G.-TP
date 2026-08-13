@@ -2,10 +2,7 @@
 require_once __DIR__ . '/main.php';
 
 // Iniciar sesión para mensajes flash
-if (session_status() !== PHP_SESSION_ACTIVE) {
-    session_name("UNR");
-    session_start();
-}
+iniciarSesion();
 
 $token = $_POST['token'] ?? '';
 $claveNueva1 = limpiar_cadena($_POST['claveNueva1'] ?? '');

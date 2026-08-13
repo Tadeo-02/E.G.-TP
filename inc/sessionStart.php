@@ -1,12 +1,8 @@
 <?php 
+    require_once __DIR__ . '/../php/main.php';
     ob_start();
-    session_name("UNR");
-    session_start();
+    iniciarSesion();
 ?>
-
-
-
-
 
 
 

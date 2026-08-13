@@ -71,10 +71,7 @@ function verificarTokenEmail(string $token): array {
         $stmtUpdate->close();
 
         // Actualizar la sesión si el usuario está logueado
-        if (session_status() !== PHP_SESSION_ACTIVE) {
-            session_name("UNR");
-            session_start();
-        }
+        iniciarSesion();
         if (isset($_SESSION['codUsuario']) && $_SESSION['codUsuario'] == $fila['codUsuario']) {
             $_SESSION['nombreUsuario'] = $nuevoEmail;
         }

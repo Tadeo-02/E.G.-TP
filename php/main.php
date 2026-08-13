@@ -2,6 +2,14 @@
 
 require_once __DIR__ . '/config.php';
 
+// Iniciar sesión con el mismo nombre usado en la aplicación
+function iniciarSesion() {
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_name("UNR");
+        session_start();
+    }
+}
+
 // conexion a la base de datos
 function conexion(){ 
     $link = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME) or die("Problemas de conexion a la base de datos");

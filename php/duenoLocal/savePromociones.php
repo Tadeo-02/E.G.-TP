@@ -3,10 +3,7 @@
     require_once "../main.php";
     
     // Iniciar sesión con el mismo nombre usado en la aplicación
-    if (session_status() !== PHP_SESSION_ACTIVE) {
-        session_name("UNR");
-        session_start();
-    }
+    iniciarSesion();
 
     // Guardar datos de los inputs
     $codLocal = limpiar_cadena($_POST['codLocal']);
