@@ -7,8 +7,8 @@
 
     // Guardar datos de los inputs
     $email = limpiar_cadena($_POST['nombreUsuario']);
-    $clave_1 = limpiar_cadena($_POST['claveUsuario1']);
-    $clave_2 = limpiar_cadena($_POST['claveUsuario2']);
+    $clave_1 = $_POST['claveUsuario1'];
+    $clave_2 = $_POST['claveUsuario2'];
     $checkBox = isset($_POST['esDueño']) ? limpiar_cadena($_POST['esDueño']) : '';
     $nombrePersona = limpiar_cadena($_POST['nombrePersona'] ?? '');
     $apellidoPersona = limpiar_cadena($_POST['apellidoPersona'] ?? '');
@@ -28,8 +28,8 @@
         exit();
     }
     
-    if(verificarDatos("[a-zA-Z0-9\$@.\-]{7,100}", $clave_1) || verificarDatos("[a-zA-Z0-9\$@.\-]{7,100}", $clave_2)){
-        $_SESSION['mensaje'] = 'La clave debe contener al menos 7 caracteres';
+    if(verificarDatos(".{7,100}", $clave_1) || verificarDatos(".{7,100}", $clave_2)){
+        $_SESSION['mensaje'] = 'La clave debe contener al menos 7 caracteres y como máximo 100';
         header('Location: ../index.php?vista=signUp');
         exit();
     }

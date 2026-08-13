@@ -49,7 +49,7 @@ $mensajeError = $resultado['mensaje'] ?? '';
                                 class="form-control custom-dark-input"
                                 type="password"
                                 name="claveNueva1"
-                                pattern="[a-zA-Z0-9$@.-]{7,100}"
+                                pattern=".{7,100}"
                                 maxlength="100"
                                 placeholder="********"
                                 required
@@ -74,7 +74,7 @@ $mensajeError = $resultado['mensaje'] ?? '';
                                 class="form-control custom-dark-input"
                                 type="password"
                                 name="claveNueva2"
-                                pattern="[a-zA-Z0-9$@.-]{7,100}"
+                                pattern=".{7,100}"
                                 maxlength="100"
                                 placeholder="********"
                                 required

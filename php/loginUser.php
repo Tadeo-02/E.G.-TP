@@ -2,7 +2,7 @@
     require_once "main.php";
 
     $email = limpiar_cadena($_POST['nombreUsuario']);
-    $password = limpiar_cadena($_POST['claveUsuario']);
+    $password = $_POST['claveUsuario'];
 
 
     // Verificar campos obligatorios
@@ -12,14 +12,6 @@
             </div>';
         exit();
     }
-
-    if(verificarDatos("[a-zA-Z0-9\$@.\-]{7,100}", $password)){
-        echo '<div class="alert alert-danger" role="alert">
-            La contraseña no cumple con el formato requerido
-            </div>';
-        exit();
-    }
-
 
     // Conexion a la DB
     $conexion = conexion();

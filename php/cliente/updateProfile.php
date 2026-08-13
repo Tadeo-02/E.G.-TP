@@ -152,8 +152,8 @@ if ($accion === 'cambiarEmail') {
 // =============================================
 if ($accion === 'cambiarClave') {
     $claveActual = $_POST['claveActual'] ?? '';
-    $claveNueva1 = limpiar_cadena($_POST['claveNueva1'] ?? '');
-    $claveNueva2 = limpiar_cadena($_POST['claveNueva2'] ?? '');
+    $claveNueva1 = $_POST['claveNueva1'] ?? '';
+    $claveNueva2 = $_POST['claveNueva2'] ?? '';
 
     // Validar campos obligatorios
     if ($claveActual == '' || $claveNueva1 == '' || $claveNueva2 == '') {
@@ -163,8 +163,8 @@ if ($accion === 'cambiarClave') {
     }
 
     // Validar formato de nueva clave
-    if (verificarDatos("[a-zA-Z0-9\$@.-]{7,100}", $claveNueva1)) {
-        $_SESSION['perfil_mensaje'] = ['texto' => 'La nueva contraseña debe tener al menos 7 caracteres.', 'tipo' => 'danger'];
+    if (verificarDatos(".{7,100}", $claveNueva1)) {
+        $_SESSION['perfil_mensaje'] = ['texto' => 'La nueva contraseña debe tener entre 7 y 100 caracteres.', 'tipo' => 'danger'];
         header("Location: ../../index.php?vista=miPerfil");
         exit();
     }

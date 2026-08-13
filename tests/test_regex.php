@@ -16,34 +16,30 @@ function probar($descripcion, $expr, $valor, $esperadoError) {
 
 echo "=== test regex password ===\n\n";
 
-$regex = "[a-zA-Z0-9\$@.\-]{7,100}";
+$regex = ".{7,100}";
 
 probar('clave valida 7 chars', $regex, 'abc1234', false);
 probar('clave valida con $', $regex, 'a$$$bbb', false);
 probar('clave valida con @', $regex, 'a@b@cde', false);
 probar('clave valida con .', $regex, 'a.b.cde', false);
 probar('clave valida con -', $regex, 'a-b-cde', false);
+probar('clave valida con !', $regex, 'abc!def', false);
+probar('clave valida con #', $regex, 'abc#def', false);
+probar('clave valida con parentesis', $regex, 'abc(def', false);
+probar('clave valida con espacio', $regex, 'abc 123', false);
+probar('clave valida con acento', $regex, 'abcdéfg', false);
 probar('clave valida 10 chars mix', $regex, 'Abc@12.dE', false);
 probar('clave demasiado corta', $regex, 'ab12', true);
 probar('clave vacia', $regex, '', true);
-probar('clave con espacio', $regex, 'abc 123', true);
-probar('clave con acento', $regex, 'abcdéfg', true);
-probar('clave con parentesis', $regex, 'abc(def', true);
-probar('clave con #', $regex, 'abc#def', true);
-probar('clave con !', $regex, 'abc!def', true);
+probar('clave de 101 chars', $regex, str_repeat('a', 101), true);
 
-echo "\n=== test regex escapado ===\n\n";
+echo "\n=== test regex sin restriccion de caracteres ===\n\n";
 
-$regex2 = '[a-zA-Z0-9\$@.\-]{7,100}';
-$contieneEscape = strpos($regex2, '\$') !== false;
-echo ($contieneEscape ? '✓' : '✗') . " el regex contiene \\$ escapado: " . ($contieneEscape ? 'si' : 'no') . "\n";
+$regex2 = '.{7,100}';
+$tieneClaseCaracteres = strpos($regex2, '[') !== false;
+echo ($tieneClaseCaracteres ? '✗' : '✓') . " el regex no restringe caracteres (sin whitelist): " . ($tieneClaseCaracteres ? 'tiene whitelist' : 'ok') . "\n";
 $pasos++;
-if ($contieneEscape) $acertados++;
-
-$contieneGuionEscapado = strpos($regex2, '\-') !== false;
-echo ($contieneGuionEscapado ? '✓' : '✗') . " el regex contiene \\- escapado: " . ($contieneGuionEscapado ? 'si' : 'no') . "\n";
-$pasos++;
-if ($contieneGuionEscapado) $acertados++;
+if (!$tieneClaseCaracteres) $acertados++;
 
 echo "\n=== Resultado: $acertados/$pasos ===\n";
 exit($acertados === $pasos ? 0 : 1);

@@ -53,7 +53,7 @@
 						<div class="mb-3">
 							<label for="claveUsuario1">Clave</label>
                             <div class="input-wrapper">
-                                <input id="claveUsuario1"  class="form-control custom-dark-input password-padding" type="password" name="claveUsuario1" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********" required aria-describedby="passwordHelp">
+                                <input id="claveUsuario1"  class="form-control custom-dark-input password-padding" type="password" name="claveUsuario1" pattern=".{7,100}" maxlength="100" placeholder="********" required aria-describedby="passwordHelp">
                                  <button 
                                 type="button" 
                                 onclick="togglePasswordVisibility('claveUsuario1', 'toggleIconSignUp1')" 
@@ -68,7 +68,7 @@
 						<div class="mb-3">
 							<label for="claveUsuario2">Repetir clave</label>
                             <div class="input-wrapper">
-                                <input id="claveUsuario2"  class="form-control custom-dark-input password-padding" type="password" name="claveUsuario2" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" placeholder="********" required aria-describedby="repeatPasswordHelp">
+                                <input id="claveUsuario2"  class="form-control custom-dark-input password-padding" type="password" name="claveUsuario2" pattern=".{7,100}" maxlength="100" placeholder="********" required aria-describedby="repeatPasswordHelp">
                                  <button 
                                 type="button" 
                                 onclick="togglePasswordVisibility('claveUsuario2', 'toggleIconSignUp2')" 

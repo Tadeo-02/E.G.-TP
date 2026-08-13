@@ -50,11 +50,10 @@
                                 class="form-control custom-dark-input password-padding" 
                                 type="password" 
                                 name="claveUsuario" 
-                                pattern="[a-zA-Z0-9$@.-]{7,100}" 
                                 maxlength="100" 
                                 placeholder="********" 
                                 required 
-                                aria-describedby="passwordLoginHelp">
+                            >
 
                             <button 
                                 type="button" 
@@ -64,8 +63,6 @@
                                 <i id="toggleIconLogin" class="fas fa-eye" style="font-size: 1.2rem;"></i>
                             </button>
                         </div>
-                        
-                        <small id="passwordLoginHelp" class="form-text text-muted" style="margin-top: 5px; display:block;">La contraseña debe tener al menos 7 caracteres.</small>
                     </div>
 
                     <div class="text-center" style="margin-top: 30px;">
