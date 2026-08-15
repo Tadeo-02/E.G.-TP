@@ -3,7 +3,7 @@
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
     <div class="carousel-inner">
       <div class="carousel-item active">
-      <img src="img/home-1.jpg" class="d-block w-100" 
+      <img src="img/home-3.jpg" class="d-block w-100" 
               title="Eventos y actividades mensuales"
               alt="Galería comercial con techo curvo y mensaje sobre eventos y actividades mensuales."> 
           <p id="desc-detallada-1" class="visually-hidden">
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="img/home-3.jpg" class="d-block w-100" 
+        <img src="img/home-1.jpg" class="d-block w-100" 
                 title="Cine y patio de comidas"
                 alt="Interior de shopping con escaleras mecánicas y mensaje sobre cine, patio de comidas y promociones."> 
             <p id="desc-detallada-3" class="visually-hidden">
